@@ -127,7 +127,30 @@ TODO update regarding image compression
 
 ## Déploiement
 
-TODO not yet implemented
+Le déploiement se fait avec les Github Actions (CI/CD). Lorque le code sur le repository est prêt à être
+compilé et mis sur le serveur, on lance le *workflow* `deploy` depuis le tab *Actions* (sur la branche `main`):
+
+![image](https://user-images.githubusercontent.com/23584745/194904471-9abd485e-abbc-416b-920a-c807e741d184.png)
+
+Le *workflow* attend alors la validation d'un des comptes de confiance configurés lors de la
+[configuration ovh](#modifier-les-identifiants-de-connexion-ovh) :
+
+![image](https://user-images.githubusercontent.com/23584745/194905041-41e7928f-8ff4-4e9f-94d0-4f7f9587c58d.png)
+
+![image](https://user-images.githubusercontent.com/23584745/194905148-c109fa92-8a6c-480c-81c9-35ba90af5c98.png)
+
+![image](https://user-images.githubusercontent.com/23584745/194905228-778fee11-0577-433b-8a77-88beee0018c7.png)
+
+Le workflow devrait alors s'exécuter.
+
+![image](https://user-images.githubusercontent.com/23584745/194905564-fa899373-553d-4c0f-8223-a47628b9f38b.png)
+
+Si le workflow échoue, c'est probablement dû à une erreur lors de la compilation Hugo. Il faut regarder les logs
+et comprendre l'erreur.
+
+![image](https://user-images.githubusercontent.com/23584745/194906009-2a0041fd-0470-4435-97c6-029e6be59d88.png)
+
+Si la compilation échoue, le site ne sera pas actualisé.
 
 
 # Modifier les identifiants de connexion ovh
