@@ -1,0 +1,46 @@
+name: deploy
+
+on:
+  workflow_dispatch:
+    branches:
+      - 'master'
+
+# Allow one concurrent deployment
+concurrency:
+  group: "deploy"
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: build
+    env:
+      HUGO_VERSION: 0.102.3
+    steps:
+      - name: Install Hugo CLI
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Build with Hugo
+        env:
+          # For maximum backward compatibility with Hugo modules
+          HUGO_ENVIRONMENT: production
+          HUGO_ENV: production
+        run: |
+          hugo \
+            --minify
+      - name: Deploy to OVH
+        run : |
+          sshpass -p "${{ secrets.OVH_HOSTING_PASSWORD }}" sftp -v -o StrictHostKeyChecking=no \
+            ${{ secrets.OVH_HOSTING_USER }}@${{ secrets.OVH_HOSTING_DOMAIN }}:/home/${{ secrets.OVH_HOSTING_USER }}/www/ <<EOF 
+            put -r public/*
+            bye
+            EOF
