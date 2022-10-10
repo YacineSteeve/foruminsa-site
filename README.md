@@ -6,6 +6,11 @@ INSA](https://forumbyinsa.fr/). Basé sur cette
 il utilise le générateur de site statique [Hugo](https://gohugo.io/) et
 [Tailwind](https://tailwindcss.com/).
 
+### Table des matières
+
+- [Edition depuis Github](#edition-depuis-github)
+- [Installation et compilation locale](#installation-et-compilation-locale)
+
 ## Edition depuis Github
 
 Il est possible de modifier les fichiers directement depuis Github. Il faut ouvrir [Github.dev](https://github.dev/ForumbyINSA/foruminsa-site).
