@@ -12,6 +12,7 @@ attend.
 
 {{</ centre >}}
 
+
 {{< paragraph-with-image-right
     title="Conférences"
     src="/images/amphi.png">}}
