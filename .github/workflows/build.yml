@@ -41,6 +41,10 @@ jobs:
         run : |
           sshpass -p "${{ secrets.OVH_HOSTING_PASSWORD }}" sftp -v -o StrictHostKeyChecking=no \
             ${{ secrets.OVH_HOSTING_USER }}@${{ secrets.OVH_HOSTING_DOMAIN }}:/home/${{ secrets.OVH_HOSTING_USER }}/www/ <<EOF 
+            rm ./*/*/*/*
+            rm ./*/*/*
+            rm ./*/*
+            rm ./*
             put -r public/*
             bye
             EOF
