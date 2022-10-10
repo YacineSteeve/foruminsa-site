@@ -9,6 +9,11 @@ il utilise le générateur de site statique [Hugo](https://gohugo.io/) et
 ### Table des matières
 
 - [Edition depuis Github](#edition-depuis-github)
+- [Edition du contenu](#edition-du-contenu)
+  - [Shortcodes](#shortcodes)
+  - [Images](#images)
+- [Déploiement](#déploiement)
+- [Modifier les identifiants de connexion ovh](#modifier-les-identifiants-de-connexion-ovh)
 - [Installation et compilation locale](#installation-et-compilation-locale)
 
 ## Edition depuis Github
@@ -31,7 +36,7 @@ on constate bien que notre changement a été pris en compte.
 
 ## Edition du contenu
 
-Les fichiers contenant le contenu des pages sont situés dans le répertoire `content`. Chaque page a un dossier contenant un fichier `index.XX.md` par traduction. Par exemple, la page décrivant l'événement est associé à deux fichiers : `/content/event/index.fr.md` (français) et `/content/event/index.en.md (anglais).
+Les fichiers contenant le contenu des pages sont situés dans le répertoire `content`. Chaque page a un dossier contenant un fichier `index.XX.md` par traduction. Par exemple, la page décrivant l'événement est associé à deux fichiers : `/content/event/index.fr.md` (français) et `/content/event/index.en.md` (anglais).
 
 Le contenu de ces fichiers sont essentiellement du [Markdown](https://www.markdownguide.org/cheat-sheet).
 
@@ -99,6 +104,35 @@ de demain.
 
 Les shortcodes peuvent être mis à jour dans `/layouts/shortcodes`.
 Voir la [documentation](https://gohugo.io/templates/shortcode-templates/).
+
+### Images
+
+Il est préférable de ne pas inclure d'url d'images d'autres sites (tels que unsplash) mais plutôt de les mettre dans le répertoire `/static/images` et utiliser des liens de source relatifs :
+
+```
+{{< paragraph-with-image-right
+    title="Conférences"
+    src="/images/amphi.png">}}
+...
+{{</ paragraph-with-image-right >}}
+
+```
+ou
+```
+![amphis](/images/amphi.png)
+```
+
+TODO update regarding image compression
+
+
+## Déploiement
+
+TODO not yet implemented
+
+
+# Modifier les identifiants de connexion ovh
+
+TODO
 
 
 ## Installation et compilation locale
