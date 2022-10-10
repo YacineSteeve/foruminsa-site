@@ -1,0 +1,25 @@
+baseURL = 'https://forumbyinsa.fr/'
+languageCode = 'fr'
+title = 'foruminsa'
+disableKinds = ['taxonomy', 'term']
+defaultContentLanguage = 'fr'
+
+[params]
+signUpURL = 'https://insa-toulouse.jobteaser.com/fr/events/155301-14e-edition-du-forum-by-insa'
+
+
+
+[languages]
+  [languages.fr]
+    languageName = 'Français'
+    weight = 1
+    [languages.fr.params]
+      description = "Forum by INSA : Vos ingénieurs de demain. Une journée de rencontre et de discussion entre les élèves de l’INSA Toulouse et les recruteurs. Avec plus de 50 entreprises présentes, le Forum by INSA 2022 réunit, au sein du campus, les recruteurs d’aujourd’hui et les ingénieurs de demain."
+  [languages.en]
+    languageName = 'English'
+    weight = 2
+    [languages.en.params]
+      description = "Forum by INSA : Your engineers of tomorrow. A day for INSA Toulouse students and recruiters to discuss and meet each other. With over 50 companies present, Forum by INSA 2022 unites, on campus, today recruiters and tomorrow's engineers."
+
+
+

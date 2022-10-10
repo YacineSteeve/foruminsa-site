@@ -1,0 +1,13 @@
+<div class="container flex-wrap mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 pb-6">
+    <div class="lg:px-32 lg:py-16 text-lg flex items-center justify-center">
+        <div>
+            {{ if .Get "title" }}
+            <h2 class="text-4xl mb-6 font-bold uppercase italic">{{ .Get "title" }}</h2>
+            {{ end }}
+            <div class="text">{{ .Inner | markdownify }}</div>
+        </div>
+    </div>
+    <div class="flex lg:place-content-start place-content-center relative w-full">
+        <img src="{{ .Get `src` }}" class="inset-0 py-16 max-w-md" style="max-height: 64rem;">
+    </div>
+</div>

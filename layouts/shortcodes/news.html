@@ -1,0 +1,11 @@
+<div class="flex place-content-center py-16">
+  <div class="container mx-auto bg-white hover:bg-slate-100 mx-16">
+    {{ if .Get "title" }}
+    <h2 class="text-xl">{{ .Get "title" }}</h2>
+    {{ end }}
+    {{ if .Get "date" }}
+    <h3 class="text-sm text-gray-400 pb-2">{{ .Get "date" }}</h3>
+    {{ end }}
+    {{ .Inner | markdownify }}
+  </div>
+</div>

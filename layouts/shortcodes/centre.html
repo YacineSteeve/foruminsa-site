@@ -1,0 +1,6 @@
+<div class="mx-auto max-w-2xl text-xl text-center py-4 mb-8">
+  <h2 class="text-5xl mb-6 font-bold uppercase italic">{{ .Get 0 }}</h2>
+  {{ if .Inner }}
+  <div class="text">{{ .Inner | markdownify }}</div>
+  {{ end }}
+</div>

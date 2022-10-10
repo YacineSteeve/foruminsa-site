@@ -1,0 +1,79 @@
+{{ define "main" }}
+    <div class="-mt-32 relative w-full bg-black pt-64 pb-24">
+        <div class="relative z-10 text-center text-white text-center mx-auto max-w-xl">
+            <h1 class="text-3xl lg:text-7xl mb-4 font-bold uppercase italic">{{ .Params.landing_title }}</h1>
+            {{ if .Params.landing_link }}
+            <a href="{{ .Params.landing_link }}" class="inline-block rounded-full border-2 border-white text-lg px-8 py-3 hover:bg-white hover:text-gray-900">{{ .Params.landing_link_text }}</a>
+            {{ end }}
+        </div>
+        <img src="/images/landing.jpg" class="w-full h-full absolute inset-0 object-cover opacity-75">
+    </div>
+    
+    <!-- <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 py-24"> -->
+    <!--     <div class="lg:px-32 lg:py-32 flex items-center justify-center"> -->
+    <!--         <div> -->
+    <!--             <h2 class="text-5xl mb-6 font-bold uppercase italic">Contractors you can trust</h2> -->
+    <!--             <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
+    <!--             <a href="/about" class="mt-8 inline-block rounded-full border-2 border-gray-900 text-lg px-8 py-3 hover:bg-black hover:text-white">Our Promise</a> -->
+    <!--         </div> -->
+    <!--     </div> -->
+    <!--     <div class="hidden lg:grid relative grid-cols-2"> -->
+    <!--         <div class="pt-24"> -->
+    <!--             <div class="relative w-full h-full"> -->
+    <!--                 <img src="https://images.unsplash.com/photo-1536895058696-a69b1c7ba34f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=975&q=80" class="absolute inset-0 w-full h-full object-cover -mt-6 z-10"> -->
+    <!--             </div> -->
+    <!--         </div> -->
+    <!--         <div class="relative"> -->
+    <!--             <img src="https://images.unsplash.com/photo-1535732759880-bbd5c7265e3f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" class="absolute inset-0 w-full h-full object-cover -ml-12"> -->
+    <!--         </div> -->
+    <!--     </div> -->
+    <!-- </div> -->
+    <!-- <div class="mx-auto max-w-lg text-center py-24"> -->
+    <!--     <h2 class="text-5xl mb-6 font-bold uppercase italic">Our Services</h2> -->
+    <!--     <p class="text-xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
+    <!-- </div> -->
+    <!-- <div class="flex flex-wrap md:space-x-12 justify-center px-4"> -->
+    <!--     <a href="/service" class="block w-full md:flex-1 max-w-xs mb-12"> -->
+    <!--         <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="w-full h-96 object-cover"> -->
+    <!--         <div class="text-lg text-center p-4">Service Title</div> -->
+    <!--     </a> -->
+    <!--     <a href="/service" class="block w-full md:flex-1 max-w-xs mb-12"> -->
+    <!--         <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="w-full h-96 object-cover"> -->
+    <!--         <div class="text-lg text-center p-4">Service Title</div> -->
+    <!--     </a> -->
+    <!--     <a href="/service" class="block w-full md:flex-1 max-w-xs mb-12"> -->
+    <!--         <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" class="w-full h-96 object-cover"> -->
+    <!--         <div class="text-lg text-center p-4">Service Title</div> -->
+    <!--     </a> -->
+    <!-- </div> -->
+    <!-- <div class="relative w-full bg-black py-32 my-12 lg:my-24"> -->
+    <!--     <div class="relative z-10 text-center text-white text-center mx-auto max-w-xl"> -->
+    <!--         <h1 class="text-3xl lg:text-7xl mb-4 font-bold uppercase italic">Property Development</h1> -->
+    <!--         <a href="#" class="inline-block rounded-full border-2 border-white text-lg px-8 py-3 hover:bg-white hover:text-gray-900">Find out more</a> -->
+    <!--     </div> -->
+    <!--     <img src="https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2547&q=80" class="w-full h-full absolute inset-0 object-cover opacity-75"> -->
+    <!-- </div> -->
+    <!-- <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 py-24"> -->
+    <!--     <div class="hidden lg:grid relative grid-cols-2"> -->
+    <!--         <div class="pt-24"> -->
+    <!--             <div class="relative w-full h-full"> -->
+    <!--                 <img src="https://images.unsplash.com/photo-1536895058696-a69b1c7ba34f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=975&q=80" class="absolute inset-0 w-full h-full object-cover -mt-6 z-10"> -->
+    <!--             </div> -->
+    <!--         </div> -->
+    <!--         <div class="relative"> -->
+    <!--             <img src="https://images.unsplash.com/photo-1535732759880-bbd5c7265e3f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" class="absolute inset-0 w-full h-full object-cover -ml-12"> -->
+    <!--         </div> -->
+    <!--     </div> -->
+    <!--     <div class="lg:px-32 lg:py-32 flex items-center justify-center"> -->
+    <!--         <div> -->
+    <!--             <h2 class="text-5xl mb-6 font-bold uppercase italic">Contractors you can trust</h2> -->
+    <!--             <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
+    <!--             <a href="/about" class="mt-8 inline-block rounded-full border-2 border-gray-900 text-lg px-8 py-3 hover:bg-black hover:text-white">Our Promise</a> -->
+    <!--         </div> -->
+    <!--     </div> -->
+    <!-- </div> -->
+    <div id="content">
+        {{ .Content}}
+    </div>
+{{ end }}
+

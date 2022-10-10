@@ -1,0 +1,23 @@
+<div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 py-16">
+    <div class="hidden lg:grid relative grid-cols-2">
+        <div class="pt-24">
+            <div class="relative w-full h-full">
+                <img src="{{ .Get `src1` }}" class="absolute inset-0 w-full h-full object-cover -mt-6 z-10">
+            </div>
+        </div>
+        <div class="relative">
+            <img src="{{ .Get `src2` }}" class="absolute inset-0 w-full h-full object-cover -ml-12">
+        </div>
+    </div>
+    <div class="lg:px-32 lg:py-32 text-lg flex items-center justify-center">
+        <div>
+          {{ if .Get `title` }}
+          <h2 class="text-5xl mb-6 font-bold uppercase italic">{{ .Get `title` }}</h2>
+          {{ end }}
+          <div class="text">{{ .Inner | markdownify }}</div>
+          {{ if .Get `link` }}
+          <a href="{{ .Get `link` }}" class="mt-8 inline-block rounded-full border-2 border-gray-900 text-lg px-8 py-3 hover:bg-black hover:text-white">{{ i18n "learn_more"}}</a>
+          {{ end }}
+        </div>
+    </div>
+</div>

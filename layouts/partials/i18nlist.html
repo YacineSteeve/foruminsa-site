@@ -1,0 +1,5 @@
+{{ if .IsTranslated }}
+  {{ range .Translations }}
+    <a href="{{ .Permalink }}" class="my-2 lg:ml-6 rounded ring-2 ring-white ring-offset-0 ring-offset-transparent">{{ .Language.LanguageName }}</a>
+  {{ end }}
+{{ end }}

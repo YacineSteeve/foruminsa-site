@@ -1,0 +1,5 @@
+<div class="bg-black text-white text-center p-12">
+    <div class="text-2xl pb-5">{{ i18n "contact_message" }}</div>
+    <a href="{{ ($.Site.GetPage `/contact`).RelPermalink }}" class="mx-4 inline-block rounded-full border-2 border-white text-lg px-8 py-3 hover:bg-white hover:text-gray-900">{{ i18n "contact_us" }}</a>
+    <a href="{{ $.Site.Params.signUpURL }}" target="blank" class="mx-4 inline-block rounded-full border-2 border-white text-lg px-8 py-3 hover:bg-white hover:text-gray-900">{{ i18n "inscription_etud" }}</a>
+</div>
