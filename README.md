@@ -12,6 +12,16 @@ Il est possible de modifier les fichiers directement depuis Github. Il faut ouvr
 
 Lorsque l'on modifie un fichier, un badge bleu apparait à gauche. 
 
+![image](https://user-images.githubusercontent.com/23584745/194866904-fd86ee00-a86f-43af-9c51-0ee26913fb68.png)
+
+En appuyant sur le `+`, on indique que l'on veut prendre en compte cette modification lors du *commit*.
+
+![image](https://user-images.githubusercontent.com/23584745/194867623-dfd6bb05-9252-4042-9a36-4ee94a78be4a.png)
+
+Si on revient sur l'[historique des commits](https://github.com/ForumbyINSA/foruminsa-site/commits/main),
+on constate bien que notre changement a été pris en compte.
+
+![image](https://user-images.githubusercontent.com/23584745/194867911-b21b52b3-3db0-4527-af85-7bf1ef4f9631.png)
 
 
 ## Installation et compilation locale
