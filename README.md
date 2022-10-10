@@ -132,7 +132,27 @@ TODO not yet implemented
 
 # Modifier les identifiants de connexion ovh
 
-TODO
+On doit configurer l'environnement dans lequel le site sera compilé. On accède aux [paramètres](https://github.com/ForumbyINSA/foruminsa-site/settings/environments).
+
+![image](https://user-images.githubusercontent.com/23584745/194877093-a9f38873-a1c1-46a1-88c2-e4d5a1c26c90.png)
+
+Il est recommandé, pour des raisons de sécurité, de nécessiter la validation par un compte de confiance.
+
+![image](https://user-images.githubusercontent.com/23584745/194877426-4277da67-be25-476c-a6bc-77b8d343cebb.png)
+
+On limite son emploi à la branche principale (`main`).
+
+![image](https://user-images.githubusercontent.com/23584745/194877611-23e5bf27-cf54-4af2-b9e4-0d6523d67ae9.png)
+
+On configure ensuite les secrets :
+
+- `OVH_HOSTING_USER` : le nom d'utilisateur d'accès ftp
+- `OVH_HOSTING_PASSWORD` : le mot de passe correspondant
+- `OVH_HOSTING_DOMAIN` : `ftp.clusterXXX.hosting.ovh.net`
+
+![image](https://user-images.githubusercontent.com/23584745/194878243-decc1666-a914-4fd0-afe4-ae3adc309ab5.png)
+
+Ne pas oublier de sauvegarder
 
 
 ## Installation et compilation locale
