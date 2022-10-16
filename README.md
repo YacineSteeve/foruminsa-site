@@ -104,6 +104,7 @@ de demain.
 - paragraph-with-2-images-right
 - paragraph-with-image-left
 - paragraph-with-image-right
+- photo-section
 
 Les shortcodes peuvent être mis à jour dans `/layouts/shortcodes`.
 Voir la [documentation](https://gohugo.io/templates/shortcode-templates/).
@@ -129,6 +130,23 @@ ou
 
 Les images seront recompressées pour réduire leur taille et donc le temps de
 changement (optimisation performance).
+
+### La page de photos
+
+La page photos utilise le shortcode `photo-section`. On y met ligne par ligne
+le lien des photos dans `/assets/images`. Par exemple `images/landing.jpg`
+correspond à `/assets/images/landing.jpg`.
+
+```
+{{< photo-section >}}
+images/landing.jpg
+images/conference.jpg
+images/meeting-2.jpg
+{{</ photo-section >}}
+```
+
+On peut éventuellement utiliser le shortcode `centre` pour mettre des titres et
+des textes. On peut également mettre plusieurs `photo-section`.
 
 
 ## Déploiement
