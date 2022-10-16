@@ -1,0 +1,11 @@
+<div class="flex flex-wrap mx-auto px-6 justify-center">
+  {{ range ( split ( .Inner | string ) "\n" ) }}
+    {{ with (trim . " ") }}
+      {{ with resources.Get . }}
+          {{ with .Resize "500x jpeg q75" }}
+            <div><img src="{{ .RelPermalink }}" class="p-4 h-80"></div>
+          {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+</div>
