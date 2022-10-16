@@ -12,7 +12,7 @@ top-tier students.
 {{</ centre >}} 
 
 {{< paragraph-with-image-right
-    src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bGFwdG9wfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60"
+    src="images/inge-meca.jpg"
     title="A wide selection of engineering students">}}
     
 **500 Yearly graduates**
@@ -31,7 +31,7 @@ top-tier students.
 
 
 {{< paragraph-with-image-left
-    src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bGFwdG9wfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60"
+    src="images/inge-draw.jpg"
     title="An innovative pedagogy attentive to tomorrow's needs">}}
     
 - More autonomous learning thanks to problem and project-based pedagogy
