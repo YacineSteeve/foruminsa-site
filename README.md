@@ -67,7 +67,8 @@ Devient
 
 ![image](https://user-images.githubusercontent.com/23584745/194871005-e8f0a7d7-7d7d-4848-851a-dbbff7bd44fd.png)
 
-Le `"deroule"` correspond à l'`id` du tag. On peut ensuite y référer avec un lien : `[Lien vers la partie de déroulé](#deroule)`.
+Le `"deroule"` correspond à l'`id` du tag. On peut ensuite y référer avec un
+lien : `[Lien vers la partie de déroulé](#deroule)`.
 
 `{{< centre "Ateliers" />}}` devient
 
