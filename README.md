@@ -107,7 +107,9 @@ Voir la [documentation](https://gohugo.io/templates/shortcode-templates/).
 
 ### Images
 
-Il est préférable de ne pas inclure d'url d'images d'autres sites (tels que unsplash) mais plutôt de les mettre dans le répertoire `/static/images` et utiliser des liens de source relatifs :
+Il est nécessaire de ne pas inclure d'url d'images d'autres sites (tels que
+unsplash) mais plutôt de les mettre dans le répertoire `/assets/images` et
+utiliser des liens de source relatifs :
 
 ```
 {{< paragraph-with-image-right
@@ -122,7 +124,8 @@ ou
 ![amphis](/images/amphi.png)
 ```
 
-TODO update regarding image compression
+Les images seront recompressées pour réduire leur taille et donc le temps de
+changement (optimisation performance).
 
 
 ## Déploiement
