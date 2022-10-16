@@ -52,7 +52,7 @@ Les shortcodes permettent de formatter simplement du contenu (texte, images) en 
 Par exemple, `centre` affiche un titre et (optionnelement) du texte au milieu de la page.
 
 ```
-{{< centre "Déroulé de l'événement" >}}
+{{< centre "Déroulé de l'événement" "deroule" >}}
 
 Cette année, différentes activités vous seront proposées lors du Forum By INSA
 tout au long du 25 octobre. Vous pourrez alors vous intéresser aux différents
@@ -66,6 +66,8 @@ attend.
 Devient 
 
 ![image](https://user-images.githubusercontent.com/23584745/194871005-e8f0a7d7-7d7d-4848-851a-dbbff7bd44fd.png)
+
+Le `"deroule"` correspond à l'`id` du tag. On peut ensuite y référer avec un lien : `[Lien vers la partie de déroulé](#deroule)`.
 
 `{{< centre "Ateliers" />}}` devient
 

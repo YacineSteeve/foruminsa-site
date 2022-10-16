@@ -2,13 +2,17 @@
 title = "Forum by INSA - L'événement"
 +++
 
-{{< centre "Déroulé de l'événement" >}}
+{{< centre "Déroulé de l'événement" "deroule" >}}
 
 Cette année, différentes activités vous seront proposées lors du Forum By INSA
 tout au long du 25 octobre. Vous pourrez alors vous intéresser aux différents
 ateliers, conférences et tables rondes qui rythmeront cette journée. Pour
 comprendre le but de chacune d'elles, voici un résumé rapide de ce qui vous
 attend.
+
+- [Conférences](#deroule)
+- [Ateliers](#ateliers)
+- [Avant le forum](#avant)
 
 {{</ centre >}}
 
@@ -29,7 +33,7 @@ professionnel
 
 {{</ paragraph-with-image-right >}}
 
-{{< centre "Ateliers" />}}
+{{< centre "Ateliers" "ateliers" />}}
 
 {{< paragraph-with-image-left
     title="Relecture de profils LinkedIn"
@@ -90,7 +94,7 @@ pour toi !
 {{</ paragraph-with-image-left >}}
 
 
-{{< centre "Avant le FORUM" >}}
+{{< centre "Avant le FORUM" "avant" >}}
 
 Plusieurs ateliers seront proposés aux étudiants avant le forum
 

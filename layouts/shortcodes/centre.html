@@ -1,5 +1,5 @@
-<div class="mx-auto max-w-2xl text-xl text-center py-4 mb-8">
-  <h2 class="text-5xl mb-6 font-bold uppercase italic">{{ .Get 0 }}</h2>
+<div {{ with .Get 1 }}id="{{ . }}" {{ end }}class="mx-auto max-w-2xl text-xl text-center py-4 mb-8">
+  {{ with .Get 0 }}<h2 class="text-5xl mb-6 font-bold uppercase italic">{{ . }}</h2>{{ end }}
   {{ if .Inner }}
   <div class="text">{{ .Inner | markdownify }}</div>
   {{ end }}
