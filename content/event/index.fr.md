@@ -127,7 +127,7 @@ préalable <u>](https://insa-toulouse.jobteaser.com/fr/events/155301-14e-edition
     title="Relecture de CV et conseils individualisés"
     src="/images/interview-papers.jpg">}}
 
-**Quoi** ? Durant toutes l’après-midi, tu pourras venir recueillir de précieux
+**Quoi** ? Durant toute l’après-midi, tu pourras venir recueillir de précieux
 conseils autant sur le fond que la forme pour que ton CV soit parfait pour le
 Forum 
 

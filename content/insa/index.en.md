@@ -34,40 +34,41 @@ top-tier students.
     src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bGFwdG9wfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60"
     title="An innovative pedagogy attentive to tomorrow's needs">}}
     
-- Apprentissage plus autonome grâce à la pédagogie par problèmes et par projets
-- Méthodologie centrée sur l'étudiant pour stimuler sa capacité d’adaptation
-- Formation ingénieur humaniste en phase avec les enjeux sociétaux actuels
-- Réflexions actives autour de la responsabilité sociétale de l'ingénieur
+- More autonomous learning thanks to problem and project-based pedagogy
+- Student-centered methodology to stimulate adaptability
+- Humanist engineer training in line with current societal challenges
+- Active reflections on the social responsibility of engineers
 
 {{< /paragraph-with-image-left >}}
 
 
-{{< centre "Une formation en adéquation avec les besoins de la recherche et de l'industrie" >}}
+{{< centre "Training in line with the needs of research and industry" >}}
 
-Son enseignement, en lien avec les avancées scientifiques les plus récentes,
-s’appuie fortement sur l’activité de [laboratoires de recherche de premier
-plan](https://www.insa-toulouse.fr/fr/recherche/labo.html), soutenus par de
-grands groupes industriels, dans le domaine des nouveaux matériaux pour
-l’aéronautique par exemple, des technologies de préservation de l’environnement
-ou des nano-objets.
+Its teaching, tied to the most recent scientific advances, is strongly based on
+the activity of [leading research
+laboratories](https://www.insa-toulouse.fr/fr/recherche/labo.html), supported
+by large industrial groups, in the field of new materials for aeronautics, for
+example, environmental preservation technologies or nano-objects.
 
-` `  
-` `  
-
-L'international a constitué dès sa création une priorité pour l'école qui a mis
-en place progressivement des filières internationales. Sur le campus, un
-étudiant sur cinq est étranger.
 
 ` `  
 ` `  
 
-Les promotions accueillent des élèves aux profils diversifiés : bacheliers
-technologiques, ingénieurs en
-[apprentissage](https://www.insa-toulouse.fr/fr/formation/ingenieur/apprentissage-1.html)
-et en [formation
-continue](https://www.insa-toulouse.fr/fr/formation/formation_continue.html).
-L’ouverture au monde, c’est également l’engagement citoyen des étudiants,
-fortement soutenu et valorisé au sein de la scolarité.
+The international aspect has been a priority for the school since its creation,
+which has gradually set up international courses. On campus, one in five
+students is foreign.
+
+
+` `  
+` `  
+
+The promotions welcome students with diverse profiles: technological
+baccalaureate holders, engineers in
+[apprenticeship](https://www.insa-toulouse.fr/fr/formation/ingenieur/apprentissage-1.html)
+and [continuous
+education](https://www.insa-toulouse.fr/fr/formation/formation_continue.html).
+Openness to the world also means the civic engagement of students, strongly
+supported and valued within the school system.
 
 
 {{</ centre >}}
