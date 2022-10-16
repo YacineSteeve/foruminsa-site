@@ -1,6 +1,10 @@
 <div class="container flex-wrap mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 pb-6">
     <div class="flex lg:place-content-end place-content-center relative w-full">
-        <img src="{{ .Get `src` }}" class="inset-0 py-16 max-w-md" style="max-height: 64rem;">
+        {{ with resources.Get (.Get `src`) }}
+            {{ with .Resize "500x jpeg q60" }}
+        <img src="{{ .RelPermalink }}" class="inset-0 py-16 max-w-md" style="max-height: 64rem;">
+            {{ end }}
+        {{ end }}
     </div>
     <div class="lg:px-32 lg:py-16 text-xl flex items-center justify-center">
         <div>

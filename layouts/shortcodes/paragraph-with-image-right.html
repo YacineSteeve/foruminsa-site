@@ -8,6 +8,10 @@
         </div>
     </div>
     <div class="flex lg:place-content-start place-content-center relative w-full">
-        <img src="{{ .Get `src` }}" class="inset-0 py-16 max-w-md" style="max-height: 64rem;">
+        {{ with resources.Get (.Get `src`) }}
+            {{ with .Resize "500x jpeg q60" }}
+        <img src="{{ .RelPermalink }}" class="inset-0 py-16 max-w-md" style="max-height: 64rem;">
+            {{ end }}
+        {{ end }}
     </div>
 </div>

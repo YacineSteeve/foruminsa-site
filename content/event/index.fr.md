@@ -15,7 +15,7 @@ attend.
 
 {{< paragraph-with-image-right
     title="Conférences"
-    src="/images/amphi.png">}}
+    src="/images/conference.jpg">}}
 
 **10h-11h** : Ils ont entrepris ! Retour d'expérience d'ingénieurs INSA sur
 l'entrepreneuriat

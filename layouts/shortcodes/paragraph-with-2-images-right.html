@@ -13,11 +13,19 @@
     <div class="hidden lg:grid relative grid-cols-2">
         <div class="pt-24">
             <div class="relative w-full h-full">
-                <img src="{{ .Get `src1` }}" class="absolute inset-0 w-full h-full object-cover -mt-6 z-10">
+                {{ with resources.Get (.Get `src1`) }}
+                    {{ with .Resize "500x jpeg q60" }}
+                <img src="{{ .RelPermalink }}" class="absolute inset-0 w-full h-full object-cover -mt-6 z-10">
+                    {{ end }}
+                {{ end }}
             </div>
         </div>
         <div class="relative">
-            <img src="{{ .Get `src2` }}" class="absolute inset-0 w-full h-full object-cover -ml-12">
+            {{ with resources.Get (.Get `src2`) }}
+                {{ with .Resize "700x jpeg q60" }}
+            <img src="{{ .RelPermalink }}" class="absolute inset-0 w-full h-full object-cover -ml-12">
+                {{ end }}
+            {{ end }}
         </div>
     </div>
 </div>
