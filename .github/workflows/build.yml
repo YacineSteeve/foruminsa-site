@@ -39,7 +39,7 @@ jobs:
             --minify
       - name: Deploy to OVH
         run : |
-          sshpass -p "${{ secrets.OVH_HOSTING_PASSWORD }}" sftp -v -o StrictHostKeyChecking=no \
+          sshpass -p "${{ secrets.OVH_HOSTING_PASSWORD }}" sftp -o StrictHostKeyChecking=no \
             ${{ secrets.OVH_HOSTING_USER }}@${{ secrets.OVH_HOSTING_DOMAIN }}:/home/${{ secrets.OVH_HOSTING_USER }}/www/ <<EOF 
             rm ./*/*/*/*
             rm ./*/*/*
