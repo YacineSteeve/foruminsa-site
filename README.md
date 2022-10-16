@@ -130,6 +130,7 @@ ou
 
 Les images seront recompressées pour réduire leur taille et donc le temps de
 changement (optimisation performance).
+Learn more about hugo image compression [here](https://gohugo.io/content-management/image-processing/).
 
 ### La page de photos
 
