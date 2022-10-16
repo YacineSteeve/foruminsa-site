@@ -37,7 +37,7 @@ professionnel
 
 {{< paragraph-with-image-left
     title="Relecture de profils LinkedIn"
-    src="/images/ateliers.png">}}
+    src="/images/interview-computers.jpg">}}
 
 **Quoi** ? Un speed RDV individuel avec un consultant formateur lors duquel tu
 pourras identifier les axes d’amélioration te permettant de faire de LinkedIn
@@ -57,7 +57,7 @@ un véritable outil pour la recherche d’emploi. La relecture sera basée sur 3
 
 {{< paragraph-with-image-right
     title="Intelligence émotionnelle"
-    src="/images/ateliers.png">}}
+    src="/images/microphone.jpg">}}
 
 **Quoi** ? Au travers d’incidents marquants de l’histoire, Jean-Christophe
 montre en quoi notre capacité à percevoir les émotions, les comprendre, les
@@ -79,7 +79,7 @@ pour toi !
 
 {{< paragraph-with-image-left
     title="VIE"
-    src="/images/ateliers.png">}}
+    src="/images/chairs.jpg">}}
 
 **Quoi** ? 
 
@@ -103,7 +103,7 @@ Plusieurs ateliers seront proposés aux étudiants avant le forum
 
 {{< paragraph-with-image-right
     title="Comment aborder efficacement et convaincre un recruteur"
-    src="/images/ateliers.png">}}
+    src="/images/interview-2.jpg">}}
 
 **Quoi** ? Aborder les recruteurs le jour du Forum c’est tout un art !
 Préparation en amont, attitude à adopter ou phrase d’accroche, Madame Bertona
@@ -125,7 +125,7 @@ préalable <u>](https://insa-toulouse.jobteaser.com/fr/events/155301-14e-edition
 
 {{< paragraph-with-image-left
     title="Relecture de CV et conseils individualisés"
-    src="/images/ateliers.png">}}
+    src="/images/interview-papers.jpg">}}
 
 **Quoi** ? Durant toutes l’après-midi, tu pourras venir recueillir de précieux
 conseils autant sur le fond que la forme pour que ton CV soit parfait pour le
