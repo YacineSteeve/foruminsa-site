@@ -7,7 +7,7 @@ title = "Forum by INSA - Our team"
     src="images/team.jpg"
     link="event">}}
 
-Our team is made up of 27 INSA students spread over different areas:
+Our team is made up of 31 INSA students spread over different areas:
 
 - Business Relations Division
 - Logistics Division

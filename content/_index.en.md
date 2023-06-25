@@ -12,15 +12,14 @@ title = "Forum by INSA"
     link="event">}}
 
 A day for INSA Toulouse students and recruiters to discuss and meet each other.
-With over 50 companies present, Forum by INSA 2022 unites, on campus, today
-recruiters and tomorrow's engineers.
+Forum by INSA 2023 will unite, the October 24th on campus, today recruiters and tomorrow's engineers.
 
 {{</paragraph-with-2-images-right >}}
 
 {{< paragraph-with-2-images-left 
     title="INSA Toulouse"
-    src1="images/team.jpg"
-    src2="images/amphi-big.jpg"
+    src1="images/INSA_1.jpg"
+    src2="images/INSA_2.jpg"
     link="insa">}}
 
 With 500 yearly engineering graduates, in 8 different specialities, INSA

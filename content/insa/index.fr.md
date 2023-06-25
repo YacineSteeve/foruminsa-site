@@ -12,7 +12,7 @@ de sa [formation](https://www.insa-toulouse.fr/fr/formation.html) en cinq ans ap
 {{</ centre >}} 
 
 {{< paragraph-with-image-right
-    src="images/inge-meca.jpg"
+    src="images/INSA_3.jpg"
     title="Un vaste panel d'élèves ingénieurs">}}
     
 **500 DIPLOMES PAR AN**
@@ -31,7 +31,7 @@ de sa [formation](https://www.insa-toulouse.fr/fr/formation.html) en cinq ans ap
 
 
 {{< paragraph-with-image-left
-    src="images/inge-draw.jpg"
+    src="images/INSA_4.jpg"
     title="Une pédagogie innovante à l'écoute des enjeux d'avenir">}}
     
 - Apprentissage plus autonome grâce à la pédagogie par problèmes et par projets

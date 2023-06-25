@@ -4,7 +4,9 @@ title = "Forum by INSA - L'événement"
 
 {{< centre "Déroulé de l'événement" "deroule" >}}
 
-Cette année, différentes activités vous seront proposées lors du Forum By INSA
+{{< centre "Bientôt" >}}
+
+<!--Cette année, différentes activités vous seront proposées lors du Forum By INSA
 tout au long du 25 octobre. Vous pourrez alors vous intéresser aux différents
 ateliers, conférences et tables rondes qui rythmeront cette journée. Pour
 comprendre le but de chacune d'elles, voici un résumé rapide de ce qui vous
@@ -147,4 +149,4 @@ Contactez Lucie Schmitt, responsable du pôle activité pour en
 savoir plus.
 
 [l_schmit@insa-toulouse.fr](mailto:l_schmit@insa-toulouse.fr)
-{{</ centre >}}
+{{</ centre >}}-->

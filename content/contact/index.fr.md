@@ -8,15 +8,15 @@ disable_footer = true
     src2="images/meeting-2.jpg">}}
 
 
-**Yves-Marie Cobigo – Président :**
+**Gaspard Cambon – Président :**
 
-06 87 91 27 79
+06 52 36 11 99
 
-[cobigo@insa-toulouse.fr](mailto:cobigo@insa-toulouse.fr)
+[gcambon@insa-toulouse.fr](mailto:gcambon@insa-toulouse.fr)
 
 
-**Lucie Schmitt - Responsable Pôle Activité :**
+**Léo Chakri - Responsable Pôle Activité :**
 
-[l_schmit@insa-toulouse.fr](mailto:l_schmit@insa-toulouse.fr)
+[chakri@insa-toulouse.fr](mailto:chakri@insa-toulouse.fr)
 
 {{</paragraph-with-2-images-right>}}

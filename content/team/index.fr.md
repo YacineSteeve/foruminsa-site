@@ -7,7 +7,7 @@ title = "Forum by INSA - Notre équipe"
     src="images/team.jpg"
     link="event">}}
 
-Notre équipe est constituée de 27 insaïens répartis dans différents pôles :
+Notre équipe est constituée de 31 insaïens répartis dans différents pôles :
 
 - Pôle Relation Entreprises
 - Pôle Logistique

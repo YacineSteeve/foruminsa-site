@@ -12,16 +12,15 @@ title = "Forum by INSA"
     link="event">}}
 
 Une journée de rencontre et de discussion entre les élèves de l’INSA Toulouse
-et les recruteurs. Avec plus de 50 entreprises présentes, le Forum by INSA
-2022 réunit, au sein du campus, les recruteurs d’aujourd’hui et les ingénieurs
+et les recruteurs. le Forum by INSA 2023 réunira, le 24 octobre au sein du campus, les recruteurs d’aujourd’hui et les ingénieurs
 de demain. 
 
 {{</paragraph-with-2-images-right >}}
 
 {{< paragraph-with-2-images-left 
     title="L'INSA Toulouse"
-    src1="images/team.jpg"
-    src2="images/amphi-big.jpg"
+    src1="images/INSA_1.jpg"
+    src2="images/INSA_2.jpg"
     link="insa">}}
 
 C’est plus de 500 ingénieurs diplômés par an, dans 8 spécialités différentes.

@@ -4,10 +4,10 @@ title = "Forum by INSA - News"
 
 {{< centre "News" />}}
 
-{{< news
+<!--{{< news
     title="New website"
     date="Recently" >}}
 
-This website is new !
+This website is new !-->
 
 {{</news>}}
