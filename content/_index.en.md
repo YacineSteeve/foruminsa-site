@@ -18,8 +18,8 @@ Forum by INSA 2023 will unite, the October 24th on campus, today recruiters and 
 
 {{< paragraph-with-2-images-left 
     title="INSA Toulouse"
-    src1="images/INSA_1.jpg"
-    src2="images/INSA_2.jpg"
+    src1="images/INSA_2.jpg"
+    src2="images/INSA_1.jpg"
     link="insa">}}
 
 With 500 yearly engineering graduates, in 8 different specialities, INSA

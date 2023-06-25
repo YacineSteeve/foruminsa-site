@@ -19,8 +19,8 @@ de demain.
 
 {{< paragraph-with-2-images-left 
     title="L'INSA Toulouse"
-    src1="images/INSA_1.jpg"
-    src2="images/INSA_2.jpg"
+    src1="images/INSA_2.jpg"
+    src2="images/INSA_1.jpg"
     link="insa">}}
 
 C’est plus de 500 ingénieurs diplômés par an, dans 8 spécialités différentes.
