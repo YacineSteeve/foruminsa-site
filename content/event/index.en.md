@@ -5,7 +5,9 @@ title = "Forum by INSA - Event"
 {{< centre "Course of the event" "deroule" >}}
 
 **Arrive bientôt.**
-<!--This year, various activities will be offered to you during the Forum By INSA
+
+<!--
+This year, various activities will be offered to you during the Forum By INSA
 throughout October 25. You will then be able to take an interest in the various
 workshops, conferences and round tables that will punctuate this day. To
 understand the purpose of each, here's a quick summary of what to expect.
@@ -144,4 +146,5 @@ advice on both substance and form so that your CV is perfect for the Forum.
 Contact Lucie Schmitt, head of the business unit to find out more.
 
 [l_schmit@insa-toulouse.fr](mailto:l_schmit@insa-toulouse.fr)
-{{</ centre >}}-->
+{{</ centre >}}
+-->
