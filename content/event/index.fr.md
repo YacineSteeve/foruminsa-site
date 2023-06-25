@@ -4,8 +4,7 @@ title = "Forum by INSA - L'événement"
 
 {{< centre "Déroulé de l'événement" "deroule" >}}
 
-{{< centre "Bientôt" >}}
-
+**Coming soon.**
 <!--Cette année, différentes activités vous seront proposées lors du Forum By INSA
 tout au long du 25 octobre. Vous pourrez alors vous intéresser aux différents
 ateliers, conférences et tables rondes qui rythmeront cette journée. Pour

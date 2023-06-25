@@ -4,8 +4,7 @@ title = "Forum by INSA - Event"
 
 {{< centre "Course of the event" "deroule" >}}
 
-{{< centre "Soon"/>}}
-
+**Arrive bientôt.**
 <!--This year, various activities will be offered to you during the Forum By INSA
 throughout October 25. You will then be able to take an interest in the various
 workshops, conferences and round tables that will punctuate this day. To
