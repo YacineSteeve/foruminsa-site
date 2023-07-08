@@ -15,8 +15,24 @@ disable_footer = true
 [gcambon@insa-toulouse.fr](mailto:gcambon@insa-toulouse.fr)
 
 
-**Léo Chakri - Responsable Pôle Activité :**
+**Marco Ribeiro Badejo - Vice-Président Relations Entreprises :**
+
+[riberob@insa-toulouse.fr](mailto:riberob@insa-toulouse.fr)
+
+**Léo Chakri - Responsable Pôle Activités :**
 
 [chakri@insa-toulouse.fr](mailto:chakri@insa-toulouse.fr)
+
+**Antonin Lezat - Responsable Logistique :**
+
+[lezat@insa-toulouse.fr](mailto:lezat@insa-toulouse.fr)
+
+**Audrey Nizery - Responsable Communication :**
+
+[nizery@insa-toulouse.fr](mailto:nizery@insa-toulouse.fr)
+
+**Maëlys Durand - Trésorière :**
+
+[madurand@insa-toulouse.fr](mailto:madurand@insa-toulouse.fr)
 
 {{</paragraph-with-2-images-right>}}

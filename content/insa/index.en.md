@@ -5,8 +5,8 @@ title = "Forum by INSA - INSA Toulouse"
 {{< centre "INSA Toulouse" >}} 
 
 With over 18,000 graduated engineers, present in all economic sectors, the
-Institut National des Sciences Appliquées of Toulouse, as a pluridisciplinary, international
-and public engineering school, is renowned for its excellent five-year program, attracting
+Institut National des Sciences Appliquées of Toulouse is a pluridisciplinary, international
+and public engineering school. It is renowned for its excellent [five-year program](https://www.insa-toulouse.fr/fr/formation.html), attracting
 top-tier students.
 
 {{</ centre >}} 
@@ -46,7 +46,7 @@ top-tier students.
 
 Its teaching, tied to the most recent scientific advances, is strongly based on
 the activity of [leading research
-laboratories](https://www.insa-toulouse.fr/fr/recherche/labo.html), supported
+laboratories](https://www.insa-toulouse.fr/recherche/), supported
 by large industrial groups, in the field of new materials for aeronautics, for
 example, environmental preservation technologies or nano-objects.
 
@@ -64,9 +64,8 @@ students is foreign.
 
 The promotions welcome students with diverse profiles: technological
 baccalaureate holders, engineers in
-[apprenticeship](https://www.insa-toulouse.fr/fr/formation/ingenieur/apprentissage-1.html)
-and [continuous
-education](https://www.insa-toulouse.fr/fr/formation/formation_continue.html).
+[apprenticeship](https://www.insa-toulouse.fr/admissions-insa-toulouse/apprentissage/)
+and continuous education.
 Openness to the world also means the civic engagement of students, strongly
 supported and valued within the school system.
 
