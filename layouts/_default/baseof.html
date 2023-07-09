@@ -14,7 +14,7 @@
     <meta name="og:site_name" content="Forum by INSA">
     <meta name="og:description" content="{{if .Description }}{{else}}{{.Description}}{{ $.Site.Params.description }}{{end}}">
     <meta name="og:type" content="article">
-    <meta name="og:image" content="{{ .Site.BaseURL }}logo.png">
+    <meta name="og:image" content="{{ .Site.BaseURL }}logo_2023.png">
     <meta name="og:url" content="{{ .Page.Permalink }}">
     <meta name="og:locale" content="{{ .Lang }}">
     {{ range .Translations }}
@@ -58,7 +58,7 @@ div.content ul {
     <div class="h-24 w-full absolute top-0 left-0 bg-black"></div>
     <div class="h-24 z-20 relative container mx-auto flex items-center justify-between px-6">
       <!-- <a href="/" class="text-xl font-extrabold italic tracking-tighter text-white uppercase">foundation</a> -->
-      <a href="{{ (.Site.GetPage `/`).RelPermalink }}"><img src="/logo.png"></a>
+      <a href="{{ (.Site.GetPage `/`).RelPermalink }}"><img src="/logo_2023.png"></a>
         <div x-data="{ mobileMenu : false }" class="text-white text-lg fixed bottom-0 left-0 lg:relative p-6 lg:p-0 w-full lg:w-auto max-w-lg">
             <div x-bind:class="{ 'flex' : mobileMenu, 'hidden' : !mobileMenu }" class="lg:flex flex-col lg:flex-row items-center justify-center bg-black lg:bg-transparent pt-6 pb-8 lg:p-0 -mb-6 lg:m-0 rounded-t-3xl shadow-2xl lg:shadow-none font-bold uppercase italic lg:normal-case lg:font-normal not-italic">
                 <a href="{{ (.Site.GetPage `/event`).RelPermalink }}" class="my-2 lg:ml-6">{{ i18n "event" }}</a>
