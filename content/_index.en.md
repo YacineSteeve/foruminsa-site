@@ -7,8 +7,8 @@ title = "Forum by INSA"
 
 {{< paragraph-with-2-images-right 
     title="The event"
-    src1="images/interview.jpg"
-    src2="images/conference-sit.jpg"
+    src1="images/entretien1.jpg"
+    src2="images/conf_mizoom.jpg"
     link="event">}}
 
 A day for INSA Toulouse students and recruiters to discuss and meet each other.
@@ -19,7 +19,7 @@ Forum by INSA 2023 will unite, the October 24th on campus, today recruiters and 
 {{< paragraph-with-2-images-left 
     title="INSA Toulouse"
     src1="images/INSA_2.jpg"
-    src2="images/INSA_1.jpg"
+    src2="images/amphi_pres.jpg"
     link="insa">}}
 
 With 500 yearly engineering graduates, in 8 different specialities, INSA

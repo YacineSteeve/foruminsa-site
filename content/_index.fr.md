@@ -7,8 +7,8 @@ title = "Forum by INSA"
 
 {{< paragraph-with-2-images-right 
     title="L'événement"
-    src1="images/interview.jpg"
-    src2="images/conference-sit.jpg"
+    src1="images/entretien1.jpg"
+    src2="images/conf_mizoom.jpg"
     link="event">}}
 
 Une journée de rencontre et de discussion entre les élèves de l’INSA Toulouse
@@ -20,7 +20,7 @@ de demain.
 {{< paragraph-with-2-images-left 
     title="L'INSA Toulouse"
     src1="images/INSA_2.jpg"
-    src2="images/INSA_1.jpg"
+    src2="images/amphi_pres.jpg"
     link="insa">}}
 
 C’est plus de 500 ingénieurs diplômés par an, dans 8 spécialités différentes.
