@@ -7,5 +7,5 @@ title = "Forum by INSA - Event"
 **On October 24th, more details about the event coming soon.**
 
 
-Download it [here](https://drive.google.com/file/d/1-IXNLbm4jLWMFcwTMqA1zTXhMDw1nFW_/view?usp=drive_link) (french version only)
+Download it [here](https://drive.google.com/file/d/1GCnPScfsOKKbcAKk_FpbK0nypGpVKsw0/view?usp=drive_link) (french version only)
 
