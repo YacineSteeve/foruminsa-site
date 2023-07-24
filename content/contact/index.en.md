@@ -15,7 +15,7 @@ disable_footer = true
 
 **Marco Ribeiro Badejo - Vice-President Corporate Relations :**
 
-[riberob@insa-toulouse.fr](mailto:riberob@insa-toulouse.fr)
+[ribeirob@insa-toulouse.fr](mailto:ribeirob@insa-toulouse.fr)
 
 **Léo Chakri - Activity Manager :**
 
