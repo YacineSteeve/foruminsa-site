@@ -2,7 +2,11 @@
 title = "Forum by INSA - L'événement"
 +++
 
-{{< centre "Déroulé de l'événement" "deroule" >}}
+-[Déroulé](#deroule)
+-[Planning](#planning)
+
+
+{{< centre "Déroulé" "deroule" >}}
 
 Télécharger la plaquette [ici](https://drive.google.com/file/d/1GCnPScfsOKKbcAKk_FpbK0nypGpVKsw0/view?usp=drive_link)
 
