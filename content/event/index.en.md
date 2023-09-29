@@ -6,8 +6,4 @@ title = "Forum by INSA - Event"
 
 Download it [here](https://drive.google.com/file/d/1GCnPScfsOKKbcAKk_FpbK0nypGpVKsw0/view?usp=drive_link) (french version only)
 
-{{< paragraph-with-image-right
-    src="images/planning_entreprises.png"
-    title="Planning">}}
-
 
