@@ -5,10 +5,6 @@ title = "Forum by INSA - L'événement"
 
 Télécharger la plaquette [ici](https://drive.google.com/file/d/1GCnPScfsOKKbcAKk_FpbK0nypGpVKsw0/view?usp=drive_link)
 
-{{</ centre " >}}
-
-
-
 
 
 **PLANNING ENTREPRISES**
