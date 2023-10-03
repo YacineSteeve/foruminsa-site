@@ -5,10 +5,10 @@ title = "Forum by INSA - Event"
 {{< centre "Déroulé de l'événement" "deroule" >}}
 
 Download it [here](https://drive.google.com/file/d/1GCnPScfsOKKbcAKk_FpbK0nypGpVKsw0/view?usp=drive_link) (french version only)
-
-
+<br>
+<br>
 **COMPANY SCHEDULE**
-
+<br>
 *8am-9am* Arrival and installation of companies
 *9am* Speeches by INSA Toulouse representatives and the Forum by INSA 2023 team
 *9:30am* Student arrival

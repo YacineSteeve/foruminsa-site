@@ -4,11 +4,11 @@ title = "Forum by INSA - L'événement"
 {{< centre "Déroulé de l'événement" "deroule" >}}
 
 Télécharger la plaquette [ici](https://drive.google.com/file/d/1GCnPScfsOKKbcAKk_FpbK0nypGpVKsw0/view?usp=drive_link)
-
-
-
+<br>
+<br>
+<br>
 **PLANNING ENTREPRISES**
-
+<br>
 *8h-9h*           Arrivée et installation des entreprises
 *9h*              Discours des représentants de l'INSA Toulouse et de l'équipe du Forum by INSA 2023
 *9h30*            Arrivée des étudiants
