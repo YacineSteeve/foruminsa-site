@@ -12,7 +12,7 @@ title = "Forum by INSA"
     link="event">}}
 
 A day for INSA Toulouse students and recruiters to discuss and meet each other.
-Forum by INSA 2023 will unite, the October 24th on campus, today recruiters and tomorrow's engineers.
+Forum by INSA 2024 will unite, the October 22th on campus, today recruiters and tomorrow's engineers.
 
 {{</paragraph-with-2-images-right >}}
 

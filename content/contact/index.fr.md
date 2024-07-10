@@ -8,31 +8,31 @@ disable_footer = true
     src2="images/meeting-2.jpg">}}
 
 
-**Gaspard Cambon – Président :**
+**Hermeline Frénoy – Président :**
 
-06 52 36 11 99
+06 14 93 41 07
 
-[gcambon@insa-toulouse.fr](mailto:gcambon@insa-toulouse.fr)
+[frenoy@insa-toulouse.fr](mailto:frenoy@insa-toulouse.fr)
 
 
-**Marco Ribeiro Badejo - Vice-Président Relations Entreprises :**
+**Alice	Cazabon - Vice-Président Relations Entreprises :**
 
-[ribeirob@insa-toulouse.fr](mailto:ribeirob@insa-toulouse.fr)
+[cazabon@insa-toulouse.fr](mailto:cazabon@insa-toulouse.fr)
 
-**Léo Chakri - Responsable Pôle Activités :**
+**Doriane Deliot - Responsable Pôle Activités :**
 
-[chakri@insa-toulouse.fr](mailto:chakri@insa-toulouse.fr)
+[delio@insa-toulouse.fr](mailto:delio@insa-toulouse.fr)
 
-**Antonin Lezat - Responsable Logistique :**
+**Apollinaire Criquet - Responsable Logistique :**
 
-[lezat@insa-toulouse.fr](mailto:lezat@insa-toulouse.fr)
+[criquet@insa-toulouse.fr](mailto:criquet@insa-toulouse.fr)
 
-**Audrey Nizery - Responsable Communication :**
+**Joey Panizzi - Responsable Communication :**
 
-[nizery@insa-toulouse.fr](mailto:nizery@insa-toulouse.fr)
+[panizzi@insa-toulouse.fr](mailto:panizzi@insa-toulouse.fr)
 
-**Maëlys Durand - Trésorière :**
+**Anais	Bernadin - Trésorière :**
 
-[madurand@insa-toulouse.fr](mailto:madurand@insa-toulouse.fr)
+[anberna@insa-toulouse.fr](mailto:anberna@insa-toulouse.fr)
 
 {{</paragraph-with-2-images-right>}}

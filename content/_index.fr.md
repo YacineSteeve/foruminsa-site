@@ -12,7 +12,7 @@ title = "Forum by INSA"
     link="event">}}
 
 Une journée de rencontre et de discussion entre les élèves de l’INSA Toulouse
-et les recruteurs. le Forum by INSA 2023 réunira, le 24 octobre au sein du campus, les recruteurs d’aujourd’hui et les ingénieurs
+et les recruteurs. le Forum by INSA 2024 réunira, le 22 octobre au sein du campus, les recruteurs d’aujourd’hui et les ingénieurs
 de demain. 
 
 {{</paragraph-with-2-images-right >}}
