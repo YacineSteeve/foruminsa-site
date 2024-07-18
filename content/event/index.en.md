@@ -14,7 +14,7 @@ Download it [here](https://drive.google.com/file/d/1GCnPScfsOKKbcAKk_FpbK0nypGpV
   <br>
 
 
-<p>*9am* Speeches by INSA Toulouse representatives and the Forum by INSA 2023 team</p>
+<p>*9am* Speeches by INSA Toulouse representatives and the Forum by INSA 2024 team</p>
   <br>
 
 

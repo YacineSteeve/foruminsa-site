@@ -12,7 +12,7 @@ Télécharger la plaquette [ici](https://drive.google.com/file/d/1GCnPScfsOKKbcA
 *8h-9h*           Arrivée et installation des entreprises
 
 
-*9h*              Discours des représentants de l'INSA Toulouse et de l'équipe du Forum by INSA 2023
+*9h*              Discours des représentants de l'INSA Toulouse et de l'équipe du Forum by INSA 2024
 
 
 *9h30*            Arrivée des étudiants
