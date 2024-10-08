@@ -5,7 +5,7 @@ disableKinds = ['taxonomy', 'term']
 defaultContentLanguage = 'fr'
 
 [params]
-signUpURL = 'https://insa-toulouse.jobteaser.com/fr/events/155301-14e-edition-du-forum-by-insa'
+signUpURL = 'https://insa-toulouse.jobteaser.com/fr/events/229266'
 
 
 
