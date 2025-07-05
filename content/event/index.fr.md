@@ -3,31 +3,31 @@ title = "Forum by INSA - L'événement"
 +++
 {{< centre "Déroulé de l'événement" "deroule" >}}
 
-Télécharger la plaquette [ici](https://drive.google.com/file/d/1jlSqlXfVoySuo7_CtKay7FYI0MSVWNLx/view?usp=drive_link)
+Télécharger la plaquette [ici](https://drive.google.com/file/d/1sg3XlUgYkQHNIlhvWqBfpEDtUJab2gmD/view?usp=drive_link)
 
+<br>
+<br>
 
 **PLANNING ENTREPRISES**
 
+<br>
 
-*8h-9h*           Arrivée et installation des entreprises
-
-
-*9h*              Discours des représentants de l'INSA Toulouse et de l'équipe du Forum by INSA 2024
+*7h-8h*           Arrivée et installation des entreprises
 
 
-*9h30*            Arrivée des étudiants
+*8h*              Discours des représentants de l'INSA Toulouse et de l'équipe du Forum by INSA 2025
 
 
-*9h30-12h*        Rencontre des entreprises à leurs stands et participation aux ateliers et aux conférences pour les étudiants
+*8h30*            Arrivée des étudiants
 
 
-*12h-14h*         Pause repas - offert pour les étudiants inscrits et les entreprises
+*8h30-12h*        Rencontre des entreprises à leurs stands et participation aux ateliers et aux conférences pour les étudiants
 
 
-*12h30-13h30*     Concert des Enfoiros
+*12h-13h*         Pause repas - offert pour les étudiants inscrits et les entreprises
 
 
-*14h-17h*         Reprise des rencontres aux stands
+*13h-16h30*       Reprise des rencontres aux stands
 
 
 

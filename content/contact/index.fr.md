@@ -8,31 +8,41 @@ disable_footer = true
     src2="images/meeting-2.jpg">}}
 
 
-**Hermeline Frénoy – Président :**
+**Paul Lemeilleur – Président :**
 
-06 14 93 41 07
+07 82 83 73 56
 
-[frenoy@insa-toulouse.fr](mailto:frenoy@insa-toulouse.fr)
+[plemeill@insa-toulouse.fr](mailto:plemeill@insa-toulouse.fr)
 
 
-**Alice	Cazabon - Vice-Président Relations Entreprises :**
+**Baptiste Graille - Vice-Président Relations Entreprises :**
 
-[cazabon@insa-toulouse.fr](mailto:cazabon@insa-toulouse.fr)
+[bgraille@insa-toulouse.fr](mailto:bgraille@insa-toulouse.fr)
 
-**Doriane Deliot - Responsable Pôle Activités :**
+**Florian Grellet - Responsable Pôle Activités :**
 
-[delio@insa-toulouse.fr](mailto:delio@insa-toulouse.fr)
+[grellet@insa-toulouse.fr](mailto:grellet@insa-toulouse.fr)
 
-**Apollinaire Criquet - Responsable Logistique :**
+**Pauline Lamarche - Responsable Logistique :**
 
-[criquet@insa-toulouse.fr](mailto:criquet@insa-toulouse.fr)
+[lamarche@insa-toulouse.fr](mailto:lamarche@insa-toulouse.fr)
 
-**Joey Panizzi - Responsable Communication :**
+**Edgar Neboit - Responsable Communication :**
 
-[panizzi@insa-toulouse.fr](mailto:panizzi@insa-toulouse.fr)
+[neboit@insa-toulouse.fr](mailto:neboit@insa-toulouse.fr)
 
-**Anais	Bernadin - Trésorière :**
+**Océane Renard - Trésorière :**
 
-[anberna@insa-toulouse.fr](mailto:anberna@insa-toulouse.fr)
+[orenard@insa-toulouse.fr](mailto:orenard@insa-toulouse.fr)
+
+**Eva Antico - Trésorière :**
+
+[antico@insa-toulouse.fr](mailto:antico@insa-toulouse.fr)
+
+**Kaoutar Rouan - Point de contact**
+
+07 63 58 81 41
+
+[rouan@insa-toulouse.fr](mailto:rouan@insa-toulouse.fr)
 
 {{</paragraph-with-2-images-right>}}
