@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .raw-html ul,
+    .raw-html ol {
+        list-style: inside;
+    }
+}
+
+* {
+    @apply scroll-smooth;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.flex-center {
+    @apply flex items-center justify-center;
+}
+
+.skeleton {
+    @apply bg-gray-200 animate-pulse;
+}
