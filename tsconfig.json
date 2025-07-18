@@ -33,9 +33,6 @@
             "@components/*": ["./src/components/*"],
             "@style/*": ["./src/style/*"],
             "@lib/*": ["./src/lib/*"],
-            "@utils/*": ["./src/lib/utils/*"],
-            "@config/*": ["./src/lib/config/*"],
-            "@hooks/*": ["./src/lib/hooks/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

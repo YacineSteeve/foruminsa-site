@@ -4,26 +4,15 @@ export default {
     content: ['./src/**/*.{ts,tsx,mdx}'],
     important: '#app',
     theme: {
-        boxShadow: {
-            md: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 -2px 4px -2px rgb(0 0 0 / 0.1)',
-        },
         extend: {
             colors: {
                 primary: {
-                    DEFAULT: '#1f3d6a',
-                    light: '#2a6ea9',
-                },
-                secondary: {
-                    DEFAULT: '#ff6118',
-                    light: '#ff9361',
-                },
-                tertiary: {
-                    DEFAULT: '#267205',
-                    light: '#9bcd5f',
+                    DEFAULT: '#bd2727',
+                    light: '#d32f2f',
                 },
                 neutral: {
-                    DEFAULT: '#dce2ec',
-                    light: '#ffffff',
+                    DEFAULT: '#292929',
+                    light: '#424242',
                 },
                 error: {
                     light: '#e57373',
