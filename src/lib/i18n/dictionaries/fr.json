@@ -1,0 +1,23 @@
+{
+  "app": {
+  },
+  "navigation": {
+    "home": "Accueil",
+    "event": "Événement",
+    "companies": "Entreprises",
+    "carbonBalance": "Bilan Carbone",
+    "solidarityFund": "Fonds de Solidarité",
+    "contact": "Contact"
+  },
+  "footer": {
+    "pages": "Pages",
+    "contactUs": "Contactez-nous",
+    "followUs": "Suivez-nous",
+    "allRightsReserved": "Tous droits réservés"
+  },
+  "footerContactForm": {
+    "emailPlaceholder": "Votre adresse e-mail",
+    "emailErrorMessage": "Veuillez entrer une adresse e-mail valide.",
+    "cta": "Prendre contact"
+  }
+}

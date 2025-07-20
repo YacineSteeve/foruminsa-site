@@ -5,7 +5,7 @@ import { Button } from '@heroui/button';
 import { Form } from '@heroui/form';
 import { Input } from '@heroui/input';
 import { MENU_ITEMS, SOCIAL_LINKS } from '@lib/constants';
-import { useInView } from '@lib/hooks';
+import { useTranslation, useInView } from '@lib/hooks';
 import { cn } from '@lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -21,6 +21,7 @@ import {
 
 export const Footer: FunctionComponent = () => {
     const { ref, inView: showScrollToTop } = useInView();
+    const translation = useTranslation({ scope: 'footer' });
 
     return (
         <Fragment>
@@ -43,13 +44,13 @@ export const Footer: FunctionComponent = () => {
                             Pour plus d&apos;informations, contactez-nous via le formulaire de contact.
                         </p>
                     </section>
-                    <FooterSection title="Pages">
+                    <FooterSection title={translation.get('pages')}>
                         <FooterPagesList />
                     </FooterSection>
-                    <FooterSection title="Nous contacter">
+                    <FooterSection title={translation.get('contactUs')}>
                         <FooterContactForm />
                     </FooterSection>
-                    <FooterSection title="Nos réseaux sociaux">
+                    <FooterSection title={translation.get('followUs')}>
                         <FooterSocialLinks />
                     </FooterSection>
                 </div>
@@ -74,6 +75,8 @@ const FooterSection: FunctionComponent<FooterSectionProps> = ({ title, children 
 };
 
 const FooterPagesList: FunctionComponent = () => {
+    const translation = useTranslation({ scope: 'navigation' });
+    
     return (
         <nav>
             <ul className="space-y-4">
@@ -84,7 +87,7 @@ const FooterPagesList: FunctionComponent = () => {
                                 href={item.href}
                                 className="text-lg hover:text-primary hover:font-semibold"
                             >
-                                {item.label}
+                                {translation.get(item.label)}
                             </Link>
                         </li>
                     ))
@@ -96,6 +99,7 @@ const FooterPagesList: FunctionComponent = () => {
 
 const FooterContactForm: FunctionComponent = () => {
     const router = useRouter();
+    const translation = useTranslation({ scope: 'footerContactForm' });
     
     const handleSubmit = useCallback<FormEventHandler<HTMLFormElement>>((event) => {
         event.preventDefault();
@@ -105,7 +109,7 @@ const FooterContactForm: FunctionComponent = () => {
         const email = formData.get('email') as string;
         
         const contactUrl = new URL(
-            MENU_ITEMS.find((item) => item.label === 'Contact')?.href ?? '/contact',
+            MENU_ITEMS.find((item) => item.label === 'contact')?.href ?? '/contact',
             window.location.origin
         );
         contactUrl.searchParams.set('email', email);
@@ -123,22 +127,22 @@ const FooterContactForm: FunctionComponent = () => {
                 type="email"
                 variant="faded"
                 isRequired
-                placeholder="Votre adresse e-mail"
-                errorMessage="Veuillez entrer une adresse e-mail valide."
+                placeholder={translation.get('emailPlaceholder')}
+                errorMessage= {translation.get('emailErrorMessage')}
             />
             <Button
-                name="Prendre contact"
+                name="submit"
                 type="submit"
                 variant="solid"
                 color="primary"
                 fullWidth
                 className="text-white"
             >
-                Prendre contact
+                {translation.get('cta')}
             </Button>
         </Form>
     );
-}
+};
 
 const FooterSocialLinks: FunctionComponent = () => {
     return (
@@ -152,7 +156,6 @@ const FooterSocialLinks: FunctionComponent = () => {
                             <Link
                                 href={socialLink.href}
                                 target="_blank"
-                                aria-label={socialLink.label}
                                 className="group"
                             >
                                 <Icon className={cn('size-12', `group-hover:text-[${socialLink.color}]`)}/>
@@ -163,16 +166,17 @@ const FooterSocialLinks: FunctionComponent = () => {
             }
         </ul>
     );
-}
+};
 
 const FooterCopyRight: FunctionComponent = () => {
     const [currentYear] = useState(() => new Date().getFullYear());
+    const translation = useTranslation({ scope: 'footer' });
 
     return (
         <section className="w-full py-8">
             <p className="text-sm">
-                Copyright &copy; {currentYear} - Forum INSA. Tous droits réservés.
+                Copyright &copy; {currentYear} - Forum INSA. {translation.get('allRightsReserved')}
             </p>
         </section>
     );
-}
+};

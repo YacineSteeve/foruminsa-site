@@ -1,37 +1,49 @@
-import {} from 'react-icons';
+import { Lato } from 'next/font/google';
 import type { MenuItem, SocialLink } from '@lib/types';
 import { RiFacebookBoxFill, RiInstagramFill } from 'react-icons/ri';
 
 export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || ('http://localhost:3000' as const);
+
+export const SUPPORTED_LANGUAGES = {
+    FR: 'fr',
+    EN: 'en',
+} as const;
+
+export const DEFAULT_LANGUAGE = SUPPORTED_LANGUAGES.FR;
 
 export const COLORS = {
     primary: '#bd2727',
     primaryLight: '#d32f2f',
 } as const;
 
+export const APP_FONT = Lato({
+    subsets: ['latin'],
+    weight: ['100', '300', '400', '700', '900'],
+});
+
 export const MENU_ITEMS: Array<MenuItem> = [
     {
-        label: 'Accueil',
+        label: 'home',
         href: '/',
     },
     {
-        label: 'Événement',
+        label: 'event',
         href: '/evenement',
     },
     {
-        label: 'Entreprises',
+        label: 'companies',
         href: '/entreprises',
     },
     {
-        label: 'Bilan Carbone',
+        label: 'carbonBalance',
         href: '/bilan-carbone',
     },
     {
-        label: 'Fond de Solidarité',
+        label: 'solidarityFund',
         href: '/fond-de-solidarite',
     },
     {
-        label: 'Contact',
+        label: 'contact',
         href: '/contact',
     },
 ] as const;

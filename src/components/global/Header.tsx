@@ -1,7 +1,7 @@
 'use client';
 
 import { MENU_ITEMS, COLORS } from '@lib/constants';
-import { useDebounce } from '@lib/hooks';
+import { useDebounce, useTranslation } from '@lib/hooks';
 import type { MenuItem } from '@lib/types';
 import { cn } from '@lib/utils';
 import Image from 'next/image';
@@ -57,6 +57,7 @@ export const Header: FunctionComponent = () => {
 };
 
 const Menu: FunctionComponent = () => {
+    const translation = useTranslation({ scope: 'navigation' });
     const pathname = usePathname();
     const [activeRoute, setActiveRoute] = useState<MenuItem['href']>('');
 
@@ -84,7 +85,10 @@ const Menu: FunctionComponent = () => {
                 {MENU_ITEMS.map((item) => (
                     <li key={item.href}>
                         <MenuLink
-                            item={item}
+                            item={{
+                                label: translation.get(item.label),
+                                href: item.href,
+                            }}
                             isActive={activeRoute === item.href}
                         />
                     </li>
@@ -103,7 +107,6 @@ const MenuLink: FunctionComponent<MenuLinkProps> = ({ item, isActive }) => {
     return (
         <Link
             href={item.href}
-            aria-label={item.label}
             className="relative"
         >
             <p

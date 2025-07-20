@@ -16,7 +16,7 @@ export const ScrollToTopButton: FunctionComponent<ScrollToTopButtonProps> = ({ h
 
     return (
         <Button
-            aria-label="scroll-to-top-button"
+            aria-label="Revenir en haut de la page"
             isIconOnly
             color="primary"
             size="lg"
