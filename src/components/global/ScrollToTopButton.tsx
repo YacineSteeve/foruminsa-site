@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@heroui/button';
 import { cn } from '@lib/utils';
 import { type FunctionComponent, useCallback } from 'react';
 import { RiArrowUpLine } from 'react-icons/ri';
@@ -14,15 +15,19 @@ export const ScrollToTopButton: FunctionComponent<ScrollToTopButtonProps> = ({ h
     }, []);
 
     return (
-        <button
-            name="scroll-to-top-button"
-            onClick={handleClick}
+        <Button
+            aria-label="scroll-to-top-button"
+            isIconOnly
+            color="primary"
+            size="lg"
+            radius="full"
+            onPress={handleClick}
             className={cn(
-                'z-50 fixed bottom-8 right-8 flex-center size-12 rounded-full bg-primary hover:bg-primary-light transition-all duration-300',
+                'z-50 fixed bottom-8 right-8',
                 hidden && 'hidden',
             )}
         >
             <RiArrowUpLine className="size-8 invert contrast-200" />
-        </button>
+        </Button>
     );
 };

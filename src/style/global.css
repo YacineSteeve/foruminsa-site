@@ -1,16 +1,75 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer base {
-    .raw-html ul,
-    .raw-html ol {
-        list-style: inside;
-    }
+@plugin './hero.ts';
+@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+    --color-primary: #bd2727;
+    --color-black: #292929;
 }
 
 * {
-    @apply scroll-smooth text-neutral;
+    @apply scroll-smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+strong,
+b,
+em,
+i {
+    @apply  transition-colors;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @apply font-semibold capitalize;
+}
+
+h1 {
+    @apply text-4xl;
+}
+
+h2 {
+    @apply text-3xl;
+}
+
+h3 {
+    @apply text-2xl;
+}
+
+h4 {
+    @apply text-xl;
+}
+
+h5 {
+    @apply text-lg;
+}
+
+h6 {
+    @apply text-base;
+}
+
+a {
+    @apply inline-block size-fit
+}
+
+
+hr {
+    @apply border-black/10;
 }
 
 input:-webkit-autofill,
@@ -29,6 +88,10 @@ input:-webkit-autofill:active {
 }
 
 @layer utilities {
+    .menu-item {
+        @apply text-primary;
+    }
+
     .clipped-wave-20 {
         clip-path: polygon(
             100% 100%,

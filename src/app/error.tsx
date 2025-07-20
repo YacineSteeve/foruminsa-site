@@ -1,5 +1,8 @@
 'use client';
 
+import { Alert } from '@heroui/alert';
+import { Button } from '@heroui/button';
+
 interface ErrorProps {
     error: Error;
     reset: VoidFunction;
@@ -11,18 +14,21 @@ export default function Error({ error, reset }: ErrorProps) {
 
     return (
         <div className="relative flex-center size-full">
-            <div className="flex flex-col items-center gap-10">
+            <div className="flex flex-col items-center gap-10 pt-40">
                 <h4>Une erreur est survenue</h4>
-                <div>
-                    <p>Message d&apos;erreur :</p>
-                    <pre className="w-[50rem] max-w-full max-h-80 p-5 bg-neutral rounded-md text-sm text-wrap overflow-y-auto">
-                        {error.message.toLowerCase() === 'failed to fetch'
-                            ? 'Impossible de se connecter au serveur'
-                            : error.message}
-                    </pre>
-                </div>
+                <Alert
+                    title="Message d'erreur"
+                    color="danger"
+                    description={(
+                        <pre className="w-[50rem] max-w-full max-h-80 p-5 rounded-md text-sm text-wrap overflow-y-auto">
+                            {error.message.toLowerCase() === 'failed to fetch'
+                                ? 'Impossible de se connecter au serveur'
+                                : error.message}
+                        </pre>
+                    )}
+                />
                 <div className="flex items-center gap-5">
-                    <button onClick={reset}>Réessayer</button>
+                    <Button onPress={reset}>Réessayer</Button>
                 </div>
             </div>
         </div>

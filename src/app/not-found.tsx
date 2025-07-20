@@ -12,7 +12,7 @@ export default function NotFound() {
                     height={400}
                     className="max-w-full max-h-full"
                 />
-                <h4 className="text-4xl font-medium">Oups !</h4>
+                <h1>Oups !</h1>
                 <p>Désolé, la page que vous cherchez n&apos;existe pas.</p>
             </div>
         </div>
