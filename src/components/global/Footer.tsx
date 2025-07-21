@@ -57,7 +57,7 @@ export const Footer: FunctionComponent = () => {
                         <FooterSection title={t('followUs')}>
                             <FooterSocialLinks/>
                         </FooterSection>
-                        {/*<FooterLanguageSelector />*/}
+                        <FooterLanguageSelector />
                     </div>
                 </div>
                 <hr />
@@ -197,7 +197,7 @@ const FooterLanguageSelector: FunctionComponent = () => {
             variant="underlined"
             selectionMode="single"
             color="primary"
-            className="w-60"
+            className="w-60 hidden"
             startContent={<RiTranslate2 className="size-8"/>}
             onChange={handleLanguageChange}
         >
