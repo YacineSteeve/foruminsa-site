@@ -1,21 +1,31 @@
 import { Footer } from '@components/global/Footer';
 import { Header } from '@components/global/Header';
-import DictionaryProvider from '@components/providers/DictionaryProvider';
 import { SuspenseBoundary } from '@components/ui/SuspenseBoundary';
-import { APP_FONT, COLORS, SUPPORTED_LANGUAGES } from '@lib/constants';
-import { getDictionary, type Language } from '@lib/i18n';
+import { APP_FONT, COLORS } from '@lib/constants';
+import { i18nRouting } from '@lib/i18n/routing';
 import type { GlobalRouteParams } from '@lib/types';
 import { cn } from '@lib/utils';
 import { HeroUIProvider } from '@heroui/react';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { notFound } from 'next/navigation';
 import type { PropsWithChildren } from 'react';
 import type { Metadata, Viewport } from 'next';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import TopLoader from 'nextjs-toploader';
 import { Toaster } from 'sonner';
 import '@style/global.css';
 
-export const metadata: Metadata = {
-    title: 'Forum By INSA',
-};
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations('AppMetadata');
+
+    return {
+        title: t('title')
+    };
+}
+
+export async function generateStaticParams(): Promise<Array<Record<string, string>>> {
+    return i18nRouting.locales.map((locale) => ({ locale }));
+}
 
 export const viewport: Viewport = {
     width: 'device-width',
@@ -24,23 +34,22 @@ export const viewport: Viewport = {
     userScalable: true,
 };
 
-export async function generateStaticParams() {
-    return Object.values(SUPPORTED_LANGUAGES)
-        .map((language) => ({
-            language,
-        }));
-}
-
-interface RootLayoutProps extends PropsWithChildren {
+interface AppLayoutProps extends PropsWithChildren {
     params: Promise<GlobalRouteParams>;
 }
 
-export default async function RootLayout({ children, params }: RootLayoutProps) {
-    const { language } = await params;
-    const dictionary = await getDictionary(language as Language);
+export default async function AppLayout({ children, params }: AppLayoutProps) {
+    const { locale } = await params;
+    const messages = await getMessages();
+    
+    if (!hasLocale(i18nRouting.locales, locale)) {
+        notFound();
+    }
+    
+    setRequestLocale(locale);
     
     return (
-        <html lang={language}>
+        <html lang={locale}>
             <body
                 className={cn(
                     'light w-screen h-screen overflow-x-hidden overflow-y-auto',
@@ -49,7 +58,10 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
                 suppressHydrationWarning
             >
                 <HeroUIProvider>
-                    <DictionaryProvider dictionary={dictionary}>
+                    <NextIntlClientProvider
+                        locale={locale}
+                        messages={messages}
+                    >
                         {/* Top loader for page loading indication (on navigation) */}
                         <TopLoader
                             color={COLORS.primary}
@@ -76,7 +88,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
                             <SuspenseBoundary>{children}</SuspenseBoundary>
                         </main>
                         <Footer/>
-                    </DictionaryProvider>
+                    </NextIntlClientProvider>
                 </HeroUIProvider>
             </body>
         </html>

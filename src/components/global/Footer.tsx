@@ -4,13 +4,15 @@ import { ScrollToTopButton } from '@components/global/ScrollToTopButton';
 import { Button } from '@heroui/button';
 import { Form } from '@heroui/form';
 import { Input } from '@heroui/input';
-import { MENU_ITEMS, SOCIAL_LINKS } from '@lib/constants';
-import { useTranslation, useInView } from '@lib/hooks';
+import { Select, SelectItem } from '@heroui/select';
+import { LANGUAGE_NAMES, MENU_ITEMS, SOCIAL_LINKS } from '@lib/constants';
+import { useInView } from '@lib/hooks';
+import { getPathname, Link, usePathname, useRouter } from '@lib/i18n/navigation';
 import { cn } from '@lib/utils';
+import { type Locale, useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import {
+    type ChangeEventHandler,
     type FormEventHandler,
     Fragment,
     type FunctionComponent,
@@ -18,10 +20,11 @@ import {
     useCallback,
     useState
 } from 'react';
+import { RiTranslate2 } from 'react-icons/ri';
 
 export const Footer: FunctionComponent = () => {
     const { ref, inView: showScrollToTop } = useInView();
-    const translation = useTranslation({ scope: 'footer' });
+    const t = useTranslations('Footer')
 
     return (
         <Fragment>
@@ -44,15 +47,18 @@ export const Footer: FunctionComponent = () => {
                             Pour plus d&apos;informations, contactez-nous via le formulaire de contact.
                         </p>
                     </section>
-                    <FooterSection title={translation.get('pages')}>
+                    <FooterSection title={t('pages')}>
                         <FooterPagesList />
                     </FooterSection>
-                    <FooterSection title={translation.get('contactUs')}>
+                    <FooterSection title={t('contactUs')}>
                         <FooterContactForm />
                     </FooterSection>
-                    <FooterSection title={translation.get('followUs')}>
-                        <FooterSocialLinks />
-                    </FooterSection>
+                    <div className="flex flex-col max-md:items-center gap-y-16">
+                        <FooterSection title={t('followUs')}>
+                            <FooterSocialLinks/>
+                        </FooterSection>
+                        {/*<FooterLanguageSelector />*/}
+                    </div>
                 </div>
                 <hr />
                 <FooterCopyRight />
@@ -75,7 +81,7 @@ const FooterSection: FunctionComponent<FooterSectionProps> = ({ title, children 
 };
 
 const FooterPagesList: FunctionComponent = () => {
-    const translation = useTranslation({ scope: 'navigation' });
+    const t = useTranslations('Navigation');
     
     return (
         <nav>
@@ -87,7 +93,10 @@ const FooterPagesList: FunctionComponent = () => {
                                 href={item.href}
                                 className="text-lg hover:text-primary hover:font-semibold"
                             >
-                                {translation.get(item.label)}
+                                {
+                                    // @ts-expect-error TS2345: Argument of type string is not assignable to parameter of type ...
+                                    t(item.label)
+                                }
                             </Link>
                         </li>
                     ))
@@ -99,7 +108,7 @@ const FooterPagesList: FunctionComponent = () => {
 
 const FooterContactForm: FunctionComponent = () => {
     const router = useRouter();
-    const translation = useTranslation({ scope: 'footerContactForm' });
+    const t = useTranslations('FooterContactForm');
     
     const handleSubmit = useCallback<FormEventHandler<HTMLFormElement>>((event) => {
         event.preventDefault();
@@ -120,15 +129,15 @@ const FooterContactForm: FunctionComponent = () => {
     return (
         <Form
             onSubmit={handleSubmit}
-            className="flex flex-col max-md:items-center gap-4 w-full *:w-80"
+            className="flex flex-col max-md:items-center gap-4 w-full *:w-60"
         >
             <Input
                 name="email"
                 type="email"
                 variant="faded"
                 isRequired
-                placeholder={translation.get('emailPlaceholder')}
-                errorMessage= {translation.get('emailErrorMessage')}
+                placeholder={t('emailPlaceholder')}
+                errorMessage= {t('emailErrorMessage')}
             />
             <Button
                 name="submit"
@@ -138,7 +147,7 @@ const FooterContactForm: FunctionComponent = () => {
                 fullWidth
                 className="text-white"
             >
-                {translation.get('cta')}
+                {t('cta')}
             </Button>
         </Form>
     );
@@ -168,14 +177,52 @@ const FooterSocialLinks: FunctionComponent = () => {
     );
 };
 
+const FooterLanguageSelector: FunctionComponent = () => {
+    const router = useRouter();
+    const href = usePathname();
+   
+    const t = useTranslations('FooterLanguageSelector');
+    
+    const handleLanguageChange = useCallback<ChangeEventHandler<HTMLSelectElement>>((event) => {
+        const locale = event.target.value as Locale;
+        
+        const pathname = getPathname({ href, locale });
+        
+        router.replace(pathname);
+    }, [router, href]);
+    
+    return (
+        <Select
+            aria-label={t('label')}
+            variant="underlined"
+            selectionMode="single"
+            color="primary"
+            className="w-60"
+            startContent={<RiTranslate2 className="size-8"/>}
+            onChange={handleLanguageChange}
+        >
+            {
+                Object.entries(LANGUAGE_NAMES).map(([language, name]) => (
+                    <SelectItem
+                        key={language}
+                        className="text-lg"
+                    >
+                        {name}
+                    </SelectItem>
+                ))
+            }
+        </Select>
+    );
+}
+
 const FooterCopyRight: FunctionComponent = () => {
     const [currentYear] = useState(() => new Date().getFullYear());
-    const translation = useTranslation({ scope: 'footer' });
+    const t = useTranslations('Footer');
 
     return (
         <section className="w-full py-8">
             <p className="text-sm">
-                Copyright &copy; {currentYear} - Forum INSA. {translation.get('allRightsReserved')}
+                Copyright &copy; {currentYear} - Forum INSA. {t('allRightsReserved')}
             </p>
         </section>
     );

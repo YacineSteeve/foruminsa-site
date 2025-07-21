@@ -1,0 +1,37 @@
+{
+  "AppMetadata": {
+    "title": "Forum By INSA"
+  },
+  "ErrorPage": {
+    "title": "Une erreur inattendue est survenue.",
+    "failedToFetch": "Impossible de charger les données",
+    "retry": "Réessayer"
+  },
+  "NotFoundPage": {
+    "title": "Oups !",
+    "description": "Désolé, la page que vous cherchez n&apos;existe pas.",
+    "imageDescription": "Le nombre 404 avec un soleil couchant en arrière-plan"
+  },
+  "Navigation": {
+    "home": "Accueil",
+    "event": "Événement",
+    "companies": "Entreprises",
+    "carbonBalance": "Bilan Carbone",
+    "solidarityFund": "Fonds de Solidarité",
+    "contact": "Contact"
+  },
+  "Footer": {
+    "pages": "Pages",
+    "contactUs": "Contactez-nous",
+    "followUs": "Suivez-nous",
+    "allRightsReserved": "Tous droits réservés"
+  },
+  "FooterContactForm": {
+    "emailPlaceholder": "Votre adresse e-mail",
+    "emailErrorMessage": "Veuillez entrer une adresse e-mail valide.",
+    "cta": "Prendre contact"
+  },
+  "FooterLanguageSelector": {
+    "label": "Changer de langue"
+  }
+}

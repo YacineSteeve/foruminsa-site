@@ -1,8 +1,11 @@
+import type { useTranslations } from 'next-intl';
 import type { IconType } from 'react-icons';
 
 export type GlobalRouteParams = {
-    language: string;
+    locale: string;
 };
+
+export type TranslationKey = Parameters<ReturnType<typeof useTranslations>>[0];
 
 export type MenuItem = {
     label: string;
@@ -16,8 +19,4 @@ export type SocialLink = {
     href: string;
     icon: IconType;
     color: HexColor;
-};
-
-export type TranslationGetter = {
-    get: (key: string) => string;
 };

@@ -2,6 +2,7 @@
 
 import { Alert } from '@heroui/alert';
 import { Button } from '@heroui/button';
+import { useTranslations } from 'next-intl';
 
 interface ErrorProps {
     error: Error;
@@ -9,26 +10,27 @@ interface ErrorProps {
 }
 
 // The error boundary component that displays an error message and a retry button
-export default function Error({ error, reset }: ErrorProps) {
+export default function ErrorPage({ error, reset }: ErrorProps) {
+    const t = useTranslations('ErrorPage');
+    
     console.error(error);
 
     return (
         <div className="relative flex-center size-full">
             <div className="flex flex-col items-center gap-10 pt-40">
-                <h4>Une erreur est survenue</h4>
+                <h4>{t('title')}</h4>
                 <Alert
-                    title="Message d'erreur"
                     color="danger"
                     description={(
                         <pre className="w-[50rem] max-w-full max-h-80 p-5 rounded-md text-sm text-wrap overflow-y-auto">
                             {error.message.toLowerCase() === 'failed to fetch'
-                                ? 'Impossible de se connecter au serveur'
+                                ? t('title')
                                 : error.message}
                         </pre>
                     )}
                 />
                 <div className="flex items-center gap-5">
-                    <Button onPress={reset}>Réessayer</Button>
+                    <Button onPress={reset}>{t('retry')}</Button>
                 </div>
             </div>
         </div>
