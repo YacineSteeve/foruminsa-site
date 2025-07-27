@@ -52,7 +52,7 @@ export default async function AppLayout({ children, params }: AppLayoutProps) {
         <html lang={locale}>
             <body
                 className={cn(
-                    'light w-screen h-screen overflow-x-hidden overflow-y-auto',
+                    'light',
                     APP_FONT.className,
                 )}
                 suppressHydrationWarning
@@ -83,11 +83,13 @@ export default async function AppLayout({ children, params }: AppLayoutProps) {
                                 },
                             }}
                         />
-                        <Header/>
-                        <main className="w-full min-h-screen">
-                            <SuspenseBoundary>{children}</SuspenseBoundary>
-                        </main>
-                        <Footer/>
+                        <div className="w-screen h-screen overflow-x-hidden">
+                            <Header/>
+                            <main className="w-full min-h-screen">
+                                <SuspenseBoundary>{children}</SuspenseBoundary>
+                            </main>
+                            <Footer/>
+                        </div>
                     </NextIntlClientProvider>
                 </HeroUIProvider>
             </body>

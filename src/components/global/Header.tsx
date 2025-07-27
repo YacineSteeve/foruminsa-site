@@ -23,10 +23,10 @@ export const Header: FunctionComponent = () => {
     }, [shrink]);
 
     useEffect(() => {
-        // Add scroll event listener to handle header shrink on scroll
+        // Add a scroll event listener to handle header shrink on scroll
         window.addEventListener('scroll', handleScroll);
 
-        // Cleanup the event listener on the component unmount
+        // Clean up the event listener on the component unmount
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -86,7 +86,7 @@ const Menu: FunctionComponent = () => {
                     <li key={item.href}>
                         <MenuLink
                             item={{
-                                // @ts-expect-error TS2345: Argument of type string is not assignable to parameter of type ...
+                                // @ts-expect-error TS2345: Argument of type string is not assignable to parameter ...
                                 label: t(item.label),
                                 href: item.href,
                             }}

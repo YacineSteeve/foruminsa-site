@@ -31,7 +31,8 @@
     "emailErrorMessage": "Veuillez entrer une adresse e-mail valide.",
     "cta": "Prendre contact"
   },
-  "FooterLanguageSelector": {
-    "label": "Changer de langue"
+  "ScrollToTopButton": {
+    "ariaLabel": "Revenir en haut",
+    "tooltip": "Revenir en haut"
   }
 }

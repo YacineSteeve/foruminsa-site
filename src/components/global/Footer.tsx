@@ -1,15 +1,15 @@
 'use client';
 
 import { ScrollToTopButton } from '@components/global/ScrollToTopButton';
+import { Avatar } from '@heroui/avatar';
 import { Button } from '@heroui/button';
 import { Form } from '@heroui/form';
 import { Input } from '@heroui/input';
 import { Select, SelectItem } from '@heroui/select';
-import { LANGUAGE_NAMES, MENU_ITEMS, SOCIAL_LINKS } from '@lib/constants';
+import { LANGUAGE_METADATA, MENU_ITEMS, SOCIAL_LINKS } from '@lib/constants';
 import { useInView } from '@lib/hooks';
-import { getPathname, Link, usePathname, useRouter } from '@lib/i18n/navigation';
-import { cn } from '@lib/utils';
-import { type Locale, useTranslations } from 'next-intl';
+import { Link, usePathname, useRouter } from '@lib/i18n/navigation';
+import { type Locale, useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import {
     type ChangeEventHandler,
@@ -33,7 +33,7 @@ export const Footer: FunctionComponent = () => {
                 ref={ref}
                 className="w-full h-max px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 pt-12 md:pt-20 xl:pt-24 max-md:text-center bg-primary/5 clipped-wave-200 md:clipped-wave-400 xl:clipped-wave-500"
             >
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-16 lg:gap-x-32 gap-y-8 w-full pb-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-16 gap-y-8 w-full pb-16">
                     <section className="flex flex-col gap-8 max-md:items-center">
                         <Image
                             src="/logo_line.png"
@@ -129,7 +129,7 @@ const FooterContactForm: FunctionComponent = () => {
     return (
         <Form
             onSubmit={handleSubmit}
-            className="flex flex-col max-md:items-center gap-4 w-full *:w-60"
+            className="flex flex-col max-md:items-center gap-4 w-full *:w-full"
         >
             <Input
                 name="email"
@@ -167,7 +167,14 @@ const FooterSocialLinks: FunctionComponent = () => {
                                 target="_blank"
                                 className="group"
                             >
-                                <Icon className={cn('size-12', `group-hover:text-[${socialLink.color}]`)}/>
+                                <Icon
+                                    className="size-12 group-hover:text-(--icon-color) transition-all"
+                                    style={{
+                                        // @ts-expect-error TS2353: Object literal may only specify known properties, and '--icon-color' does not exist in type Properties<string | number, string & {}>
+                                        '--icon-color': socialLink.color,
+                                    }}
+                                    aria-label={socialLink.label}
+                                />
                             </Link>
                         </li>
                     )
@@ -180,34 +187,46 @@ const FooterSocialLinks: FunctionComponent = () => {
 const FooterLanguageSelector: FunctionComponent = () => {
     const router = useRouter();
     const href = usePathname();
-   
-    const t = useTranslations('FooterLanguageSelector');
+    const locale = useLocale();
     
     const handleLanguageChange = useCallback<ChangeEventHandler<HTMLSelectElement>>((event) => {
         const locale = event.target.value as Locale;
         
-        const pathname = getPathname({ href, locale });
-        
-        router.replace(pathname);
+        router.replace(href, { locale });
     }, [router, href]);
     
     return (
         <Select
-            aria-label={t('label')}
+            name="language"
+            size="lg"
+            color="primary"
+            className="w-40"
             variant="underlined"
             selectionMode="single"
-            color="primary"
-            className="w-60 hidden"
+            disallowEmptySelection
             startContent={<RiTranslate2 className="size-8"/>}
+            selectedKeys={[locale]}
             onChange={handleLanguageChange}
+            popoverProps={{
+                shouldBlockScroll: true,
+                shouldCloseOnBlur: true,
+                shouldCloseOnScroll: false,
+            }}
         >
             {
-                Object.entries(LANGUAGE_NAMES).map(([language, name]) => (
+                Object.entries(LANGUAGE_METADATA).map(([language, metadata]) => (
                     <SelectItem
                         key={language}
-                        className="text-lg"
+                        startContent={(
+                            <Avatar
+                                showFallback
+                                size="sm"
+                                alt={metadata.countryName}
+                                src={`https://flagcdn.com/${metadata.countryCode.toLowerCase()}.svg`}
+                            />
+                        )}
                     >
-                        {name}
+                        {metadata.label}
                     </SelectItem>
                 ))
             }

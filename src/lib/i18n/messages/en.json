@@ -31,7 +31,8 @@
     "emailErrorMessage": "Please enter a valid email address.",
     "cta": "Contact"
   },
-  "FooterLanguageSelector": {
-    "label": "Change language"
+  "ScrollToTopButton": {
+    "ariaLabel": "Back to top",
+    "tooltip": "Back to top"
   }
 }

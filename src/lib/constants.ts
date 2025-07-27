@@ -8,9 +8,20 @@ export const SUPPORTED_LANGUAGES = ['fr', 'en'] as const;
 
 export const DEFAULT_LANGUAGE = 'fr' as const;
 
-export const LANGUAGE_NAMES: Record<typeof SUPPORTED_LANGUAGES[number], string> = {
-    fr: 'Français',
-    en: 'English',
+export const LANGUAGE_METADATA: Record<
+    typeof SUPPORTED_LANGUAGES[number],
+    { label: string; countryName: string; countryCode: string }
+> = {
+    fr: {
+        label: 'Français',
+        countryName: 'France',
+        countryCode: 'fr',
+    },
+    en: {
+        label: 'English',
+        countryName: 'United Kingdom',
+        countryCode: 'gb',
+    }
 } as const;
 
 export const COLORS = {
