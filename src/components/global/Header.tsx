@@ -1,5 +1,7 @@
 'use client';
 
+import { Button } from '@heroui/button';
+import { Drawer, DrawerBody, DrawerContent } from '@heroui/drawer';
 import { MENU_ITEMS, COLORS } from '@lib/constants';
 import { useDebounce } from '@lib/hooks';
 import { Link, usePathname } from '@lib/i18n/navigation';
@@ -7,7 +9,7 @@ import type { MenuItem } from '@lib/types';
 import { cn } from '@lib/utils';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { type FunctionComponent, useCallback, useEffect, useState } from 'react';
+import { Fragment, type FunctionComponent, useCallback, useEffect, useState } from 'react';
 import { RiMenuFill } from 'react-icons/ri';
 
 export const Header: FunctionComponent = () => {
@@ -48,9 +50,6 @@ export const Header: FunctionComponent = () => {
                     priority
                 />
             </Link>
-            <button className="md:hidden">
-                <RiMenuFill className="size-10" />
-            </button>
             <Menu />
         </header>
     );
@@ -60,6 +59,7 @@ const Menu: FunctionComponent = () => {
     const t = useTranslations('Navigation');
     const pathname = usePathname();
     const [activeRoute, setActiveRoute] = useState<MenuItem['href']>('');
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     useEffect(() => {
         // Set the active route based on the current pathname
@@ -79,23 +79,63 @@ const Menu: FunctionComponent = () => {
         setActiveRoute(activeMenuItem?.href ?? '');
     }, [pathname, activeRoute]);
 
+    const handleDrawerToggle = useCallback(() => {
+        setIsDrawerOpen((prev) => !prev);
+    }, []);
+
     return (
-        <nav className="max-md:hidden">
-            <ul className="flex justify-end items-center flex-wrap gap-x-8 gap-y-4">
-                {MENU_ITEMS.map((item) => (
-                    <li key={item.href}>
-                        <MenuLink
-                            item={{
-                                // @ts-expect-error TS2345: Argument of type string is not assignable to parameter ...
-                                label: t(item.label),
-                                href: item.href,
-                            }}
-                            isActive={activeRoute === item.href}
-                        />
-                    </li>
-                ))}
-            </ul>
-        </nav>
+        <Fragment>
+            <Button
+                isIconOnly
+                variant="ghost"
+                className="md:hidden peer"
+                aria-label={t('menu')}
+                onPress={handleDrawerToggle}
+            >
+                <RiMenuFill className="size-6 text-primary" />
+            </Button>
+            <Drawer
+                size="xs"
+                backdrop="blur"
+                placement="right"
+                isOpen={isDrawerOpen}
+                onClose={handleDrawerToggle}
+            >
+                <DrawerContent className="px-4 py-8">
+                    <DrawerBody>
+                        <nav className="flex flex-col gap-y-8">
+                            {MENU_ITEMS.map((item) => (
+                                <MenuLink
+                                    key={item.href}
+                                    item={{
+                                        // @ts-expect-error TS2345: Argument of type string is not assignable to parameter ...
+                                        label: t(item.label),
+                                        href: item.href,
+                                    }}
+                                    isActive={activeRoute === item.href}
+                                />
+                            ))}
+                        </nav>
+                    </DrawerBody>
+                </DrawerContent>
+            </Drawer>
+            <nav className="max-md:hidden">
+                <ul className="flex justify-end items-center flex-wrap gap-x-8 gap-y-4">
+                    {MENU_ITEMS.map((item) => (
+                        <li key={item.href}>
+                            <MenuLink
+                                item={{
+                                    // @ts-expect-error TS2345: Argument of type string is not assignable to parameter ...
+                                    label: t(item.label),
+                                    href: item.href,
+                                }}
+                                isActive={activeRoute === item.href}
+                            />
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+        </Fragment>
     );
 };
 

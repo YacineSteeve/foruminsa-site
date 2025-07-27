@@ -12,7 +12,7 @@ interface ErrorProps {
 // The error boundary component that displays an error message and a retry button
 export default function ErrorPage({ error, reset }: ErrorProps) {
     const t = useTranslations('ErrorPage');
-    
+
     console.error(error);
 
     return (
@@ -21,13 +21,13 @@ export default function ErrorPage({ error, reset }: ErrorProps) {
                 <h4>{t('title')}</h4>
                 <Alert
                     color="danger"
-                    description={(
+                    description={
                         <pre className="w-[50rem] max-w-full max-h-80 p-5 rounded-md text-sm text-wrap overflow-y-auto">
                             {error.message.toLowerCase() === 'failed to fetch'
                                 ? t('title')
                                 : error.message}
                         </pre>
-                    )}
+                    }
                 />
                 <div className="flex items-center gap-5">
                     <Button onPress={reset}>{t('retry')}</Button>

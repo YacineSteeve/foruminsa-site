@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     const t = await getTranslations('AppMetadata');
 
     return {
-        title: t('title')
+        title: t('title'),
     };
 }
 
@@ -41,20 +41,17 @@ interface AppLayoutProps extends PropsWithChildren {
 export default async function AppLayout({ children, params }: AppLayoutProps) {
     const { locale } = await params;
     const messages = await getMessages();
-    
+
     if (!hasLocale(i18nRouting.locales, locale)) {
         notFound();
     }
-    
+
     setRequestLocale(locale);
-    
+
     return (
         <html lang={locale}>
             <body
-                className={cn(
-                    'light',
-                    APP_FONT.className,
-                )}
+                className={cn('light', APP_FONT.className)}
                 suppressHydrationWarning
             >
                 <HeroUIProvider>
@@ -84,11 +81,11 @@ export default async function AppLayout({ children, params }: AppLayoutProps) {
                             }}
                         />
                         <div className="w-screen h-screen overflow-x-hidden">
-                            <Header/>
+                            <Header />
                             <main className="w-full min-h-screen">
                                 <SuspenseBoundary>{children}</SuspenseBoundary>
                             </main>
-                            <Footer/>
+                            <Footer />
                         </div>
                     </NextIntlClientProvider>
                 </HeroUIProvider>

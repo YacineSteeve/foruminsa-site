@@ -18,13 +18,13 @@ import {
     type FunctionComponent,
     type PropsWithChildren,
     useCallback,
-    useState
+    useState,
 } from 'react';
 import { RiTranslate2 } from 'react-icons/ri';
 
 export const Footer: FunctionComponent = () => {
     const { ref, inView: showScrollToTop } = useInView();
-    const t = useTranslations('Footer')
+    const t = useTranslations('Footer');
 
     return (
         <Fragment>
@@ -42,9 +42,10 @@ export const Footer: FunctionComponent = () => {
                             height={44}
                         />
                         <p>
-                            Le Forum INSA est un événement annuel organisé par les étudiants de l&apos;INSA Toulouse, visant à
-                            connecter les étudiants avec des entreprises et à promouvoir les opportunités professionnelles.
-                            Pour plus d&apos;informations, contactez-nous via le formulaire de contact.
+                            Le Forum INSA est un événement annuel organisé par les étudiants de
+                            l&apos;INSA Toulouse, visant à connecter les étudiants avec des
+                            entreprises et à promouvoir les opportunités professionnelles. Pour plus
+                            d&apos;informations, contactez-nous via le formulaire de contact.
                         </p>
                     </section>
                     <FooterSection title={t('pages')}>
@@ -55,7 +56,7 @@ export const Footer: FunctionComponent = () => {
                     </FooterSection>
                     <div className="flex flex-col max-md:items-center gap-y-16">
                         <FooterSection title={t('followUs')}>
-                            <FooterSocialLinks/>
+                            <FooterSocialLinks />
                         </FooterSection>
                         <FooterLanguageSelector />
                     </div>
@@ -82,50 +83,51 @@ const FooterSection: FunctionComponent<FooterSectionProps> = ({ title, children 
 
 const FooterPagesList: FunctionComponent = () => {
     const t = useTranslations('Navigation');
-    
+
     return (
         <nav>
             <ul className="space-y-4">
-                {
-                    MENU_ITEMS.map((item) => (
-                        <li key={item.href}>
-                            <Link
-                                href={item.href}
-                                className="text-lg hover:text-primary hover:font-semibold"
-                            >
-                                {
-                                    // @ts-expect-error TS2345: Argument of type string is not assignable to parameter of type ...
-                                    t(item.label)
-                                }
-                            </Link>
-                        </li>
-                    ))
-                }
+                {MENU_ITEMS.map((item) => (
+                    <li key={item.href}>
+                        <Link
+                            href={item.href}
+                            className="text-lg hover:text-primary hover:font-semibold"
+                        >
+                            {
+                                // @ts-expect-error TS2345: Argument of type string is not assignable to parameter of type ...
+                                t(item.label)
+                            }
+                        </Link>
+                    </li>
+                ))}
             </ul>
         </nav>
     );
-}
+};
 
 const FooterContactForm: FunctionComponent = () => {
     const router = useRouter();
     const t = useTranslations('FooterContactForm');
-    
-    const handleSubmit = useCallback<FormEventHandler<HTMLFormElement>>((event) => {
-        event.preventDefault();
-        
-        const formData = new FormData(event.currentTarget);
-        
-        const email = formData.get('email') as string;
-        
-        const contactUrl = new URL(
-            MENU_ITEMS.find((item) => item.label === 'contact')?.href ?? '/contact',
-            window.location.origin
-        );
-        contactUrl.searchParams.set('email', email);
-        
-        router.push(contactUrl.toString());
-    }, [router]);
-    
+
+    const handleSubmit = useCallback<FormEventHandler<HTMLFormElement>>(
+        (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(event.currentTarget);
+
+            const email = formData.get('email') as string;
+
+            const contactUrl = new URL(
+                MENU_ITEMS.find((item) => item.label === 'contact')?.href ?? '/contact',
+                window.location.origin,
+            );
+            contactUrl.searchParams.set('email', email);
+
+            router.push(contactUrl.toString());
+        },
+        [router],
+    );
+
     return (
         <Form
             onSubmit={handleSubmit}
@@ -137,7 +139,7 @@ const FooterContactForm: FunctionComponent = () => {
                 variant="faded"
                 isRequired
                 placeholder={t('emailPlaceholder')}
-                errorMessage= {t('emailErrorMessage')}
+                errorMessage={t('emailErrorMessage')}
             />
             <Button
                 name="submit"
@@ -156,30 +158,28 @@ const FooterContactForm: FunctionComponent = () => {
 const FooterSocialLinks: FunctionComponent = () => {
     return (
         <ul className="flex flex-wrap max-md:justify-center gap-8">
-            {
-                SOCIAL_LINKS.map((socialLink) => {
-                    const Icon = socialLink.icon;
+            {SOCIAL_LINKS.map((socialLink) => {
+                const Icon = socialLink.icon;
 
-                    return (
-                        <li key={socialLink.href}>
-                            <Link
-                                href={socialLink.href}
-                                target="_blank"
-                                className="group"
-                            >
-                                <Icon
-                                    className="size-12 group-hover:text-(--icon-color) transition-all"
-                                    style={{
-                                        // @ts-expect-error TS2353: Object literal may only specify known properties, and '--icon-color' does not exist in type Properties<string | number, string & {}>
-                                        '--icon-color': socialLink.color,
-                                    }}
-                                    aria-label={socialLink.label}
-                                />
-                            </Link>
-                        </li>
-                    )
-                })
-            }
+                return (
+                    <li key={socialLink.href}>
+                        <Link
+                            href={socialLink.href}
+                            target="_blank"
+                            className="group"
+                        >
+                            <Icon
+                                className="size-12 group-hover:text-(--icon-color) transition-all"
+                                style={{
+                                    // @ts-expect-error TS2353: Object literal may only specify known properties, and '--icon-color' does not exist in type Properties<string | number, string & {}>
+                                    '--icon-color': socialLink.color,
+                                }}
+                                aria-label={socialLink.label}
+                            />
+                        </Link>
+                    </li>
+                );
+            })}
         </ul>
     );
 };
@@ -188,13 +188,16 @@ const FooterLanguageSelector: FunctionComponent = () => {
     const router = useRouter();
     const href = usePathname();
     const locale = useLocale();
-    
-    const handleLanguageChange = useCallback<ChangeEventHandler<HTMLSelectElement>>((event) => {
-        const locale = event.target.value as Locale;
-        
-        router.replace(href, { locale });
-    }, [router, href]);
-    
+
+    const handleLanguageChange = useCallback<ChangeEventHandler<HTMLSelectElement>>(
+        (event) => {
+            const locale = event.target.value as Locale;
+
+            router.replace(href, { locale });
+        },
+        [router, href],
+    );
+
     return (
         <Select
             name="language"
@@ -204,7 +207,7 @@ const FooterLanguageSelector: FunctionComponent = () => {
             variant="underlined"
             selectionMode="single"
             disallowEmptySelection
-            startContent={<RiTranslate2 className="size-8"/>}
+            startContent={<RiTranslate2 className="size-8" />}
             selectedKeys={[locale]}
             onChange={handleLanguageChange}
             popoverProps={{
@@ -213,26 +216,24 @@ const FooterLanguageSelector: FunctionComponent = () => {
                 shouldCloseOnScroll: false,
             }}
         >
-            {
-                Object.entries(LANGUAGE_METADATA).map(([language, metadata]) => (
-                    <SelectItem
-                        key={language}
-                        startContent={(
-                            <Avatar
-                                showFallback
-                                size="sm"
-                                alt={metadata.countryName}
-                                src={`https://flagcdn.com/${metadata.countryCode.toLowerCase()}.svg`}
-                            />
-                        )}
-                    >
-                        {metadata.label}
-                    </SelectItem>
-                ))
-            }
+            {Object.entries(LANGUAGE_METADATA).map(([language, metadata]) => (
+                <SelectItem
+                    key={language}
+                    startContent={
+                        <Avatar
+                            showFallback
+                            size="sm"
+                            alt={metadata.countryName}
+                            src={`https://flagcdn.com/${metadata.countryCode.toLowerCase()}.svg`}
+                        />
+                    }
+                >
+                    {metadata.label}
+                </SelectItem>
+            ))}
         </Select>
     );
-}
+};
 
 const FooterCopyRight: FunctionComponent = () => {
     const [currentYear] = useState(() => new Date().getFullYear());

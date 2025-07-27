@@ -9,7 +9,7 @@ export const SUPPORTED_LANGUAGES = ['fr', 'en'] as const;
 export const DEFAULT_LANGUAGE = 'fr' as const;
 
 export const LANGUAGE_METADATA: Record<
-    typeof SUPPORTED_LANGUAGES[number],
+    (typeof SUPPORTED_LANGUAGES)[number],
     { label: string; countryName: string; countryCode: string }
 > = {
     fr: {
@@ -21,7 +21,7 @@ export const LANGUAGE_METADATA: Record<
         label: 'English',
         countryName: 'United Kingdom',
         countryCode: 'gb',
-    }
+    },
 } as const;
 
 export const COLORS = {
@@ -66,7 +66,7 @@ export const SOCIAL_LINKS: Array<SocialLink> = [
         label: 'Facebook',
         href: 'https://www.facebook.com/ForumbyINSA',
         icon: RiFacebookBoxFill,
-        color: '#1877f2'
+        color: '#1877f2',
     },
     {
         label: 'Instagram',
@@ -79,5 +79,5 @@ export const SOCIAL_LINKS: Array<SocialLink> = [
         href: 'https://www.linkedin.com/company/forumbyinsa/',
         icon: RiLinkedinBoxFill,
         color: '#0077b5',
-    }
+    },
 ] as const;

@@ -14,7 +14,7 @@ export default function NotFound() {
                 )}
                 suppressHydrationWarning
             >
-                <Error statusCode={404}/>
+                <Error statusCode={404} />
             </body>
         </html>
     );

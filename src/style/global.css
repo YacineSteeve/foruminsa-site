@@ -27,7 +27,7 @@ strong,
 b,
 em,
 i {
-    @apply  transition-colors;
+    @apply transition-colors;
 }
 
 h1,
@@ -64,9 +64,8 @@ h6 {
 }
 
 a {
-    @apply inline-block size-fit
+    @apply inline-block size-fit;
 }
-
 
 hr {
     @apply border-black/10;

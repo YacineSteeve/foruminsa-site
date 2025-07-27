@@ -5,9 +5,7 @@ import { Locale } from 'next-intl';
 import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    return MENU_ITEMS
-        .map((item) => generateSitemapEntries(item.href))
-        .flat();
+    return MENU_ITEMS.map((item) => generateSitemapEntries(item.href)).flat();
 }
 
 type Href = Parameters<typeof getPathname>[0]['href'];
@@ -17,8 +15,8 @@ const generateSitemapEntries = (href: Href): Array<MetadataRoute.Sitemap[number]
         url: getUrl(href, locale),
         alternates: {
             languages: Object.fromEntries(
-                i18nRouting.locales.map((current) => [current, getUrl(href, current)])
-            )
+                i18nRouting.locales.map((current) => [current, getUrl(href, current)]),
+            ),
         },
         lastModified: new Date().toISOString(),
     }));

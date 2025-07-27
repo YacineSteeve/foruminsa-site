@@ -4,7 +4,7 @@ import Image from 'next/image';
 // The content that displays when a page is not found
 export default async function NotFound() {
     const t = await getTranslations('NotFoundPage');
-    
+
     return (
         <div className="flex justify-center w-full pt-40">
             <div className="flex flex-col items-center gap-8">

@@ -13,7 +13,7 @@ interface ScrollToTopButtonProps {
 
 export const ScrollToTopButton: FunctionComponent<ScrollToTopButtonProps> = ({ hidden = true }) => {
     const t = useTranslations('ScrollToTopButton');
-    
+
     const handleClick = useCallback(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, []);
@@ -27,10 +27,7 @@ export const ScrollToTopButton: FunctionComponent<ScrollToTopButtonProps> = ({ h
                 size="lg"
                 radius="full"
                 onPress={handleClick}
-                className={cn(
-                    'z-50 fixed bottom-8 right-8',
-                    hidden && 'hidden',
-                )}
+                className={cn('z-50 fixed bottom-8 right-8', hidden && 'hidden')}
             >
                 <RiArrowUpLine className="size-8 invert contrast-200" />
             </Button>

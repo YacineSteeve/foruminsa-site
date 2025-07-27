@@ -8,6 +8,6 @@ export default heroui({
                 primary: '#bd2727',
                 secondary: '#292929',
             },
-        }
-    }
+        },
+    },
 });
