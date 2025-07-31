@@ -1,16 +1,16 @@
 'use client';
 
 import { ScrollToTopButton } from '@components/global/ScrollToTopButton';
+import { Logo } from '@components/ui/Logo';
 import { Avatar } from '@heroui/avatar';
 import { Button } from '@heroui/button';
 import { Form } from '@heroui/form';
 import { Input } from '@heroui/input';
 import { Select, SelectItem } from '@heroui/select';
-import { LANGUAGE_METADATA, MENU_ITEMS, SOCIAL_LINKS } from '@lib/constants';
+import { LANGUAGE_METADATA, MENU_ITEMS, SOCIAL_LINKS, URL_PARAMS } from '@lib/constants';
 import { useInView } from '@lib/hooks';
 import { Link, usePathname, useRouter } from '@lib/i18n/navigation';
 import { type Locale, useLocale, useTranslations } from 'next-intl';
-import Image from 'next/image';
 import {
     type ChangeEventHandler,
     type FormEventHandler,
@@ -31,16 +31,11 @@ export const Footer: FunctionComponent = () => {
             <ScrollToTopButton hidden={!showScrollToTop} />
             <footer
                 ref={ref}
-                className="w-full h-max px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 pt-12 md:pt-20 xl:pt-24 max-md:text-center bg-primary/5 clipped-wave-200 md:clipped-wave-400 xl:clipped-wave-500"
+                className="w-full h-max px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 pt-12 md:pt-20 xl:pt-24 max-md:text-center bg-primary/5"
             >
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-16 gap-y-8 w-full pb-16">
                     <section className="flex flex-col gap-8 max-md:items-center">
-                        <Image
-                            src="/logo_line.png"
-                            alt="Logo du Forum INSA"
-                            width={256}
-                            height={44}
-                        />
+                        <Logo />
                         <p>
                             Le Forum INSA est un événement annuel organisé par les étudiants de
                             l&apos;INSA Toulouse, visant à connecter les étudiants avec des
@@ -54,7 +49,7 @@ export const Footer: FunctionComponent = () => {
                     <FooterSection title={t('contactUs')}>
                         <FooterContactForm />
                     </FooterSection>
-                    <div className="flex flex-col max-md:items-center gap-y-16">
+                    <div className="flex flex-col max-md:items-center gap-y-8 md:gap-y-16">
                         <FooterSection title={t('followUs')}>
                             <FooterSocialLinks />
                         </FooterSection>
@@ -93,10 +88,7 @@ const FooterPagesList: FunctionComponent = () => {
                             href={item.href}
                             className="text-lg hover:text-primary hover:font-semibold"
                         >
-                            {
-                                // @ts-expect-error TS2345: Argument of type string is not assignable to parameter of type ...
-                                t(item.label)
-                            }
+                            {t(item.label)}
                         </Link>
                     </li>
                 ))}
@@ -121,7 +113,9 @@ const FooterContactForm: FunctionComponent = () => {
                 MENU_ITEMS.find((item) => item.label === 'contact')?.href ?? '/contact',
                 window.location.origin,
             );
-            contactUrl.searchParams.set('email', email);
+            contactUrl.searchParams.set(URL_PARAMS.email, email);
+
+            event.currentTarget.reset();
 
             router.push(contactUrl.toString());
         },
@@ -138,6 +132,7 @@ const FooterContactForm: FunctionComponent = () => {
                 type="email"
                 variant="faded"
                 isRequired
+                aria-label={t('emailLabel')}
                 placeholder={t('emailPlaceholder')}
                 errorMessage={t('emailErrorMessage')}
             />
@@ -149,7 +144,7 @@ const FooterContactForm: FunctionComponent = () => {
                 fullWidth
                 className="text-white"
             >
-                {t('cta')}
+                {t('submitButtonLabel')}
             </Button>
         </Form>
     );
@@ -188,6 +183,7 @@ const FooterLanguageSelector: FunctionComponent = () => {
     const router = useRouter();
     const href = usePathname();
     const locale = useLocale();
+    const t = useTranslations('FooterLanguageSelector');
 
     const handleLanguageChange = useCallback<ChangeEventHandler<HTMLSelectElement>>(
         (event) => {
@@ -195,7 +191,7 @@ const FooterLanguageSelector: FunctionComponent = () => {
 
             router.replace(href, { locale });
         },
-        [router, href],
+        [router, href, locale],
     );
 
     return (
@@ -207,6 +203,7 @@ const FooterLanguageSelector: FunctionComponent = () => {
             variant="underlined"
             selectionMode="single"
             disallowEmptySelection
+            aria-label={t('label')}
             startContent={<RiTranslate2 className="size-8" />}
             selectedKeys={[locale]}
             onChange={handleLanguageChange}

@@ -1,8 +1,7 @@
 import { Lato } from 'next/font/google';
-import type { MenuItem, SocialLink } from '@lib/types';
 import { RiFacebookBoxFill, RiInstagramFill, RiLinkedinBoxFill } from 'react-icons/ri';
 
-export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || ('http://localhost:3000' as const);
+export const APP_URL = 'http://localhost:3000' as const;
 
 export const SUPPORTED_LANGUAGES = ['fr', 'en'] as const;
 
@@ -34,7 +33,7 @@ export const APP_FONT = Lato({
     weight: ['100', '300', '400', '700', '900'],
 });
 
-export const MENU_ITEMS: Array<MenuItem> = [
+export const MENU_ITEMS = [
     {
         label: 'home',
         href: '/',
@@ -61,7 +60,7 @@ export const MENU_ITEMS: Array<MenuItem> = [
     },
 ] as const;
 
-export const SOCIAL_LINKS: Array<SocialLink> = [
+export const SOCIAL_LINKS = [
     {
         label: 'Facebook',
         href: 'https://www.facebook.com/ForumbyINSA',
@@ -81,3 +80,11 @@ export const SOCIAL_LINKS: Array<SocialLink> = [
         color: '#0077b5',
     },
 ] as const;
+
+export const CONTACT_SUBJECTS = ['general', 'solidarityFund', 'companies'] as const;
+
+export const URL_PARAMS = {
+    email: 'email',
+} as const;
+
+export const DEFAULT_ERROR_MESSAGE = 'SOMETHING_WENT_WRONG' as const;

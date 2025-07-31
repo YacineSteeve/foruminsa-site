@@ -24,6 +24,8 @@ export default function HomePage() {
                         alt="Logo du Forum INSA"
                         width={800}
                         height={800}
+                        quality={100}
+                        priority
                         className="absolute right-0"
                     />
                 </div>

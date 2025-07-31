@@ -12,6 +12,14 @@
         "description": "Désolé, la page que vous cherchez n&apos;existe pas.",
         "imageDescription": "Le nombre 404 avec un soleil couchant en arrière-plan"
     },
+    "ApiErrors": {
+        "SOMETHING_WENT_WRONG": "Une erreur s'est produite. Veuillez réessayer plus tard.",
+        "NETWORK_ERROR": "Une erreur réseau s'est produite. Veuillez vérifier votre connexion Internet.",
+        "MESSAGE_NOT_DELIVERED": "Désolé, le message n'a pas pu être envoyé."
+    },
+    "Logo": {
+        "altText": "Logo du Forum INSA"
+    },
     "Navigation": {
         "menu": "Menu",
         "home": "Accueil",
@@ -21,6 +29,34 @@
         "solidarityFund": "Fonds de Solidarité",
         "contact": "Contact"
     },
+    "ContactPage": {
+        "title": "Contactez-nous!",
+        "description": "Vous avez une question ou avez besoin d'aide? Notre équipe est là pour vous aider. Remplissez le formulaire ci-dessous conformément à votre besoin et nous reviendrons vers vous dans les plus brefs délais.",
+        "altTextOne": "Image d'une personne avec un ordinateur portable",
+        "altTextTwo": "Photo de personnes suivant une conférence"
+    },
+    "ContactForm": {
+        "general": "Général",
+        "solidarityFund": "Fond de Solidarité",
+        "companies": "Entreprises",
+        "subjectLabel": "Motif",
+        "emailLabel": "E-mail",
+        "companyNameLabel": "Nom de l'entreprise",
+        "nameLabel": "Nom",
+        "phoneLabel": "Numéro de téléphone (Optionnel)",
+        "messageLabel": "Message",
+        "subjectPlaceholder": "Sélectionnez un motif",
+        "subjectErrorMessage": "Veuillez sélectionner un motif.",
+        "companyNameErrorMessage": "Veuillez entrer le nom de l'entreprise.",
+        "emailErrorMessage": "Veuillez entrer une adresse e-mail valide.",
+        "nameErrorMessage": "Veuillez entrer votre nom.",
+        "phoneErrorMessage": "Veuillez entrer un numéro de téléphone valide.",
+        "messageErrorMessage": "Veuillez entrer votre message.",
+        "submitButtonLabel": "Envoyer",
+        "confirmationMessage": "Confirmation de la réception de votre message",
+        "successMessage": "Votre message a été envoyé avec succès.",
+        "successDescription": "Nous vous répondrons dans les plus brefs délais."
+    },
     "Footer": {
         "pages": "Pages",
         "contactUs": "Contactez-nous",
@@ -28,9 +64,13 @@
         "allRightsReserved": "Tous droits réservés"
     },
     "FooterContactForm": {
+        "emailLabel": "E-mail",
         "emailPlaceholder": "Votre adresse e-mail",
         "emailErrorMessage": "Veuillez entrer une adresse e-mail valide.",
-        "cta": "Prendre contact"
+        "submitButtonLabel": "Prendre contact"
+    },
+    "FooterLanguageSelector": {
+        "label": "Choisir une langue"
     },
     "ScrollToTopButton": {
         "ariaLabel": "Revenir en haut",

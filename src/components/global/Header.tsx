@@ -1,16 +1,17 @@
 'use client';
 
+import { Logo } from '@components/ui/Logo';
 import { Button } from '@heroui/button';
 import { Drawer, DrawerBody, DrawerContent } from '@heroui/drawer';
 import { MENU_ITEMS, COLORS } from '@lib/constants';
 import { useDebounce } from '@lib/hooks';
 import { Link, usePathname } from '@lib/i18n/navigation';
-import type { MenuItem } from '@lib/types';
 import { cn } from '@lib/utils';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
 import { Fragment, type FunctionComponent, useCallback, useEffect, useState } from 'react';
 import { RiMenuFill } from 'react-icons/ri';
+
+type MenuItem = (typeof MENU_ITEMS)[number];
 
 export const Header: FunctionComponent = () => {
     const [shrink, setShrink] = useState(false);
@@ -42,13 +43,7 @@ export const Header: FunctionComponent = () => {
             )}
         >
             <Link href="/">
-                <Image
-                    src="/logo_line.png"
-                    alt="Logo du Forum INSA"
-                    width={256}
-                    height={44}
-                    priority
-                />
+                <Logo />
             </Link>
             <Menu />
         </header>
@@ -58,7 +53,7 @@ export const Header: FunctionComponent = () => {
 const Menu: FunctionComponent = () => {
     const t = useTranslations('Navigation');
     const pathname = usePathname();
-    const [activeRoute, setActiveRoute] = useState<MenuItem['href']>('');
+    const [activeRoute, setActiveRoute] = useState<MenuItem['href']>('/');
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     useEffect(() => {
