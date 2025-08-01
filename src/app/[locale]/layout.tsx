@@ -1,7 +1,7 @@
 import { Footer } from '@components/global/Footer';
 import { Header } from '@components/global/Header';
 import { SuspenseBoundary } from '@components/ui/SuspenseBoundary';
-import { APP_FONT, COLORS } from '@lib/constants';
+import { APP_CONTAINER_ID, APP_FONT, COLORS } from '@lib/constants';
 import { i18nRouting } from '@lib/i18n/routing';
 import { cn } from '@lib/utils';
 import { HeroUIProvider } from '@heroui/react';
@@ -81,7 +81,10 @@ export default async function AppLayout({ children, params }: AppLayoutProps) {
                                     },
                                 }}
                             />
-                            <div className="w-screen h-screen overflow-x-hidden">
+                            <div
+                                id={APP_CONTAINER_ID}
+                                className="w-screen h-screen overflow-x-hidden"
+                            >
                                 <Header />
                                 <main className="w-full min-h-[50vh]">
                                     <SuspenseBoundary>{children}</SuspenseBoundary>

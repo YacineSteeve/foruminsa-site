@@ -6,7 +6,7 @@ export default async function ContactPage() {
     const t = await getTranslations('ContactPage');
 
     return (
-        <div className="pt-8 space-y-16">
+        <div className="md:pt-8 space-y-16">
             <section className="flex max-lg:flex-col max-lg:items-center gap-x-20 gap-y-8 px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60">
                 <div className="lg:flex-1">
                     <Image
@@ -19,7 +19,7 @@ export default async function ContactPage() {
                     />
                 </div>
                 <div className="max-lg:w-full lg:flex-1 space-y-16">
-                    <div className="space-y-4">
+                    <div className="space-y-4 max-md:text-center">
                         <h1>{t('title')}</h1>
                         <p>{t('description')}</p>
                     </div>

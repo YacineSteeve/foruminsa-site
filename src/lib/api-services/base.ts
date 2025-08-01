@@ -23,10 +23,12 @@ export class BaseService {
     >(path: string, config: RequestConfig<P, D>): Promise<R | undefined> {
         const { method, headers, data, params, ...otherConfig } = config;
 
+        const url = generateFullUrl(path, params);
+
         let response: Response;
 
         try {
-            response = await fetch(generateFullUrl(path, params), {
+            response = await fetch(url, {
                 method: method ?? 'GET',
                 headers: {
                     'Content-Type':
@@ -37,15 +39,13 @@ export class BaseService {
                 ...otherConfig,
             });
         } catch (error) {
-            this.handleError(
-                new ApiError(
+            throw new Error(DEFAULT_ERROR_MESSAGE, {
+                cause: new ApiError(
                     DEFAULT_ERROR_MESSAGE,
                     500,
-                    error instanceof Error
-                        ? error.stack
-                        : new Error(DEFAULT_ERROR_MESSAGE, { cause: error }).stack,
+                    error instanceof Error ? error.stack : undefined,
                 ),
-            );
+            });
         }
 
         let responseBody;
@@ -59,16 +59,16 @@ export class BaseService {
         if (!response.ok) {
             const errorResponseBody = responseBody as ErrorResponseBody;
 
-            this.handleError(
-                new ApiError(errorResponseBody.message, response.status, errorResponseBody.stack),
-            );
+            throw new Error(errorResponseBody.message || DEFAULT_ERROR_MESSAGE, {
+                cause: new ApiError(
+                    errorResponseBody.message || DEFAULT_ERROR_MESSAGE,
+                    response.status,
+                    errorResponseBody.stack,
+                ),
+            });
         }
 
         return responseBody as R;
-    }
-
-    private static handleError(apiError: ApiError): never {
-        throw new Error(apiError.message, { cause: apiError });
     }
 
     public static async get<R, P extends RequestConfigParams = {}>(

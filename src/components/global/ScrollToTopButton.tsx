@@ -2,6 +2,7 @@
 
 import { Button } from '@heroui/button';
 import { Tooltip } from '@heroui/tooltip';
+import { useAppContainer } from '@lib/hooks';
 import { cn } from '@lib/utils';
 import { useTranslations } from 'next-intl';
 import { type FunctionComponent, useCallback } from 'react';
@@ -12,11 +13,12 @@ interface ScrollToTopButtonProps {
 }
 
 export const ScrollToTopButton: FunctionComponent<ScrollToTopButtonProps> = ({ hidden = true }) => {
+    const appContainer = useAppContainer();
     const t = useTranslations('ScrollToTopButton');
 
     const handleClick = useCallback(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, []);
+        appContainer?.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [appContainer]);
 
     return (
         <Tooltip content={t('tooltip')}>

@@ -1,7 +1,12 @@
 import { Lato } from 'next/font/google';
 import { RiFacebookBoxFill, RiInstagramFill, RiLinkedinBoxFill } from 'react-icons/ri';
 
-export const APP_URL = 'http://localhost:3000' as const;
+export const APP_URL =
+    process.env.NODE_ENV === 'production'
+        ? ('https://foruminsa-site.vercel.app' as const)
+        : ('http://localhost:3000' as const);
+
+export const APP_CONTAINER_ID = 'app-container' as const;
 
 export const SUPPORTED_LANGUAGES = ['fr', 'en'] as const;
 

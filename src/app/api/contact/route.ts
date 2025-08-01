@@ -23,6 +23,16 @@ export async function POST(request: NextRequest) {
     const data = (await request.json()) as ContactData;
 
     try {
+        const mockContent = [
+            `${data.subject === 'companies' ? `Nom de l'entreprise: ${data.companyName ?? 'N/A'}` : ''}`,
+            `Nom: ${data.name}`,
+            `Email: ${data.email}`,
+            `Téléphone: ${data.phone}`,
+            '',
+            'Message:',
+            `${data.message}`,
+        ];
+
         const contactMailInfo = await transporter.sendMail({
             from: {
                 name: 'Site Web Forum By INSA',
@@ -30,8 +40,8 @@ export async function POST(request: NextRequest) {
             },
             to: serverEnv.MAIL_TO,
             subject: `[Contact] ${t(data.subject)}`,
-            text: data.message,
-            html: `<p>${data.message}</p>`,
+            text: mockContent.join('\n'),
+            html: `<p>${mockContent.join('<br/>')}</p>`,
         });
 
         if (!contactMailInfo.accepted.includes(serverEnv.MAIL_TO)) {

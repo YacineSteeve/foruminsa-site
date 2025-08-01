@@ -4,7 +4,7 @@ import { Logo } from '@components/ui/Logo';
 import { Button } from '@heroui/button';
 import { Drawer, DrawerBody, DrawerContent } from '@heroui/drawer';
 import { MENU_ITEMS, COLORS } from '@lib/constants';
-import { useDebounce } from '@lib/hooks';
+import { useAppContainer, useDebounce } from '@lib/hooks';
 import { Link, usePathname } from '@lib/i18n/navigation';
 import { cn } from '@lib/utils';
 import { useTranslations } from 'next-intl';
@@ -14,32 +14,41 @@ import { RiMenuFill } from 'react-icons/ri';
 type MenuItem = (typeof MENU_ITEMS)[number];
 
 export const Header: FunctionComponent = () => {
+    const appContainer = useAppContainer();
     const [shrink, setShrink] = useState(false);
-    const delayedShrink = useDebounce({ value: shrink, delay: 100 });
+    const delayedShrink = useDebounce({ value: shrink, delay: 50 });
 
     const handleScroll = useCallback(() => {
-        const newShrink = window.scrollY > 100;
+        if (!appContainer) {
+            return;
+        }
+
+        const newShrink = appContainer.scrollTop > 100;
 
         if (newShrink !== shrink) {
             setShrink(newShrink);
         }
-    }, [shrink]);
+    }, [appContainer, shrink]);
 
     useEffect(() => {
+        if (!appContainer) {
+            return;
+        }
+
         // Add a scroll event listener to handle header shrink on scroll
-        window.addEventListener('scroll', handleScroll);
+        appContainer.addEventListener('scroll', handleScroll);
 
         // Clean up the event listener on the component unmount
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            appContainer.removeEventListener('scroll', handleScroll);
         };
-    }, [handleScroll]);
+    }, [appContainer, handleScroll]);
 
     return (
         <header
             className={cn(
-                'z-50 sticky top-0 left-0 flex justify-between items-center gap-8 w-full p-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 bg-white transition-all',
-                delayedShrink ? 'md:py-4 shadow-md' : 'md:py-8',
+                'z-50 sticky top-0 left-0 flex justify-between items-center gap-8 w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 bg-white transition-all',
+                delayedShrink ? 'py-4 md:py-4 shadow-md' : 'py-6 md:py-8',
             )}
         >
             <Link href="/">
