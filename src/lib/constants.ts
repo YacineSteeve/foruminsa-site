@@ -4,7 +4,7 @@ import { RiFacebookBoxFill, RiInstagramFill, RiLinkedinBoxFill } from 'react-ico
 export const APP_URL =
     process.env.NODE_ENV === 'production'
         ? ('https://foruminsa-site.vercel.app' as const)
-        : ('http://localhost:3000' as const);
+        : ('http://192.168.1.227:3000' as const);
 
 export const APP_CONTAINER_ID = 'app-container' as const;
 

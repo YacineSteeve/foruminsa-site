@@ -1,6 +1,15 @@
 import { ContactForm } from '@components/ContactForm';
+import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
+
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations('AppMetadata');
+
+    return {
+        title: t('contactPageTitle'),
+    };
+}
 
 export default async function ContactPage() {
     const t = await getTranslations('ContactPage');

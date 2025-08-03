@@ -3,7 +3,7 @@ import { Header } from '@components/global/Header';
 import { SuspenseBoundary } from '@components/ui/SuspenseBoundary';
 import { APP_CONTAINER_ID, APP_FONT, COLORS } from '@lib/constants';
 import { i18nRouting } from '@lib/i18n/routing';
-import { cn } from '@lib/utils';
+import { cn, getFullUrl, getLocalizedFullUrl } from '@lib/utils';
 import { HeroUIProvider } from '@heroui/react';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
@@ -19,7 +19,21 @@ export async function generateMetadata(): Promise<Metadata> {
     const t = await getTranslations('AppMetadata');
 
     return {
-        title: t('title'),
+        title: {
+            absolute: t('title'),
+            template: `%s | ${t('title')}`,
+        },
+        applicationName: t('applicationName'),
+        description: t('description'),
+        keywords: t('keywords')
+            .split(',')
+            .map((keyword) => keyword.trim()),
+        alternates: {
+            canonical: getFullUrl('/'),
+            languages: Object.fromEntries(
+                i18nRouting.locales.map((locale) => [locale, getLocalizedFullUrl(`/`, locale)]),
+            ),
+        },
     };
 }
 
@@ -32,6 +46,8 @@ export const viewport: Viewport = {
     initialScale: 1,
     maximumScale: 5,
     userScalable: true,
+    colorScheme: 'light',
+    themeColor: COLORS.primary,
 };
 
 interface AppLayoutProps extends PropsWithChildren {

@@ -1,0 +1,27 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model RateLimit {
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  key    String    @id
+  points Int       @default(0)
+  expire DateTime?
+}
+
+model Company {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name String
+  slug String @unique
+}

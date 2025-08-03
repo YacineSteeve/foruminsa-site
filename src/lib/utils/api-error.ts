@@ -19,13 +19,16 @@ export class ApiError {
         this.stack = stack;
     }
 
-    public asNextResponse() {
+    public asNextResponse(init?: ResponseInit) {
         return NextResponse.json(
             {
                 message: this.message,
                 stack: this.stack,
             } satisfies ErrorResponseBody,
-            { status: this.statusCode },
+            {
+                ...(init ?? {}),
+                status: this.statusCode,
+            },
         );
     }
 

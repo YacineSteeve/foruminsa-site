@@ -1,6 +1,10 @@
 {
     "AppMetadata": {
-        "title": "Forum By INSA"
+        "applicationName": "INSA Forum Website",
+        "description": "The official website of the INSA Toulouse Forum, the must-attend event for students and companies.",
+        "keywords": "INSA Forum, INSA Toulouse, Company Forum, Student Event, INSA Contact",
+        "title": "Forum By INSA",
+        "contactPageTitle": "Contact Us"
     },
     "ErrorPage": {
         "title": "An unexpected error occurred",
@@ -12,9 +16,20 @@
         "description": "The page you are looking for does not exist.",
         "imageDescription": "The number 404 with a sunset background"
     },
+    "ValidationErrors": {
+        "requiredField": "This field is required.",
+        "mustBeAString": "This field must be a string.",
+        "mustHaveAtLeastOneCharacter": "This field must have at least one character.",
+        "invalidSubject": "Please select a valid subject.",
+        "invalidEmail": "Please enter a valid email address.",
+        "invalidPhoneNumber": "Please enter a valid phone number.",
+        "companyNameRequired": "Please enter the company name.",
+        "invalidStudentEmail": "Please enter a valid INSA Toulouse email address."
+    },
     "ApiErrors": {
         "SOMETHING_WENT_WRONG": "An error occurred. Please try again later.",
         "NETWORK_ERROR": "A network error occurred. Please check your internet connection.",
+        "TOO_MANY_REQUESTS": "Too many requests. Please try again later.",
         "MESSAGE_NOT_DELIVERED": "Sorry, the message could not be sent."
     },
     "Logo": {

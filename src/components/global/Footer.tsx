@@ -191,7 +191,7 @@ const FooterLanguageSelector: FunctionComponent = () => {
 
             router.replace(href, { locale });
         },
-        [router, href, locale],
+        [router, href],
     );
 
     return (
