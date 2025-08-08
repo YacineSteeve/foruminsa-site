@@ -1,36 +1,37 @@
 import { serverEnv } from '@lib/config/env';
 import { withMiddlewares } from '@lib/middlewares';
 import type { ContactData } from '@lib/types';
-import { transporter } from '@lib/mailing/transporter';
-import { getTranslations } from 'next-intl/server';
+import { sendMail } from '@lib/mailing';
+import { getMessages } from 'next-intl/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { ApiError } from '@lib/utils';
+import type { Messages } from 'use-intl';
 
 const POST = withMiddlewares(
     async (request: NextRequest) => {
-        const t = await getTranslations('ContactForm');
         const data = (await request.json()) as ContactData;
+        const messages = await getMessages({ locale: data.lang });
+
+        const t = (key: keyof Messages['ContactForm']) => messages['ContactForm'][key] ?? key;
 
         try {
-            const mockContent = [
-                `${data.subject === 'companies' ? `Nom de l'entreprise: ${data.companyName ?? 'N/A'}` : ''}`,
-                `Nom: ${data.name}`,
-                `Email: ${data.email}`,
-                `Téléphone: ${data.phone}`,
-                '',
-                'Message:',
-                `${data.message}`,
-            ];
-
-            const contactMailInfo = await transporter.sendMail({
+            const contactMailInfo = await sendMail({
+                lang: 'fr',
                 from: {
                     name: 'Site Web Forum By INSA',
                     address: serverEnv.MAIL_FROM,
                 },
                 to: serverEnv.MAIL_TO,
                 subject: `[Contact] ${t(data.subject)}`,
-                text: mockContent.join('\n'),
-                html: `<p>${mockContent.join('<br/>')}</p>`,
+                template: 'contact-message',
+                context: {
+                    subject: t(data.subject),
+                    name: data.name,
+                    email: data.email,
+                    phone: data.phone,
+                    companyName: data.companyName,
+                    message: data.message,
+                },
             });
 
             if (!contactMailInfo.accepted.includes(serverEnv.MAIL_TO)) {
@@ -41,15 +42,19 @@ const POST = withMiddlewares(
                 ).asNextResponse();
             }
 
-            const confirmationMailInfos = await transporter.sendMail({
+            const confirmationMailInfos = await sendMail({
+                lang: data.lang,
                 from: {
                     name: 'Forum By INSA',
                     address: serverEnv.MAIL_FROM,
                 },
                 to: data.email,
                 subject: t('confirmationMessage'),
-                text: 'Sent',
-                html: `<p>Sent</p>`,
+                template: 'contact-confirmation',
+                context: {
+                    name: data.name,
+                    subject: t(data.subject),
+                },
             });
 
             if (!confirmationMailInfos.accepted.includes(data.email)) {

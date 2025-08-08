@@ -24,7 +24,8 @@
         "invalidEmail": "Please enter a valid email address.",
         "invalidPhoneNumber": "Please enter a valid phone number.",
         "companyNameRequired": "Please enter the company name.",
-        "invalidStudentEmail": "Please enter a valid INSA Toulouse email address."
+        "invalidStudentEmail": "Please enter a valid INSA Toulouse email address.",
+        "invalidLanguage": "The language used is not supported."
     },
     "ApiErrors": {
         "SOMETHING_WENT_WRONG": "An error occurred. Please try again later.",

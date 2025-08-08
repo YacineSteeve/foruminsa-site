@@ -1,6 +1,6 @@
 import { ContactForm } from '@components/ContactForm';
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -13,6 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ContactPage() {
     const t = await getTranslations('ContactPage');
+    const locale = await getLocale();
 
     return (
         <div className="md:pt-8 space-y-16">
@@ -32,7 +33,7 @@ export default async function ContactPage() {
                         <h1>{t('title')}</h1>
                         <p>{t('description')}</p>
                     </div>
-                    <ContactForm />
+                    <ContactForm locale={locale} />
                 </div>
             </section>
             <section className="relative w-full h-100">

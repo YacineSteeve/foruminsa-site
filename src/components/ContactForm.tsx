@@ -5,11 +5,11 @@ import { Form } from '@heroui/form';
 import { Input, Textarea } from '@heroui/input';
 import { Select, SelectItem } from '@heroui/select';
 import { ContactService } from '@lib/api-services/contact';
-import { CONTACT_SUBJECTS, URL_PARAMS } from '@lib/constants';
+import { CONTACT_SUBJECTS, DEFAULT_LANGUAGE, URL_PARAMS } from '@lib/constants';
 import { useMutation, useValidation } from '@lib/hooks';
 import { type ContactData, contactDataSchema } from '@lib/types';
 import { toast } from '@lib/utils';
-import { useTranslations } from 'next-intl';
+import { type Locale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import {
     type ChangeEventHandler,
@@ -20,10 +20,16 @@ import {
 } from 'react';
 import { RiSendPlaneFill } from 'react-icons/ri';
 
-export const ContactForm: FunctionComponent = () => {
+interface ContactFormProps {
+    locale?: Locale;
+}
+
+export const ContactForm: FunctionComponent<ContactFormProps> = ({ locale = DEFAULT_LANGUAGE }) => {
     const t = useTranslations('ContactForm');
     const searchParams = useSearchParams();
-    const [data, setData] = useState<ContactData>({} as ContactData);
+    const [data, setData] = useState<ContactData>({
+        lang: locale,
+    } as ContactData);
     const { validate, validationErrors } = useValidation(contactDataSchema);
 
     const { trigger, isMutating } = useMutation(
@@ -51,7 +57,7 @@ export const ContactForm: FunctionComponent = () => {
         (key) => () => {
             setData((prevData) => ({
                 ...prevData,
-                [key]: '',
+                [key]: undefined,
             }));
         },
         [],

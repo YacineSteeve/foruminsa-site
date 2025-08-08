@@ -1,17 +1,22 @@
-import { CONTACT_SUBJECTS } from '@lib/constants';
+import { CONTACT_SUBJECTS, SUPPORTED_LANGUAGES } from '@lib/constants';
 import { z } from 'zod/v4';
 
 export const contactDataSchema = z
     .object({
+        lang: z.enum(SUPPORTED_LANGUAGES, { error: 'invalidLanguage' }),
         subject: z.enum(CONTACT_SUBJECTS, { error: 'invalidSubject' }),
         email: z.email({ error: 'invalidEmail' }),
         companyName: z.optional(
             z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
         ),
         name: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
-        phone: z
-            .string({ error: 'mustBeAString' })
-            .regex(/^(?:(?:\\+33|0033)[1-9]\d{8}|0[1-9]\d{8})$/, { error: 'invalidPhoneNumber' }),
+        phone: z.optional(
+            z
+                .string({ error: 'mustBeAString' })
+                .regex(/^(?:(?:\\+33|0033)[1-9]\d{8}|0[1-9]\d{8})$/, {
+                    error: 'invalidPhoneNumber',
+                }),
+        ),
         message: z
             .string({ error: 'mustBeAString' })
             .min(1, { error: 'mustHaveAtLeastOneCharacter' }),

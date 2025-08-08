@@ -1,0 +1,29 @@
+{{#> layout}}
+    <main>
+        {{#if (eq lang 'fr')}}
+        {{! French version }}
+            <h1>Bonjour {{name}},</h1>
+            <p>Merci de nous avoir contactés. Nous avons bien reçu votre message avec pour motif
+                "<strong>{{subject}}</strong>", et nous y répondrons dans les plus brefs délais.</p>
+            <p>Cordialement,</p>
+            <p>L'équipe du Forum By INSA</p>
+        {{else}}
+        {{! English version }}
+            <h1>Hello {{name}},</h1>
+            <p>Thank you for reaching out to us. We have received your message regarding
+                "<strong>{{subject}}</strong>", and we will get back to you as soon as possible.</p>
+            <p>Best regards,</p>
+            <p>The Forum By INSA Team</p>
+        {{/if}}
+    </main>
+    <footer>
+        <img src="cid:logo" alt="{{#if (eq lang 'fr')}}Logo du Forum By INSA{{else}}Forum By INSA Logo{{/if}}">
+        <p>
+            {{#if (eq lang 'fr')}}
+                Ceci est un e-mail automatique, merci de ne pas y répondre.
+            {{else}}
+                This is an automated email, please do not reply.
+            {{/if}}
+        </p>
+    </footer>
+{{/layout}}

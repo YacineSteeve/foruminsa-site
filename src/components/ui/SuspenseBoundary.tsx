@@ -13,10 +13,12 @@ export const SuspenseBoundary: FunctionComponent<SuspenseBoundaryProps> = ({
     return (
         <Suspense
             fallback={
-                fallback === undefined && (
+                fallback === undefined ? (
                     <div className="flex-center size-full">
                         <Loader />
                     </div>
+                ) : (
+                    fallback
                 )
             }
         >

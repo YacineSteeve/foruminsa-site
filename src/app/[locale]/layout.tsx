@@ -1,5 +1,6 @@
 import { Footer } from '@components/global/Footer';
 import { Header } from '@components/global/Header';
+import { Loader } from '@components/ui/Loader';
 import { SuspenseBoundary } from '@components/ui/SuspenseBoundary';
 import { APP_CONTAINER_ID, APP_FONT, COLORS } from '@lib/constants';
 import { i18nRouting } from '@lib/i18n/routing';
@@ -102,8 +103,16 @@ export default async function AppLayout({ children, params }: AppLayoutProps) {
                                 className="w-screen h-screen overflow-x-hidden"
                             >
                                 <Header />
-                                <main className="w-full min-h-[50vh]">
-                                    <SuspenseBoundary>{children}</SuspenseBoundary>
+                                <main className="w-full min-h-[calc(100vh-4.75rem)]">
+                                    <SuspenseBoundary
+                                        fallback={
+                                            <div className="flex-center w-full h-[calc(100vh-4.75rem)]">
+                                                <Loader />
+                                            </div>
+                                        }
+                                    >
+                                        {children}
+                                    </SuspenseBoundary>
                                 </main>
                                 <Footer />
                             </div>

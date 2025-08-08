@@ -1,0 +1,54 @@
+{{#> layout}}
+    <style>
+        .data-section {
+            background-color: #f9f9f9;
+            border-left: 4px solid #bd2727;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .data-section p {
+            margin: 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .data-section p:last-child {
+            border-bottom: none;
+        }
+
+        .data-section strong {
+            display: inline-block;
+            width: 120px;
+            color: #000000;
+        }
+
+        .data-section p.message {
+            white-space: pre-wrap;
+        }
+    </style>
+    <main>
+        <h1>Nouveau message du formulaire de contact</h1>
+        <p>Bonjour, vous avez reçu une nouvelle soumission via le formulaire de contact du site web. Voici les détails :</p>
+        <div class="data-section">
+            <p><strong>Sujet:</strong> {{subject}}</p>
+            {{#if companyName}}
+                <p><strong>Nom de l'entreprise:</strong> {{companyName}}</p>
+            {{/if}}
+            <p><strong>Nom:</strong> {{name}}</p>
+            <p><strong>Email:</strong> {{email}}</p>
+            <p><strong>Téléphone:</strong>
+                {{#if phone}}
+                    {{phone}}
+                {{else}}
+                    N/A
+                {{/if}}
+            </p>
+            <p><strong>Message:</strong></p>
+            <p class="message">{{message}}</p>
+        </div>
+    </main>
+    <footer>
+        <img src="cid:logo" alt="Logo du Forum By INSA">
+    </footer>
+{{/layout}}
