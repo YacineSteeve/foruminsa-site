@@ -45,6 +45,31 @@
         "solidarityFund": "Solidarity Fund",
         "contact": "Contact"
     },
+    "SocialLinks": {
+        "facebook": "Facebook",
+        "instagram": "Instagram",
+        "linkedin": "LinkedIn",
+        "twitter": "Twitter",
+        "youtube": "YouTube",
+        "tiktok": "TikTok",
+        "x": "X (formerly Twitter)",
+        "other": "Other"
+    },
+    "CompaniesPage": {
+        "title": "Companies",
+        "description": "Discover all the prestigious companies participating in the Forum. Meet recruiters, explore internship and job opportunities, and prepare to shine your profile !",
+        "altText": "Image of a group of people discussing around a table"
+    },
+    "CompaniesStats": {
+        "companiesCount": "Registered Companies",
+        "sectorsCount": "Sectors",
+        "specialitiesCount": "Desired Specialties",
+        "cannotLoadStats": "Unable to load company statistics."
+    },
+    "CompaniesList": {
+        "cannotLoadCompanies": "Unable to load the list of companies.",
+        "noCompanies": "No companies are currently registered."
+    },
     "ContactPage": {
         "title": "Contact Us!",
         "description": "You have any question or need assistance? Our team is there to help. Fill the form below and we will get back to you as soon as possible.",

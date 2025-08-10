@@ -1,4 +1,4 @@
-import { APP_URL, type MENU_ITEMS } from '@lib/constants';
+import { APP_URL, MENU_ITEMS } from '@lib/constants/core';
 import { getPathname } from '@lib/i18n/navigation';
 import type { Locale } from 'next-intl';
 

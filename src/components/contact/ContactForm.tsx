@@ -5,7 +5,7 @@ import { Form } from '@heroui/form';
 import { Input, Textarea } from '@heroui/input';
 import { Select, SelectItem } from '@heroui/select';
 import { ContactService } from '@lib/api-services/contact';
-import { CONTACT_SUBJECTS, DEFAULT_LANGUAGE, URL_PARAMS } from '@lib/constants';
+import { CONTACT_SUBJECTS, DEFAULT_LANGUAGE, URL_PARAMS } from '@lib/constants/core';
 import { useMutation, useValidation } from '@lib/hooks';
 import { type ContactData, contactDataSchema } from '@lib/types';
 import { toast } from '@lib/utils';

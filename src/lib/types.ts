@@ -1,4 +1,4 @@
-import { CONTACT_SUBJECTS, SUPPORTED_LANGUAGES } from '@lib/constants';
+import { CONTACT_SUBJECTS, SUPPORTED_LANGUAGES } from '@lib/constants/core';
 import { z } from 'zod/v4';
 
 export const contactDataSchema = z
@@ -52,3 +52,11 @@ export const contactDataSchema = z
     );
 
 export type ContactData = z.infer<typeof contactDataSchema>;
+
+export const companiesStatsSchema = z.object({
+    companiesCount:  z.coerce.number().int().nonnegative(),
+    sectorsCount: z.coerce.number().int().nonnegative(),
+    specialitiesCount: z.coerce.number().int().nonnegative(),
+});
+
+export type CompaniesStats = z.infer<typeof companiesStatsSchema>;

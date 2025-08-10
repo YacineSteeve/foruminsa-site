@@ -1,4 +1,4 @@
-import { APP_URL, MENU_ITEMS } from '@lib/constants';
+import { APP_URL, MENU_ITEMS } from '@lib/constants/core';
 import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {

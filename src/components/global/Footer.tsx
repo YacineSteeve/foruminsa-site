@@ -7,7 +7,8 @@ import { Button } from '@heroui/button';
 import { Form } from '@heroui/form';
 import { Input } from '@heroui/input';
 import { Select, SelectItem } from '@heroui/select';
-import { LANGUAGE_METADATA, MENU_ITEMS, SOCIAL_LINKS, URL_PARAMS } from '@lib/constants';
+import { LANGUAGE_METADATA, MENU_ITEMS, URL_PARAMS } from '@lib/constants/core';
+import { FORUM_SOCIAL_LINKS } from '@lib/constants/ui';
 import { useInView } from '@lib/hooks';
 import { Link, usePathname, useRouter } from '@lib/i18n/navigation';
 import { type Locale, useLocale, useTranslations } from 'next-intl';
@@ -151,9 +152,11 @@ const FooterContactForm: FunctionComponent = () => {
 };
 
 const FooterSocialLinks: FunctionComponent = () => {
+    const t = useTranslations('SocialLinks');
+    
     return (
         <ul className="flex flex-wrap max-md:justify-center gap-8">
-            {SOCIAL_LINKS.map((socialLink) => {
+            {FORUM_SOCIAL_LINKS.map((socialLink) => {
                 const Icon = socialLink.icon;
 
                 return (
@@ -169,7 +172,7 @@ const FooterSocialLinks: FunctionComponent = () => {
                                     // @ts-expect-error TS2353: Object literal may only specify known properties, and '--icon-color' does not exist in type Properties<string | number, string & {}>
                                     '--icon-color': socialLink.color,
                                 }}
-                                aria-label={socialLink.label}
+                                aria-label={t(socialLink.label)}
                             />
                         </Link>
                     </li>

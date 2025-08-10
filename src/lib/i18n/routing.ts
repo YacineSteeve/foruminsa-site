@@ -1,4 +1,4 @@
-import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@lib/constants';
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@lib/constants/core';
 import { defineRouting } from 'next-intl/routing';
 
 export const i18nRouting = defineRouting({

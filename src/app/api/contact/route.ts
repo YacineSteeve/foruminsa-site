@@ -68,7 +68,7 @@ const POST = withMiddlewares(
                 500,
                 error instanceof Error
                     ? error.stack
-                    : new Error('An unknown error occurred while sending the email.', {
+                    : new Error('An error occurred while sending the email.', {
                           cause: error,
                       }).stack,
             ).asNextResponse();
@@ -78,7 +78,7 @@ const POST = withMiddlewares(
         cors: {
             method: 'POST',
         },
-        rateLimiting: true,
+        rateLimit: true,
     },
 );
 

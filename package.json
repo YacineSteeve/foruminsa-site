@@ -2,6 +2,7 @@
     "name": "@forum-insa/website",
     "version": "0.1.0",
     "private": true,
+    "type": "module",
     "engines": {
         "node": ">=20"
     },
@@ -12,14 +13,16 @@
         "lint": "next lint",
         "format": "prettier --ignore-unknown --write src",
         "db:generate": "prisma generate",
-        "db:migrate:dev": "prisma migrate dev",
-        "db:migrate:prod": "prisma migrate deploy",
+        "db:migrate": "prisma migrate dev",
+        "db:deploy": "prisma migrate deploy",
+        "db:seed": "prisma db seed",
         "db:reset": "prisma migrate reset --force"
     },
     "dependencies": {
         "@heroui/react": "^2.8.1",
         "@prisma/adapter-better-sqlite3": "^6.13.0",
         "@prisma/client": "^6.13.0",
+        "bcrypt": "^6.0.0",
         "drizzle-orm": "^0.44.4",
         "express-handlebars": "7",
         "framer-motion": "^12.23.6",
@@ -40,7 +43,9 @@
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3.3.1",
+        "@faker-js/faker": "^9.9.0",
         "@tailwindcss/postcss": "^4.1.11",
+        "@types/bcrypt": "^6.0.0",
         "@types/node": "^24.0.14",
         "@types/nodemailer": "^6.4.17",
         "@types/nodemailer-express-handlebars": "^4.0.5",
@@ -56,7 +61,7 @@
         "prisma": "^6.13.0",
         "tailwind-merge": "^3.3.1",
         "tailwindcss": "^4.1.11",
-        "ts-node": "^10.9.2",
+        "tsx": "^4.20.3",
         "typescript": "^5.8.3"
     }
 }

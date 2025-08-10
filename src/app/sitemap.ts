@@ -1,4 +1,4 @@
-import { MENU_ITEMS } from '@lib/constants';
+import { MENU_ITEMS } from '@lib/constants/core';
 import { i18nRouting } from '@lib/i18n/routing';
 import { getFullUrl, getLocalizedFullUrl, type Href } from '@lib/utils';
 import type { MetadataRoute } from 'next';

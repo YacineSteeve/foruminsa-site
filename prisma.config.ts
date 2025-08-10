@@ -15,6 +15,6 @@ export default defineConfig({
     schema: path.join(prismaRootDir, 'schema.prisma'),
     migrations: {
         path: path.join(prismaRootDir, 'migrations'),
-        seed: `ts-node ${path.join(prismaRootDir, 'seed.ts')}`,
+        seed: `tsx ${path.join(prismaRootDir, 'seed.ts')}`,
     },
 });

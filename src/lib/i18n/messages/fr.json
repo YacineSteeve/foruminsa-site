@@ -45,6 +45,31 @@
         "solidarityFund": "Fonds de Solidarité",
         "contact": "Contact"
     },
+    "SocialLinks": {
+        "facebook": "Facebook",
+        "instagram": "Instagram",
+        "linkedin": "LinkedIn",
+        "twitter": "Twitter",
+        "youtube": "YouTube",
+        "tiktok": "TikTok",
+        "x": "X (anciennement Twitter)",
+        "other": "Autre"
+    },
+    "CompaniesPage": {
+        "title": "Entreprises",
+        "description": "Découvrez toutes les prestigieuses entreprises qui participent au Forum. Rencontrez les recruteurs, explorez les opportunités de stage et d'emploi, et préparez-vous à faire briller votre profil !",
+        "altText": "Image d'un groupe de personnes discutant autour d'une table"
+    },
+    "CompaniesStats": {
+        "companiesCount": "Entreprises inscrites",
+        "sectorsCount": "Secteurs d'activité",
+        "specialitiesCount": "Spécialités recherchées",
+        "cannotLoadStats": "Impossible de charger les statistiques des entreprises."
+    },
+    "CompaniesList": {
+        "cannotLoadCompanies": "Impossible de charger la liste des entreprises.",
+        "noCompanies": "Aucune entreprise n'est actuellement inscrite."
+    },
     "ContactPage": {
         "title": "Contactez-nous!",
         "description": "Vous avez une question ou avez besoin d'aide? Notre équipe est là pour vous aider. Remplissez le formulaire ci-dessous conformément à votre besoin et nous reviendrons vers vous dans les plus brefs délais.",

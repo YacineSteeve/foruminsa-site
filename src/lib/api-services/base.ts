@@ -1,6 +1,6 @@
-import { APP_URL, DEFAULT_ERROR_MESSAGE } from '@lib/constants';
 import { ApiError, type ErrorResponseBody } from '@lib/utils';
 import { join } from 'path';
+import { APP_URL, DEFAULT_ERROR_MESSAGE } from '@lib/constants/core';
 
 export type RequestConfigParams = Record<string, unknown>;
 

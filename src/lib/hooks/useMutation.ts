@@ -1,4 +1,4 @@
-import { DEFAULT_ERROR_MESSAGE } from '@lib/constants';
+import { DEFAULT_ERROR_MESSAGE } from '@lib/constants/core';
 import { ApiError, toast } from '@lib/utils';
 import { useTranslations } from 'next-intl';
 import { useEffect } from 'react';

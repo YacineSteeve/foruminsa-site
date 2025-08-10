@@ -1,5 +1,5 @@
 import { serverEnv } from '@lib/config/env';
-import { APP_URL } from '@lib/constants';
+import { APP_URL } from '@lib/constants/core';
 import { createTransport } from 'nodemailer';
 import hbs from 'nodemailer-express-handlebars';
 import path from 'node:path';

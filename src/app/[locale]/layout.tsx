@@ -2,7 +2,6 @@ import { Footer } from '@components/global/Footer';
 import { Header } from '@components/global/Header';
 import { Loader } from '@components/ui/Loader';
 import { SuspenseBoundary } from '@components/ui/SuspenseBoundary';
-import { APP_CONTAINER_ID, APP_FONT, COLORS } from '@lib/constants';
 import { i18nRouting } from '@lib/i18n/routing';
 import { cn, getFullUrl, getLocalizedFullUrl } from '@lib/utils';
 import { HeroUIProvider } from '@heroui/react';
@@ -15,6 +14,7 @@ import TopLoader from 'nextjs-toploader';
 import { Toaster } from 'sonner';
 import '@style/global.css';
 import { SWRConfig } from 'swr';
+import { APP_COLORS, APP_CONTAINER_ID, APP_FONT } from '@/lib/constants/ui';
 
 export async function generateMetadata(): Promise<Metadata> {
     const t = await getTranslations('AppMetadata');
@@ -48,7 +48,7 @@ export const viewport: Viewport = {
     maximumScale: 5,
     userScalable: true,
     colorScheme: 'light',
-    themeColor: COLORS.primary,
+    themeColor: APP_COLORS.primary,
 };
 
 interface AppLayoutProps extends PropsWithChildren {
@@ -79,8 +79,8 @@ export default async function AppLayout({ children, params }: AppLayoutProps) {
                         <SWRConfig value={{ shouldRetryOnError: false }}>
                             {/* Top loader for page loading indication (on navigation) */}
                             <TopLoader
-                                color={COLORS.primary}
-                                shadow={`0 0 10px ${COLORS.primary}, 0 0 5px ${COLORS.primary}`}
+                                color={APP_COLORS.primary}
+                                shadow={`0 0 10px ${APP_COLORS.primary}, 0 0 5px ${APP_COLORS.primary}`}
                                 initialPosition={0.1}
                                 speed={300}
                                 crawlSpeed={100}

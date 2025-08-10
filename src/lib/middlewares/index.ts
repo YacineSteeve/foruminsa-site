@@ -6,17 +6,17 @@ export { withCors, withRateLimit };
 
 export type WithMiddlewaresOptions = {
     cors?: boolean | Parameters<typeof withCors>[1];
-    rateLimiting?: boolean | Parameters<typeof withRateLimit>[1];
+    rateLimit?: boolean | Parameters<typeof withRateLimit>[1];
 };
 
 export const withMiddlewares: MiddlewareFactory<WithMiddlewaresOptions> = (handler, options) => {
     return async (request, context) => {
         let chain = handler;
 
-        if (options?.rateLimiting) {
+        if (options?.rateLimit) {
             chain = withRateLimit(
                 handler,
-                typeof options.rateLimiting === 'boolean' ? {} : options.rateLimiting,
+                typeof options.rateLimit === 'boolean' ? {} : options.rateLimit,
             );
         }
 
