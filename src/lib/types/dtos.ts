@@ -1,4 +1,5 @@
-import { CONTACT_SUBJECTS, SUPPORTED_LANGUAGES } from '@lib/constants/core';
+import { CONTACT_SUBJECTS, SPECIALITIES, STUDY_LEVELS, SUPPORTED_LANGUAGES } from '@lib/constants/core';
+import { COUNTRY_CODES } from '@lib/constants/countries';
 import { z } from 'zod/v4';
 
 export const contactDataSchema = z
@@ -6,17 +7,14 @@ export const contactDataSchema = z
         lang: z.enum(SUPPORTED_LANGUAGES, { error: 'invalidLanguage' }),
         subject: z.enum(CONTACT_SUBJECTS, { error: 'invalidSubject' }),
         email: z.email({ error: 'invalidEmail' }),
-        companyName: z.optional(
-            z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
-        ),
+        companyName: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }).optional(),
         name: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
-        phone: z.optional(
-            z
-                .string({ error: 'mustBeAString' })
-                .regex(/^(?:(?:\\+33|0033)[1-9]\d{8}|0[1-9]\d{8})$/, {
-                    error: 'invalidPhoneNumber',
-                }),
-        ),
+        phone: z
+            .string({ error: 'mustBeAString' })
+            .regex(/^(?:(?:\\+33|0033)[1-9]\d{8}|0[1-9]\d{8})$/, {
+                error: 'invalidPhoneNumber',
+            })
+            .optional(),
         message: z
             .string({ error: 'mustBeAString' })
             .min(1, { error: 'mustHaveAtLeastOneCharacter' }),
@@ -53,10 +51,13 @@ export const contactDataSchema = z
 
 export type ContactData = z.infer<typeof contactDataSchema>;
 
-export const companiesStatsSchema = z.object({
-    companiesCount:  z.coerce.number().int().nonnegative(),
-    sectorsCount: z.coerce.number().int().nonnegative(),
-    specialitiesCount: z.coerce.number().int().nonnegative(),
+export const companiesFiltersSchema = z.object({
+    city: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }).nullish(),
+    country: z.enum(COUNTRY_CODES, { error: 'mustBeAValidCountryCode' }).nullish(),
+    sector: z.cuid2({ error: 'mustBeAValidId' }).nullish(),
+    speciality: z.enum(SPECIALITIES, { error: 'mustBeAValidSpeciality' }).nullish(),
+    studyLevel: z.enum(STUDY_LEVELS, { error: 'mustBeAValidStudyLevel' }).nullish(),
+    page: z.coerce.number().int().nonnegative().nullish(),
 });
 
-export type CompaniesStats = z.infer<typeof companiesStatsSchema>;
+export type CompaniesFilters = z.infer<typeof companiesFiltersSchema>;

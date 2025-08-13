@@ -43,7 +43,9 @@ export class BaseService {
                 cause: new ApiError(
                     DEFAULT_ERROR_MESSAGE,
                     500,
-                    error instanceof Error ? error.stack : undefined,
+                    error instanceof Error ? error : new Error('An error occurred while making the request.', {
+                        cause: error,
+                    })
                 ),
             });
         }
@@ -57,13 +59,13 @@ export class BaseService {
         }
 
         if (!response.ok) {
-            const errorResponseBody = responseBody as ErrorResponseBody;
+            const errorResponseBody = (responseBody ?? {}) as ErrorResponseBody;
 
             throw new Error(errorResponseBody.message || DEFAULT_ERROR_MESSAGE, {
                 cause: new ApiError(
                     errorResponseBody.message || DEFAULT_ERROR_MESSAGE,
                     response.status,
-                    errorResponseBody.stack,
+                    new Error(errorResponseBody.cause?.toString()),
                 ),
             });
         }

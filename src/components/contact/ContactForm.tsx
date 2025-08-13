@@ -4,10 +4,10 @@ import { Button } from '@heroui/button';
 import { Form } from '@heroui/form';
 import { Input, Textarea } from '@heroui/input';
 import { Select, SelectItem } from '@heroui/select';
-import { ContactService } from '@lib/api-services/contact';
+import { ContactService } from '@lib/api-services';
 import { CONTACT_SUBJECTS, DEFAULT_LANGUAGE, URL_PARAMS } from '@lib/constants/core';
 import { useMutation, useValidation } from '@lib/hooks';
-import { type ContactData, contactDataSchema } from '@lib/types';
+import { type ContactData, contactDataSchema } from '@lib/types/dtos';
 import { toast } from '@lib/utils';
 import { type Locale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
@@ -172,7 +172,7 @@ export const ContactForm: FunctionComponent<ContactFormProps> = ({ locale = DEFA
                 type="submit"
                 color="primary"
                 variant="solid"
-                className="text-white ml-auto"
+                className="ml-auto"
                 isLoading={isMutating}
                 startContent={isMutating ? null : <RiSendPlaneFill className="size-5" />}
             >

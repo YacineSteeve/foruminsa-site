@@ -1,6 +1,6 @@
 import { withMiddlewares } from '@lib/middlewares';
 import { prismaClient } from '@lib/prisma/client';
-import { companiesStatsSchema } from '@lib/types';
+import { companiesStatsEntitySchema } from '@lib/types/entities';
 import { ApiError } from '@lib/utils';
 import { NextResponse } from 'next/server';
 
@@ -27,7 +27,7 @@ const GET = withMiddlewares(
             ).size;
             
             return NextResponse.json(
-                companiesStatsSchema.parse({
+                companiesStatsEntitySchema.parse({
                     companiesCount,
                     sectorsCount,
                     specialitiesCount,
@@ -35,13 +35,13 @@ const GET = withMiddlewares(
             );
         } catch (error) {
             return new ApiError(
-                'SOMETHING_WENT_WRONG',
+                'INTERNAL_SERVER_ERROR',
                 500,
                 error instanceof Error
-                    ? error.stack
+                    ? error
                     : new Error('An error occurred while fetching companies stats.', {
                         cause: error,
-                    }).stack,
+                    }),
             ).asNextResponse();
         }
     },

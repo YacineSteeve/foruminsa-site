@@ -143,7 +143,6 @@ const FooterContactForm: FunctionComponent = () => {
                 variant="solid"
                 color="primary"
                 fullWidth
-                className="text-white"
             >
                 {t('submitButtonLabel')}
             </Button>

@@ -4,6 +4,7 @@
         "description": "The official website of the INSA Toulouse Forum, the must-attend event for students and companies.",
         "keywords": "INSA Forum, INSA Toulouse, Company Forum, Student Event, INSA Contact",
         "title": "Forum By INSA",
+        "companiesPageTitle": "Companies",
         "contactPageTitle": "Contact Us"
     },
     "ErrorPage": {
@@ -25,13 +26,19 @@
         "invalidPhoneNumber": "Please enter a valid phone number.",
         "companyNameRequired": "Please enter the company name.",
         "invalidStudentEmail": "Please enter a valid INSA Toulouse email address.",
-        "invalidLanguage": "The language used is not supported."
+        "invalidLanguage": "The language used is not supported.",
+        "mustBeAValidCountryCode": "This field must be a valid country code.",
+        "mustBeAValidId":  "This field must be a valid ID (CUIDv2).",
+        "mustBeAValidSpeciality": "This field must be a valid speciality.",
+        "mustBeAValidStudyLevel":  "This field must be a valid study level."
     },
     "ApiErrors": {
         "SOMETHING_WENT_WRONG": "An error occurred. Please try again later.",
         "NETWORK_ERROR": "A network error occurred. Please check your internet connection.",
+        "INTERNAL_SERVER_ERROR": "An internal server error occurred. Please try again later.",
         "TOO_MANY_REQUESTS": "Too many requests. Please try again later.",
-        "MESSAGE_NOT_DELIVERED": "Sorry, the message could not be sent."
+        "MESSAGE_NOT_DELIVERED": "Sorry, the message could not be sent.",
+        "INVALID_QUERY_PARAMETERS": "Invalid query parameters. Please check your parameters and try again."
     },
     "Logo": {
         "altText": "INSA Forum Logo"
@@ -69,6 +76,9 @@
     "CompaniesList": {
         "cannotLoadCompanies": "Unable to load the list of companies.",
         "noCompanies": "No companies are currently registered."
+    },
+    "CompanyAward": {
+        "description": "This company offers goodies and uses eco-friendly transportation modes !"
     },
     "ContactPage": {
         "title": "Contact Us!",

@@ -1,42 +1,56 @@
+import { CompaniesListWrapper } from '@components/companies/CompaniesListWrapper';
+import { CompaniesPagination } from '@components/companies/CompaniesPagination';
 import { CompanyCard } from '@components/companies/CompanyCard';
 import { Alert } from '@heroui/alert';
 import { CompanyService } from '@lib/api-services';
+import type { CompaniesFilters } from '@lib/types/dtos';
 import { getTranslations } from 'next-intl/server';
-import { Fragment, type FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
-export const CompaniesList: FunctionComponent = async () => {
+interface CompaniesListProps {
+    filters: CompaniesFilters;
+}
+
+export const CompaniesList: FunctionComponent<CompaniesListProps> = async ({ filters }) => {
     const t = await getTranslations('CompaniesList');
-    const companies = await CompanyService.getAllCompanies();
+    const paginatedCompanies = await CompanyService.getAllCompanies(filters);
     
-    if (!companies || companies.length === 0) {
+    if (!paginatedCompanies) {
         return (
-            <Fragment>
+            <CompaniesListWrapper>
                 <span/>
                 <Alert
                     color="danger"
                     title={t('cannotLoadCompanies')}
                 />
                 <span/>
-            </Fragment>
+            </CompaniesListWrapper>
         );
     }
     
     return (
-        companies.length > 0 ? (
-            companies.map((company) => (
-                <li key={company.id}>
-                    <CompanyCard company={company} />
-                </li>
-            ))
+        paginatedCompanies.data.length > 0 ? (
+            <div className="flex flex-col items-center md:items-end gap-y-16">
+                <CompaniesListWrapper>
+                    {
+                        paginatedCompanies.data.map((company) => (
+                            <li key={company.id}>
+                                <CompanyCard company={company}/>
+                            </li>
+                        ))
+                    }
+                </CompaniesListWrapper>
+                <CompaniesPagination totalPages={Math.ceil(paginatedCompanies.totalElements / paginatedCompanies.pageSize)} />
+            </div>
         ) : (
-            <Fragment>
+            <CompaniesListWrapper>
                 <span/>
                 <Alert
                     color="default"
                     title={t('noCompanies')}
                 />
                 <span/>
-            </Fragment>
+            </CompaniesListWrapper>
         )
     );
 };

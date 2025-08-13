@@ -3,8 +3,6 @@ export const APP_URL =
         ? ('https://foruminsa-site.vercel.app' as const)
         : ('http://192.168.1.227:3000' as const);
 
-export const PASSWORD_HASHING_ROUNDS = 10 as const;
-
 export const SUPPORTED_LANGUAGES = ['fr', 'en'] as const;
 
 export const DEFAULT_LANGUAGE = 'fr' as const;
@@ -62,6 +60,16 @@ export const SOCIAL_LINK_TYPES = ['facebook', 'instagram', 'linkedin', 'x', 'you
 
 export const URL_PARAMS = {
     email: 'email',
+    city: 'city',
+    country: 'country',
+    sector: 'sector',
+    speciality: 'speciality',
+    studyLevel: 'studyLevel',
+    page: 'page',
 } as const;
 
 export const DEFAULT_ERROR_MESSAGE = 'SOMETHING_WENT_WRONG' as const;
+
+export const PASSWORD_HASHING_ROUNDS = 10 as const;
+
+export const COMPANIES_PAGE_SIZE = 18 as const;

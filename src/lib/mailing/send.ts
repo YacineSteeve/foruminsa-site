@@ -18,20 +18,20 @@ type MailTemplateContext = {
     };
 };
 
-type ExtractProperties<T extends object | undefined> = { [P in keyof T]: T[P] };
+type ExtractProperties<T extends object | undefined> = { [K in keyof T]: T[K] };
 
-export interface SendMailOptions<T extends keyof MailTemplateContext>
+export interface SendMailOptions<K extends keyof MailTemplateContext>
     extends Omit<BaseSendMailOptions, 'from' | 'to' | 'subject' | 'html'> {
     lang: Locale;
     from: NonNullable<BaseSendMailOptions['from']>;
     to: NonNullable<BaseSendMailOptions['to']>;
     subject: NonNullable<BaseSendMailOptions['subject']>;
-    template: T; // Template name
-    context?: ExtractProperties<MailTemplateContext[T]>; // Dynamic payload type based on the template name
+    template: K; // Template name
+    context?: ExtractProperties<MailTemplateContext[K]>; // Dynamic payload type based on the template name
 }
 
-export const sendMail = async <T extends keyof MailTemplateContext>(
-    options: SendMailOptions<T>,
+export const sendMail = async <K extends keyof MailTemplateContext>(
+    options: SendMailOptions<K>,
 ): ReturnType<typeof transport.sendMail> => {
     const { lang, subject, attachments, context, ...otherOptions } = options;
 

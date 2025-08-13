@@ -5,7 +5,10 @@ export default heroui({
     themes: {
         light: {
             colors: {
-                primary: '#bd2727',
+                primary: {
+                    foreground: '#ffffff',
+                    DEFAULT: '#bd2727',
+                },
                 secondary: '#292929',
             },
         },

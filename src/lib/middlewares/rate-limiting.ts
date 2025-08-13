@@ -78,7 +78,7 @@ export const withRateLimit: MiddlewareFactory = (handler) => {
                 return new ApiError(
                     'TOO_MANY_REQUESTS',
                     429,
-                    `Rate limit exceeded for IP: ${ip}`,
+                    new Error(`Rate limit exceeded for IP: ${ip}`),
                 ).asNextResponse({
                     headers: getRateLimiterHeaders(error, rateLimiterStore.points),
                 });
@@ -87,7 +87,11 @@ export const withRateLimit: MiddlewareFactory = (handler) => {
             return new ApiError(
                 'SOMETHING_WENT_WRONG',
                 500,
-                error instanceof Error ? error.stack : undefined,
+                error instanceof Error
+                    ? error
+                    : new Error('An error occurred while processing the request.', {
+                        cause: error,
+                    }),
             ).asNextResponse();
         }
 

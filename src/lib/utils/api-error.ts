@@ -5,25 +5,27 @@ export type ApiErrorMessage = keyof Messages['ApiErrors'];
 
 export interface ErrorResponseBody {
     message: ApiErrorMessage;
-    stack?: string;
+    cause?: string;
 }
 
 export class ApiError {
     public readonly message: ApiErrorMessage;
     public readonly statusCode: number;
-    public readonly stack?: string;
+    public readonly cause?: Error;
 
-    constructor(message: ApiErrorMessage, statusCode: number, stack?: string) {
+    constructor(message: ApiErrorMessage, statusCode: number, cause?: Error) {
         this.message = message;
         this.statusCode = statusCode;
-        this.stack = stack;
+        this.cause = cause;
+        
+        console.error(`New ApiError: ${this.toString()}`);
     }
 
     public asNextResponse(init?: ResponseInit) {
         return NextResponse.json(
             {
                 message: this.message,
-                stack: this.stack,
+                cause: this.cause ? JSON.stringify(this.cause) : undefined,
             } satisfies ErrorResponseBody,
             {
                 ...(init ?? {}),
@@ -33,6 +35,6 @@ export class ApiError {
     }
 
     public toString() {
-        return `ApiError: ${this.message} (Status Code: ${this.statusCode})${this.stack ? `, Stack: ${this.stack}` : ''}`;
+        return `ApiError: ${this.message} (Status Code: ${this.statusCode})${this.cause ? `, Cause: ${this.cause}` : ''}`;
     }
 }

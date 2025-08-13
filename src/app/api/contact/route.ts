@@ -1,6 +1,6 @@
 import { serverEnv } from '@lib/config/env';
 import { withMiddlewares } from '@lib/middlewares';
-import type { ContactData } from '@lib/types';
+import type { ContactData } from '@lib/types/dtos';
 import { sendMail } from '@lib/mailing';
 import { getMessages } from 'next-intl/server';
 import { NextRequest, NextResponse } from 'next/server';
@@ -38,7 +38,7 @@ const POST = withMiddlewares(
                 return new ApiError(
                     'MESSAGE_NOT_DELIVERED',
                     500,
-                    `Email not received by the recipient "${serverEnv.MAIL_TO}"`,
+                    new Error(`Email not received by the recipient "${serverEnv.MAIL_TO}"`),
                 ).asNextResponse();
             }
 
@@ -64,13 +64,13 @@ const POST = withMiddlewares(
             return NextResponse.json({}, { status: 200 });
         } catch (error) {
             return new ApiError(
-                'SOMETHING_WENT_WRONG',
+                'INTERNAL_SERVER_ERROR',
                 500,
                 error instanceof Error
-                    ? error.stack
+                    ? error
                     : new Error('An error occurred while sending the email.', {
                           cause: error,
-                      }).stack,
+                      }),
             ).asNextResponse();
         }
     },

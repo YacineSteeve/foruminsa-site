@@ -1,4 +1,5 @@
 import { PASSWORD_HASHING_ROUNDS, SOCIAL_LINK_TYPES, SPECIALITIES, STUDY_LEVELS } from '@lib/constants/core';
+import { COUNTRY_CODES } from '@lib/constants/countries';
 import { prismaClient } from '@lib/prisma/client';
 import { fakerFR as faker } from '@faker-js/faker';
 import { hash } from 'bcrypt';
@@ -18,6 +19,11 @@ const main = async () => {
             name,
             slug: faker.helpers.slugify(name.toLowerCase()),
         }));
+        
+        const sectorNames = faker.helpers.uniqueArray(
+            faker.commerce.department,
+            SECTOR_COUNT,
+        );
         
         await prismaClient.$transaction(async (transaction) => {
             // Clear existing data
@@ -46,8 +52,8 @@ const main = async () => {
             }
             
             const sectors = await transaction.sector.createManyAndReturn({
-                data: Array.from({ length: SECTOR_COUNT }, () => ({
-                    name: faker.commerce.department(),
+                data: Array.from({ length: SECTOR_COUNT }, (_, index) => ({
+                    name: sectorNames[index]!,
                 })),
                 select: {
                     id: true,
@@ -76,12 +82,21 @@ const main = async () => {
                     continue;
                 }
                 
+                const socialLinksCount = faker.number.int({ min: 1, max: 4 });
+                
+                const socialLinksTypes = faker.helpers.uniqueArray(
+                    () => faker.helpers.arrayElement(SOCIAL_LINK_TYPES),
+                    socialLinksCount
+                );
+                
                 await transaction.company.create({
                     data: {
                         name: companyNameAndSlug.name,
                         slug: companyNameAndSlug.slug,
                         description: faker.lorem.paragraph({ min: 2, max: 4 }),
                         logoUrl: faker.image.avatarGitHub(),
+                        providesGoodies: faker.datatype.boolean(),
+                        hasGreenTransport: faker.datatype.boolean(),
                         studyLevels: faker.helpers.arrayElements(
                             STUDY_LEVELS,
                             { min: 1, max: 3 }
@@ -93,7 +108,7 @@ const main = async () => {
                         address: faker.helpers.maybe(faker.location.streetAddress),
                         postalCode: faker.helpers.maybe(faker.location.zipCode),
                         city: faker.location.city(),
-                        country: faker.location.country(),
+                        country: faker.helpers.arrayElement(COUNTRY_CODES),
                         websiteUrl: faker.helpers.maybe(faker.internet.url),
                         carbonFootprint: faker.number.float({ min:  0, max: 100, fractionDigits: 2 }),
                         sectors: {
@@ -106,8 +121,8 @@ const main = async () => {
                         },
                         socialLinks: {
                             createMany: {
-                                data: Array.from({ length: faker.number.int({ min: 1, max: 4 }) }, () => ({
-                                    type: faker.helpers.arrayElement(SOCIAL_LINK_TYPES),
+                                data: Array.from({ length: socialLinksCount }, (_, index) => ({
+                                    type: socialLinksTypes[index]!,
                                     url: faker.internet.url(),
                                 })),
                             },

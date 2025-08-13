@@ -31,7 +31,7 @@ export const ScrollToTopButton: FunctionComponent<ScrollToTopButtonProps> = ({ h
                 onPress={handleClick}
                 className={cn('z-50 fixed bottom-8 right-8', hidden && 'hidden')}
             >
-                <RiArrowUpLine className="size-8 invert contrast-200" />
+                <RiArrowUpLine className="size-8" />
             </Button>
         </Tooltip>
     );
