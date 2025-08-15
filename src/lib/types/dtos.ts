@@ -1,5 +1,11 @@
-import { CONTACT_SUBJECTS, SPECIALITIES, STUDY_LEVELS, SUPPORTED_LANGUAGES } from '@lib/constants/core';
+import {
+    CONTACT_SUBJECTS,
+    SPECIALITIES,
+    STUDY_LEVELS,
+    SUPPORTED_LANGUAGES,
+} from '@lib/constants/core';
 import { COUNTRY_CODES } from '@lib/constants/countries';
+import type { CompanyEntity } from '@lib/types/entities';
 import { z } from 'zod/v4';
 
 export const contactDataSchema = z
@@ -7,7 +13,10 @@ export const contactDataSchema = z
         lang: z.enum(SUPPORTED_LANGUAGES, { error: 'invalidLanguage' }),
         subject: z.enum(CONTACT_SUBJECTS, { error: 'invalidSubject' }),
         email: z.email({ error: 'invalidEmail' }),
-        companyName: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }).optional(),
+        companyName: z
+            .string({ error: 'mustBeAString' })
+            .min(1, { error: 'mustHaveAtLeastOneCharacter' })
+            .optional(),
         name: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
         phone: z
             .string({ error: 'mustBeAString' })
@@ -52,12 +61,18 @@ export const contactDataSchema = z
 export type ContactData = z.infer<typeof contactDataSchema>;
 
 export const companiesFiltersSchema = z.object({
-    city: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }).nullish(),
+    city: z
+        .string({ error: 'mustBeAString' })
+        .min(1, { error: 'mustHaveAtLeastOneCharacter' })
+        .nullish(),
     country: z.enum(COUNTRY_CODES, { error: 'mustBeAValidCountryCode' }).nullish(),
     sector: z.cuid2({ error: 'mustBeAValidId' }).nullish(),
     speciality: z.enum(SPECIALITIES, { error: 'mustBeAValidSpeciality' }).nullish(),
     studyLevel: z.enum(STUDY_LEVELS, { error: 'mustBeAValidStudyLevel' }).nullish(),
     page: z.coerce.number().int().nonnegative().nullish(),
+    greenLabel: z.coerce.boolean({ error: 'mustBeABoolean' }).nullish(),
 });
 
 export type CompaniesFilters = z.infer<typeof companiesFiltersSchema>;
+
+export type CompanyKey = CompanyEntity['id'] | CompanyEntity['slug'];

@@ -7,7 +7,7 @@ import {
     RiLinksFill,
     RiTiktokFill,
     RiTwitterXFill,
-    RiYoutubeFill
+    RiYoutubeFill,
 } from 'react-icons/ri';
 import { SOCIAL_LINK_TYPES } from './core';
 
@@ -54,7 +54,7 @@ export const SOCIAL_LINKS_TYPES_METADATA: Record<
     other: {
         icon: RiLinksFill,
         color: '#808080',
-    }
+    },
 } as const;
 
 export const FORUM_SOCIAL_LINKS = [

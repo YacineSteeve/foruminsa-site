@@ -105,6 +105,9 @@ export const ContactForm: FunctionComponent<ContactFormProps> = ({ locale = DEFA
                     placeholder={t('subjectPlaceholder')}
                     selectedKeys={[data.subject]}
                     onChange={handleChange('subject')}
+                    listboxProps={{
+                        emptyContent: t('noOptions'),
+                    }}
                 >
                     {CONTACT_SUBJECTS.map((subject) => (
                         <SelectItem key={subject}>{t(subject)}</SelectItem>

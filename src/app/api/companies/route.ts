@@ -11,9 +11,9 @@ import { ZodError } from 'zod/v4';
 const GET = withMiddlewares(
     async (request) => {
         const searchParams = request.nextUrl.searchParams;
-        
+
         let query: CompaniesFilters;
-        
+
         try {
             query = companiesFiltersSchema.parse({
                 city: searchParams.get(URL_PARAMS.city),
@@ -22,6 +22,7 @@ const GET = withMiddlewares(
                 speciality: searchParams.get(URL_PARAMS.speciality),
                 studyLevel: searchParams.get(URL_PARAMS.studyLevel),
                 page: searchParams.get(URL_PARAMS.page),
+                greenLabel: searchParams.get(URL_PARAMS.greenLabel),
             });
         } catch (error) {
             return new ApiError(
@@ -30,25 +31,35 @@ const GET = withMiddlewares(
                 error instanceof Error
                     ? error
                     : error instanceof ZodError
-                        ? new Error(error.issues.map((issue) => `[${issue.path}] ${issue.message}`).join(',\n'), {
-                            cause: error,
-                        })
-                        : new Error('An error occurred while parsing query parameters.', {
+                      ? new Error(
+                            error.issues
+                                .map((issue) => `[${issue.path}] ${issue.message}`)
+                                .join(',\n'),
+                            {
+                                cause: error,
+                            },
+                        )
+                      : new Error('An error occurred while parsing query parameters.', {
                             cause: error,
                         }),
             ).asNextResponse();
         }
-        
+
         const page = query.page ?? 1;
-        
+
         const filter: Prisma.CompanyFindManyArgs['where'] = {
             city: query.city ?? undefined,
             country: query.country ?? undefined,
             sectors: query.sector ? { some: { id: query.sector } } : undefined,
             specialities: query.speciality ? { contains: query.speciality } : undefined,
             studyLevels: query.studyLevel ? { contains: query.studyLevel } : undefined,
+            ...(query.greenLabel
+                ? {
+                      AND: [{ providesGoodies: true }, { hasGreenTransport: true }],
+                  }
+                : {}),
         };
-        
+
         try {
             const [companies, companiesCount] = await Promise.all([
                 prismaClient.company.findMany({
@@ -80,16 +91,18 @@ const GET = withMiddlewares(
                     },
                 }),
                 prismaClient.company.count({
-                    where: filter
+                    where: filter,
                 }),
             ]);
-            
-            return NextResponse.json(paginatedCompaniesEntitySchema.parse({
-                data: companies,
-                totalElements: companiesCount,
-                page,
-                pageSize: COMPANIES_PAGE_SIZE,
-            }));
+
+            return NextResponse.json(
+                paginatedCompaniesEntitySchema.parse({
+                    data: companies,
+                    totalElements: companiesCount,
+                    page,
+                    pageSize: COMPANIES_PAGE_SIZE,
+                }),
+            );
         } catch (error) {
             return new ApiError(
                 'INTERNAL_SERVER_ERROR',
@@ -97,8 +110,8 @@ const GET = withMiddlewares(
                 error instanceof Error
                     ? error
                     : new Error('An error occurred while fetching companies.', {
-                        cause: error,
-                    }),
+                          cause: error,
+                      }),
             ).asNextResponse();
         }
     },
@@ -106,8 +119,8 @@ const GET = withMiddlewares(
         cors: {
             method: 'GET',
         },
-        rateLimit: true
-    }
+        rateLimit: true,
+    },
 );
 
 const POST = withMiddlewares(
@@ -118,7 +131,7 @@ const POST = withMiddlewares(
         cors: {
             method: 'POST',
         },
-    }
+    },
 );
 
 export { GET, POST };

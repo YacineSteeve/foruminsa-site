@@ -28,9 +28,9 @@
         "invalidStudentEmail": "Veuillez entrer une adresse e-mail INSA Toulouse valide.",
         "invalidLanguage": "La langue utilisée n'est pas prise en charge.",
         "mustBeAValidCountryCode": "Ce champ doit être un code de pays valide.",
-        "mustBeAValidId":  "Ce champ doit être un ID valide (CUIDv2).",
+        "mustBeAValidId": "Ce champ doit être un ID valide (CUIDv2).",
         "mustBeAValidSpeciality": "Ce champ doit être une spécialité valide.",
-        "mustBeAValidStudyLevel":  "Ce champ doit être un niveau d'étude valide."
+        "mustBeAValidStudyLevel": "Ce champ doit être un niveau d'étude valide."
     },
     "ApiErrors": {
         "SOMETHING_WENT_WRONG": "Une erreur s'est produite. Veuillez réessayer plus tard.",
@@ -77,8 +77,25 @@
         "cannotLoadCompanies": "Impossible de charger la liste des entreprises.",
         "noCompanies": "Aucune entreprise n'est actuellement inscrite."
     },
-    "CompanyAward": {
+    "CompanyGreenLabel": {
         "description": "Cette entreprise offre des goodies et utilise des modes de transport écologiques !"
+    },
+    "CompaniesFiltersButton": {
+        "title": "Filtres",
+        "tooltip": "Afficher les filtres",
+        "cityLabel": "Ville",
+        "cityPlaceholder": "Sélectionnez une ville",
+        "countryLabel": "Pays",
+        "countryPlaceholder": "Sélectionnez un pays",
+        "sectorLabel": "Secteur d'activité",
+        "sectorPlaceholder": "Sélectionnez un secteur",
+        "specialityLabel": "Spécialité",
+        "specialityPlaceholder": "Sélectionnez une spécialité",
+        "studyLevelLabel": "Niveau d'étude",
+        "studyLevelPlaceholder": "Sélectionnez un niveau d'étude",
+        "greenLabelOnly": "Uniquement les entreprises labellisées",
+        "noOptions": "Aucune option.",
+        "clearAll": "Effacer tous les filtres"
     },
     "ContactPage": {
         "title": "Contactez-nous!",
@@ -106,7 +123,8 @@
         "submitButtonLabel": "Envoyer",
         "confirmationMessage": "Confirmation de la réception de votre message",
         "successMessage": "Votre message a été envoyé avec succès.",
-        "successDescription": "Nous vous répondrons dans les plus brefs délais."
+        "successDescription": "Nous vous répondrons dans les plus brefs délais.",
+        "noOptions": "Aucune option."
     },
     "Footer": {
         "pages": "Pages",
@@ -121,7 +139,8 @@
         "submitButtonLabel": "Prendre contact"
     },
     "FooterLanguageSelector": {
-        "label": "Choisir une langue"
+        "label": "Choisir une langue",
+        "noOptions": "Aucune option."
     },
     "ScrollToTopButton": {
         "ariaLabel": "Revenir en haut",

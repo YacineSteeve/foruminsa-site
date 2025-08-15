@@ -1,4 +1,4 @@
-import { CompanyAward } from '@components/companies/CompanyAward';
+import { CompanyGreenLabel } from '@components/companies/CompanyGreenLabel';
 import { Card } from '@heroui/card';
 import { Chip } from '@heroui/chip';
 import { Link } from '@lib/i18n/navigation';
@@ -12,7 +12,10 @@ interface CompanyCardProps {
 
 export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company }) => {
     return (
-        <Link href={`/entreprises/${company.slug}`} className="relative block size-fit">
+        <Link
+            href={`/entreprises/${company.slug}`}
+            className="relative block size-fit"
+        >
             <Card
                 isPressable
                 isHoverable
@@ -32,37 +35,27 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company }) =>
                         />
                     </div>
                     <div className="flex-1 space-y-2">
-                        <h4 className="text-start">{company.name}</h4>
-                        {
-                            company.sectors.length > 0 && (
-                                <div className="flex flex-wrap gap-x-2 gap-y-1">
-                                    {
-                                        company.sectors.slice(0, 2).map((sector, index) => (
-                                            <Chip
-                                                key={index}
-                                                size="sm"
-                                                color="primary"
-                                                variant="flat"
-                                                className="text-sm text-black p-1 rounded-full"
-                                            >
-                                                {sector.name}
-                                            </Chip>
-                                        ))
-                                    }
-                                </div>
-                            )
-                        }
+                        <h4 className="text-start normal-case">{company.name}</h4>
+                        {company.sectors.length > 0 && (
+                            <div className="flex flex-wrap gap-x-2 gap-y-1">
+                                {company.sectors.slice(0, 2).map((sector, index) => (
+                                    <Chip
+                                        key={index}
+                                        size="sm"
+                                        color="primary"
+                                        variant="flat"
+                                        className="text-sm text-black p-1 rounded-full"
+                                    >
+                                        {sector.name}
+                                    </Chip>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
-                <p className="text-start w-full line-clamp-3">
-                    {company.description}
-                </p>
+                <p className="text-start w-full line-clamp-3">{company.description}</p>
             </Card>
-            {
-                (company.providesGoodies && company.hasGreenTransport) && (
-                    <CompanyAward />
-                )
-            }
+            {company.providesGoodies && company.hasGreenTransport && <CompanyGreenLabel />}
         </Link>
     );
 };

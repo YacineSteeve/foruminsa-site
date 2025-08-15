@@ -43,9 +43,11 @@ export class BaseService {
                 cause: new ApiError(
                     DEFAULT_ERROR_MESSAGE,
                     500,
-                    error instanceof Error ? error : new Error('An error occurred while making the request.', {
-                        cause: error,
-                    })
+                    error instanceof Error
+                        ? error
+                        : new Error('An error occurred while making the request.', {
+                              cause: error,
+                          }),
                 ),
             });
         }

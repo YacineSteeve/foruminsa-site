@@ -15,5 +15,5 @@ export const useAppContainer = () => {
         };
     }, []);
 
-    return appContainer.current;
+    return appContainer;
 };

@@ -13,7 +13,8 @@ export interface UseSearchParamsChange<K extends Key> {
     changeSearchParamMulti: (keys: Array<K>) => (values: Array<Value>) => void;
 }
 
-const isDefined = (value: string | undefined): value is string => ![undefined, null, ''].includes(value);
+const isDefined = (value: string | undefined): value is string =>
+    ![undefined, null, ''].includes(value);
 
 export const useSearchParamsChange = <K extends Key>(
     { replace }: { replace: boolean } = { replace: true },
@@ -21,22 +22,22 @@ export const useSearchParamsChange = <K extends Key>(
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
-    
+
     const changeSearchParamMulti = useCallback(
         (keys: Array<K>) => (values: Array<Value>) => {
             const params = new URLSearchParams(searchParams.toString());
-            
+
             for (let i = 0; i < keys.length; i++) {
                 const key = keys[i];
                 const value = values[i];
-                
+
                 if (key === undefined) {
                     continue;
                 }
-                
+
                 if (Array.isArray(value)) {
                     params.delete(key);
-                    
+
                     value.forEach((subValue) => {
                         if (isDefined(subValue)) {
                             params.append(key, subValue);
@@ -50,12 +51,7 @@ export const useSearchParamsChange = <K extends Key>(
                     }
                 }
             }
-            
-            /*if (replace) {
-                window.history.replaceState(null, '', newParams);
-            } else {
-                window.history.pushState(null, '', newParams);
-            }*/
+
             if (params.size > 0) {
                 if (replace) {
                     router.replace({
@@ -66,25 +62,25 @@ export const useSearchParamsChange = <K extends Key>(
                     router.push({
                         pathname,
                         query: Object.fromEntries(params.entries()),
-                    })
+                    });
                 }
             } else {
                 if (replace) {
-                    router.replace(pathname);
+                    router.replace(pathname, { scroll: false });
                 } else {
-                    router.push(pathname);
+                    router.push(pathname, { scroll: false });
                 }
             }
         },
         [replace, searchParams, router, pathname],
     );
-    
+
     const changeSearchParam = useCallback(
         (key: K) => (value: Value) => {
             changeSearchParamMulti([key])([value]);
         },
         [changeSearchParamMulti],
     );
-    
+
     return { searchParams, changeSearchParam, changeSearchParamMulti };
 };

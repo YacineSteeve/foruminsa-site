@@ -20,11 +20,11 @@ export const Header: FunctionComponent = () => {
     const delayedShrink = useDebounce({ value: shrink, delay: 50 });
 
     const handleScroll = useCallback(() => {
-        if (!appContainer) {
+        if (!appContainer.current) {
             return;
         }
 
-        const newShrink = appContainer.scrollTop > 100;
+        const newShrink = appContainer.current.scrollTop > 200;
 
         if (newShrink !== shrink) {
             setShrink(newShrink);
@@ -32,16 +32,16 @@ export const Header: FunctionComponent = () => {
     }, [appContainer, shrink]);
 
     useEffect(() => {
-        if (!appContainer) {
+        if (!appContainer.current) {
             return;
         }
 
         // Add a scroll event listener to handle header shrink on scroll
-        appContainer.addEventListener('scroll', handleScroll);
+        appContainer.current.addEventListener('scroll', handleScroll);
 
         // Clean up the event listener on the component unmount
         return () => {
-            appContainer.removeEventListener('scroll', handleScroll);
+            appContainer.current?.removeEventListener('scroll', handleScroll);
         };
     }, [appContainer, handleScroll]);
 

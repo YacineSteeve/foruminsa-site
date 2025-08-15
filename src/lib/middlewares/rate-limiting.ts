@@ -90,8 +90,8 @@ export const withRateLimit: MiddlewareFactory = (handler) => {
                 error instanceof Error
                     ? error
                     : new Error('An error occurred while processing the request.', {
-                        cause: error,
-                    }),
+                          cause: error,
+                      }),
             ).asNextResponse();
         }
 

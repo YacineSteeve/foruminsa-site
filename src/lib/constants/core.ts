@@ -1,7 +1,7 @@
 export const APP_URL =
     process.env.NODE_ENV === 'production'
         ? ('https://foruminsa-site.vercel.app' as const)
-        : ('http://192.168.1.227:3000' as const);
+        : ('http://192.168.146.97:3000' as const);
 
 export const SUPPORTED_LANGUAGES = ['fr', 'en'] as const;
 
@@ -56,7 +56,15 @@ export const STUDY_LEVELS = ['1A', '2A', '3A', '4A', '5A'] as const;
 
 export const SPECIALITIES = ['AE', 'GB', 'GC', 'GM', 'GP', 'GP3E', 'IR', 'MA'] as const;
 
-export const SOCIAL_LINK_TYPES = ['facebook', 'instagram', 'linkedin', 'x', 'youtube', 'tiktok', 'other'] as const;
+export const SOCIAL_LINK_TYPES = [
+    'facebook',
+    'instagram',
+    'linkedin',
+    'x',
+    'youtube',
+    'tiktok',
+    'other',
+] as const;
 
 export const URL_PARAMS = {
     email: 'email',
@@ -66,6 +74,7 @@ export const URL_PARAMS = {
     speciality: 'speciality',
     studyLevel: 'studyLevel',
     page: 'page',
+    greenLabel: 'greenLabel',
 } as const;
 
 export const DEFAULT_ERROR_MESSAGE = 'SOMETHING_WENT_WRONG' as const;

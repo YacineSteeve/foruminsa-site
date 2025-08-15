@@ -252,9 +252,9 @@ export const COUNTRIES = {
     ZW: 'Zimbabwe',
 } as const;
 
-export const COUNTRY_CODES = Object.keys(COUNTRIES) as Array<(keyof typeof COUNTRIES)>;
+export const COUNTRY_CODES = Object.keys(COUNTRIES) as Array<keyof typeof COUNTRIES>;
 
-export const countryOptions = Object.entries(COUNTRIES).map(([code, name]) => ({
+export const COUNTRY_OPTIONS = Object.entries(COUNTRIES).map(([code, name]) => ({
     value: code,
     label: name,
 }));

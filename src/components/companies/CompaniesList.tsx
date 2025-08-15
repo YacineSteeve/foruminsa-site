@@ -1,3 +1,4 @@
+import { CompaniesFiltersButton } from '@components/companies/CompaniesFiltersButton';
 import { CompaniesListWrapper } from '@components/companies/CompaniesListWrapper';
 import { CompaniesPagination } from '@components/companies/CompaniesPagination';
 import { CompanyCard } from '@components/companies/CompanyCard';
@@ -14,43 +15,46 @@ interface CompaniesListProps {
 export const CompaniesList: FunctionComponent<CompaniesListProps> = async ({ filters }) => {
     const t = await getTranslations('CompaniesList');
     const paginatedCompanies = await CompanyService.getAllCompanies(filters);
-    
+
     if (!paginatedCompanies) {
         return (
             <CompaniesListWrapper>
-                <span/>
+                <span />
                 <Alert
                     color="danger"
                     title={t('cannotLoadCompanies')}
                 />
-                <span/>
+                <span />
             </CompaniesListWrapper>
         );
     }
-    
-    return (
-        paginatedCompanies.data.length > 0 ? (
-            <div className="flex flex-col items-center md:items-end gap-y-16">
-                <CompaniesListWrapper>
-                    {
-                        paginatedCompanies.data.map((company) => (
-                            <li key={company.id}>
-                                <CompanyCard company={company}/>
-                            </li>
-                        ))
-                    }
-                </CompaniesListWrapper>
-                <CompaniesPagination totalPages={Math.ceil(paginatedCompanies.totalElements / paginatedCompanies.pageSize)} />
-            </div>
-        ) : (
+
+    return paginatedCompanies.data.length > 0 ? (
+        <div className="flex flex-col items-center md:items-end gap-y-16">
             <CompaniesListWrapper>
-                <span/>
-                <Alert
-                    color="default"
-                    title={t('noCompanies')}
-                />
-                <span/>
+                {paginatedCompanies.data.map((company) => (
+                    <li key={company.id}>
+                        <CompanyCard company={company} />
+                    </li>
+                ))}
             </CompaniesListWrapper>
-        )
+            <div className="flex items-center gap-4 md:gap-8">
+                <CompaniesPagination
+                    totalPages={Math.ceil(
+                        paginatedCompanies.totalElements / paginatedCompanies.pageSize,
+                    )}
+                />
+                <CompaniesFiltersButton />
+            </div>
+        </div>
+    ) : (
+        <CompaniesListWrapper>
+            <span />
+            <Alert
+                color="default"
+                title={t('noCompanies')}
+            />
+            <span />
+        </CompaniesListWrapper>
     );
 };

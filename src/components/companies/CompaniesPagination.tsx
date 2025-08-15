@@ -9,17 +9,22 @@ interface CompaniesPaginationProps {
     totalPages: number;
 }
 
-export const CompaniesPagination: FunctionComponent<CompaniesPaginationProps> = ({ totalPages }) => {
+export const CompaniesPagination: FunctionComponent<CompaniesPaginationProps> = ({
+    totalPages,
+}) => {
     const { searchParams, changeSearchParam } = useSearchParamsChange();
-    
-    const handlePageChange = useCallback<NonNullable<PaginationProps['onChange']>>((page) => {
-        changeSearchParam('page')(page.toString());
-    }, [changeSearchParam]);
-    
+
+    const handlePageChange = useCallback<NonNullable<PaginationProps['onChange']>>(
+        (page) => {
+            changeSearchParam('page')(page.toString());
+        },
+        [changeSearchParam],
+    );
+
     if (totalPages <= 1) {
         return null;
     }
-    
+
     return (
         <Pagination
             showControls
@@ -31,4 +36,4 @@ export const CompaniesPagination: FunctionComponent<CompaniesPaginationProps> = 
             onChange={handlePageChange}
         />
     );
-}
+};

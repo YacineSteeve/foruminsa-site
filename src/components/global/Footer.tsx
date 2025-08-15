@@ -152,7 +152,7 @@ const FooterContactForm: FunctionComponent = () => {
 
 const FooterSocialLinks: FunctionComponent = () => {
     const t = useTranslations('SocialLinks');
-    
+
     return (
         <ul className="flex flex-wrap max-md:justify-center gap-8">
             {FORUM_SOCIAL_LINKS.map((socialLink) => {
@@ -203,7 +203,6 @@ const FooterLanguageSelector: FunctionComponent = () => {
             color="primary"
             className="w-40"
             variant="underlined"
-            selectionMode="single"
             disallowEmptySelection
             aria-label={t('label')}
             startContent={<RiTranslate2 className="size-8" />}
@@ -213,6 +212,9 @@ const FooterLanguageSelector: FunctionComponent = () => {
                 shouldBlockScroll: true,
                 shouldCloseOnBlur: true,
                 shouldCloseOnScroll: false,
+            }}
+            listboxProps={{
+                emptyContent: t('noOptions'),
             }}
         >
             {Object.entries(LANGUAGE_METADATA).map(([language, metadata]) => (

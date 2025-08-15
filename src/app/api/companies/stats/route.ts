@@ -13,25 +13,25 @@ const GET = withMiddlewares(
                     sectors: {
                         select: {
                             id: true,
-                        }
+                        },
                     },
-                }
+                },
             });
-            
+
             const companiesCount = companies.length;
             const sectorsCount = new Set<string>(
-                companies.flatMap((company) => company.sectors.map((sector) => sector.id))
+                companies.flatMap((company) => company.sectors.map((sector) => sector.id)),
             ).size;
             const specialitiesCount = new Set<string>(
-                companies.flatMap((company) => company.specialities.split(','))
+                companies.flatMap((company) => company.specialities.split(',')),
             ).size;
-            
+
             return NextResponse.json(
                 companiesStatsEntitySchema.parse({
                     companiesCount,
                     sectorsCount,
                     specialitiesCount,
-                })
+                }),
             );
         } catch (error) {
             return new ApiError(
@@ -40,8 +40,8 @@ const GET = withMiddlewares(
                 error instanceof Error
                     ? error
                     : new Error('An error occurred while fetching companies stats.', {
-                        cause: error,
-                    }),
+                          cause: error,
+                      }),
             ).asNextResponse();
         }
     },
@@ -50,7 +50,7 @@ const GET = withMiddlewares(
             method: 'GET',
         },
         rateLimit: true,
-    }
+    },
 );
 
 export { GET };

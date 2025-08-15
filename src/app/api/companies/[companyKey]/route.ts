@@ -10,7 +10,7 @@ const GET = withMiddlewares(
             method: 'GET',
         },
         rateLimit: true,
-    }
+    },
 );
 
 const PATCH = withMiddlewares(
@@ -22,7 +22,7 @@ const PATCH = withMiddlewares(
             method: 'PATCH',
         },
         rateLimit: true,
-    }
+    },
 );
 
 const DELETE = withMiddlewares(
@@ -33,7 +33,7 @@ const DELETE = withMiddlewares(
         cors: {
             method: 'DELETE',
         },
-    }
+    },
 );
 
 export { GET, PATCH, DELETE };

@@ -17,7 +17,7 @@ export class ApiError {
         this.message = message;
         this.statusCode = statusCode;
         this.cause = cause;
-        
+
         console.error(`New ApiError: ${this.toString()}`);
     }
 

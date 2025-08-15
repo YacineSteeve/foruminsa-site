@@ -5,10 +5,17 @@ interface CompaniesStatsItemProps {
     value: ReactNode;
 }
 
-export const CompaniesStatsItem: FunctionComponent<CompaniesStatsItemProps> = ({ title, value }) => {
+export const CompaniesStatsItem: FunctionComponent<CompaniesStatsItemProps> = ({
+    title,
+    value,
+}) => {
     return (
         <div className="flex flex-col items-center gap-4">
-            <p className="text-6xl font-semibold text-gray-300 md:text-gray-100">{value}</p>
+            {['string', 'number'].includes(typeof value) ? (
+                <p className="text-6xl font-semibold text-gray-300 md:text-gray-100">{value}</p>
+            ) : (
+                value
+            )}
             <p className="text-2xl max-md:font-semibold text-primary text-center">{title}</p>
         </div>
     );

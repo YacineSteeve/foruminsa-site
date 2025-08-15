@@ -28,9 +28,9 @@
         "invalidStudentEmail": "Please enter a valid INSA Toulouse email address.",
         "invalidLanguage": "The language used is not supported.",
         "mustBeAValidCountryCode": "This field must be a valid country code.",
-        "mustBeAValidId":  "This field must be a valid ID (CUIDv2).",
+        "mustBeAValidId": "This field must be a valid ID (CUIDv2).",
         "mustBeAValidSpeciality": "This field must be a valid speciality.",
-        "mustBeAValidStudyLevel":  "This field must be a valid study level."
+        "mustBeAValidStudyLevel": "This field must be a valid study level."
     },
     "ApiErrors": {
         "SOMETHING_WENT_WRONG": "An error occurred. Please try again later.",
@@ -77,8 +77,25 @@
         "cannotLoadCompanies": "Unable to load the list of companies.",
         "noCompanies": "No companies are currently registered."
     },
-    "CompanyAward": {
+    "CompanyGreenLabel": {
         "description": "This company offers goodies and uses eco-friendly transportation modes !"
+    },
+    "CompaniesFiltersButton": {
+        "title": "Filters",
+        "tooltip": "Display filters",
+        "greenLabelOnly": "Labelled companies only",
+        "cityLabel": "City",
+        "cityPlaceholder": "Select a city",
+        "countryLabel": "Country",
+        "countryPlaceholder": "Select a country",
+        "sectorLabel": "Sector",
+        "sectorPlaceholder": "Select a sector",
+        "specialityLabel": "Speciality",
+        "specialityPlaceholder": "Select a speciality",
+        "studyLevelLabel": "Study Level",
+        "studyLevelPlaceholder": "Select a study level",
+        "noOptions": "No options.",
+        "clearAll": "Clear all filters"
     },
     "ContactPage": {
         "title": "Contact Us!",
@@ -106,7 +123,8 @@
         "submitButtonLabel": "Send",
         "confirmationMessage": "Confirmation of receipt of your message",
         "successMessage": "Your message has been successfully sent.",
-        "successDescription": "We will get back to you as soon as possible."
+        "successDescription": "We will get back to you as soon as possible.",
+        "noOptions": "No options."
     },
     "Footer": {
         "pages": "Pages",
@@ -121,7 +139,8 @@
         "submitButtonLabel": "Contact"
     },
     "FooterLanguageSelector": {
-        "label": "Choose a language"
+        "label": "Choose a language",
+        "noOptions": "No options."
     },
     "ScrollToTopButton": {
         "ariaLabel": "Back to top",

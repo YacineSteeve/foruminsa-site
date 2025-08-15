@@ -17,7 +17,7 @@ export const ScrollToTopButton: FunctionComponent<ScrollToTopButtonProps> = ({ h
     const t = useTranslations('ScrollToTopButton');
 
     const handleClick = useCallback(() => {
-        appContainer?.scrollTo({ top: 0, behavior: 'smooth' });
+        appContainer.current?.scrollTo({ top: 0, behavior: 'smooth' });
     }, [appContainer]);
 
     return (

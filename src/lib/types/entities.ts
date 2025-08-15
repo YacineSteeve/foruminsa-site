@@ -3,12 +3,22 @@ import { COUNTRY_CODES } from '@lib/constants/countries';
 import { z } from 'zod/v4';
 
 export const companiesStatsEntitySchema = z.object({
-    companiesCount:  z.int().nonnegative(),
+    companiesCount: z.int().nonnegative(),
     sectorsCount: z.int().nonnegative(),
     specialitiesCount: z.int().nonnegative(),
 });
 
 export type CompaniesStatsEntity = z.infer<typeof companiesStatsEntitySchema>;
+
+export const cityEntitySchema = z
+    .string({ error: 'mustBeAString' })
+    .min(1, { error: 'mustHaveAtLeastOneCharacter' });
+
+export type CityEntity = z.infer<typeof cityEntitySchema>;
+
+export const cityListEntitySchema = z.array(cityEntitySchema, { error: 'mustBeAnArray' });
+
+export type CityListEntity = z.infer<typeof cityListEntitySchema>;
 
 export const sectorEntitySchema = z.object({
     id: z.cuid2({ error: 'mustBeAValidId' }),
@@ -16,6 +26,10 @@ export const sectorEntitySchema = z.object({
 });
 
 export type SectorEntity = z.infer<typeof sectorEntitySchema>;
+
+export const sectorListEntitySchema = z.array(sectorEntitySchema, { error: 'mustBeAnArray' });
+
+export type SectorListEntity = z.infer<typeof sectorListEntitySchema>;
 
 export const forumRoomEntitySchema = z.object({
     id: z.cuid2({ error: 'mustBeAValidId' }),
@@ -38,19 +52,35 @@ export const companyEntitySchema = z.object({
     id: z.cuid2({ error: 'mustBeAValidId' }),
     name: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
     slug: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
-    description: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
+    description: z
+        .string({ error: 'mustBeAString' })
+        .min(1, { error: 'mustHaveAtLeastOneCharacter' }),
     logoUrl: z.url({ error: 'mustBeAValidUrl' }),
     providesGoodies: z.boolean({ error: 'mustBeABoolean' }).default(false),
     hasGreenTransport: z.boolean({ error: 'mustBeABoolean' }).default(false),
-    studyLevels: z.string({ error: 'mustBeAString' }).regex(new RegExp(`^((${STUDY_LEVELS.join('|')}),?)+$`), { error: 'mustBeAValidStudyLevel' }),
-    specialities: z.string({ error: 'mustBeAString' }).regex(new RegExp(`^((${SPECIALITIES.join('|')}),?)+$`), { error: 'mustBeAValidSpeciality' }),
-    city: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
+    studyLevels: z
+        .string({ error: 'mustBeAString' })
+        .regex(new RegExp(`^((${STUDY_LEVELS.join('|')}),?)+$`), {
+            error: 'mustBeAValidStudyLevel',
+        }),
+    specialities: z
+        .string({ error: 'mustBeAString' })
+        .regex(new RegExp(`^((${SPECIALITIES.join('|')}),?)+$`), {
+            error: 'mustBeAValidSpeciality',
+        }),
+    city: cityEntitySchema,
     country: z.enum(COUNTRY_CODES, { error: 'mustBeAValidCountryCode' }),
-    address: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }).nullable(),
-    postalCode: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }).nullable(),
+    address: z
+        .string({ error: 'mustBeAString' })
+        .min(1, { error: 'mustHaveAtLeastOneCharacter' })
+        .nullable(),
+    postalCode: z
+        .string({ error: 'mustBeAString' })
+        .min(1, { error: 'mustHaveAtLeastOneCharacter' })
+        .nullable(),
     websiteUrl: z.url({ error: 'mustBeAValidUrl' }).nullable(),
     carbonFootprint: z.float32({ error: 'mustBeAValidFloat' }).nonnegative().nullable(),
-    sectors: z.array(sectorEntitySchema, { error: 'mustBeAnArray' }),
+    sectors: sectorListEntitySchema,
     socialLinks: z.array(socialLinkEntitySchema, { error: 'mustBeAnArray' }),
     roomId: z.cuid2({ error: 'mustBeAValidId' }).nullable(),
     room: forumRoomEntitySchema.nullable(),
