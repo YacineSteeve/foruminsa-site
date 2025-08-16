@@ -5,7 +5,7 @@ import {
     STUDY_LEVELS,
 } from '@lib/constants/core';
 import { COUNTRY_CODES } from '@lib/constants/countries';
-import { prismaClient } from '@lib/prisma/client';
+import { createCustomPrismaClient } from '@lib/prisma/client';
 import { fakerFR as faker } from '@faker-js/faker';
 import { hash } from 'bcrypt';
 
@@ -14,8 +14,17 @@ const SECTOR_COUNT = 10;
 const FORUM_ROOM_COUNT = 15;
 
 const main = async () => {
+    const prismaClient = createCustomPrismaClient({
+        transactionOptions: {
+            timeout: 60_000,
+        },
+    });
+
     try {
         await prismaClient.$connect();
+
+        console.log('Connected to Prisma Client successfully.');
+        console.log('Seeding data...');
 
         const companyNamesAndSlugs = faker.helpers
             .uniqueArray(faker.company.name, COMPANY_COUNT)
@@ -28,13 +37,23 @@ const main = async () => {
 
         await prismaClient.$transaction(async (transaction) => {
             // Clear existing data
+            console.log('Clearing existing data...');
+
             await transaction.forumRoom.deleteMany();
             await transaction.sector.deleteMany();
             await transaction.socialLink.deleteMany();
             await transaction.company.deleteMany();
 
+            console.log('Data cleared successfully.');
+
             if (process.env.ADMIN_EMAIL !== undefined && process.env.ADMIN_PASSWORD !== undefined) {
+                console.log('Creating admin...');
+
+                console.log('Deleting existing admin accounts...');
+
                 await transaction.admin.deleteMany();
+
+                console.log('Admin accounts deleted successfully.');
 
                 const hashedAdminPassword = await hash(
                     process.env.ADMIN_PASSWORD,
@@ -47,6 +66,8 @@ const main = async () => {
                         password: hashedAdminPassword,
                     },
                 });
+
+                console.log('Admin created successfully.');
             } else if (
                 process.env.ADMIN_EMAIL !== undefined &&
                 process.env.ADMIN_PASSWORD === undefined
@@ -67,6 +88,8 @@ const main = async () => {
                 );
             }
 
+            console.log('Creating sectors...');
+
             const sectors = await transaction.sector.createManyAndReturn({
                 data: Array.from({ length: SECTOR_COUNT }, (_, index) => ({
                     name: sectorNames[index]!,
@@ -75,6 +98,10 @@ const main = async () => {
                     id: true,
                 },
             });
+
+            console.log('Sectors created successfully');
+
+            console.log('Creating forum rooms...');
 
             const forumRooms = await transaction.forumRoom.createManyAndReturn({
                 data: Array.from({ length: FORUM_ROOM_COUNT }, () => ({
@@ -87,8 +114,12 @@ const main = async () => {
                 },
             });
 
+            console.log('Forum rooms created successfully');
+
             const sectorIds = sectors.map((sector) => sector.id);
             const forumRoomIds = forumRooms.map((room) => room.id);
+
+            console.log('Creating companies...');
 
             for (let i = 0; i < COMPANY_COUNT; i++) {
                 const companyNameAndSlug = companyNamesAndSlugs[i];
@@ -154,8 +185,12 @@ const main = async () => {
                         },
                     },
                 });
+
+                console.log(`Company ${i + 1} created successfully.`);
             }
         });
+
+        console.log('Seeding completed successfully.');
     } catch (error) {
         console.error('Error during Prisma seeding:', error);
         process.exit(1);

@@ -32,16 +32,18 @@ export const Header: FunctionComponent = () => {
     }, [appContainer, shrink]);
 
     useEffect(() => {
-        if (!appContainer.current) {
+        const containerElement = appContainer.current;
+
+        if (!containerElement) {
             return;
         }
 
         // Add a scroll event listener to handle header shrink on scroll
-        appContainer.current.addEventListener('scroll', handleScroll);
+        containerElement.addEventListener('scroll', handleScroll);
 
         // Clean up the event listener on the component unmount
         return () => {
-            appContainer.current?.removeEventListener('scroll', handleScroll);
+            containerElement.removeEventListener('scroll', handleScroll);
         };
     }, [appContainer, handleScroll]);
 

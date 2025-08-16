@@ -1,7 +1,7 @@
 import { z } from 'zod/v4';
 
 const serverEnvSchema = z.object({
-    NODE_ENV: z.enum(['development', 'production', 'test'], {
+    NODE_ENV: z.enum(['development', 'production'], {
         error: 'NODE_ENV must be one of: development, production, test',
     }),
     MAIL_HOST: z
@@ -23,9 +23,14 @@ const serverEnvSchema = z.object({
     MAIL_TO: z
         .string({ error: 'MAIL_TO must be a string' })
         .min(1, { error: 'MAIL_TO must be at least 1 character long' }),
-    DATABASE_URL: z.string({ error: 'DATABASE_URL must be a string' }).regex(/^file:.+\.db$/, {
+    DATABASE_URL: z.string({ error: 'DATABASE_URL must be a string' }) /*.regex(/^file:.+\.db$/, {
         error: 'DATABASE_URL must be a valid SQLite file URL ending with the ".db" extension (e.g., file:./sqlite.db)',
-    }),
+    })*/,
+    DATABASE_TOKEN: z.string({ error: 'DATABASE_TOKEN must be a string' }).optional().default(''),
+    LOCAL_DB: z
+        .enum(['true', 'false'], { error: 'LOCAL_DB must be one of: true, false' })
+        .optional()
+        .default('true'),
     /* Add any other server-side environment variables here */
 });
 

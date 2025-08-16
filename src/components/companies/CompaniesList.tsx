@@ -6,7 +6,7 @@ import { Alert } from '@heroui/alert';
 import { CompanyService } from '@lib/api-services';
 import type { CompaniesFilters } from '@lib/types/dtos';
 import { getTranslations } from 'next-intl/server';
-import type { FunctionComponent } from 'react';
+import { Fragment, type FunctionComponent } from 'react';
 
 interface CompaniesListProps {
     filters: CompaniesFilters;
@@ -29,32 +29,40 @@ export const CompaniesList: FunctionComponent<CompaniesListProps> = async ({ fil
         );
     }
 
-    return paginatedCompanies.data.length > 0 ? (
+    const companiesCount = paginatedCompanies.data.length;
+    const noExistingCompanyAtAll =
+        Object.values(filters).every((value) => value === undefined) && companiesCount === 0;
+
+    return (
         <div className="flex flex-col items-center md:items-end gap-y-16">
             <CompaniesListWrapper>
-                {paginatedCompanies.data.map((company) => (
-                    <li key={company.id}>
-                        <CompanyCard company={company} />
-                    </li>
-                ))}
+                {companiesCount > 0 ? (
+                    paginatedCompanies.data.map((company) => (
+                        <li key={company.id}>
+                            <CompanyCard company={company} />
+                        </li>
+                    ))
+                ) : (
+                    <Fragment>
+                        <span />
+                        <Alert
+                            color="default"
+                            title={t('noCompanies')}
+                        />
+                        <span />
+                    </Fragment>
+                )}
             </CompaniesListWrapper>
-            <div className="flex items-center gap-4 md:gap-8">
-                <CompaniesPagination
-                    totalPages={Math.ceil(
-                        paginatedCompanies.totalElements / paginatedCompanies.pageSize,
-                    )}
-                />
-                <CompaniesFiltersButton />
-            </div>
+            {!noExistingCompanyAtAll && (
+                <div className="flex items-center gap-4 md:gap-8">
+                    <CompaniesPagination
+                        totalPages={Math.ceil(
+                            paginatedCompanies.totalElements / paginatedCompanies.pageSize,
+                        )}
+                    />
+                    <CompaniesFiltersButton />
+                </div>
+            )}
         </div>
-    ) : (
-        <CompaniesListWrapper>
-            <span />
-            <Alert
-                color="default"
-                title={t('noCompanies')}
-            />
-            <span />
-        </CompaniesListWrapper>
     );
 };

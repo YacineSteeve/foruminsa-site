@@ -27,6 +27,30 @@ const nextConfig: NextConfig = {
             },
         ],
     },
+    webpack: (config, { isServer }) => {
+        // Ignore docs and non-code files
+        config.module.rules.push({
+            test: /(\.md|\.txt|\.d\.ts|LICENSE)$/i,
+            use: 'ignore-loader',
+        });
+        
+        // Let Node.js handle native binaries
+        config.module.rules.push({
+            test: /\.node$/,
+            loader: 'node-loader',
+        });
+        
+        // Optional: prevent bundling prisma/libsql completely
+        if (isServer) {
+            config.externals.push({
+                '@prisma/client': 'commonjs @prisma/client',
+                '.prisma/client': 'commonjs .prisma/client',
+                '@libsql/client': 'commonjs @libsql/client',
+            });
+        }
+        
+        return config;
+    },
 };
 
 export default withNextIntl(nextConfig);

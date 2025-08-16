@@ -75,7 +75,7 @@
     },
     "CompaniesList": {
         "cannotLoadCompanies": "Unable to load the list of companies.",
-        "noCompanies": "No companies are currently registered."
+        "noCompanies": "No registered company has been found."
     },
     "CompanyGreenLabel": {
         "description": "This company offers goodies and uses eco-friendly transportation modes !"

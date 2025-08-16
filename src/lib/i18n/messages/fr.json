@@ -75,7 +75,7 @@
     },
     "CompaniesList": {
         "cannotLoadCompanies": "Impossible de charger la liste des entreprises.",
-        "noCompanies": "Aucune entreprise n'est actuellement inscrite."
+        "noCompanies": "Aucune entreprise inscrite n'a été trouvée."
     },
     "CompanyGreenLabel": {
         "description": "Cette entreprise offre des goodies et utilise des modes de transport écologiques !"
