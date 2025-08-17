@@ -1,5 +1,5 @@
 import { APP_URL } from '@lib/constants/core';
-import type { MiddlewareFactory } from '@lib/middlewares/types';
+import type { RequestHandler, RequestHandlerContextBase } from '@lib/middlewares/types';
 import type { HTTP_METHOD } from 'next/dist/server/web/http';
 import { NextResponse } from 'next/server';
 import { append } from 'vary';
@@ -22,7 +22,10 @@ export type CorsOptions = {
     method?: Exclude<HTTP_METHOD, 'HEAD' | 'OPTIONS'>;
 };
 
-export const withCors: MiddlewareFactory<CorsOptions> = (handler, options) => {
+export const withCors = <C extends RequestHandlerContextBase = never>(
+    handler: RequestHandler<C>,
+    options?: CorsOptions,
+): RequestHandler<C> => {
     return async (request, context) => {
         const response = await handler(request, context);
 

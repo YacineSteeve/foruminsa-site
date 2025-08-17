@@ -38,7 +38,8 @@
         "INTERNAL_SERVER_ERROR": "An internal server error occurred. Please try again later.",
         "TOO_MANY_REQUESTS": "Too many requests. Please try again later.",
         "MESSAGE_NOT_DELIVERED": "Sorry, the message could not be sent.",
-        "INVALID_QUERY_PARAMETERS": "Invalid query parameters. Please check your parameters and try again."
+        "INVALID_QUERY_PARAMETERS": "Invalid query parameters. Please check your parameters and try again.",
+        "COMPANY_NOT_FOUND": "Company not found."
     },
     "Logo": {
         "altText": "INSA Forum Logo"

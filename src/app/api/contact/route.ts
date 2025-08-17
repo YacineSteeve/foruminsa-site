@@ -3,12 +3,12 @@ import { withMiddlewares } from '@lib/middlewares';
 import type { ContactData } from '@lib/types/dtos';
 import { sendMail } from '@lib/mailing';
 import { getMessages } from 'next-intl/server';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { ApiError } from '@lib/utils';
 import type { Messages } from 'use-intl';
 
 const POST = withMiddlewares(
-    async (request: NextRequest) => {
+    async (request) => {
         const data = (await request.json()) as ContactData;
         const messages = await getMessages({ locale: data.lang });
 

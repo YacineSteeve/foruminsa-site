@@ -1,4 +1,4 @@
-import type { MiddlewareFactory } from '@lib/middlewares/types';
+import type { RequestHandler, RequestHandlerContextBase } from '@lib/middlewares/types';
 import { prismaClient } from '@lib/prisma/client';
 import { ApiError } from '@lib/utils';
 import ipaddr from 'ipaddr.js';
@@ -65,8 +65,10 @@ const getRateLimiterHeaders = (
     };
 };
 
-export const withRateLimit: MiddlewareFactory = (handler) => {
-    return async (request: NextRequest, context: unknown) => {
+export type RateLimitOptions = {};
+
+export const withRateLimit = <C extends RequestHandlerContextBase = never>(handler: RequestHandler<C>, _options?: RateLimitOptions): RequestHandler<C> => {
+    return async (request, context) => {
         const ip = getIp(request);
 
         let rateLimiterSuccessResponse: RateLimiterRes;

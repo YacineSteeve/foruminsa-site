@@ -31,6 +31,10 @@ const serverEnvSchema = z.object({
         .enum(['true', 'false'], { error: 'LOCAL_DB must be one of: true, false' })
         .optional()
         .default('true'),
+    DISABLE_RATE_LIMIT: z
+        .enum(['true', 'false'], { error: 'DISABLE_RATE_LIMIT must be one of: true, false' })
+        .optional()
+        .default('false')
     /* Add any other server-side environment variables here */
 });
 

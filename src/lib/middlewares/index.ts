@@ -1,19 +1,23 @@
-import { withCors } from '@lib/middlewares/cors';
-import { withRateLimit } from '@lib/middlewares/rate-limiting';
-import type { MiddlewareFactory } from '@lib/middlewares/types';
+import { serverEnv } from '@lib/config/env';
+import { type CorsOptions, withCors } from '@lib/middlewares/cors';
+import { type RateLimitOptions, withRateLimit } from '@lib/middlewares/rate-limiting';
+import type { RequestHandler, RequestHandlerContextBase } from '@lib/middlewares/types';
 
 export { withCors, withRateLimit };
 
-export type WithMiddlewaresOptions = {
-    cors?: boolean | Parameters<typeof withCors>[1];
-    rateLimit?: boolean | Parameters<typeof withRateLimit>[1];
+export type AllMiddlewaresOptions = {
+    cors?: boolean | CorsOptions;
+    rateLimit?: boolean | RateLimitOptions;
 };
 
-export const withMiddlewares: MiddlewareFactory<WithMiddlewaresOptions> = (handler, options) => {
+export const withMiddlewares = <C extends RequestHandlerContextBase = never>(
+    handler: RequestHandler<C>,
+    options?: AllMiddlewaresOptions,
+): RequestHandler<C> => {
     return async (request, context) => {
         let chain = handler;
 
-        if (options?.rateLimit) {
+        if (serverEnv.DISABLE_RATE_LIMIT !== 'true' && options?.rateLimit) {
             chain = withRateLimit(
                 handler,
                 typeof options.rateLimit === 'boolean' ? {} : options.rateLimit,
@@ -24,9 +28,7 @@ export const withMiddlewares: MiddlewareFactory<WithMiddlewaresOptions> = (handl
             chain,
             typeof options?.cors === 'boolean'
                 ? {
-                      method: request.method as NonNullable<
-                          Parameters<typeof withCors>[1]
-                      >['method'],
+                      method: request.method as NonNullable<CorsOptions>['method'],
                   }
                 : options?.cors,
         );

@@ -1,11 +1,10 @@
 import type { NextRequest, NextResponse } from 'next/server';
 
-export type RequestHandler = (
-    request: NextRequest,
-    context: unknown,
-) => NextResponse | Promise<NextResponse>;
+export type RequestHandlerContextBase = {
+    params: Promise<Record<string, string>>;
+} | never;
 
-export type MiddlewareFactory<T extends object = {}> = (
-    handler: RequestHandler,
-    options?: T,
-) => RequestHandler;
+export type RequestHandler<C extends RequestHandlerContextBase = never> = (
+    request: NextRequest,
+    context: C,
+) => NextResponse | Promise<NextResponse>;
