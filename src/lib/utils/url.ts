@@ -1,5 +1,4 @@
 import { APP_URL, MENU_ITEMS } from '@lib/constants/core';
-import { getPathname } from '@lib/i18n/navigation';
 import type { Locale } from 'next-intl';
 
 export type Href = (typeof MENU_ITEMS)[number]['href'];
@@ -9,6 +8,5 @@ export const getFullUrl = (href: Href): string => {
 };
 
 export const getLocalizedFullUrl = (href: Href, locale: Locale): string => {
-    const pathname = getPathname({ locale, href });
-    return new URL(pathname, APP_URL).toString();
+    return new URL(`/${locale}${href}`, APP_URL).toString();
 };

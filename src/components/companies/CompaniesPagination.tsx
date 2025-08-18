@@ -16,7 +16,7 @@ export const CompaniesPagination: FunctionComponent<CompaniesPaginationProps> = 
 
     const handlePageChange = useCallback<NonNullable<PaginationProps['onChange']>>(
         (page) => {
-            changeSearchParam('page')(page.toString());
+            changeSearchParam(URL_PARAMS.page)(page.toString());
         },
         [changeSearchParam],
     );
@@ -31,6 +31,7 @@ export const CompaniesPagination: FunctionComponent<CompaniesPaginationProps> = 
             loop
             dotsJump={3}
             classNames={{ item: 'cursor-pointer' }}
+            key={searchParams.get(URL_PARAMS.page) ?? '1'}
             initialPage={Number(searchParams.get(URL_PARAMS.page) ?? '1')}
             total={totalPages}
             onChange={handlePageChange}

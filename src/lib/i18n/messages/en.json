@@ -76,7 +76,8 @@
     },
     "CompaniesList": {
         "cannotLoadCompanies": "Unable to load the list of companies.",
-        "noCompanies": "No registered company has been found."
+        "noCompanies": "No registered company has been found.",
+        "companyGreenLabelDescription": "Your heart in one glance! The companies with this label are those who are committed to the environment and durability by using eco-friendly transportation modes, and who offer you all the goodies !"
     },
     "CompanyGreenLabel": {
         "description": "This company offers goodies and uses eco-friendly transportation modes !"
@@ -97,6 +98,9 @@
         "studyLevelPlaceholder": "Select a study level",
         "noOptions": "No options.",
         "clearAll": "Clear all filters"
+    },
+    "CompanyDetailsPage": {
+        "cannotLoadCompany": "Unable to load company details."
     },
     "ContactPage": {
         "title": "Contact Us!",
@@ -128,6 +132,7 @@
         "noOptions": "No options."
     },
     "Footer": {
+        "about": "The INSA Forum is an annual event organized by INSA Toulouse students, aimed at connecting students with companies and promoting professional opportunities. For more information, please contact us via the contact form.",
         "pages": "Pages",
         "contactUs": "Contact Us",
         "followUs": "Follow us",

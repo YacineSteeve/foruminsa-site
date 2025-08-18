@@ -3,7 +3,7 @@
 import { Badge } from '@heroui/badge';
 import { Button } from '@heroui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@heroui/popover';
-import type { SelectProps, SwitchProps } from '@heroui/react';
+import type { PopoverProps, SelectProps, SwitchProps } from '@heroui/react';
 import { Select, SelectItem } from '@heroui/select';
 import { Switch } from '@heroui/switch';
 import { CompanyService, SectorService } from '@lib/api-services';
@@ -28,9 +28,15 @@ type FiltersValues = {
     [K in keyof Required<Pick<CompaniesFilters, 'greenLabel'>>]: SwitchProps['isSelected'];
 };
 
-export const CompaniesFiltersButton: FunctionComponent = () => {
+interface CompaniesFiltersButtonProps {
+    popupPlacement: PopoverProps['placement'];
+}
+
+export const CompaniesFiltersButton: FunctionComponent<CompaniesFiltersButtonProps> = ({
+    popupPlacement,
+}) => {
     const t = useTranslations('CompaniesFiltersButton');
-    const { searchParams, changeSearchParam, changeSearchParamMulti } = useSearchParamsChange();
+    const { searchParams, changeSearchParamMulti } = useSearchParamsChange();
 
     const { data: cityOptions, isLoading: isLoadingCityOptions } = useRequest<
         string,
@@ -70,9 +76,9 @@ export const CompaniesFiltersButton: FunctionComponent = () => {
         ) => NonNullable<SwitchProps['onValueChange']>
     >(
         (key) => (isSelected) => {
-            changeSearchParam(key)(isSelected ? 'true' : '');
+            changeSearchParamMulti([URL_PARAMS.page, key])(['', isSelected ? 'true' : '']);
         },
-        [changeSearchParam],
+        [changeSearchParamMulti],
     );
 
     const handleSelectChange = useCallback<
@@ -81,29 +87,30 @@ export const CompaniesFiltersButton: FunctionComponent = () => {
         ) => ChangeEventHandler<HTMLSelectElement>
     >(
         (key) => (event) => {
-            changeSearchParam(key)(event.target.value);
+            changeSearchParamMulti([URL_PARAMS.page, key])(['', event.target.value]);
         },
-        [changeSearchParam],
+        [changeSearchParamMulti],
     );
 
     const handleClear = useCallback<
         (key: keyof Omit<CompaniesFilters, 'greenLabel'>) => VoidFunction
     >(
         (key) => () => {
-            changeSearchParam(key)('');
+            changeSearchParamMulti([URL_PARAMS.page, key])(['', '']);
         },
-        [changeSearchParam],
+        [changeSearchParamMulti],
     );
 
     const handleClearAll = useCallback(() => {
         changeSearchParamMulti([
+            URL_PARAMS.page,
             URL_PARAMS.city,
             URL_PARAMS.country,
             URL_PARAMS.sector,
             URL_PARAMS.speciality,
             URL_PARAMS.studyLevel,
             URL_PARAMS.greenLabel,
-        ])(['', '', '', '', '', '']);
+        ])(['', '', '', '', '', '', '']);
     }, [changeSearchParamMulti]);
 
     const values = useMemo<FiltersValues>(() => {
@@ -143,7 +150,7 @@ export const CompaniesFiltersButton: FunctionComponent = () => {
     return (
         <Popover
             backdrop="opaque"
-            placement="left-end"
+            placement={popupPlacement}
         >
             <Badge
                 isOneChar
@@ -163,7 +170,7 @@ export const CompaniesFiltersButton: FunctionComponent = () => {
             </Badge>
             <PopoverContent>
                 {(titleProps) => (
-                    <div className="w-68 md:w-72 p-4 space-y-10">
+                    <div className="w-68 md:w-80 p-4 space-y-10">
                         <h4 {...titleProps}>{t('title')}</h4>
                         <div className="space-y-5">
                             <div className="space-y-10">

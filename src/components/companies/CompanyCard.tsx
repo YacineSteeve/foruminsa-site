@@ -10,6 +10,8 @@ interface CompanyCardProps {
     company: CompanyEntity;
 }
 
+const SECTOR_LIMIT = 2;
+
 export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company }) => {
     return (
         <Link
@@ -20,10 +22,10 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company }) =>
                 isPressable
                 isHoverable
                 shadow="sm"
-                className="group w-80 h-52 p-4 space-y-4"
+                className="group w-84 h-56 p-4 space-y-4"
             >
                 <div className="flex gap-4 w-full">
-                    <div className="relative size-20 rounded-lg border-2 border-default/50 overflow-hidden">
+                    <div className="relative size-24 rounded-lg border-2 border-default/50 overflow-hidden">
                         <Image
                             src={company.logoUrl}
                             alt={company.name}
@@ -38,7 +40,7 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company }) =>
                         <h4 className="text-start normal-case">{company.name}</h4>
                         {company.sectors.length > 0 && (
                             <div className="flex flex-wrap gap-x-2 gap-y-1">
-                                {company.sectors.slice(0, 2).map((sector, index) => (
+                                {company.sectors.slice(0, SECTOR_LIMIT).map((sector, index) => (
                                     <Chip
                                         key={index}
                                         size="sm"
@@ -49,6 +51,15 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company }) =>
                                         {sector.name}
                                     </Chip>
                                 ))}
+                                {company.sectors.length > SECTOR_LIMIT && (
+                                    <Chip
+                                        size="sm"
+                                        variant="flat"
+                                        className="text-sm text-black p-1 rounded-full"
+                                    >
+                                        {`+${company.sectors.length - SECTOR_LIMIT}`}
+                                    </Chip>
+                                )}
                             </div>
                         )}
                     </div>

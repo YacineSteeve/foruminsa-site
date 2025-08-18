@@ -67,7 +67,10 @@ const getRateLimiterHeaders = (
 
 export type RateLimitOptions = {};
 
-export const withRateLimit = <C extends RequestHandlerContextBase = never>(handler: RequestHandler<C>, _options?: RateLimitOptions): RequestHandler<C> => {
+export const withRateLimit = <C extends RequestHandlerContextBase = never>(
+    handler: RequestHandler<C>,
+    _options?: RateLimitOptions,
+): RequestHandler<C> => {
     return async (request, context) => {
         const ip = getIp(request);
 

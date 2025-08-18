@@ -76,7 +76,8 @@
     },
     "CompaniesList": {
         "cannotLoadCompanies": "Impossible de charger la liste des entreprises.",
-        "noCompanies": "Aucune entreprise inscrite n'a été trouvée."
+        "noCompanies": "Aucune entreprise inscrite n'a été trouvée.",
+        "companyGreenLabelDescription": "Votre coup de coeur en un clin d'oeil! Les entreprises possédant ce label sont celles qui s'engagent pour l'environnement et la durabilité en utilisant des modes de transport écologiques, et qui vous offrent tout plein de goodies !"
     },
     "CompanyGreenLabel": {
         "description": "Cette entreprise offre des goodies et utilise des modes de transport écologiques !"
@@ -97,6 +98,9 @@
         "greenLabelOnly": "Uniquement les entreprises labellisées",
         "noOptions": "Aucune option.",
         "clearAll": "Effacer tous les filtres"
+    },
+    "CompanyDetailsPage": {
+        "cannotLoadCompany": "Impossible de charger les détails de l'entreprise."
     },
     "ContactPage": {
         "title": "Contactez-nous!",
@@ -128,6 +132,7 @@
         "noOptions": "Aucune option."
     },
     "Footer": {
+        "about": "Le Forum INSA est un événement annuel organisé par les étudiants de l'INSA Toulouse, visant à connecter les étudiants avec des entreprises et à promouvoir les opportunités professionnelles. Pour plus d'informations, contactez-nous via le formulaire de contact.",
         "pages": "Pages",
         "contactUs": "Contactez-nous",
         "followUs": "Suivez-nous",

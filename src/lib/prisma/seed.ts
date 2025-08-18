@@ -164,7 +164,7 @@ const main = async () => {
                             connect: faker.helpers
                                 .uniqueArray(
                                     () => faker.helpers.arrayElement(sectorIds),
-                                    faker.number.int({ min: 1, max: 3 }),
+                                    faker.number.int({ min: 1, max: 4 }),
                                 )
                                 .map((sectorId) => ({
                                     id: sectorId,

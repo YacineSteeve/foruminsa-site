@@ -8,6 +8,7 @@
 @theme {
     --color-primary: #bd2727;
     --color-black: #292929;
+    --breakpoint-3xl: 112rem;
 }
 
 * {

@@ -54,15 +54,21 @@ export const useSearchParamsChange = <K extends Key>(
 
             if (params.size > 0) {
                 if (replace) {
-                    router.replace({
-                        pathname,
-                        query: Object.fromEntries(params.entries()),
-                    });
+                    router.replace(
+                        {
+                            pathname,
+                            query: Object.fromEntries(params.entries()),
+                        },
+                        { scroll: false },
+                    );
                 } else {
-                    router.push({
-                        pathname,
-                        query: Object.fromEntries(params.entries()),
-                    });
+                    router.push(
+                        {
+                            pathname,
+                            query: Object.fromEntries(params.entries()),
+                        },
+                        { scroll: false },
+                    );
                 }
             } else {
                 if (replace) {

@@ -16,6 +16,19 @@ import '@style/global.css';
 import { SWRConfig } from 'swr';
 import { APP_COLORS, APP_CONTAINER_ID, APP_FONT } from '@/lib/constants/ui';
 
+interface AppLayoutProps extends PropsWithChildren {
+    params: Promise<{ locale: string }>;
+}
+
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+    colorScheme: 'light',
+    themeColor: APP_COLORS.primary,
+};
+
 export async function generateMetadata(): Promise<Metadata> {
     const t = await getTranslations('AppMetadata');
 
@@ -36,23 +49,6 @@ export async function generateMetadata(): Promise<Metadata> {
             ),
         },
     };
-}
-
-export async function generateStaticParams(): Promise<Array<Record<string, string>>> {
-    return i18nRouting.locales.map((locale) => ({ locale }));
-}
-
-export const viewport: Viewport = {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-    colorScheme: 'light',
-    themeColor: APP_COLORS.primary,
-};
-
-interface AppLayoutProps extends PropsWithChildren {
-    params: Promise<{ locale: string }>;
 }
 
 export default async function AppLayout({ children, params }: AppLayoutProps) {

@@ -34,7 +34,7 @@ const serverEnvSchema = z.object({
     DISABLE_RATE_LIMIT: z
         .enum(['true', 'false'], { error: 'DISABLE_RATE_LIMIT must be one of: true, false' })
         .optional()
-        .default('false')
+        .default('false'),
     /* Add any other server-side environment variables here */
 });
 

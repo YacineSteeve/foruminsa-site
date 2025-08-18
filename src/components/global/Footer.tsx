@@ -37,12 +37,7 @@ export const Footer: FunctionComponent = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-16 gap-y-8 w-full pb-16">
                     <section className="flex flex-col gap-8 max-md:items-center">
                         <Logo />
-                        <p>
-                            Le Forum INSA est un événement annuel organisé par les étudiants de
-                            l&apos;INSA Toulouse, visant à connecter les étudiants avec des
-                            entreprises et à promouvoir les opportunités professionnelles. Pour plus
-                            d&apos;informations, contactez-nous via le formulaire de contact.
-                        </p>
+                        <p>{t('about')}</p>
                     </section>
                     <FooterSection title={t('pages')}>
                         <FooterPagesList />

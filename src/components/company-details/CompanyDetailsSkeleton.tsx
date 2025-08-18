@@ -1,9 +1,6 @@
-import type { FunctionComponent, PropsWithChildren } from 'react';
+import { CompanyDetailsWrapper } from '@components/company-details/CompanyDetailsWrapper';
+import type { FunctionComponent } from 'react';
 
-export const CompanyDetailsWrapper: FunctionComponent<PropsWithChildren> = ({ children }) => {
-    return (
-        <div>
-            {children}
-        </div>
-    );
+export const CompanyDetailsSkeleton: FunctionComponent = () => {
+    return <CompanyDetailsWrapper></CompanyDetailsWrapper>;
 };

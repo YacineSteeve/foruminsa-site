@@ -14,10 +14,10 @@ export const CompaniesListSkeleton: FunctionComponent<CompaniesListSkeletonProps
                 <li key={index}>
                     <Card
                         shadow="sm"
-                        className="w-80 h-52 p-4 space-y-4"
+                        className="w-84 h-56 p-4 space-y-4"
                     >
                         <div className="flex gap-4 w-full">
-                            <Skeleton className="size-20 rounded-lg" />
+                            <Skeleton className="size-24 rounded-lg" />
                             <div className="flex-1 space-y-2">
                                 <Skeleton className="h-6 flex-1 rounded-lg" />
                                 <div className="flex flex-wrap gap-x-2 gap-y-1 w-full">

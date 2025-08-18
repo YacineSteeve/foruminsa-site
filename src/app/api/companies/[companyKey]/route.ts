@@ -7,22 +7,19 @@ import { NextResponse } from 'next/server';
 import { Prisma, Company } from '@prisma/client';
 
 interface RouteContext {
-    params: Promise<{ companyKey: string }>
+    params: Promise<{ companyKey: string }>;
 }
 
 const findCompanyByKey = async (
     key: CompanyKey,
-    args: Pick<Prisma.CompanyFindFirstArgs, 'include' | 'select'> = {}
+    args: Pick<Prisma.CompanyFindFirstArgs, 'include' | 'select'> = {},
 ): Promise<[Company, null] | [null, NextResponse]> => {
     let company;
-    
+
     try {
         company = await prismaClient.company.findFirst({
             where: {
-                OR: [
-                    { id: key },
-                    { slug: key },
-                ],
+                OR: [{ id: key }, { slug: key }],
             },
             ...args,
         });
@@ -35,12 +32,12 @@ const findCompanyByKey = async (
                 error instanceof Error
                     ? error
                     : new Error('An error occurred while fetching companies.', {
-                        cause: error,
-                    }),
-            ).asNextResponse()
+                          cause: error,
+                      }),
+            ).asNextResponse(),
         ];
     }
-    
+
     if (!company) {
         return [
             null,
@@ -48,50 +45,47 @@ const findCompanyByKey = async (
                 'COMPANY_NOT_FOUND',
                 404,
                 new Error(`Company with key "${key}" not found`),
-            ).asNextResponse()
+            ).asNextResponse(),
         ];
     }
-    
+
     return [company, null];
-}
+};
 
 const GET = withMiddlewares<RouteContext>(
     async (_, context) => {
         const { companyKey } = await context.params;
-        
-        const [company, errorResponse] = await findCompanyByKey(
-            companyKey,
-            {
-                include: {
-                    sectors: {
-                        select: {
-                            id: true,
-                            name: true,
-                        },
+
+        const [company, errorResponse] = await findCompanyByKey(companyKey, {
+            include: {
+                sectors: {
+                    select: {
+                        id: true,
+                        name: true,
                     },
-                    socialLinks: {
-                        select: {
-                            id: true,
-                            type: true,
-                            url: true,
-                        },
+                },
+                socialLinks: {
+                    select: {
+                        id: true,
+                        type: true,
+                        url: true,
                     },
-                    room: {
-                        select: {
-                            id: true,
-                            name: true,
-                            floor: true,
-                            building: true,
-                        },
+                },
+                room: {
+                    select: {
+                        id: true,
+                        name: true,
+                        floor: true,
+                        building: true,
                     },
                 },
             },
-        );
-        
+        });
+
         if (errorResponse) {
             return errorResponse;
         }
-        
+
         return NextResponse.json(companyEntitySchema.parse(company));
     },
     {
@@ -117,20 +111,17 @@ const PATCH = withMiddlewares<RouteContext>(
 const DELETE = withMiddlewares<RouteContext>(
     async (_, context) => {
         const { companyKey } = await context.params;
-        
-        const [company, errorResponse] = await findCompanyByKey(
-            companyKey,
-            {
-                select: {
-                    id: true,
-                },
+
+        const [company, errorResponse] = await findCompanyByKey(companyKey, {
+            select: {
+                id: true,
             },
-        );
-        
+        });
+
         if (errorResponse) {
             return errorResponse;
         }
-        
+
         try {
             await prismaClient.company.delete({
                 where: {
@@ -144,11 +135,11 @@ const DELETE = withMiddlewares<RouteContext>(
                 error instanceof Error
                     ? error
                     : new Error('An error occurred while deleting the company.', {
-                        cause: error,
-                    }),
+                          cause: error,
+                      }),
             ).asNextResponse();
         }
-        
+
         return NextResponse.json({});
     },
     {
