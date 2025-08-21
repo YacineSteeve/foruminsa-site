@@ -1,4 +1,5 @@
 import { ContactForm } from '@components/contact/ContactForm';
+import { BrochureSection } from '@components/global/BrochureSection';
 import type { Metadata } from 'next';
 import { getLocale, getTranslations } from 'next-intl/server';
 import Image from 'next/image';
@@ -16,12 +17,12 @@ export default async function ContactPage() {
     const locale = await getLocale();
 
     return (
-        <div className="md:pt-8 space-y-16">
-            <section className="flex max-lg:flex-col max-lg:items-center gap-x-20 gap-y-8 px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60">
+        <div>
+            <section className="flex max-lg:flex-col max-lg:items-center gap-x-20 gap-y-8 px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 md:pt-8 pb-16 shadow-md">
                 <div className="lg:flex-1">
                     <Image
                         src="/contact.svg"
-                        alt={t('altTextOne')}
+                        alt={t('imageAlt')}
                         width={600}
                         height={600}
                         quality={100}
@@ -36,15 +37,7 @@ export default async function ContactPage() {
                     <ContactForm locale={locale} />
                 </div>
             </section>
-            <section className="relative w-full h-100">
-                <Image
-                    src="/conference-sit.jpg"
-                    alt={t('altTextTwo')}
-                    fill
-                    quality={100}
-                    className="object-cover object-center brightness-50"
-                />
-            </section>
+            <BrochureSection />
         </div>
     );
 }

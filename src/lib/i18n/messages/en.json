@@ -105,8 +105,7 @@
     "ContactPage": {
         "title": "Contact Us!",
         "description": "You have any question or need assistance? Our team is there to help. Fill the form below and we will get back to you as soon as possible.",
-        "altTextOne": "Image of a person with a laptop",
-        "altTextTwo": "Photo of people attending a conference"
+        "imageAlt": "Image of a person with a laptop"
     },
     "ContactForm": {
         "general": "General",
@@ -130,6 +129,17 @@
         "successMessage": "Your message has been successfully sent.",
         "successDescription": "We will get back to you as soon as possible.",
         "noOptions": "No options."
+    },
+    "BrochureSection": {
+        "imageAlt": "Cover image of the Forum By INSA 2025 brochure",
+        "downloadBrochure": "Download brochure",
+        "brochureFileName": "Brochure_Forum_By_INSA_2025.pdf"
+    },
+    "JobteaserSection": {
+        "imageAlt": "Image of a group of people following a conference",
+        "jobteaserLogoAlt": "Jobteaser Logo",
+        "registerNow": "Register right now",
+        "on": "on"
     },
     "Footer": {
         "about": "The INSA Forum is an annual event organized by INSA Toulouse students, aimed at connecting students with companies and promoting professional opportunities. For more information, please contact us via the contact form.",

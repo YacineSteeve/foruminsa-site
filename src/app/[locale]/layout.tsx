@@ -1,5 +1,6 @@
 import { Footer } from '@components/global/Footer';
 import { Header } from '@components/global/Header';
+import { JobteaserSection } from '@components/global/JobteaserSection';
 import { Loader } from '@components/ui/Loader';
 import { SuspenseBoundary } from '@components/ui/SuspenseBoundary';
 import { i18nRouting } from '@lib/i18n/routing';
@@ -109,6 +110,7 @@ export default async function AppLayout({ children, params }: AppLayoutProps) {
                                     >
                                         {children}
                                     </SuspenseBoundary>
+                                    <JobteaserSection />
                                 </main>
                                 <Footer />
                             </div>

@@ -105,8 +105,7 @@
     "ContactPage": {
         "title": "Contactez-nous!",
         "description": "Vous avez une question ou avez besoin d'aide? Notre équipe est là pour vous aider. Remplissez le formulaire ci-dessous conformément à votre besoin et nous reviendrons vers vous dans les plus brefs délais.",
-        "altTextOne": "Image d'une personne avec un ordinateur portable",
-        "altTextTwo": "Photo de personnes suivant une conférence"
+        "imageAlt": "Image d'une personne avec un ordinateur portable"
     },
     "ContactForm": {
         "general": "Général",
@@ -130,6 +129,17 @@
         "successMessage": "Votre message a été envoyé avec succès.",
         "successDescription": "Nous vous répondrons dans les plus brefs délais.",
         "noOptions": "Aucune option."
+    },
+    "BrochureSection": {
+        "imageAlt": "Image de couverture de la plaquette du Forum By INSA 2025",
+        "downloadBrochure": "Téléchargez la plaquette",
+        "brochureFileName": "Plaquette_Forum_By_INSA_2025.pdf"
+    },
+    "JobteaserSection": {
+        "imageAlt": "Image d'un groupe de personnes suivant une conférence",
+        "jobteaserLogoAlt": "Logo de Jobteaser",
+        "registerNow": "Inscrivez-vous dès maintenant",
+        "on": "sur"
     },
     "Footer": {
         "about": "Le Forum INSA est un événement annuel organisé par les étudiants de l'INSA Toulouse, visant à connecter les étudiants avec des entreprises et à promouvoir les opportunités professionnelles. Pour plus d'informations, contactez-nous via le formulaire de contact.",

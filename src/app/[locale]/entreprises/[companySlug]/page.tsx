@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: CompanyDetailsPageProps): Pro
     }
 
     return {
-        title: company.name,
+        title: `${company.name} | Forum By INSA`,
         description: company.description,
         openGraph: {
             title: company.name,

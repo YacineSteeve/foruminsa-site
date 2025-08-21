@@ -58,7 +58,7 @@ export default async function CompaniesPage({ searchParams }: CompaniesPageProps
     };
 
     return (
-        <div className="w-full">
+        <div className="w-full pb-16">
             <div className="relative w-full h-80 md:h-100 xl:h-120">
                 <Image
                     src="/entretien_dos.jpg"
@@ -74,7 +74,7 @@ export default async function CompaniesPage({ searchParams }: CompaniesPageProps
                     </SuspenseBoundary>
                 </div>
             </div>
-            <div className="flex flex-col items-center gap-y-16 w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 py-40 max-md:pt-60">
+            <div className="flex flex-col items-center gap-y-16 w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 pt-40 max-md:pt-60">
                 <div className="flex flex-col items-center gap-y-4 text-center">
                     <h1>{t('title')}</h1>
                     <p className="text-xl w-full sm:w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3 2xl:w-1/2">
