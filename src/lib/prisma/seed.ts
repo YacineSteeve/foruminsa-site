@@ -17,7 +17,7 @@ const capitalize = (str: string) => {
     if (str.length === 0) {
         return str;
     }
-    
+
     return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
@@ -150,8 +150,14 @@ const main = async () => {
                     data: {
                         name: companyNameAndSlug.name,
                         slug: companyNameAndSlug.slug,
-                        descriptionFR: capitalize(faker.word.words({ count: 10 })) + '. ' + faker.lorem.paragraph({ min: 2, max: 3 }),
-                        descriptionEN: capitalize(fakerEN.word.words({ count: 10 })) + '. ' + fakerEN.lorem.paragraph({ min: 2, max: 3 }),
+                        descriptionFR:
+                            capitalize(faker.word.words({ count: 10 })) +
+                            '. ' +
+                            faker.lorem.paragraph({ min: 2, max: 3 }),
+                        descriptionEN:
+                            capitalize(fakerEN.word.words({ count: 10 })) +
+                            '. ' +
+                            fakerEN.lorem.paragraph({ min: 2, max: 3 }),
                         logoUrl: faker.image.avatarGitHub(),
                         providesGoodies: faker.datatype.boolean(),
                         hasGreenTransport: faker.datatype.boolean(),

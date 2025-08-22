@@ -114,7 +114,8 @@
         "studyLevelLabel": "Study Level",
         "studyLevelPlaceholder": "Select a study level",
         "noOptions": "No options.",
-        "clearAll": "Clear all filters"
+        "clearAll": "Clear all",
+        "apply": "Apply"
     },
     "CompanyDetailsPage": {
         "cannotLoadCompany": "Unable to load company details."

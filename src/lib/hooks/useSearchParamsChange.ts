@@ -7,6 +7,11 @@ type Key = keyof typeof URL_PARAMS;
 
 type Value = string | Array<string>;
 
+export interface UseSearchParamsChangeOptions {
+    replace?: boolean;
+    scroll?: boolean;
+}
+
 export interface UseSearchParamsChange<K extends Key> {
     searchParams: ReadonlyURLSearchParams;
     changeSearchParam: (key: K) => (value: Value) => void;
@@ -17,7 +22,7 @@ const isDefined = (value: string | undefined): value is string =>
     ![undefined, null, ''].includes(value);
 
 export const useSearchParamsChange = <K extends Key>(
-    { replace }: { replace: boolean } = { replace: true },
+    options: UseSearchParamsChangeOptions = {},
 ): UseSearchParamsChange<K> => {
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -52,6 +57,9 @@ export const useSearchParamsChange = <K extends Key>(
                 }
             }
 
+            const replace = options.replace ?? true;
+            const scroll = options.scroll ?? false;
+
             if (params.size > 0) {
                 if (replace) {
                     router.replace(
@@ -59,7 +67,7 @@ export const useSearchParamsChange = <K extends Key>(
                             pathname,
                             query: Object.fromEntries(params.entries()),
                         },
-                        { scroll: false },
+                        { scroll },
                     );
                 } else {
                     router.push(
@@ -67,18 +75,18 @@ export const useSearchParamsChange = <K extends Key>(
                             pathname,
                             query: Object.fromEntries(params.entries()),
                         },
-                        { scroll: false },
+                        { scroll },
                     );
                 }
             } else {
                 if (replace) {
-                    router.replace(pathname, { scroll: false });
+                    router.replace(pathname, { scroll });
                 } else {
-                    router.push(pathname, { scroll: false });
+                    router.push(pathname, { scroll });
                 }
             }
         },
-        [replace, searchParams, router, pathname],
+        [options, searchParams, router, pathname],
     );
 
     const changeSearchParam = useCallback(

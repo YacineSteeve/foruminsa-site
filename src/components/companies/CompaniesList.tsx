@@ -44,7 +44,10 @@ export const CompaniesList: FunctionComponent<CompaniesListProps> = async ({ fil
                         </div>
                         {paginatedCompanies.data.map((company) => (
                             <li key={company.id}>
-                                <CompanyCard company={company} locale={locale}/>
+                                <CompanyCard
+                                    company={company}
+                                    locale={locale}
+                                />
                             </li>
                         ))}
                     </Fragment>
@@ -59,7 +62,7 @@ export const CompaniesList: FunctionComponent<CompaniesListProps> = async ({ fil
                 )}
                 {!noExistingCompanyAtAll && (
                     <Fragment>
-                        <div className="flex items-center justify-center sm:justify-end gap-4 md:gap-8 max-md:w-full md:col-span-2 xl:col-span-3">
+                        <div className="flex items-center justify-end gap-4 md:gap-8 max-md:w-full md:col-span-2 xl:col-span-3">
                             <CompaniesPagination
                                 totalPages={Math.ceil(
                                     paginatedCompanies.totalElements / paginatedCompanies.pageSize,

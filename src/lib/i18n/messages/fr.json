@@ -114,7 +114,8 @@
         "studyLevelPlaceholder": "Sélectionnez un niveau d'étude",
         "greenLabelOnly": "Uniquement les entreprises labellisées",
         "noOptions": "Aucune option.",
-        "clearAll": "Effacer tous les filtres"
+        "clearAll": "Effacer tout",
+        "apply": "Appliquer"
     },
     "CompanyDetailsPage": {
         "cannotLoadCompany": "Impossible de charger les détails de l'entreprise."

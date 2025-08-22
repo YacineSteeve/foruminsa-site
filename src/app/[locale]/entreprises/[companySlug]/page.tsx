@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: CompanyDetailsPageProps): Pro
             description: 'The requested company could not be found.',
         };
     }
-    
+
     const localizedDescription = locale === 'en' ? company.descriptionEN : company.descriptionFR;
 
     return {
