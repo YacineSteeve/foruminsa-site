@@ -69,7 +69,7 @@ export const SOCIAL_LINK_TYPES = [
 export const URL_PARAMS = {
     email: 'email',
     city: 'city',
-    country: 'country',
+    countryCode: 'countryCode',
     sector: 'sector',
     speciality: 'speciality',
     studyLevel: 'studyLevel',

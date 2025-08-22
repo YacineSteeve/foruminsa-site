@@ -63,6 +63,23 @@
         "x": "X (formerly Twitter)",
         "other": "Other"
     },
+    "Specialities": {
+        "AE": "Automation and Electronics",
+        "GB": "Biological Engineering",
+        "GC": "Civil Engineering",
+        "GM": "Mechanical Engineering",
+        "GP": "Physical Engineering",
+        "GP3E": "Process, Water and Environment Engineering",
+        "IR": "Computer Science and Networks",
+        "MA": "Applied Mathematics"
+    },
+    "StudyLevels": {
+        "1A": "1st Year",
+        "2A": "2nd Year",
+        "3A": "3rd Year",
+        "4A": "4th Year",
+        "5A": "5th Year"
+    },
     "CompaniesPage": {
         "title": "Companies",
         "description": "Discover all the prestigious companies participating in the Forum. Meet recruiters, explore internship and job opportunities, and prepare to shine your profile !",
@@ -77,10 +94,10 @@
     "CompaniesList": {
         "cannotLoadCompanies": "Unable to load the list of companies.",
         "noCompanies": "No registered company has been found.",
-        "companyGreenLabelDescription": "Your heart in one glance! The companies with this label are those who are committed to the environment and durability by using eco-friendly transportation modes, and who offer you all the goodies !"
+        "companyGreenLabelDescription": "Your heart in one glance! The companies with this label are those who are committed to environmental and durability by using eco-friendly transportation methods, and not providing goodies."
     },
     "CompanyGreenLabel": {
-        "description": "This company offers goodies and uses eco-friendly transportation modes !"
+        "description": "This company uses eco-friendly transportation methods and does not offer goodies."
     },
     "CompaniesFiltersButton": {
         "title": "Filters",

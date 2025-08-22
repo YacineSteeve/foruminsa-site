@@ -31,7 +31,8 @@ model Sector {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  name String @unique
+  nameFR String @unique
+  nameEN String @unique
 
   companies Company[]
 }
@@ -71,14 +72,15 @@ model Company {
 
   name              String
   slug              String  @unique
-  description       String
+  descriptionFR     String
+  descriptionEN     String
   logoUrl           String
   providesGoodies   Boolean @default(false)
   hasGreenTransport Boolean @default(false)
   studyLevels       String
   specialities      String
   city              String
-  country           String
+  countryCode       String
 
   address         String?
   postalCode      String?

@@ -17,7 +17,7 @@ const GET = withMiddlewares(
         try {
             query = companiesFiltersSchema.parse({
                 city: searchParams.get(URL_PARAMS.city),
-                country: searchParams.get(URL_PARAMS.country),
+                countryCode: searchParams.get(URL_PARAMS.countryCode),
                 sector: searchParams.get(URL_PARAMS.sector),
                 speciality: searchParams.get(URL_PARAMS.speciality),
                 studyLevel: searchParams.get(URL_PARAMS.studyLevel),
@@ -49,13 +49,13 @@ const GET = withMiddlewares(
 
         const filter: Prisma.CompanyFindManyArgs['where'] = {
             city: query.city ?? undefined,
-            country: query.country ?? undefined,
+            countryCode: query.countryCode ?? undefined,
             sectors: query.sector ? { some: { id: query.sector } } : undefined,
             specialities: query.speciality ? { contains: query.speciality } : undefined,
             studyLevels: query.studyLevel ? { contains: query.studyLevel } : undefined,
             ...(query.greenLabel
                 ? {
-                      AND: [{ providesGoodies: true }, { hasGreenTransport: true }],
+                      AND: [{ providesGoodies: false }, { hasGreenTransport: true }],
                   }
                 : {}),
         };
@@ -70,7 +70,8 @@ const GET = withMiddlewares(
                         sectors: {
                             select: {
                                 id: true,
-                                name: true,
+                                nameFR: true,
+                                nameEN: true,
                             },
                         },
                         socialLinks: {

@@ -5,7 +5,7 @@ import { CompanyCard } from '@components/companies/CompanyCard';
 import { Alert } from '@heroui/alert';
 import { CompanyService } from '@lib/api-services';
 import type { CompaniesFilters } from '@lib/types/dtos';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { Fragment, type FunctionComponent } from 'react';
 import { FaAward } from 'react-icons/fa6';
 
@@ -15,6 +15,7 @@ interface CompaniesListProps {
 
 export const CompaniesList: FunctionComponent<CompaniesListProps> = async ({ filters }) => {
     const t = await getTranslations('CompaniesList');
+    const locale = await getLocale();
     const paginatedCompanies = await CompanyService.getAllCompanies(filters);
 
     if (!paginatedCompanies) {
@@ -43,7 +44,7 @@ export const CompaniesList: FunctionComponent<CompaniesListProps> = async ({ fil
                         </div>
                         {paginatedCompanies.data.map((company) => (
                             <li key={company.id}>
-                                <CompanyCard company={company} />
+                                <CompanyCard company={company} locale={locale}/>
                             </li>
                         ))}
                     </Fragment>

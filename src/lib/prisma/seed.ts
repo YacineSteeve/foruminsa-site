@@ -6,12 +6,20 @@ import {
 } from '@lib/constants/core';
 import { COUNTRY_CODES } from '@lib/constants/countries';
 import { createCustomPrismaClient } from '@lib/prisma/client';
-import { fakerFR as faker } from '@faker-js/faker';
+import { fakerFR as faker, fakerEN } from '@faker-js/faker';
 import { hash } from 'bcrypt';
 
 const COMPANY_COUNT = 100;
 const SECTOR_COUNT = 10;
 const FORUM_ROOM_COUNT = 15;
+
+const capitalize = (str: string) => {
+    if (str.length === 0) {
+        return str;
+    }
+    
+    return str.charAt(0).toUpperCase() + str.slice(1);
+};
 
 const main = async () => {
     const prismaClient = createCustomPrismaClient({
@@ -33,7 +41,8 @@ const main = async () => {
                 slug: faker.helpers.slugify(name.toLowerCase()),
             }));
 
-        const sectorNames = faker.helpers.uniqueArray(faker.commerce.department, SECTOR_COUNT);
+        const sectorNamesFR = faker.helpers.uniqueArray(faker.commerce.department, SECTOR_COUNT);
+        const sectorNamesEN = faker.helpers.uniqueArray(fakerEN.commerce.department, SECTOR_COUNT);
 
         await prismaClient.$transaction(async (transaction) => {
             // Clear existing data
@@ -92,7 +101,8 @@ const main = async () => {
 
             const sectors = await transaction.sector.createManyAndReturn({
                 data: Array.from({ length: SECTOR_COUNT }, (_, index) => ({
-                    name: sectorNames[index]!,
+                    nameFR: sectorNamesFR[index]!,
+                    nameEN: sectorNamesEN[index]!,
                 })),
                 select: {
                     id: true,
@@ -140,7 +150,8 @@ const main = async () => {
                     data: {
                         name: companyNameAndSlug.name,
                         slug: companyNameAndSlug.slug,
-                        description: faker.lorem.paragraph({ min: 2, max: 4 }),
+                        descriptionFR: capitalize(faker.word.words({ count: 10 })) + '. ' + faker.lorem.paragraph({ min: 2, max: 3 }),
+                        descriptionEN: capitalize(fakerEN.word.words({ count: 10 })) + '. ' + fakerEN.lorem.paragraph({ min: 2, max: 3 }),
                         logoUrl: faker.image.avatarGitHub(),
                         providesGoodies: faker.datatype.boolean(),
                         hasGreenTransport: faker.datatype.boolean(),
@@ -153,7 +164,7 @@ const main = async () => {
                         address: faker.helpers.maybe(faker.location.streetAddress),
                         postalCode: faker.helpers.maybe(faker.location.zipCode),
                         city: faker.location.city(),
-                        country: faker.helpers.arrayElement(COUNTRY_CODES),
+                        countryCode: faker.helpers.arrayElement(COUNTRY_CODES),
                         websiteUrl: faker.helpers.maybe(faker.internet.url),
                         carbonFootprint: faker.number.float({
                             min: 0,

@@ -24,13 +24,15 @@ export async function generateMetadata({ params }: CompanyDetailsPageProps): Pro
             description: 'The requested company could not be found.',
         };
     }
+    
+    const localizedDescription = locale === 'en' ? company.descriptionEN : company.descriptionFR;
 
     return {
         title: `${company.name} | Forum By INSA`,
-        description: company.description,
+        description: localizedDescription,
         openGraph: {
             title: company.name,
-            description: company.description,
+            description: localizedDescription,
             images: [
                 {
                     url: company.logoUrl,

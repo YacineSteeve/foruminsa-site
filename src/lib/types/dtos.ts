@@ -65,7 +65,7 @@ export const companiesFiltersSchema = z.object({
         .string({ error: 'mustBeAString' })
         .min(1, { error: 'mustHaveAtLeastOneCharacter' })
         .nullish(),
-    country: z.enum(COUNTRY_CODES, { error: 'mustBeAValidCountryCode' }).nullish(),
+    countryCode: z.enum(COUNTRY_CODES, { error: 'mustBeAValidCountryCode' }).nullish(),
     sector: z.cuid2({ error: 'mustBeAValidId' }).nullish(),
     speciality: z.enum(SPECIALITIES, { error: 'mustBeAValidSpeciality' }).nullish(),
     studyLevel: z.enum(STUDY_LEVELS, { error: 'mustBeAValidStudyLevel' }).nullish(),

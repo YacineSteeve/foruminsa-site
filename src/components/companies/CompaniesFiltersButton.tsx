@@ -11,7 +11,7 @@ import { COUNTRY_OPTIONS } from '@lib/constants/countries';
 import { SPECIALITIES, STUDY_LEVELS, URL_PARAMS } from '@lib/constants/core';
 import { useRequest, useSearchParamsChange } from '@lib/hooks';
 import type { CompaniesFilters } from '@lib/types/dtos';
-import { useTranslations } from 'next-intl';
+import { type Locale, useLocale, useTranslations } from 'next-intl';
 import { type ChangeEventHandler, type FunctionComponent, useCallback, useMemo } from 'react';
 import { RiFilter2Fill } from 'react-icons/ri';
 
@@ -35,7 +35,10 @@ interface CompaniesFiltersButtonProps {
 export const CompaniesFiltersButton: FunctionComponent<CompaniesFiltersButtonProps> = ({
     popupPlacement,
 }) => {
+    const locale = useLocale();
     const t = useTranslations('CompaniesFiltersButton');
+    const tSpecialities = useTranslations('Specialities');
+    const tStudyLevels = useTranslations('StudyLevels');
     const { searchParams, changeSearchParamMulti } = useSearchParamsChange();
 
     const { data: cityOptions, isLoading: isLoadingCityOptions } = useRequest<
@@ -51,13 +54,13 @@ export const CompaniesFiltersButton: FunctionComponent<CompaniesFiltersButtonPro
         return cities.map((city) => ({
             label: city,
             value: city,
-        }));
+        })).sort((a, b) => a.label.localeCompare(b.label));
     });
 
     const { data: sectorOptions, isLoading: isLoadingSectorOptions } = useRequest<
-        string,
+        [string, Locale],
         Array<FilterOption<CompaniesFilters['sector']>>
-    >('sector-options', async (_) => {
+    >(['sector-options', locale], async ([_, locale]) => {
         const sectors = await SectorService.getAllSectors();
 
         if (!sectors) {
@@ -65,9 +68,9 @@ export const CompaniesFiltersButton: FunctionComponent<CompaniesFiltersButtonPro
         }
 
         return sectors.map((sector) => ({
-            label: sector.name,
+            label: locale === 'en' ? sector.nameEN : sector.nameFR,
             value: sector.id,
-        }));
+        })).sort((a, b) => a.label.localeCompare(b.label));
     });
 
     const handleSwitchChange = useCallback<
@@ -105,7 +108,7 @@ export const CompaniesFiltersButton: FunctionComponent<CompaniesFiltersButtonPro
         changeSearchParamMulti([
             URL_PARAMS.page,
             URL_PARAMS.city,
-            URL_PARAMS.country,
+            URL_PARAMS.countryCode,
             URL_PARAMS.sector,
             URL_PARAMS.speciality,
             URL_PARAMS.studyLevel,
@@ -130,8 +133,8 @@ export const CompaniesFiltersButton: FunctionComponent<CompaniesFiltersButtonPro
             city: searchParams.get(URL_PARAMS.city)
                 ? [searchParams.get(URL_PARAMS.city)!]
                 : undefined,
-            country: searchParams.get(URL_PARAMS.country)
-                ? [searchParams.get(URL_PARAMS.country)!]
+            countryCode: searchParams.get(URL_PARAMS.countryCode)
+                ? [searchParams.get(URL_PARAMS.countryCode)!]
                 : undefined,
         };
     }, [searchParams]);
@@ -170,7 +173,7 @@ export const CompaniesFiltersButton: FunctionComponent<CompaniesFiltersButtonPro
             </Badge>
             <PopoverContent>
                 {(titleProps) => (
-                    <div className="w-68 md:w-80 p-4 space-y-10">
+                    <div className="w-68 md:w-80 xl:w-92 p-4 space-y-10">
                         <h4 {...titleProps}>{t('title')}</h4>
                         <div className="space-y-5">
                             <div className="space-y-10">
@@ -187,7 +190,7 @@ export const CompaniesFiltersButton: FunctionComponent<CompaniesFiltersButtonPro
                                     onClear={handleClear(URL_PARAMS.speciality)}
                                 >
                                     {SPECIALITIES.map((speciality) => (
-                                        <SelectItem key={speciality}>{speciality}</SelectItem>
+                                        <SelectItem key={speciality}>{tSpecialities(speciality)}</SelectItem>
                                     ))}
                                 </Select>
                                 <Select
@@ -203,7 +206,7 @@ export const CompaniesFiltersButton: FunctionComponent<CompaniesFiltersButtonPro
                                     onClear={handleClear(URL_PARAMS.studyLevel)}
                                 >
                                     {STUDY_LEVELS.map((studyLevel) => (
-                                        <SelectItem key={studyLevel}>{studyLevel}</SelectItem>
+                                        <SelectItem key={studyLevel}>{tStudyLevels(studyLevel)}</SelectItem>
                                     ))}
                                 </Select>
                                 <Select
@@ -248,9 +251,9 @@ export const CompaniesFiltersButton: FunctionComponent<CompaniesFiltersButtonPro
                                     listboxProps={{
                                         emptyContent: t('noOptions'),
                                     }}
-                                    selectedKeys={values.country}
-                                    onChange={handleSelectChange(URL_PARAMS.country)}
-                                    onClear={handleClear(URL_PARAMS.country)}
+                                    selectedKeys={values.countryCode}
+                                    onChange={handleSelectChange(URL_PARAMS.countryCode)}
+                                    onClear={handleClear(URL_PARAMS.countryCode)}
                                 >
                                     {COUNTRY_OPTIONS.map((option) => (
                                         <SelectItem key={option.value}>{option.label}</SelectItem>
@@ -258,6 +261,7 @@ export const CompaniesFiltersButton: FunctionComponent<CompaniesFiltersButtonPro
                                 </Select>
                             </div>
                             <Switch
+                                key={values.greenLabel ? 'greenLabelOn' : 'greenLabelOff'}
                                 color="primary"
                                 size="sm"
                                 isSelected={values.greenLabel}

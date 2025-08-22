@@ -63,6 +63,23 @@
         "x": "X (anciennement Twitter)",
         "other": "Autre"
     },
+    "Specialities": {
+        "AE": "Automatique et Électronique",
+        "GB": "Génie Biologique",
+        "GC": "Génie Civil",
+        "GM": "Génie Mécanique",
+        "GP": "Génie Physique",
+        "GP3E": "Génie des Procédés, Eau Et Environnement",
+        "IR": "Informatique et Réseaux",
+        "MA": "Mathématiques Appliquées"
+    },
+    "StudyLevels": {
+        "1A": "1ère Année",
+        "2A": "2ème Année",
+        "3A": "3ème Année",
+        "4A": "4ème Année",
+        "5A": "5ème Année"
+    },
     "CompaniesPage": {
         "title": "Entreprises",
         "description": "Découvrez toutes les prestigieuses entreprises qui participent au Forum. Rencontrez les recruteurs, explorez les opportunités de stage et d'emploi, et préparez-vous à faire briller votre profil !",
@@ -77,10 +94,10 @@
     "CompaniesList": {
         "cannotLoadCompanies": "Impossible de charger la liste des entreprises.",
         "noCompanies": "Aucune entreprise inscrite n'a été trouvée.",
-        "companyGreenLabelDescription": "Votre coup de coeur en un clin d'oeil! Les entreprises possédant ce label sont celles qui s'engagent pour l'environnement et la durabilité en utilisant des modes de transport écologiques, et qui vous offrent tout plein de goodies !"
+        "companyGreenLabelDescription": "Votre coup de coeur en un clin d'oeil! Les entreprises possédant ce label sont celles qui s'engagent pour l'environnement et la durabilité en utilisant des modes de transport écologiques, et en ne fournissant pas de goodies."
     },
     "CompanyGreenLabel": {
-        "description": "Cette entreprise offre des goodies et utilise des modes de transport écologiques !"
+        "description": "Cette entreprise utilise des modes de transport écologiques et n'offre pas de goodies."
     },
     "CompaniesFiltersButton": {
         "title": "Filtres",

@@ -7,7 +7,13 @@ import { NextResponse } from 'next/server';
 const GET = withMiddlewares(
     async () => {
         try {
-            const sectors = await prismaClient.sector.findMany();
+            const sectors = await prismaClient.sector.findMany({
+                select: {
+                    id: true,
+                    nameFR: true,
+                    nameEN: true,
+                },
+            });
 
             return NextResponse.json(sectorListEntitySchema.parse(sectors));
         } catch (error) {

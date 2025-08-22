@@ -3,16 +3,18 @@ import { Card } from '@heroui/card';
 import { Chip } from '@heroui/chip';
 import { Link } from '@lib/i18n/navigation';
 import type { CompanyEntity } from '@lib/types/entities';
+import type { Locale } from 'next-intl';
 import Image from 'next/image';
 import type { FunctionComponent } from 'react';
 
 interface CompanyCardProps {
     company: CompanyEntity;
+    locale: Locale;
 }
 
 const SECTOR_LIMIT = 2;
 
-export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company }) => {
+export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company, locale }) => {
     return (
         <Link
             href={`/entreprises/${company.slug}`}
@@ -48,7 +50,7 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company }) =>
                                         variant="flat"
                                         className="text-sm text-black p-1 rounded-full"
                                     >
-                                        {sector.name}
+                                        {locale === 'en' ? sector.nameEN : sector.nameFR}
                                     </Chip>
                                 ))}
                                 {company.sectors.length > SECTOR_LIMIT && (
@@ -64,9 +66,11 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company }) =>
                         )}
                     </div>
                 </div>
-                <p className="text-start w-full line-clamp-3">{company.description}</p>
+                <p className="text-start w-full line-clamp-3">
+                    {locale === 'en' ? company.descriptionEN : company.descriptionFR}
+                </p>
             </Card>
-            {company.providesGoodies && company.hasGreenTransport && <CompanyGreenLabel />}
+            {company.hasGreenTransport && !company.providesGoodies && <CompanyGreenLabel />}
         </Link>
     );
 };

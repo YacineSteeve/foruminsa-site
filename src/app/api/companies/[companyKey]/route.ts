@@ -61,7 +61,8 @@ const GET = withMiddlewares<RouteContext>(
                 sectors: {
                     select: {
                         id: true,
-                        name: true,
+                        nameFR: true,
+                        nameEN: true,
                     },
                 },
                 socialLinks: {

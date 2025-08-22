@@ -34,10 +34,10 @@ export default async function CompaniesPage({ searchParams }: CompaniesPageProps
         page: typeof filtersParams.page === 'string' ? parseInt(filtersParams.page, 10) : undefined,
         sector: !Array.isArray(filtersParams.sector) ? filtersParams.sector : undefined,
         city: !Array.isArray(filtersParams.city) ? filtersParams.city : undefined,
-        country:
-            !Array.isArray(filtersParams.country) &&
-            COUNTRY_CODES.includes(filtersParams.country as (typeof COUNTRY_CODES)[number])
-                ? (filtersParams.country as (typeof COUNTRY_CODES)[number])
+        countryCode:
+            !Array.isArray(filtersParams.countryCode) &&
+            COUNTRY_CODES.includes(filtersParams.countryCode as (typeof COUNTRY_CODES)[number])
+                ? (filtersParams.countryCode as (typeof COUNTRY_CODES)[number])
                 : undefined,
         speciality:
             !Array.isArray(filtersParams.speciality) &&

@@ -22,7 +22,8 @@ export type CityListEntity = z.infer<typeof cityListEntitySchema>;
 
 export const sectorEntitySchema = z.object({
     id: z.cuid2({ error: 'mustBeAValidId' }),
-    name: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
+    nameFR: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
+    nameEN: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
 });
 
 export type SectorEntity = z.infer<typeof sectorEntitySchema>;
@@ -52,7 +53,10 @@ export const companyEntitySchema = z.object({
     id: z.cuid2({ error: 'mustBeAValidId' }),
     name: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
     slug: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
-    description: z
+    descriptionFR: z
+        .string({ error: 'mustBeAString' })
+        .min(1, { error: 'mustHaveAtLeastOneCharacter' }),
+    descriptionEN: z
         .string({ error: 'mustBeAString' })
         .min(1, { error: 'mustHaveAtLeastOneCharacter' }),
     logoUrl: z.url({ error: 'mustBeAValidUrl' }),
@@ -69,7 +73,7 @@ export const companyEntitySchema = z.object({
             error: 'mustBeAValidSpeciality',
         }),
     city: cityEntitySchema,
-    country: z.enum(COUNTRY_CODES, { error: 'mustBeAValidCountryCode' }),
+    countryCode: z.enum(COUNTRY_CODES, { error: 'mustBeAValidCountryCode' }),
     address: z
         .string({ error: 'mustBeAString' })
         .min(1, { error: 'mustHaveAtLeastOneCharacter' })
