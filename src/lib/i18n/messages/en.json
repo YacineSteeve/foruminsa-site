@@ -114,11 +114,32 @@
         "studyLevelLabel": "Study Level",
         "studyLevelPlaceholder": "Select a study level",
         "noOptions": "No options.",
+        "loading": "Loading...",
         "clearAll": "Clear all",
         "apply": "Apply"
     },
     "CompanyDetailsPage": {
-        "cannotLoadCompany": "Unable to load company details."
+        "cannotLoadCompany": "Unable to load company details.",
+        "about": "About",
+        "sectors": "Sectors",
+        "wantedSpecialities": "Wanted Specialities",
+        "wantedStudyLevels": "Wanted Study Levels",
+        "forumLocation": "Forum Location",
+        "contactInfo": "Contact Info",
+        "connectWithUs": "Connect With Us",
+        "environmentalCommitment": "Environmental Commitment",
+        "floor": "Floor {floorNumber}",
+        "groundFloor": "Ground Floor",
+        "building": "Building {buildingName}",
+        "unknown": "Unknown",
+        "carbonFootprint": "Carbon Footprint",
+        "website": "Website",
+        "hasGreenLabelDescription": "This company has the green label! It meets our environmental commitment criteria.",
+        "noGreenLabelDescription": "This company does not meet all our environmental commitment criteria, but this does not call into question its actions in favor of the environment.",
+        "hasGreenTransportation": "Uses eco-friendly transportation methods",
+        "hasNoGoodies": "Does not offer goodies",
+        "yes": "Yes",
+        "no": "No"
     },
     "ContactPage": {
         "title": "Contact Us!",

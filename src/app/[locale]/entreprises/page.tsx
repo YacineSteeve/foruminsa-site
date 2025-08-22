@@ -2,6 +2,7 @@ import { CompaniesStats } from '@components/companies/CompaniesStats';
 import { CompaniesStatsSkeleton } from '@components/companies/CompaniesStatsSkeleton';
 import { SPECIALITIES, STUDY_LEVELS } from '@lib/constants/core';
 import { COUNTRY_CODES } from '@lib/constants/countries';
+import type { CountryCode, Speciality, StudyLevel } from '@lib/middlewares/types';
 import type { CompaniesFilters } from '@lib/types/dtos';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
@@ -36,18 +37,18 @@ export default async function CompaniesPage({ searchParams }: CompaniesPageProps
         city: !Array.isArray(filtersParams.city) ? filtersParams.city : undefined,
         countryCode:
             !Array.isArray(filtersParams.countryCode) &&
-            COUNTRY_CODES.includes(filtersParams.countryCode as (typeof COUNTRY_CODES)[number])
-                ? (filtersParams.countryCode as (typeof COUNTRY_CODES)[number])
+            COUNTRY_CODES.includes(filtersParams.countryCode as CountryCode)
+                ? (filtersParams.countryCode as CountryCode)
                 : undefined,
         speciality:
             !Array.isArray(filtersParams.speciality) &&
-            SPECIALITIES.includes(filtersParams.speciality as (typeof SPECIALITIES)[number])
-                ? (filtersParams.speciality as (typeof SPECIALITIES)[number])
+            SPECIALITIES.includes(filtersParams.speciality as Speciality)
+                ? (filtersParams.speciality as Speciality)
                 : undefined,
         studyLevel:
             !Array.isArray(filtersParams.studyLevel) &&
-            STUDY_LEVELS.includes(filtersParams.studyLevel as (typeof STUDY_LEVELS)[number])
-                ? (filtersParams.studyLevel as (typeof STUDY_LEVELS)[number])
+            STUDY_LEVELS.includes(filtersParams.studyLevel as StudyLevel)
+                ? (filtersParams.studyLevel as StudyLevel)
                 : undefined,
         greenLabel:
             filtersParams.greenLabel &&

@@ -4,7 +4,7 @@ import {
     RiFacebookBoxFill,
     RiInstagramFill,
     RiLinkedinBoxFill,
-    RiLinksFill,
+    RiLinkM,
     RiTiktokFill,
     RiTwitterXFill,
     RiYoutubeFill,
@@ -52,7 +52,7 @@ export const SOCIAL_LINKS_TYPES_METADATA: Record<
         color: '#69c9d0',
     },
     other: {
-        icon: RiLinksFill,
+        icon: RiLinkM,
         color: '#808080',
     },
 } as const;

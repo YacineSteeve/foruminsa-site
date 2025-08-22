@@ -100,7 +100,7 @@ export default async function AppLayout({ children, params }: AppLayoutProps) {
                                 className="w-screen h-screen overflow-x-hidden"
                             >
                                 <Header />
-                                <main className="w-full min-h-[calc(100vh-4.75rem)]">
+                                <main className="w-full">
                                     <SuspenseBoundary
                                         fallback={
                                             <div className="flex-center w-full h-[calc(100vh-4.75rem)]">

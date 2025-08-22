@@ -7,7 +7,7 @@ import type { PopoverProps, SelectProps, SwitchProps } from '@heroui/react';
 import { Select, SelectItem } from '@heroui/select';
 import { Switch } from '@heroui/switch';
 import { CompanyService, SectorService } from '@lib/api-services';
-import { COUNTRY_OPTIONS } from '@lib/constants/countries';
+import { COUNTRIES } from '@lib/constants/countries';
 import { SPECIALITIES, STUDY_LEVELS, URL_PARAMS } from '@lib/constants/core';
 import { useRequest, useSearchParamsChange } from '@lib/hooks';
 import type { CompaniesFilters } from '@lib/types/dtos';
@@ -170,7 +170,6 @@ const FiltersContent: FunctionComponent<FiltersContentProps> = ({
         ) => NonNullable<SwitchProps['onValueChange']>
     >(
         (key) => (isSelected) => {
-            //changeSearchParamMulti([URL_PARAMS.page, key])(['', isSelected ? 'true' : '']);
             setValues((prevValues) => ({ ...prevValues, [key]: isSelected }));
         },
         [],
@@ -232,6 +231,13 @@ const FiltersContent: FunctionComponent<FiltersContentProps> = ({
         ]);
     }, [values, changeSearchParamMulti]);
 
+    const countryOptions = useMemo(() => {
+        return Object.entries(COUNTRIES).map(([code, name]) => ({
+            value: code,
+            label: locale === 'en' ? name.en : name.fr,
+        }));
+    }, [locale]);
+
     return (
         <PopoverContent>
             {(titleProps) => (
@@ -281,7 +287,9 @@ const FiltersContent: FunctionComponent<FiltersContentProps> = ({
                                 label={t('sectorLabel')}
                                 placeholder={t('sectorPlaceholder')}
                                 listboxProps={{
-                                    emptyContent: t('noOptions'),
+                                    emptyContent: t(
+                                        isLoadingSectorOptions ? 'loading' : 'noOptions',
+                                    ),
                                 }}
                                 isLoading={isLoadingSectorOptions}
                                 selectedKeys={values.sector}
@@ -298,7 +306,7 @@ const FiltersContent: FunctionComponent<FiltersContentProps> = ({
                                 label={t('cityLabel')}
                                 placeholder={t('cityPlaceholder')}
                                 listboxProps={{
-                                    emptyContent: t('noOptions'),
+                                    emptyContent: t(isLoadingCityOptions ? 'loading' : 'noOptions'),
                                 }}
                                 isLoading={isLoadingCityOptions}
                                 selectedKeys={values.city}
@@ -321,7 +329,7 @@ const FiltersContent: FunctionComponent<FiltersContentProps> = ({
                                 onChange={handleSelectChange(URL_PARAMS.countryCode)}
                                 onClear={handleSelectClear(URL_PARAMS.countryCode)}
                             >
-                                {COUNTRY_OPTIONS.map((option) => (
+                                {countryOptions.map((option) => (
                                     <SelectItem key={option.value}>{option.label}</SelectItem>
                                 ))}
                             </Select>

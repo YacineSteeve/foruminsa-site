@@ -1,4 +1,3 @@
-import { CompanyGreenLabel } from '@components/companies/CompanyGreenLabel';
 import { Card } from '@heroui/card';
 import { Chip } from '@heroui/chip';
 import { Link } from '@lib/i18n/navigation';
@@ -18,7 +17,7 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company, loca
     return (
         <Link
             href={`/entreprises/${company.slug}`}
-            className="relative block size-fit"
+            className="block size-fit"
         >
             <Card
                 isPressable
@@ -70,7 +69,6 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company, loca
                     {locale === 'en' ? company.descriptionEN : company.descriptionFR}
                 </p>
             </Card>
-            {company.hasGreenTransport && !company.providesGoodies && <CompanyGreenLabel />}
         </Link>
     );
 };

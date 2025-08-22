@@ -153,11 +153,11 @@ const main = async () => {
                         descriptionFR:
                             capitalize(faker.word.words({ count: 10 })) +
                             '. ' +
-                            faker.lorem.paragraph({ min: 2, max: 3 }),
+                            faker.lorem.paragraph({ min: 5, max: 10 }),
                         descriptionEN:
                             capitalize(fakerEN.word.words({ count: 10 })) +
                             '. ' +
-                            fakerEN.lorem.paragraph({ min: 2, max: 3 }),
+                            fakerEN.lorem.paragraph({ min: 5, max: 10 }),
                         logoUrl: faker.image.avatarGitHub(),
                         providesGoodies: faker.datatype.boolean(),
                         hasGreenTransport: faker.datatype.boolean(),

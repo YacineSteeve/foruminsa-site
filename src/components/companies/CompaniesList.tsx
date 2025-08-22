@@ -2,9 +2,11 @@ import { CompaniesFiltersButton } from '@components/companies/CompaniesFiltersBu
 import { CompaniesListWrapper } from '@components/companies/CompaniesListWrapper';
 import { CompaniesPagination } from '@components/companies/CompaniesPagination';
 import { CompanyCard } from '@components/companies/CompanyCard';
+import { CompanyGreenLabel } from '@components/companies/CompanyGreenLabel';
 import { Alert } from '@heroui/alert';
 import { CompanyService } from '@lib/api-services';
 import type { CompaniesFilters } from '@lib/types/dtos';
+import { hasGreenLabel } from '@lib/utils';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Fragment, type FunctionComponent } from 'react';
 import { FaAward } from 'react-icons/fa6';
@@ -43,11 +45,15 @@ export const CompaniesList: FunctionComponent<CompaniesListProps> = async ({ fil
                             <CompaniesFiltersButton popupPlacement="left" />
                         </div>
                         {paginatedCompanies.data.map((company) => (
-                            <li key={company.id}>
+                            <li
+                                key={company.id}
+                                className="relative"
+                            >
                                 <CompanyCard
                                     company={company}
                                     locale={locale}
                                 />
+                                {hasGreenLabel(company) && <CompanyGreenLabel />}
                             </li>
                         ))}
                     </Fragment>

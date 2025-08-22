@@ -114,11 +114,32 @@
         "studyLevelPlaceholder": "Sélectionnez un niveau d'étude",
         "greenLabelOnly": "Uniquement les entreprises labellisées",
         "noOptions": "Aucune option.",
+        "loading": "Chargement...",
         "clearAll": "Effacer tout",
         "apply": "Appliquer"
     },
     "CompanyDetailsPage": {
-        "cannotLoadCompany": "Impossible de charger les détails de l'entreprise."
+        "cannotLoadCompany": "Impossible de charger les détails de l'entreprise.",
+        "about": "À propos",
+        "sectors": "Secteurs d'activité",
+        "wantedSpecialities": "Spécialités recherchées",
+        "wantedStudyLevels": "Niveaux d'étude recherchés",
+        "forumLocation": "Emplacement au forum",
+        "contactInfo": "Informations de contact",
+        "connectWithUs": "Suivez-nous",
+        "environmentalCommitment": "Engagement environnemental",
+        "floor": "Étage {floorNumber}",
+        "groundFloor": "Rez-de-chaussée",
+        "building": "Bâtiment {buildingName}",
+        "unknown": "Inconnu",
+        "carbonFootprint": "Empreinte carbone",
+        "website": "Site web",
+        "hasGreenLabelDescription": "Cette entreprise possède le label vert ! Elle répond à nos critères d'engagement environnemental.",
+        "noGreenLabelDescription": "Cette entreprise ne répond pas à tous nos critères d'engagement environnemental, mais cela ne remet pas en question ses actions en faveur de l'environnement.",
+        "hasGreenTransportation": "Utilise des modes de transport écologiques",
+        "hasNoGoodies": "N'offre pas de goodies",
+        "yes": "Oui",
+        "no": "Non"
     },
     "ContactPage": {
         "title": "Contactez-nous!",

@@ -8,7 +8,7 @@ export const CompanyGreenLabel: FunctionComponent = async () => {
 
     return (
         <Tooltip content={t('description')}>
-            <FaAward className="absolute -top-4 -right-5 size-12 text-success -rotate-12 bg-white" />
+            <FaAward className="absolute -top-4 -right-5 size-12 text-success -rotate-12 bg-white outline-none" />
         </Tooltip>
     );
 };
