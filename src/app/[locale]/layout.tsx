@@ -63,7 +63,10 @@ export default async function AppLayout({ children, params }: AppLayoutProps) {
     setRequestLocale(locale);
 
     return (
-        <html lang={locale}>
+        <html
+            lang={locale}
+            data-scroll-behavior="smooth"
+        >
             <body
                 className={cn('light', APP_FONT.className)}
                 suppressHydrationWarning

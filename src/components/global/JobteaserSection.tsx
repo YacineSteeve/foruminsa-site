@@ -36,6 +36,7 @@ export const JobteaserSection: FunctionComponent = async () => {
                         alt={t('jobteaserLogoAlt')}
                         fill
                         quality={100}
+                        sizes="100%,100%"
                         className="object-cover object-center"
                     />
                 </div>

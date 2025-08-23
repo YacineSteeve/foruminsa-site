@@ -7,12 +7,11 @@ import { MENU_ITEMS } from '@lib/constants/core';
 import { APP_COLORS } from '@lib/constants/ui';
 import { useAppContainer, useDebounce } from '@lib/hooks';
 import { Link, usePathname } from '@lib/i18n/navigation';
+import type { MenuItem } from '@lib/types/core';
 import { cn } from '@lib/utils';
 import { useTranslations } from 'next-intl';
 import { Fragment, type FunctionComponent, useCallback, useEffect, useState } from 'react';
 import { RiMenuFill } from 'react-icons/ri';
-
-type MenuItem = (typeof MENU_ITEMS)[number];
 
 export const Header: FunctionComponent = () => {
     const appContainer = useAppContainer();

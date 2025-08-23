@@ -8,12 +8,13 @@ import type { FunctionComponent } from 'react';
 
 interface CompanyCardProps {
     company: CompanyEntity;
+    logoAlt: string;
     locale: Locale;
 }
 
 const SECTOR_LIMIT = 2;
 
-export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company, locale }) => {
+export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company, logoAlt, locale }) => {
     return (
         <Link
             href={`/entreprises/${company.slug}`}
@@ -29,7 +30,7 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company, loca
                     <div className="relative size-24 rounded-lg border-2 border-default/50 overflow-hidden">
                         <Image
                             src={company.logoUrl}
-                            alt={company.name}
+                            alt={logoAlt}
                             fill
                             priority
                             quality={100}

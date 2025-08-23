@@ -51,6 +51,7 @@ export const CompaniesList: FunctionComponent<CompaniesListProps> = async ({ fil
                             >
                                 <CompanyCard
                                     company={company}
+                                    logoAlt={t('companyLogoAlt', { companyName: company.name })}
                                     locale={locale}
                                 />
                                 {hasGreenLabel(company) && <CompanyGreenLabel />}

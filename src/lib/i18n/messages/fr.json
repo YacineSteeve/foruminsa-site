@@ -80,6 +80,9 @@
         "4A": "4ème Année",
         "5A": "5ème Année"
     },
+    "HomePage": {
+        "logoAlt": "Logo du Forum INSA"
+    },
     "CompaniesPage": {
         "title": "Entreprises",
         "description": "Découvrez toutes les prestigieuses entreprises qui participent au Forum. Rencontrez les recruteurs, explorez les opportunités de stage et d'emploi, et préparez-vous à faire briller votre profil !",
@@ -94,6 +97,7 @@
     "CompaniesList": {
         "cannotLoadCompanies": "Impossible de charger la liste des entreprises.",
         "noCompanies": "Aucune entreprise inscrite n'a été trouvée.",
+        "companyLogoAlt": "Logo de l'entreprise {companyName}",
         "companyGreenLabelDescription": "Votre coup de coeur en un clin d'oeil! Les entreprises possédant ce label sont celles qui s'engagent pour l'environnement et la durabilité en utilisant des modes de transport écologiques, et en ne fournissant pas de goodies."
     },
     "CompanyGreenLabel": {
@@ -120,6 +124,7 @@
     },
     "CompanyDetailsPage": {
         "cannotLoadCompany": "Impossible de charger les détails de l'entreprise.",
+        "companyLogoAlt": "Logo de l'entreprise {companyName}",
         "about": "À propos",
         "sectors": "Secteurs d'activité",
         "wantedSpecialities": "Spécialités recherchées",
@@ -195,7 +200,8 @@
     },
     "FooterLanguageSelector": {
         "label": "Choisir une langue",
-        "noOptions": "Aucune option."
+        "noOptions": "Aucune option.",
+        "countryFlagAlt": "Drapeau de {countryName}"
     },
     "ScrollToTopButton": {
         "ariaLabel": "Revenir en haut",

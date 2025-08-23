@@ -219,7 +219,7 @@ const FooterLanguageSelector: FunctionComponent = () => {
                         <Avatar
                             showFallback
                             size="sm"
-                            alt={metadata.countryName}
+                            alt={t('countryFlagAlt', { countryName: metadata.countryName })}
                             src={`https://flagcdn.com/${metadata.countryCode.toLowerCase()}.svg`}
                         />
                     }

@@ -1,5 +1,5 @@
 import { SPECIALITIES, STUDY_LEVELS } from '@lib/constants/core';
-import type { Speciality, StudyLevel } from '@lib/middlewares/types';
+import type { Speciality, StudyLevel } from '@lib/types/core';
 import type { CompanyEntity, SocialLinkEntity } from '@lib/types/entities';
 
 const isSpeciality = (value: string): value is Speciality => {

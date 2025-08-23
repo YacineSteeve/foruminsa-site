@@ -2,7 +2,7 @@ import { CompaniesStats } from '@components/companies/CompaniesStats';
 import { CompaniesStatsSkeleton } from '@components/companies/CompaniesStatsSkeleton';
 import { SPECIALITIES, STUDY_LEVELS } from '@lib/constants/core';
 import { COUNTRY_CODES } from '@lib/constants/countries';
-import type { CountryCode, Speciality, StudyLevel } from '@lib/middlewares/types';
+import type { CountryCode, Speciality, StudyLevel } from '@lib/types/core';
 import type { CompaniesFilters } from '@lib/types/dtos';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';

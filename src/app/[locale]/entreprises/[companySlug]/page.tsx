@@ -122,7 +122,7 @@ const CompanyDetailsPageContent: FunctionComponent<CompanyDetailsPageContentProp
                     <div className="relative size-40 md:size-60 shadow-lg rounded-2xl overflow-hidden bg-white">
                         <Image
                             src={company.logoUrl}
-                            alt={company.name}
+                            alt={t('companyLogoAlt', { companyName: company.name })}
                             fill
                             priority
                             quality={100}

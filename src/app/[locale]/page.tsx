@@ -1,8 +1,11 @@
 import { APP_COLORS } from '@lib/constants/ui';
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 
 // The landing page of the website
-export default function HomePage() {
+export default async function HomePage() {
+    const t = await getTranslations('HomePage');
+    
     return (
         <div className="w-full min-h-screen">
             <section className="flex justify-between">
@@ -23,7 +26,7 @@ export default function HomePage() {
                     </svg>
                     <Image
                         src="/logo_square.png"
-                        alt="Logo du Forum INSA"
+                        alt={t('logoAlt')}
                         width={800}
                         height={800}
                         quality={100}
@@ -31,6 +34,9 @@ export default function HomePage() {
                         className="absolute right-0"
                     />
                 </div>
+            </section>
+            <section>
+                {/* Bandeau logos */}
             </section>
         </div>
     );
