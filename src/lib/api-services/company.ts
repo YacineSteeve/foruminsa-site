@@ -4,7 +4,7 @@ import type {
     CityListEntity,
     CompanyEntity,
     CompaniesStatsEntity,
-    PaginatedCompaniesEntity,
+    PaginatedCompaniesEntity, CompanyLogoListEntity,
 } from '@lib/types/entities';
 
 export class CompanyService {
@@ -22,5 +22,9 @@ export class CompanyService {
 
     public static async getAllCompaniesCities() {
         return BaseService.get<CityListEntity>('companies/cities');
+    }
+    
+    public static async getAllCompanyLogos() {
+        return BaseService.get<CompanyLogoListEntity>('companies/logos');
     }
 }

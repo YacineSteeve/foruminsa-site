@@ -40,13 +40,17 @@ const nextConfig: NextConfig = {
             loader: 'node-loader',
         });
         
-        // Optional: prevent bundling prisma/libsql completely
+        // Prevent bundling some packages
         if (isServer) {
-            config.externals.push({
-                '@prisma/client': 'commonjs @prisma/client',
-                '.prisma/client': 'commonjs .prisma/client',
-                '@libsql/client': 'commonjs @libsql/client',
-            });
+            config.externals.push(
+                Object.fromEntries([
+                    '@prisma/client',
+                    '.prisma/client',
+                    '@libsql/client',
+                    'handlebars',
+                    'express-handlebars'
+                ].map((pkg) => [pkg, `commonjs ${pkg}`])),
+            );
         }
         
         return config;

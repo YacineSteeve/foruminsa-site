@@ -83,6 +83,9 @@
     "HomePage": {
         "logoAlt": "Logo du Forum INSA"
     },
+    "CompaniesCarouselContent": {
+        "companyLogoAlt": "Logo de l'entreprise {companyName}"
+    },
     "CompaniesPage": {
         "title": "Entreprises",
         "description": "Découvrez toutes les prestigieuses entreprises qui participent au Forum. Rencontrez les recruteurs, explorez les opportunités de stage et d'emploi, et préparez-vous à faire briller votre profil !",

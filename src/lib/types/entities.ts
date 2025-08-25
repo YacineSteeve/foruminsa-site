@@ -100,3 +100,10 @@ export const paginatedCompaniesEntitySchema = z.object({
 });
 
 export type PaginatedCompaniesEntity = z.infer<typeof paginatedCompaniesEntitySchema>;
+
+export const companyLogoListEntitySchema = z.array(
+    companyEntitySchema.pick({ logoUrl: true, name: true, id: true, slug: true }),
+    { error: 'mustBeAnArray' },
+);
+
+export type CompanyLogoListEntity = z.infer<typeof companyLogoListEntitySchema>;
