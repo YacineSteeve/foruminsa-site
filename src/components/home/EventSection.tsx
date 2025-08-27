@@ -9,26 +9,26 @@ export const EventSection: FunctionComponent = async () => {
     const t = await getTranslations('EventSection');
 
     return (
-        <section className="flex max-lg:flex-col justify-between gap-x-8 xl:gap-x-16 gap-y-24 lg:gap-y-32 w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 3xl:px-80 py-8 md:py-16 lg:*:flex-1">
+        <section className="flex max-lg:flex-col justify-between gap-x-8 xl:gap-x-16 gap-y-24 lg:gap-y-32 w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 3xl:px-80 pt-8 md:pt-16 pb-16 lg:pb-24 xl:pb-32 lg:*:flex-1">
             <div className="max-lg:flex max-lg:justify-center">
                 <div className="relative max-sm:-translate-x-18 sm:max-lg:-translate-x-20">
-                    <div className="relative w-52 sm:w-60 xl:w-72 3xl:w-80 h-90 sm:h-100 xl:h-110 3xl:h-120 shadow-md">
+                    <div className="relative w-52 sm:w-60 xl:w-72 3xl:w-80 h-90 sm:h-100 xl:h-110 3xl:h-120 shadow-md overflow-hidden">
                         <Image
                             src="/interview-papers.jpg"
                             alt={t('imageOneAlt')}
                             fill
                             sizes="100%,100%"
-                            className="object-cover object-center"
+                            className="object-cover object-center hover:scale-110 transition-transform duration-300"
                         />
                     </div>
                     <div className="absolute top-16 left-36 sm:left-40 xl:left-52 3xl:left-64">
-                        <div className="relative w-52 sm:w-60 xl:w-72 3xl:w-80 h-90 sm:h-100 xl:h-110 3xl:h-120 border-l-4 border-t-4 border-white">
+                        <div className="relative w-52 sm:w-60 xl:w-72 3xl:w-80 h-90 sm:h-100 xl:h-110 3xl:h-120 border-l-4 border-t-4 border-white overflow-hidden">
                             <Image
                                 src="/entretien2.jpg"
                                 alt={t('imageTwoAlt')}
                                 fill
                                 sizes="100%,100%"
-                                className="object-cover object-center"
+                                className="object-cover object-center hover:scale-110 transition-transform duration-300"
                             />
                         </div>
                     </div>

@@ -99,6 +99,14 @@
         "discoverEvent": "Découvrir l'événement",
         "exploreCompanies": "Explorer les entreprises"
     },
+    "CarbonFootprintSection": {
+        "title": "Un cadre respectueux de l'environnement",
+        "description": "Le Forum INSA s'engage pour un avenir durable en privilégiant les entreprises éco-responsables. Découvrez des entreprises labellisées, qui utilisent des transports verts et adoptent des pratiques respectueuses de l'environnement.",
+        "learnMore": "En savoir plus",
+        "imageOneAlt": "Image d'une personne plantant un arbre",
+        "imageTwoAlt": "Image de mains tenant un demi-globe avec des plantes",
+        "imageThreeAlt": "Image d'une voiture électrique en charge"
+    },
     "CompaniesCarouselContent": {
         "companyLogoAlt": "Logo de l'entreprise {companyName}"
     },

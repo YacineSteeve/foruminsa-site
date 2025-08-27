@@ -77,7 +77,7 @@ export const HeroSection: FunctionComponent = async () => {
                     height={800}
                     quality={100}
                     priority
-                    className="absolute right-0 scale-85"
+                    className="absolute right-0 scale-85 animate-float"
                 />
             </div>
         </section>

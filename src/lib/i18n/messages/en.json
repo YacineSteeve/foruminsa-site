@@ -99,6 +99,14 @@
         "discoverEvent": "Discover the event",
         "exploreCompanies": "Explore the companies"
     },
+    "CarbonFootprintSection": {
+        "title": "An environmentally friendly framework",
+        "description": "The INSA Forum is committed to a sustainable future by prioritizing eco-responsible companies. Discover labelled companies that use green transportation and adopt environmentally friendly practices.",
+        "learnMore": "Learn more",
+        "imageOneAlt": "Image of a person planting a tree",
+        "imageTwoAlt": "Image of hands holding a half-globe with plants",
+        "imageThreeAlt": "Image of an electric car charging"
+    },
     "CompaniesCarouselContent": {
         "companyLogoAlt": "Logo of the company {companyName}"
     },
