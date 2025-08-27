@@ -80,8 +80,24 @@
         "4A": "4th Year",
         "5A": "5th Year"
     },
-    "HomePage": {
-        "logoAlt": "Forum INSA Logo"
+    "HeroSection": {
+        "backgroundImageAlt": "Image of a group of people at a professional event",
+        "foregroundImageAlt": "Forum INSA Logo",
+        "titlePartOne": "Join",
+        "titlePartTwo": "The biggest student-company meeting",
+        "titlePartThree": "of INSA Toulouse",
+        "register": "Register !",
+        "discoverINSA": "Discover INSA Toulouse",
+        "eventDate": "On October 21, 2025",
+        "eventTime": "From 8 AM to 4 PM"
+    },
+    "EventSection": {
+        "imageOneAlt": "Image of paper documents on a table during an interview",
+        "imageTwoAlt": "Image of a person at a company booth, giving explanations to a group of students",
+        "title": "A unique opportunity to network",
+        "description": "Booths, conferences, workshops, and above all, Job Dating! Students? Meet the companies shaping the future, interact with their representatives, and discover new professional opportunities. Companies? Benefit from an exceptional showcase to hundreds of students, and find talents during this immersive experience.",
+        "discoverEvent": "Discover the event",
+        "exploreCompanies": "Explore the companies"
     },
     "CompaniesCarouselContent": {
         "companyLogoAlt": "Logo of the company {companyName}"

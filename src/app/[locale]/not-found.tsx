@@ -6,7 +6,7 @@ export default async function NotFound() {
     const t = await getTranslations('NotFoundPage');
 
     return (
-        <div className="flex justify-center w-full pt-40">
+        <div className="flex justify-center w-full py-40">
             <div className="flex flex-col items-center gap-8">
                 <Image
                     src="/not_found.svg"

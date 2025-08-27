@@ -6,7 +6,12 @@ import type { CompanyLogoListEntity } from '@lib/types/entities';
 import { cn } from '@lib/utils';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { Fragment, type FunctionComponent, type HTMLAttributes, type PropsWithChildren } from 'react';
+import {
+    Fragment,
+    type FunctionComponent,
+    type HTMLAttributes,
+    type PropsWithChildren,
+} from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -15,37 +20,37 @@ interface CompaniesCarouselContentProps {
     logos: CompanyLogoListEntity;
 }
 
-export const CompaniesCarouselContent: FunctionComponent<CompaniesCarouselContentProps> = ({ logos }) => {
+export const CompaniesCarouselContent: FunctionComponent<CompaniesCarouselContentProps> = ({
+    logos,
+}) => {
     const t = useTranslations('CompaniesCarouselContent');
-    
+
     return (
         <div className="flex items-center size-full bg-black">
             <CarouselVersionAdapter>
-                {
-                    logos.map((logo) => (
-                        <Link
-                            key={logo.id}
-                            href={`/entreprises/${logo.slug}`}
-                            className="size-fit"
+                {logos.map((logo) => (
+                    <Link
+                        key={logo.id}
+                        href={`/entreprises/${logo.slug}`}
+                        className="size-fit"
+                    >
+                        <Tooltip
+                            content={logo.name}
+                            placement="top"
+                            delay={300}
                         >
-                            <Tooltip
-                                content={logo.name}
-                                placement="top"
-                                delay={300}
-                            >
-                                <div className="relative size-20 md:size-24 lg:size-28 xl:size-32">
-                                    <Image
-                                        src={logo.logoUrl}
-                                        alt={t('companyLogoAlt', { companyName: logo.name })}
-                                        fill
-                                        sizes="100%,100%"
-                                        className="m-auto object-contain object-center"
-                                    />
-                                </div>
-                            </Tooltip>
-                        </Link>
-                    ))
-                }
+                            <div className="relative size-20 md:size-24 lg:size-28 xl:size-32">
+                                <Image
+                                    src={logo.logoUrl}
+                                    alt={t('companyLogoAlt', { companyName: logo.name })}
+                                    fill
+                                    sizes="100%,100%"
+                                    className="m-auto object-contain object-center"
+                                />
+                            </div>
+                        </Tooltip>
+                    </Link>
+                ))}
             </CarouselVersionAdapter>
         </div>
     );
@@ -79,15 +84,19 @@ const CarouselVersionAdapter: FunctionComponent<PropsWithChildren> = ({ children
                 {children}
             </CarouselVersion>
         </Fragment>
-    )
-}
+    );
+};
 
 interface CarouselVersionProps extends PropsWithChildren {
     slidesToShow: number;
     className: HTMLAttributes<HTMLDivElement>['className'];
 }
 
-const CarouselVersion: FunctionComponent<CarouselVersionProps> = ({ slidesToShow, className, children }) => {
+const CarouselVersion: FunctionComponent<CarouselVersionProps> = ({
+    slidesToShow,
+    className,
+    children,
+}) => {
     return (
         <div className={cn('w-full h-fit slider-container', className)}>
             <Slider
@@ -100,8 +109,8 @@ const CarouselVersion: FunctionComponent<CarouselVersionProps> = ({ slidesToShow
                 swipeToSlide
                 autoplay
                 centerMode
-                autoplaySpeed={1000}
-                speed={3000}
+                autoplaySpeed={500}
+                speed={2000}
                 arrows={false}
                 slidesToShow={slidesToShow}
             >

@@ -14,7 +14,7 @@
     },
     "NotFoundPage": {
         "title": "Oups !",
-        "description": "Désolé, la page que vous cherchez n&apos;existe pas.",
+        "description": "Désolé, la page que vous cherchez n'existe pas.",
         "imageDescription": "Le nombre 404 avec un soleil couchant en arrière-plan"
     },
     "ValidationErrors": {
@@ -80,8 +80,24 @@
         "4A": "4ème Année",
         "5A": "5ème Année"
     },
-    "HomePage": {
-        "logoAlt": "Logo du Forum INSA"
+    "HeroSection": {
+        "backgroundImageAlt": "Image d'un groupe de personnes lors d'un événement professionnel",
+        "foregroundImageAlt": "Logo du Forum INSA",
+        "titlePartOne": "Participez à",
+        "titlePartTwo": "La plus grande rencontre étudiants-entreprises",
+        "titlePartThree": "de l'INSA Toulouse",
+        "register": "Inscrivez-vous !",
+        "discoverINSA": "Découvrez l'INSA Toulouse",
+        "eventDate": "Le 21 Octobre 2025",
+        "eventTime": "De 8h à 16h"
+    },
+    "EventSection": {
+        "imageOneAlt": "Image de documents papiers sur une table pendant un entretien",
+        "imageTwoAlt": "Image d'une personne sur un stand entreprise, donnant des explications à un groupe d'étudiants",
+        "title": "Une occasion unique d'établir des liens",
+        "description": "Stands, conférences, ateliers, et surtout, Job Dating ! Étudiant ? Rencontrez les entreprises qui façonnent l'avenir, échangez avec leurs représentants et découvrez de nouvelles opportunités professionnelles. Entreprise ? Bénéficiez d'une vitrine exceptionnelle auprès de centaines d'étudiants, et dénichez des talents au cours de cette expérience immersive.",
+        "discoverEvent": "Découvrir l'événement",
+        "exploreCompanies": "Explorer les entreprises"
     },
     "CompaniesCarouselContent": {
         "companyLogoAlt": "Logo de l'entreprise {companyName}"

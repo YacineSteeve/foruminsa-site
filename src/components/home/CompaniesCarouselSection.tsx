@@ -7,37 +7,33 @@ import type { FunctionComponent, PropsWithChildren } from 'react';
 export const CompaniesCarouselSection: FunctionComponent = () => {
     return (
         <SuspenseBoundary
-            fallback={(
+            fallback={
                 <CompaniesCarouselWrapper>
                     <div className="flex-center size-full">
-                        <Loader/>
+                        <Loader />
                     </div>
                 </CompaniesCarouselWrapper>
-            )}
+            }
         >
-            <CompaniesCarousel/>
+            <CompaniesCarousel />
         </SuspenseBoundary>
     );
 };
 
 const CompaniesCarousel: FunctionComponent = async () => {
     const logos = await CompanyService.getAllCompanyLogos();
-    
+
     if (!logos || logos.length === 0) {
         return null;
     }
 
     return (
         <CompaniesCarouselWrapper>
-            <CompaniesCarouselContent logos={logos}/>
+            <CompaniesCarouselContent logos={logos} />
         </CompaniesCarouselWrapper>
     );
 };
 
 const CompaniesCarouselWrapper: FunctionComponent<PropsWithChildren> = ({ children }) => {
-    return (
-        <section className="w-full h-60 md:h-80 bg-default/50">
-            {children}
-        </section>
-    );
+    return <section className="w-full h-60 md:h-80 bg-default/50">{children}</section>;
 };
