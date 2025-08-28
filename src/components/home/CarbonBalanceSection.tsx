@@ -5,8 +5,8 @@ import Image from 'next/image';
 import type { FunctionComponent } from 'react';
 import { LuLeaf } from 'react-icons/lu';
 
-export const CarbonFootprintSection: FunctionComponent = async () => {
-    const t = await getTranslations('CarbonFootprintSection');
+export const CarbonBalanceSection: FunctionComponent = async () => {
+    const t = await getTranslations('CarbonBalanceSection');
 
     return (
         <section className="flex justify-evenly gap-8 w-full px-4 py-16 bg-black">

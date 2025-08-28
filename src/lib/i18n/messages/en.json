@@ -4,7 +4,10 @@
         "description": "The official website of the INSA Toulouse Forum, the must-attend event for students and companies.",
         "keywords": "INSA Forum, INSA Toulouse, Company Forum, Student Event, INSA Contact",
         "title": "Forum By INSA",
+        "eventPageTitle": "Event",
         "companiesPageTitle": "Companies",
+        "carbonBalancePageTitle": "Carbon Balance",
+        "solidarityFundPageTitle": "Solidarity Fund",
         "contactPageTitle": "Contact Us"
     },
     "ErrorPage": {
@@ -42,7 +45,7 @@
         "COMPANY_NOT_FOUND": "Company not found."
     },
     "Logo": {
-        "altText": "INSA Forum Logo"
+        "logoAlt": "INSA Forum Logo"
     },
     "Navigation": {
         "menu": "Menu",
@@ -69,7 +72,7 @@
         "GC": "Civil Engineering",
         "GM": "Mechanical Engineering",
         "GP": "Physical Engineering",
-        "GP3E": "Process, Water and Environment Engineering",
+        "GP3E": "Process, Water, Energy and Environment Engineering",
         "IR": "Computer Science and Networks",
         "MA": "Applied Mathematics"
     },
@@ -82,7 +85,7 @@
     },
     "HeroSection": {
         "backgroundImageAlt": "Image of a group of people at a professional event",
-        "foregroundImageAlt": "Forum INSA Logo",
+        "foregroundImageAlt": "Forum By INSA Logo",
         "titlePartOne": "Join",
         "titlePartTwo": "The biggest student-company meeting",
         "titlePartThree": "of INSA Toulouse",
@@ -99,13 +102,19 @@
         "discoverEvent": "Discover the event",
         "exploreCompanies": "Explore the companies"
     },
-    "CarbonFootprintSection": {
+    "CarbonBalanceSection": {
         "title": "An environmentally friendly framework",
         "description": "The INSA Forum is committed to a sustainable future by prioritizing eco-responsible companies. Discover labelled companies that use green transportation and adopt environmentally friendly practices.",
         "learnMore": "Learn more",
         "imageOneAlt": "Image of a person planting a tree",
         "imageTwoAlt": "Image of hands holding a half-globe with plants",
         "imageThreeAlt": "Image of an electric car charging"
+    },
+    "SolidarityFundSection": {
+        "title": "Supporting student initiatives",
+        "description": "The Solidarity Fund of the Forum By INSA aims to support student projects and assist them in their initiatives. Through crowdfunding, we help students thrive and bring their ideas to life.",
+        "learnMore": "Learn more about the Fund",
+        "imageAlt": "Image of a jar containing coins and a young plant"
     },
     "CompaniesCarouselContent": {
         "companyLogoAlt": "Logo of the company {companyName}"
@@ -172,6 +181,12 @@
         "hasNoGoodies": "Does not offer goodies",
         "yes": "Yes",
         "no": "No"
+    },
+    "SolidarityFundPage": {
+        "imageAlt": "Image of a person posing blocks on a surface resembling a website",
+        "title": "You are interested in the Solidarity Fund of the Forum By INSA?",
+        "description": "This page is under construction. Please come back later for more information on the Solidarity Fund, or contact us now.",
+        "askForMoreInformation": "Request more information"
     },
     "ContactPage": {
         "title": "Contact Us!",

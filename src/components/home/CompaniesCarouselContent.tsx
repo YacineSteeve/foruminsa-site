@@ -26,7 +26,7 @@ export const CompaniesCarouselContent: FunctionComponent<CompaniesCarouselConten
     const t = useTranslations('CompaniesCarouselContent');
 
     return (
-        <div className="flex items-center size-full bg-black">
+        <div className="flex items-center size-full">
             <CarouselVersionAdapter>
                 {logos.map((logo) => (
                     <Link

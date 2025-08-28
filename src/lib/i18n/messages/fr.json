@@ -1,10 +1,13 @@
 {
     "AppMetadata": {
-        "applicationName": "Site du Forum INSA",
-        "description": "Le site officiel du Forum INSA Toulouse, l'événement incontournable pour les étudiants et les entreprises.",
+        "applicationName": "Site du Forum By INSA",
+        "description": "Le site officiel du Forum By INSA, l'événement incontournable pour les étudiants et les entreprises.",
         "keywords": "Forum INSA, INSA Toulouse, Forum Entreprises, Événement Étudiant, Contact INSA",
         "title": "Forum By INSA",
+        "eventPageTitle": "Événement",
         "companiesPageTitle": "Entreprises",
+        "carbonBalancePageTitle": "Bilan Carbone",
+        "solidarityFundPageTitle": "Fonds de Solidarité",
         "contactPageTitle": "Contactez-nous"
     },
     "ErrorPage": {
@@ -42,7 +45,7 @@
         "COMPANY_NOT_FOUND": "Entreprise non trouvée."
     },
     "Logo": {
-        "altText": "Logo du Forum INSA"
+        "logoAlt": "Logo du Forum By INSA"
     },
     "Navigation": {
         "menu": "Menu",
@@ -69,7 +72,7 @@
         "GC": "Génie Civil",
         "GM": "Génie Mécanique",
         "GP": "Génie Physique",
-        "GP3E": "Génie des Procédés, Eau Et Environnement",
+        "GP3E": "Génie des Procédés, Eau, Énergie et Environnement",
         "IR": "Informatique et Réseaux",
         "MA": "Mathématiques Appliquées"
     },
@@ -82,7 +85,7 @@
     },
     "HeroSection": {
         "backgroundImageAlt": "Image d'un groupe de personnes lors d'un événement professionnel",
-        "foregroundImageAlt": "Logo du Forum INSA",
+        "foregroundImageAlt": "Logo du Forum By INSA",
         "titlePartOne": "Participez à",
         "titlePartTwo": "La plus grande rencontre étudiants-entreprises",
         "titlePartThree": "de l'INSA Toulouse",
@@ -99,13 +102,19 @@
         "discoverEvent": "Découvrir l'événement",
         "exploreCompanies": "Explorer les entreprises"
     },
-    "CarbonFootprintSection": {
+    "CarbonBalanceSection": {
         "title": "Un cadre respectueux de l'environnement",
-        "description": "Le Forum INSA s'engage pour un avenir durable en privilégiant les entreprises éco-responsables. Découvrez des entreprises labellisées, qui utilisent des transports verts et adoptent des pratiques respectueuses de l'environnement.",
+        "description": "Le Forum By INSA s'engage pour un avenir durable en privilégiant les entreprises éco-responsables. Découvrez des entreprises labellisées, qui utilisent des transports verts et adoptent des pratiques respectueuses de l'environnement.",
         "learnMore": "En savoir plus",
         "imageOneAlt": "Image d'une personne plantant un arbre",
         "imageTwoAlt": "Image de mains tenant un demi-globe avec des plantes",
         "imageThreeAlt": "Image d'une voiture électrique en charge"
+    },
+    "SolidarityFundSection": {
+        "title": "Soutenir les initiatives étudiantes",
+        "description": "Le Fonds de Solidarité du Forum By INSA vise à soutenir les projets des étudiants et à les accompagner dans leurs initiatives. À traver un financement participatif, nous aidons les étudiants à s'épanouir et à concrétiser leurs idées.",
+        "learnMore": "S'informer sur le Fond",
+        "imageAlt": "Image d'un bocal contenant des pièces de monnaie et une jeune plante"
     },
     "CompaniesCarouselContent": {
         "companyLogoAlt": "Logo de l'entreprise {companyName}"
@@ -173,6 +182,12 @@
         "yes": "Oui",
         "no": "Non"
     },
+    "SolidarityFundPage": {
+        "imageAlt": "Image d'une personne posant des briques sur une surface ressemblant à un site web",
+        "title": "Vous êtes intéressé par le Fonds de Solidarité du Forum By INSA ?",
+        "description": "Cette page est en cours de construction. Revenez bientôt pour plus d'informations sur le Fonds de Solidarité, ou contactez-nous dès maintenant.",
+        "askForMoreInformation": "Demander des informations"
+    },
     "ContactPage": {
         "title": "Contactez-nous!",
         "description": "Vous avez une question ou avez besoin d'aide? Notre équipe est là pour vous aider. Remplissez le formulaire ci-dessous conformément à votre besoin et nous reviendrons vers vous dans les plus brefs délais.",
@@ -213,7 +228,7 @@
         "on": "sur"
     },
     "Footer": {
-        "about": "Le Forum INSA est un événement annuel organisé par les étudiants de l'INSA Toulouse, visant à connecter les étudiants avec des entreprises et à promouvoir les opportunités professionnelles. Pour plus d'informations, contactez-nous via le formulaire de contact.",
+        "about": "Le Forum By INSA est un événement annuel organisé par les étudiants de l'INSA Toulouse, visant à connecter les étudiants avec des entreprises et à promouvoir les opportunités professionnelles. Pour plus d'informations, contactez-nous via le formulaire de contact.",
         "pages": "Pages",
         "contactUs": "Contactez-nous",
         "followUs": "Suivez-nous",

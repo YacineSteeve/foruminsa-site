@@ -42,7 +42,7 @@ export const MENU_ITEMS = [
     },
     {
         label: 'solidarityFund',
-        href: '/fond-de-solidarite',
+        href: '/fonds-de-solidarite',
     },
     {
         label: 'contact',
@@ -68,6 +68,7 @@ export const SOCIAL_LINK_TYPES = [
 
 export const URL_PARAMS = {
     email: 'email',
+    subject: 'subject',
     city: 'city',
     countryCode: 'countryCode',
     sector: 'sector',

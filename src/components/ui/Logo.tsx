@@ -12,7 +12,7 @@ export const Logo: FunctionComponent<LogoProps> = (props) => {
     return (
         <Image
             src="/logo_line.png"
-            alt={t('altText')}
+            alt={t('logoAlt')}
             width={256}
             height={44}
             {...props}

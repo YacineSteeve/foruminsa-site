@@ -29,6 +29,8 @@ export const ContactForm: FunctionComponent<ContactFormProps> = ({ locale = DEFA
     const searchParams = useSearchParams();
     const [data, setData] = useState<ContactData>({
         lang: locale,
+        email: searchParams.get(URL_PARAMS.email) ?? undefined,
+        subject: (searchParams.get(URL_PARAMS.subject) as ContactData['subject']) ?? undefined,
     } as ContactData);
     const { validate, validationErrors } = useValidation(contactDataSchema);
 
@@ -120,7 +122,6 @@ export const ContactForm: FunctionComponent<ContactFormProps> = ({ locale = DEFA
                     type="email"
                     isReadOnly={isMutating}
                     label={t('emailLabel')}
-                    defaultValue={searchParams.get(URL_PARAMS.email) ?? undefined}
                     value={data.email}
                     onChange={handleChange('email')}
                     onClear={handleClear('email')}

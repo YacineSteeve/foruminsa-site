@@ -35,5 +35,5 @@ const CompaniesCarousel: FunctionComponent = async () => {
 };
 
 const CompaniesCarouselWrapper: FunctionComponent<PropsWithChildren> = ({ children }) => {
-    return <section className="w-full h-60 md:h-80 bg-default/50">{children}</section>;
+    return <section className="w-full h-60 md:h-80 bg-black">{children}</section>;
 };
