@@ -14,6 +14,7 @@ export const HeroSection: FunctionComponent = async () => {
                 src="/entretien1.jpg"
                 alt={t('backgroundImageAlt')}
                 fill
+                sizes="100%,100%"
                 quality={100}
                 priority
                 className="object-cover object-center brightness-25"

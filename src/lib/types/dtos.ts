@@ -69,8 +69,10 @@ export const companiesFiltersSchema = z.object({
     sector: z.cuid2({ error: 'mustBeAValidId' }).nullish(),
     speciality: z.enum(SPECIALITIES, { error: 'mustBeAValidSpeciality' }).nullish(),
     studyLevel: z.enum(STUDY_LEVELS, { error: 'mustBeAValidStudyLevel' }).nullish(),
-    page: z.coerce.number().int().nonnegative().nullish(),
+    page: z.coerce.number().int().positive().nullish(),
+    pageSize: z.coerce.number().int().positive().nullish(),
     greenLabel: z.coerce.boolean({ error: 'mustBeABoolean' }).nullish(),
+    sortByCarbonFootprint: z.coerce.boolean({ error: 'mustBeABoolean' }).nullish(),
 });
 
 export type CompaniesFilters = z.infer<typeof companiesFiltersSchema>;

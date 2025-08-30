@@ -1,5 +1,6 @@
 import { Card } from '@heroui/card';
 import { Chip } from '@heroui/chip';
+import { Tooltip } from '@heroui/tooltip';
 import { Link } from '@lib/i18n/navigation';
 import type { CompanyEntity } from '@lib/types/entities';
 import type { Locale } from 'next-intl';
@@ -54,13 +55,30 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company, logo
                                     </Chip>
                                 ))}
                                 {company.sectors.length > SECTOR_LIMIT && (
-                                    <Chip
-                                        size="sm"
-                                        variant="flat"
-                                        className="text-sm text-black p-1 rounded-full"
+                                    <Tooltip
+                                        content={
+                                            <ul className="p-2 space-y-2 list-disc list-inside">
+                                                {company.sectors.map((sector) => (
+                                                    <li
+                                                        key={sector.id}
+                                                        className="text-base"
+                                                    >
+                                                        {locale === 'en'
+                                                            ? sector.nameEN
+                                                            : sector.nameFR}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        }
                                     >
-                                        {`+${company.sectors.length - SECTOR_LIMIT}`}
-                                    </Chip>
+                                        <Chip
+                                            size="sm"
+                                            variant="flat"
+                                            className="text-sm text-black p-1 rounded-full"
+                                        >
+                                            {`+${company.sectors.length - SECTOR_LIMIT}`}
+                                        </Chip>
+                                    </Tooltip>
                                 )}
                             </div>
                         )}

@@ -1,4 +1,4 @@
-import { COMPANIES_PAGE_SIZE, URL_PARAMS } from '@lib/constants/core';
+import { URL_PARAMS } from '@lib/constants/core';
 import { withMiddlewares } from '@lib/middlewares';
 import { prismaClient } from '@lib/prisma/client';
 import { type CompaniesFilters, companiesFiltersSchema } from '@lib/types/dtos';
@@ -22,7 +22,9 @@ const GET = withMiddlewares(
                 speciality: searchParams.get(URL_PARAMS.speciality),
                 studyLevel: searchParams.get(URL_PARAMS.studyLevel),
                 page: searchParams.get(URL_PARAMS.page),
+                pageSize: searchParams.get(URL_PARAMS.pageSize),
                 greenLabel: searchParams.get(URL_PARAMS.greenLabel),
+                sortByCarbonFootprint: searchParams.get(URL_PARAMS.sortByCarbonFootprint),
             });
         } catch (error) {
             return new ApiError(
@@ -46,6 +48,7 @@ const GET = withMiddlewares(
         }
 
         const page = query.page ?? 1;
+        const pageSize = query.pageSize ?? 10;
 
         const filter: Prisma.CompanyFindManyArgs['where'] = {
             city: query.city ?? undefined,
@@ -64,8 +67,13 @@ const GET = withMiddlewares(
             const [companies, companiesCount] = await Promise.all([
                 prismaClient.company.findMany({
                     where: filter,
-                    skip: (page - 1) * COMPANIES_PAGE_SIZE,
-                    take: COMPANIES_PAGE_SIZE,
+                    skip: (page - 1) * pageSize,
+                    take: pageSize,
+                    orderBy: query.sortByCarbonFootprint
+                        ? {
+                              carbonFootprint: Prisma.SortOrder.asc,
+                          }
+                        : undefined,
                     include: {
                         sectors: {
                             select: {
@@ -101,7 +109,7 @@ const GET = withMiddlewares(
                     data: companies,
                     totalElements: companiesCount,
                     page,
-                    pageSize: COMPANIES_PAGE_SIZE,
+                    pageSize,
                 }),
             );
         } catch (error) {

@@ -10,7 +10,14 @@ import { Link, usePathname } from '@lib/i18n/navigation';
 import type { MenuItem } from '@lib/types/core';
 import { cn } from '@lib/utils';
 import { useTranslations } from 'next-intl';
-import { Fragment, type FunctionComponent, useCallback, useEffect, useState } from 'react';
+import {
+    Fragment,
+    type FunctionComponent,
+    type HTMLAttributes,
+    useCallback,
+    useEffect,
+    useState,
+} from 'react';
 import { RiMenuFill } from 'react-icons/ri';
 
 export const Header: FunctionComponent = () => {
@@ -89,6 +96,10 @@ const Menu: FunctionComponent = () => {
         setIsDrawerOpen((prev) => !prev);
     }, []);
 
+    const handleDrawerClose = useCallback(() => {
+        setIsDrawerOpen(false);
+    }, []);
+
     return (
         <Fragment>
             <Button
@@ -119,6 +130,7 @@ const Menu: FunctionComponent = () => {
                                         href: item.href,
                                     }}
                                     isActive={activeRoute === item.href}
+                                    onClick={handleDrawerClose}
                                 />
                             ))}
                         </nav>
@@ -148,12 +160,14 @@ const Menu: FunctionComponent = () => {
 interface MenuLinkProps {
     item: MenuItem;
     isActive: boolean;
+    onClick?: HTMLAttributes<HTMLAnchorElement>['onClick'];
 }
 
-const MenuLink: FunctionComponent<MenuLinkProps> = ({ item, isActive }) => {
+const MenuLink: FunctionComponent<MenuLinkProps> = ({ item, isActive, onClick }) => {
     return (
         <Link
             href={item.href}
+            onClick={onClick}
             className="relative"
         >
             <p

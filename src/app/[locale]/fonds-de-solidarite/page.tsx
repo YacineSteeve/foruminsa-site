@@ -25,7 +25,6 @@ export default async function SolidarityFundPage() {
                 alt={t('imageAlt')}
                 width={751}
                 height={669}
-                quality={100}
                 priority
                 className="h-[50vh]"
             />

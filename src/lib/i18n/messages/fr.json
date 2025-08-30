@@ -182,6 +182,34 @@
         "yes": "Oui",
         "no": "Non"
     },
+    "CarbonBalancePage": {
+        "imageOneAlt": "Image de mains tenant un demi-globe avec des plantes",
+        "imageTwoAlt": "Image abstraite représentant des feuilles de données pointant vers différents éléments de l'environnement",
+        "title": "Bilan Carbone du Forum By INSA 2025",
+        "description": "Nous avons à coeur d'organiser un Forum durable, dans un cadre respectueux de l'environnement et de la société. Découvrez l'impact environnemental de notre événement à travers le bilan carbone des entreprises participantes.",
+        "methodology": "Une méthodologie de calcul rigoureuse",
+        "methodologyDescription": "Le bilan carbone a été réalisé en suivant la méthodologie officielle de l'ADEME, prenant en compte les émissions directes et indirectes liées à l'organisation du Forum. Nous avons collecté des données précises sur les déplacements, la consommation énergétique, les déchets générés, et bien plus encore.",
+        "companiesRanking": "Classement des entreprises",
+        "companiesRankingDescription": "Découvrez le classement des entreprises participantes au Forum By INSA 2025, basé sur leur empreinte carbone totale (en tonnes de CO2 équivalent).",
+        "theForumGreenLabel": "Le label vert du Forum",
+        "theForumGreenLabelDescription": "Le label vert est attribué aux entreprises qui démontrent un engagement fort envers la durabilité environnementale. Pour obtenir ce label, les entreprises doivent privilégier des modes de transport écologiques pour leurs déplacements, minimiser leur production de déchets en évitant les goodies, et adopter des pratiques respectueuses de l'environnement dans toutes leurs activités liées au Forum.",
+        "ourPartner": "Notre partenaire",
+        "ourPartnerDescription": "CarboScope nous accompagne dans le calcul précis des émissions carbone de chaque entreprise participante, en utilisant une méthodologie certifiée et des données actualisées. Nous sommes fiers de collaborer avec eux pour garantir la fiabilité de notre bilan carbone."
+    },
+    "CarbonBalanceRankingTable": {
+        "tableDescription": "Tableau de classement des entreprises par empreinte carbone",
+        "yes": "Oui",
+        "no": "Non",
+        "companyLogoAlt": "Logo de l'entreprise {companyName}",
+        "noCompanies": "Aucune entreprise inscrite n'a été trouvée.",
+        "rank": "Rang",
+        "company": "Entreprise",
+        "carbonFootprint": "Empreinte Carbone",
+        "greenTransportation": "Transport Écologique",
+        "withoutGoodies": "Sans Goodies",
+        "greenLabel": "Label Vert",
+        "greenLabelOnly": "Uniquement les entreprises labellisées"
+    },
     "SolidarityFundPage": {
         "imageAlt": "Image d'une personne posant des briques sur une surface ressemblant à un site web",
         "title": "Vous êtes intéressé par le Fonds de Solidarité du Forum By INSA ?",
@@ -224,7 +252,7 @@
     "JobteaserSection": {
         "imageAlt": "Image d'un groupe de personnes suivant une conférence",
         "jobteaserLogoAlt": "Logo de Jobteaser",
-        "registerNow": "Inscrivez-vous dès maintenant",
+        "registerNow": "Inscrivez-vous au Forum",
         "on": "sur"
     },
     "Footer": {

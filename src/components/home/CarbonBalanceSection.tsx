@@ -10,7 +10,7 @@ export const CarbonBalanceSection: FunctionComponent = async () => {
 
     return (
         <section className="flex justify-evenly gap-8 w-full px-4 py-16 bg-black">
-            <div className="max-lg:hidden relative w-80 aspect-square">
+            <div className="max-lg:hidden relative size-80">
                 <Image
                     src="/ecology.svg"
                     alt={t('imageOneAlt')}
@@ -20,7 +20,7 @@ export const CarbonBalanceSection: FunctionComponent = async () => {
                 />
             </div>
             <div className="flex flex-col items-center gap-8 lg:w-2/5">
-                <div className="relative w-60 aspect-square">
+                <div className="relative size-60">
                     <Image
                         src="/ecology2.svg"
                         alt={t('imageTwoAlt')}
@@ -46,7 +46,7 @@ export const CarbonBalanceSection: FunctionComponent = async () => {
                     </Link>
                 </div>
             </div>
-            <div className="max-lg:hidden relative w-80 aspect-square">
+            <div className="max-lg:hidden relative size-80">
                 <Image
                     src="/electric-car.svg"
                     alt={t('imageThreeAlt')}

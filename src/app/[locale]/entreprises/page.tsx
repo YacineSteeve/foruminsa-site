@@ -65,6 +65,7 @@ export default async function CompaniesPage({ searchParams }: CompaniesPageProps
                     src="/entretien_dos.jpg"
                     alt={t('altText')}
                     fill
+                    sizes="100%,100%"
                     priority
                     quality={100}
                     className="object-cover object-center brightness-50"

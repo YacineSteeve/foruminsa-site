@@ -75,11 +75,15 @@ export const URL_PARAMS = {
     speciality: 'speciality',
     studyLevel: 'studyLevel',
     page: 'page',
+    pageSize: 'pageSize',
     greenLabel: 'greenLabel',
+    sortByCarbonFootprint: 'sortByCarbonFootprint',
 } as const;
 
 export const DEFAULT_ERROR_MESSAGE = 'SOMETHING_WENT_WRONG' as const;
 
 export const PASSWORD_HASHING_ROUNDS = 10 as const;
 
-export const COMPANIES_PAGE_SIZE = 18 as const;
+export const COMPANIES_LIST_PAGE_SIZE = 18 as const;
+
+export const COMPANIES_RANKING_PAGE_SIZE = 10 as const;

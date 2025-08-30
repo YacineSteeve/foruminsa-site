@@ -13,6 +13,7 @@ export const JobteaserSection: FunctionComponent = async () => {
                 src="/conference-sit.jpg"
                 alt={t('imageAlt')}
                 fill
+                sizes="100%,100%"
                 quality={100}
                 className="object-cover object-center brightness-50"
             />

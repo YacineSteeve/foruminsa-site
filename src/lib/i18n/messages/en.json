@@ -182,6 +182,34 @@
         "yes": "Yes",
         "no": "No"
     },
+    "CarbonBalancePage": {
+        "imageOneAlt": "Image of hands holding a half-globe with plants",
+        "imageTwoAlt": "Abstract image representing data sheets pointing to different elements of the environment",
+        "title": "Carbon Balance of the Forum By INSA 2025",
+        "description": "We are committed to organizing a sustainable Forum, in an environmentally and socially responsible manner. Discover the environmental impact of our event through the carbon footprint of the participating companies.",
+        "methodology": "A rigorous calculation methodology",
+        "methodologyDescription": "The carbon footprint was carried out following the official ADEME methodology, taking into account direct and indirect emissions related to the organization of the Forum. We collected precise data on travel, energy consumption, waste generated, and much more.",
+        "companiesRanking": "Companies Ranking",
+        "companiesRankingDescription": "Discover the ranking of companies participating in the Forum By INSA 2025, based on their total carbon footprint (in tons of CO2 equivalent).",
+        "theForumGreenLabel": "The Forum Green Label",
+        "theForumGreenLabelDescription": "The green label is awarded to companies that demonstrate a strong commitment to environmental sustainability. To obtain this label, companies must prioritize eco-friendly transportation methods for their travel, minimize their waste production by avoiding goodies, and adopt environmentally friendly practices in all their activities related to the Forum.",
+        "ourPartner": "Our Partner",
+        "ourPartnerDescription": "CarboScope supports us in the precise calculation of the carbon emissions of each participating company, using a certified methodology and up-to-date data. We are proud to collaborate with them to ensure the reliability of our carbon footprint."
+    },
+    "CarbonBalanceRankingTable": {
+        "tableDescription": "Ranking of companies by carbon footprint",
+        "yes": "Yes",
+        "no": "No",
+        "companyLogoAlt": "Logo of the company {companyName}",
+        "noCompanies": "No registered company has been found.",
+        "rank": "Rank",
+        "company": "Company",
+        "carbonFootprint": "Carbon Footprint",
+        "greenTransportation": "Green Transportation",
+        "withoutGoodies": "Without Goodies",
+        "greenLabel": "Green Label",
+        "greenLabelOnly": "Labelled companies only"
+    },
     "SolidarityFundPage": {
         "imageAlt": "Image of a person posing blocks on a surface resembling a website",
         "title": "You are interested in the Solidarity Fund of the Forum By INSA?",
@@ -224,7 +252,7 @@
     "JobteaserSection": {
         "imageAlt": "Image of a group of people following a conference",
         "jobteaserLogoAlt": "Jobteaser Logo",
-        "registerNow": "Register right now",
+        "registerNow": "Register to the Forum",
         "on": "on"
     },
     "Footer": {

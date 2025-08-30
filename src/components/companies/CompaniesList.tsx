@@ -5,6 +5,7 @@ import { CompanyCard } from '@components/companies/CompanyCard';
 import { CompanyGreenLabel } from '@components/companies/CompanyGreenLabel';
 import { Alert } from '@heroui/alert';
 import { CompanyService } from '@lib/api-services';
+import { COMPANIES_LIST_PAGE_SIZE } from '@lib/constants/core';
 import type { CompaniesFilters } from '@lib/types/dtos';
 import { hasGreenLabel } from '@lib/utils';
 import { getLocale, getTranslations } from 'next-intl/server';
@@ -18,7 +19,10 @@ interface CompaniesListProps {
 export const CompaniesList: FunctionComponent<CompaniesListProps> = async ({ filters }) => {
     const t = await getTranslations('CompaniesList');
     const locale = await getLocale();
-    const paginatedCompanies = await CompanyService.getAllCompanies(filters);
+    const paginatedCompanies = await CompanyService.getAllCompanies({
+        ...filters,
+        pageSize: COMPANIES_LIST_PAGE_SIZE,
+    });
 
     if (!paginatedCompanies) {
         return (
@@ -72,7 +76,8 @@ export const CompaniesList: FunctionComponent<CompaniesListProps> = async ({ fil
                         <div className="flex items-center justify-end gap-4 md:gap-8 max-md:w-full md:col-span-2 xl:col-span-3">
                             <CompaniesPagination
                                 totalPages={Math.ceil(
-                                    paginatedCompanies.totalElements / paginatedCompanies.pageSize,
+                                    paginatedCompanies.totalElements /
+                                        Math.max(paginatedCompanies.pageSize, 1),
                                 )}
                             />
                             <CompaniesFiltersButton popupPlacement="left-end" />

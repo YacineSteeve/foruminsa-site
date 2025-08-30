@@ -25,7 +25,6 @@ export default async function ContactPage() {
                         alt={t('imageAlt')}
                         width={600}
                         height={600}
-                        quality={100}
                         priority
                     />
                 </div>

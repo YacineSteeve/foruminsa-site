@@ -15,7 +15,6 @@ export const BrochureSection: FunctionComponent = async () => {
                 alt={t('imageAlt')}
                 width={284}
                 height={402}
-                quality={100}
                 className="shadow-lg border border-default/25"
             />
             <Link

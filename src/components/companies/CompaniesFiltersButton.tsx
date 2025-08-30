@@ -2,10 +2,9 @@
 
 import { Badge } from '@heroui/badge';
 import { Button } from '@heroui/button';
-import { Popover, PopoverContent, PopoverTrigger } from '@heroui/popover';
-import type { PopoverProps, SelectProps, SwitchProps } from '@heroui/react';
-import { Select, SelectItem } from '@heroui/select';
-import { Switch } from '@heroui/switch';
+import { Popover, PopoverContent, PopoverTrigger, type PopoverProps } from '@heroui/popover';
+import { Select, SelectItem, type SelectProps } from '@heroui/select';
+import { Switch, type SwitchProps } from '@heroui/switch';
 import { CompanyService, SectorService } from '@lib/api-services';
 import { COUNTRIES } from '@lib/constants/countries';
 import { SPECIALITIES, STUDY_LEVELS, URL_PARAMS } from '@lib/constants/core';
@@ -28,10 +27,9 @@ type FilterOption<T> = {
 };
 
 type FiltersValues = {
-    [K in keyof Required<Omit<CompaniesFilters, 'page' | 'greenLabel'>>]: Exclude<
-        SelectProps['selectedKeys'],
-        'all'
-    >;
+    [K in keyof Required<
+        Omit<CompaniesFilters, 'page' | 'pageSize' | 'sortByCarbonFootprint' | 'greenLabel'>
+    >]: Exclude<SelectProps['selectedKeys'], 'all'>;
 } & {
     [K in keyof Required<Pick<CompaniesFilters, 'greenLabel'>>]: SwitchProps['isSelected'];
 };

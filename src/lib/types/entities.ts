@@ -95,8 +95,8 @@ export type CompanyEntity = z.infer<typeof companyEntitySchema>;
 export const paginatedCompaniesEntitySchema = z.object({
     data: z.array(companyEntitySchema, { error: 'mustBeAnArray' }),
     totalElements: z.int().nonnegative(),
-    page: z.int().nonnegative(),
-    pageSize: z.int({ error: 'mustBeAnInteger' }).nonnegative(),
+    page: z.int().positive(),
+    pageSize: z.int({ error: 'mustBeAnInteger' }).positive(),
 });
 
 export type PaginatedCompaniesEntity = z.infer<typeof paginatedCompaniesEntitySchema>;
