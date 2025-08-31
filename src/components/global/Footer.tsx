@@ -4,17 +4,15 @@ import { ScrollToTopButton } from '@components/global/ScrollToTopButton';
 import { Logo } from '@components/ui/Logo';
 import { Avatar } from '@heroui/avatar';
 import { Button } from '@heroui/button';
-import { Form } from '@heroui/form';
+import { Form, type FormProps } from '@heroui/form';
 import { Input } from '@heroui/input';
-import { Select, SelectItem } from '@heroui/select';
+import { Select, SelectItem, type SelectProps } from '@heroui/select';
 import { LANGUAGE_METADATA, MENU_ITEMS, URL_PARAMS } from '@lib/constants/core';
 import { FORUM_SOCIAL_LINKS } from '@lib/constants/ui';
 import { useInView } from '@lib/hooks';
 import { Link, usePathname, useRouter } from '@lib/i18n/navigation';
 import { type Locale, useLocale, useTranslations } from 'next-intl';
 import {
-    type ChangeEventHandler,
-    type FormEventHandler,
     Fragment,
     type FunctionComponent,
     type PropsWithChildren,
@@ -97,7 +95,7 @@ const FooterContactForm: FunctionComponent = () => {
     const router = useRouter();
     const t = useTranslations('FooterContactForm');
 
-    const handleSubmit = useCallback<FormEventHandler<HTMLFormElement>>(
+    const handleSubmit = useCallback<NonNullable<FormProps['onSubmit']>>(
         (event) => {
             event.preventDefault();
 
@@ -182,7 +180,7 @@ const FooterLanguageSelector: FunctionComponent = () => {
     const locale = useLocale();
     const t = useTranslations('FooterLanguageSelector');
 
-    const handleLanguageChange = useCallback<ChangeEventHandler<HTMLSelectElement>>(
+    const handleLanguageChange = useCallback<NonNullable<SelectProps['onChange']>>(
         (event) => {
             const locale = event.target.value as Locale;
 

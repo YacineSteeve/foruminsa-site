@@ -28,7 +28,7 @@ type FilterOption<T> = {
 
 type FiltersValues = {
     [K in keyof Required<
-        Omit<CompaniesFilters, 'page' | 'pageSize' | 'sortByCarbonFootprint' | 'greenLabel'>
+        Pick<CompaniesFilters, 'city' | 'countryCode' | 'sector' | 'speciality' | 'studyLevel'>
     >]: Exclude<SelectProps['selectedKeys'], 'all'>;
 } & {
     [K in keyof Required<Pick<CompaniesFilters, 'greenLabel'>>]: SwitchProps['isSelected'];
@@ -175,7 +175,10 @@ const FiltersContent: FunctionComponent<FiltersContentProps> = ({
 
     const handleSelectChange = useCallback<
         (
-            key: keyof Required<Omit<CompaniesFilters, 'greenLabel'>>,
+            key: keyof Pick<
+                CompaniesFilters,
+                'city' | 'countryCode' | 'sector' | 'speciality' | 'studyLevel'
+            >,
         ) => ChangeEventHandler<HTMLSelectElement>
     >(
         (key) => (event) => {

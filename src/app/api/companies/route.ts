@@ -16,6 +16,7 @@ const GET = withMiddlewares(
 
         try {
             query = companiesFiltersSchema.parse({
+                search: searchParams.get(URL_PARAMS.search),
                 city: searchParams.get(URL_PARAMS.city),
                 countryCode: searchParams.get(URL_PARAMS.countryCode),
                 sector: searchParams.get(URL_PARAMS.sector),
@@ -51,6 +52,11 @@ const GET = withMiddlewares(
         const pageSize = query.pageSize ?? 10;
 
         const filter: Prisma.CompanyFindManyArgs['where'] = {
+            name: query.search
+                ? {
+                      contains: query.search,
+                  }
+                : undefined,
             city: query.city ?? undefined,
             countryCode: query.countryCode ?? undefined,
             sectors: query.sector ? { some: { id: query.sector } } : undefined,

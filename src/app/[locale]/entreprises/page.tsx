@@ -32,6 +32,7 @@ export default async function CompaniesPage({ searchParams }: CompaniesPageProps
     const filtersParams = await searchParams;
 
     const filters: CompaniesFilters = {
+        search: !Array.isArray(filtersParams.search) ? filtersParams.search : undefined,
         page: typeof filtersParams.page === 'string' ? parseInt(filtersParams.page, 10) : undefined,
         sector: !Array.isArray(filtersParams.sector) ? filtersParams.sector : undefined,
         city: !Array.isArray(filtersParams.city) ? filtersParams.city : undefined,

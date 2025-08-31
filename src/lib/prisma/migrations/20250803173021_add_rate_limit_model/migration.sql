@@ -1,8 +1,0 @@
--- CreateTable
-CREATE TABLE "RateLimit" (
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
-    "key" TEXT NOT NULL PRIMARY KEY,
-    "points" INTEGER NOT NULL DEFAULT 0,
-    "expire" DATETIME
-);

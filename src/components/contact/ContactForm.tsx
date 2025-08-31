@@ -1,9 +1,9 @@
 'use client';
 
 import { Button } from '@heroui/button';
-import { Form } from '@heroui/form';
-import { Input, Textarea } from '@heroui/input';
-import { Select, SelectItem } from '@heroui/select';
+import { Form, type FormProps } from '@heroui/form';
+import { Input, Textarea, type InputProps, type TextAreaProps } from '@heroui/input';
+import { Select, SelectItem, type SelectProps } from '@heroui/select';
 import { ContactService } from '@lib/api-services';
 import { CONTACT_SUBJECTS, DEFAULT_LANGUAGE, URL_PARAMS } from '@lib/constants/core';
 import { useMutation, useValidation } from '@lib/hooks';
@@ -11,13 +11,7 @@ import { type ContactData, contactDataSchema } from '@lib/types/dtos';
 import { toast } from '@lib/utils';
 import { type Locale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
-import {
-    type ChangeEventHandler,
-    type FormEventHandler,
-    type FunctionComponent,
-    useCallback,
-    useState,
-} from 'react';
+import { type FunctionComponent, useCallback, useState } from 'react';
 import { RiSendPlaneFill } from 'react-icons/ri';
 
 interface ContactFormProps {
@@ -44,7 +38,9 @@ export const ContactForm: FunctionComponent<ContactFormProps> = ({ locale = DEFA
     const handleChange = useCallback<
         (
             key: keyof ContactData,
-        ) => ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+        ) => NonNullable<
+            InputProps['onChange'] & TextAreaProps['onChange'] & SelectProps['onChange']
+        >
     >(
         (key) => (event) => {
             setData((prevData) => ({
@@ -55,7 +51,7 @@ export const ContactForm: FunctionComponent<ContactFormProps> = ({ locale = DEFA
         [],
     );
 
-    const handleClear = useCallback<(key: keyof ContactData) => VoidFunction>(
+    const handleClear = useCallback<(key: keyof ContactData) => NonNullable<InputProps['onClear']>>(
         (key) => () => {
             setData((prevData) => ({
                 ...prevData,
@@ -65,7 +61,7 @@ export const ContactForm: FunctionComponent<ContactFormProps> = ({ locale = DEFA
         [],
     );
 
-    const handleSubmit = useCallback<FormEventHandler<HTMLFormElement>>(
+    const handleSubmit = useCallback<NonNullable<FormProps['onSubmit']>>(
         async (event) => {
             event.preventDefault();
 

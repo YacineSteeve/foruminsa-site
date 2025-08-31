@@ -1,6 +1,7 @@
 'use client';
 
 import { CompaniesPagination } from '@components/companies/CompaniesPagination';
+import { CompaniesSearchInput } from '@components/companies/CompaniesSearchInput';
 import { Loader } from '@components/ui/Loader';
 import { Chip } from '@heroui/chip';
 import { Switch, type SwitchProps } from '@heroui/switch';
@@ -18,7 +19,7 @@ import { COMPANIES_RANKING_PAGE_SIZE, URL_PARAMS } from '@lib/constants/core';
 import { COUNTRIES } from '@lib/constants/countries';
 import { useRequest, useSearchParamsChange } from '@lib/hooks';
 import { useRouter } from '@lib/i18n/navigation';
-import { hasGreenLabel } from '@lib/utils';
+import { cn, hasGreenLabel } from '@lib/utils';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { type FunctionComponent, useCallback, useMemo } from 'react';
@@ -30,28 +31,30 @@ export const CarbonBalanceRankingTable: FunctionComponent = () => {
     const router = useRouter();
     const { searchParams, changeSearchParam } = useSearchParamsChange();
 
-    const page = useMemo(() => {
+    const filters = useMemo(() => {
         const pageParam = searchParams.get(URL_PARAMS.page);
+        const pageNumber = pageParam ? parseInt(pageParam, 10) : 1;
+        const page = isNaN(pageNumber) || pageNumber < 1 ? 1 : pageNumber;
 
-        if (!pageParam) {
-            return undefined;
-        }
+        const greenLabelParam = searchParams.get(URL_PARAMS.greenLabel);
+        const greenLabelOnly = greenLabelParam ? greenLabelParam === 'true' : undefined;
 
-        const pageNumber = parseInt(pageParam, 10);
+        const searchParam = searchParams.get(URL_PARAMS.search);
+        const search = searchParam ?? undefined;
 
-        return isNaN(pageNumber) || pageNumber < 1 ? 1 : pageNumber;
-    }, [searchParams]);
-
-    const greenLabelOnly = useMemo(() => {
-        return searchParams.has(URL_PARAMS.greenLabel)
-            ? searchParams.get(URL_PARAMS.greenLabel) === 'true'
-            : undefined;
+        return { page, greenLabelOnly, search };
     }, [searchParams]);
 
     const { data: paginatedCompanies, isLoading } = useRequest(
-        ['companies-carbon-footprint-ranking', page, greenLabelOnly],
-        async ([_, page, greenLabel]) => {
+        [
+            'companies-carbon-footprint-ranking',
+            filters.search,
+            filters.page,
+            filters.greenLabelOnly,
+        ],
+        async ([_, search, page, greenLabel]) => {
             return CompanyService.getAllCompanies({
+                search,
                 page,
                 greenLabel,
                 pageSize: COMPANIES_RANKING_PAGE_SIZE,
@@ -91,6 +94,13 @@ export const CarbonBalanceRankingTable: FunctionComponent = () => {
             selectionMode="single"
             aria-label={t('tableDescription')}
             onRowAction={handleRowClick}
+            topContent={
+                paginatedCompanies ? (
+                    <div className="sticky right-0 top-0 flex justify-end w-full">
+                        <CompaniesSearchInput />
+                    </div>
+                ) : null
+            }
             bottomContent={
                 paginatedCompanies && paginatedCompanies.totalElements > 0 ? (
                     <div className="sticky left-0 bottom-0 flex flex-wrap justify-between items-center gap-8 w-full py-4">
@@ -101,10 +111,10 @@ export const CarbonBalanceRankingTable: FunctionComponent = () => {
                             )}
                         />
                         <Switch
-                            key={greenLabelOnly ? 'greenLabelOn' : 'greenLabelOff'}
+                            key={filters.greenLabelOnly ? 'greenLabelOn' : 'greenLabelOff'}
                             color="primary"
                             size="sm"
-                            isSelected={greenLabelOnly}
+                            isSelected={filters.greenLabelOnly}
                             onValueChange={handleSwitchChange}
                         >
                             {t('greenLabelOnly')}
@@ -127,65 +137,83 @@ export const CarbonBalanceRankingTable: FunctionComponent = () => {
                 emptyContent={t('noCompanies')}
             >
                 {paginatedCompanies ? (
-                    paginatedCompanies.data.map((company, index) => (
-                        <TableRow key={company.slug}>
-                            <TableCell>
-                                {paginatedCompanies.pageSize * (paginatedCompanies.page - 1) +
-                                    index +
-                                    1}
-                            </TableCell>
-                            <TableCell>
-                                <div className="flex items-center gap-2 min-w-80">
-                                    <div className="relative size-10">
-                                        <Image
-                                            src={company.logoUrl}
-                                            alt={t('companyLogoAlt', { companyName: company.name })}
-                                            fill
-                                            sizes="100%,100%"
-                                            className="object-contain object-center"
-                                        />
+                    paginatedCompanies.data.map((company, index) => {
+                        const rank =
+                            paginatedCompanies.pageSize * (paginatedCompanies.page - 1) + index + 1;
+
+                        return (
+                            <TableRow key={company.slug}>
+                                <TableCell>
+                                    <Chip
+                                        radius="full"
+                                        variant="flat"
+                                        className={cn(
+                                            'size-10 max-w-auto text-center',
+                                            rank === 1 && 'text-purple-800 bg-purple-500/40',
+                                            rank === 2 && 'text-blue-800 bg-blue-500/40',
+                                            rank === 3 && 'text-yellow-800 bg-yellow-500/40',
+                                            rank >= 4 && 'text-default-800 bg-default-500/40',
+                                        )}
+                                    >
+                                        {rank}
+                                    </Chip>
+                                </TableCell>
+                                <TableCell>
+                                    <div className="flex items-center gap-2 min-w-80">
+                                        <div className="relative size-10">
+                                            <Image
+                                                src={company.logoUrl}
+                                                alt={t('companyLogoAlt', {
+                                                    companyName: company.name,
+                                                })}
+                                                fill
+                                                sizes="100%,100%"
+                                                className="object-contain object-center"
+                                            />
+                                        </div>
+                                        <div>
+                                            <p>{company.name}</p>
+                                            <p className="text-sm text-gray-500">
+                                                {company.city},{' '}
+                                                {COUNTRIES[company.countryCode][locale]}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p>{company.name}</p>
-                                        <p className="text-sm text-gray-500">
-                                            {company.city}, {COUNTRIES[company.countryCode][locale]}
-                                        </p>
-                                    </div>
-                                </div>
-                            </TableCell>
-                            <TableCell>
-                                <p>
-                                    <span className="font-bold">{company.carbonFootprint}</span>{' '}
-                                    <span className="text-sm text-gray-500">
-                                        t C0<sub>2</sub>eq
-                                    </span>
-                                </p>
-                            </TableCell>
-                            <TableCell>
-                                <Chip
-                                    variant="flat"
-                                    color={company.hasGreenTransport ? 'success' : 'danger'}
-                                >
-                                    {company.hasGreenTransport ? t('yes') : t('no')}
-                                </Chip>
-                            </TableCell>
-                            <TableCell>
-                                <Chip
-                                    variant="flat"
-                                    color={company.providesGoodies ? 'danger' : 'success'}
-                                >
-                                    {company.providesGoodies ? t('no') : t('yes')}
-                                </Chip>
-                            </TableCell>
-                            <TableCell>
-                                {hasGreenLabel(company) ? (
-                                    <FaAward className="size-6 text-success" />
-                                ) : (
-                                    <p>-</p>
-                                )}
-                            </TableCell>
-                        </TableRow>
-                    ))
+                                </TableCell>
+                                <TableCell>
+                                    <p>
+                                        <span className="font-bold">{company.carbonFootprint}</span>{' '}
+                                        <span className="text-sm text-gray-500">
+                                            t C0<sub>2</sub>eq
+                                        </span>
+                                    </p>
+                                </TableCell>
+                                <TableCell>
+                                    <Chip
+                                        variant="flat"
+                                        color={company.hasGreenTransport ? 'success' : 'danger'}
+                                    >
+                                        {company.hasGreenTransport ? t('yes') : t('no')}
+                                    </Chip>
+                                </TableCell>
+                                <TableCell>
+                                    <Chip
+                                        variant="flat"
+                                        color={company.providesGoodies ? 'danger' : 'success'}
+                                    >
+                                        {company.providesGoodies ? t('no') : t('yes')}
+                                    </Chip>
+                                </TableCell>
+                                <TableCell>
+                                    {hasGreenLabel(company) ? (
+                                        <FaAward className="size-6 text-success" />
+                                    ) : (
+                                        <p>-</p>
+                                    )}
+                                </TableCell>
+                            </TableRow>
+                        );
+                    })
                 ) : (
                     <></>
                 )}

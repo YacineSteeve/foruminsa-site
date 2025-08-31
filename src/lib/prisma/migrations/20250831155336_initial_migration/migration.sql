@@ -1,12 +1,12 @@
-/*
-  Warnings:
+-- CreateTable
+CREATE TABLE "RateLimit" (
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "key" TEXT NOT NULL PRIMARY KEY,
+    "points" INTEGER NOT NULL DEFAULT 0,
+    "expire" DATETIME
+);
 
-  - Added the required column `description` to the `Company` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `logoUrl` to the `Company` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `specialities` to the `Company` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `studyLevels` to the `Company` table without a default value. This is not possible if the table is not empty.
-
-*/
 -- CreateTable
 CREATE TABLE "Admin" (
     "id" TEXT NOT NULL PRIMARY KEY,
@@ -21,7 +21,8 @@ CREATE TABLE "Sector" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
-    "name" TEXT NOT NULL
+    "nameFR" TEXT NOT NULL,
+    "nameEN" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -46,6 +47,30 @@ CREATE TABLE "SocialLink" (
 );
 
 -- CreateTable
+CREATE TABLE "Company" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "name" TEXT NOT NULL COLLATE NOCASE,
+    "slug" TEXT NOT NULL,
+    "descriptionFR" TEXT NOT NULL,
+    "descriptionEN" TEXT NOT NULL,
+    "logoUrl" TEXT NOT NULL,
+    "providesGoodies" BOOLEAN NOT NULL DEFAULT false,
+    "hasGreenTransport" BOOLEAN NOT NULL DEFAULT false,
+    "studyLevels" TEXT NOT NULL,
+    "specialities" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+    "countryCode" TEXT NOT NULL,
+    "address" TEXT,
+    "postalCode" TEXT,
+    "websiteUrl" TEXT,
+    "carbonFootprint" REAL,
+    "roomId" TEXT,
+    CONSTRAINT "Company_roomId_fkey" FOREIGN KEY ("roomId") REFERENCES "ForumRoom" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+-- CreateTable
 CREATE TABLE "_CompanyToSector" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL,
@@ -53,40 +78,23 @@ CREATE TABLE "_CompanyToSector" (
     CONSTRAINT "_CompanyToSector_B_fkey" FOREIGN KEY ("B") REFERENCES "Sector" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- RedefineTables
-PRAGMA defer_foreign_keys=ON;
-PRAGMA foreign_keys=OFF;
-CREATE TABLE "new_Company" (
-    "id" TEXT NOT NULL PRIMARY KEY,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
-    "name" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
-    "logoUrl" TEXT NOT NULL,
-    "studyLevels" TEXT NOT NULL,
-    "specialities" TEXT NOT NULL,
-    "address" TEXT,
-    "postalCode" TEXT,
-    "city" TEXT,
-    "country" TEXT,
-    "websiteUrl" TEXT,
-    "carbonFootprint" REAL,
-    "roomId" TEXT,
-    CONSTRAINT "Company_roomId_fkey" FOREIGN KEY ("roomId") REFERENCES "ForumRoom" ("id") ON DELETE SET NULL ON UPDATE CASCADE
-);
-INSERT INTO "new_Company" ("createdAt", "id", "name", "slug", "updatedAt") SELECT "createdAt", "id", "name", "slug", "updatedAt" FROM "Company";
-DROP TABLE "Company";
-ALTER TABLE "new_Company" RENAME TO "Company";
-CREATE UNIQUE INDEX "Company_slug_key" ON "Company"("slug");
-PRAGMA foreign_keys=ON;
-PRAGMA defer_foreign_keys=OFF;
-
 -- CreateIndex
 CREATE UNIQUE INDEX "Admin_email_key" ON "Admin"("email");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Sector_nameFR_key" ON "Sector"("nameFR");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Sector_nameEN_key" ON "Sector"("nameEN");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "ForumRoom_name_floor_building_key" ON "ForumRoom"("name", "floor", "building");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "SocialLink_type_companyId_key" ON "SocialLink"("type", "companyId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Company_slug_key" ON "Company"("slug");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_CompanyToSector_AB_unique" ON "_CompanyToSector"("A", "B");

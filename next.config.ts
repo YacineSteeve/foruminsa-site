@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
     skipTrailingSlashRedirect: true,
     reactStrictMode: true,
     poweredByHeader: false,
-    allowedDevOrigins: ['192.168.1.227'],
+    allowedDevOrigins: ['192.168.1.227', '10.28.5.9'],
     images: {
         remotePatterns: [
             {

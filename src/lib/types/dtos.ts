@@ -61,6 +61,10 @@ export const contactDataSchema = z
 export type ContactData = z.infer<typeof contactDataSchema>;
 
 export const companiesFiltersSchema = z.object({
+    search: z
+        .string({ error: 'mustBeAString' })
+        .min(1, { error: 'mustHaveAtLeastOneCharacter' })
+        .nullish(),
     city: z
         .string({ error: 'mustBeAString' })
         .min(1, { error: 'mustHaveAtLeastOneCharacter' })

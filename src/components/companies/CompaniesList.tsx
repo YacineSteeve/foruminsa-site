@@ -1,6 +1,7 @@
 import { CompaniesFiltersButton } from '@components/companies/CompaniesFiltersButton';
 import { CompaniesListWrapper } from '@components/companies/CompaniesListWrapper';
 import { CompaniesPagination } from '@components/companies/CompaniesPagination';
+import { CompaniesSearchInput } from '@components/companies/CompaniesSearchInput';
 import { CompanyCard } from '@components/companies/CompanyCard';
 import { CompanyGreenLabel } from '@components/companies/CompanyGreenLabel';
 import { Alert } from '@heroui/alert';
@@ -43,32 +44,33 @@ export const CompaniesList: FunctionComponent<CompaniesListProps> = async ({ fil
     return (
         <div className="flex flex-col items-center gap-y-16 w-full">
             <CompaniesListWrapper>
+                <div className="flex justify-end items-center gap-4 md:gap-8 max-md:w-full md:col-span-2 xl:col-span-3">
+                    <CompaniesSearchInput />
+                    <CompaniesFiltersButton popupPlacement="left" />
+                </div>
                 {companiesCount > 0 ? (
-                    <Fragment>
-                        <div className="flex justify-end items-center max-md:w-full md:col-span-2 xl:col-span-3">
-                            <CompaniesFiltersButton popupPlacement="left" />
-                        </div>
-                        {paginatedCompanies.data.map((company) => (
-                            <li
-                                key={company.id}
-                                className="relative"
-                            >
-                                <CompanyCard
-                                    company={company}
-                                    logoAlt={t('companyLogoAlt', { companyName: company.name })}
-                                    locale={locale}
-                                />
-                                {hasGreenLabel(company) && <CompanyGreenLabel />}
-                            </li>
-                        ))}
-                    </Fragment>
+                    paginatedCompanies.data.map((company) => (
+                        <li
+                            key={company.id}
+                            className="relative"
+                        >
+                            <CompanyCard
+                                company={company}
+                                logoAlt={t('companyLogoAlt', { companyName: company.name })}
+                                locale={locale}
+                            />
+                            {hasGreenLabel(company) && <CompanyGreenLabel />}
+                        </li>
+                    ))
                 ) : (
                     <div className="md:col-span-2 xl:col-span-3">
-                        <Alert
-                            color="default"
-                            title={t('noCompanies')}
-                            className="w-fit mx-auto"
-                        />
+                        <div className="w-268 md:w-276">
+                            <Alert
+                                color="default"
+                                title={t('noCompanies')}
+                                className="w-fit mx-auto"
+                            />
+                        </div>
                     </div>
                 )}
                 {!noExistingCompanyAtAll && (

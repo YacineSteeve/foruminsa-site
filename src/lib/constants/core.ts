@@ -1,7 +1,7 @@
 export const APP_URL =
     process.env.NODE_ENV === 'production'
         ? ('https://foruminsa-site.vercel.app' as const)
-        : ('http://192.168.1.227:3000' as const);
+        : ('http://10.28.5.9:3000' as const);
 
 export const SUPPORTED_LANGUAGES = ['fr', 'en'] as const;
 
@@ -69,6 +69,7 @@ export const SOCIAL_LINK_TYPES = [
 export const URL_PARAMS = {
     email: 'email',
     subject: 'subject',
+    search: 'search',
     city: 'city',
     countryCode: 'countryCode',
     sector: 'sector',

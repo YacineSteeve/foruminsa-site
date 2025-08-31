@@ -40,7 +40,7 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company, logo
                         />
                     </div>
                     <div className="flex-1 space-y-2">
-                        <h4 className="text-start normal-case">{company.name}</h4>
+                        <h4 className="text-start !normal-case">{company.name}</h4>
                         {company.sectors.length > 0 && (
                             <div className="flex flex-wrap gap-x-2 gap-y-1">
                                 {company.sectors.slice(0, SECTOR_LIMIT).map((sector, index) => (

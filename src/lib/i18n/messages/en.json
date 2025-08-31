@@ -139,6 +139,9 @@
     "CompanyGreenLabel": {
         "description": "This company uses eco-friendly transportation methods and does not offer goodies."
     },
+    "CompaniesSearchInput": {
+        "placeholder": "Search for a company"
+    },
     "CompaniesFiltersButton": {
         "title": "Filters",
         "tooltip": "Display filters",
