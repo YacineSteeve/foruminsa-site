@@ -1,9 +1,9 @@
 import { CompanyDetailsSection } from '@components/company-details/CompanyDetailsSection';
 import { ReturnButton } from '@components/company-details/ReturnButton';
 import { Skeleton } from '@heroui/skeleton';
+import { FORUM_LABEL_ICON } from '@lib/constants/ui';
 import { getTranslations } from 'next-intl/server';
 import type { FunctionComponent } from 'react';
-import { FaAward } from 'react-icons/fa6';
 import {
     LuBuilding2,
     LuBusFront,
@@ -111,7 +111,7 @@ export const CompanyDetailsSkeleton: FunctionComponent = async () => {
                             </div>
                         </div>
                         <div className="flex items-center gap-4">
-                            <FaAward className="size-12 grayscale" />
+                            <FORUM_LABEL_ICON className="size-12 grayscale" />
                             <div className="flex-1 space-y-2">
                                 <Skeleton className="w-full h-6 rounded-lg" />
                                 <Skeleton className="w-3/4 h-6 rounded-lg" />

@@ -42,7 +42,7 @@ const POST = withMiddlewares(
                 ).asNextResponse();
             }
 
-            const confirmationMailInfos = await sendMail({
+            sendMail({
                 lang: data.lang,
                 from: {
                     name: 'Forum By INSA',
@@ -55,11 +55,15 @@ const POST = withMiddlewares(
                     name: data.name,
                     subject: t(data.subject),
                 },
-            });
-
-            if (!confirmationMailInfos.accepted.includes(data.email)) {
-                console.warn(`Email not received by the recipient "${data.email}"`);
-            }
+            })
+                .then((confirmationMailInfos) => {
+                    if (!confirmationMailInfos.accepted.includes(data.email)) {
+                        console.warn(`Email not received by the recipient "${data.email}"`);
+                    }
+                })
+                .catch((error) => {
+                    console.error('An error occurred while sending the confirmation email.', error);
+                });
 
             return NextResponse.json({}, { status: 200 });
         } catch (error) {

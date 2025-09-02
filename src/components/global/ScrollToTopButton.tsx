@@ -6,7 +6,7 @@ import { useAppContainer } from '@lib/hooks';
 import { cn } from '@lib/utils';
 import { useTranslations } from 'next-intl';
 import { type FunctionComponent, useCallback } from 'react';
-import { RiArrowUpLine } from 'react-icons/ri';
+import { LuArrowUp } from 'react-icons/lu';
 
 interface ScrollToTopButtonProps {
     hidden?: boolean;
@@ -31,7 +31,7 @@ export const ScrollToTopButton: FunctionComponent<ScrollToTopButtonProps> = ({ h
                 onPress={handleClick}
                 className={cn('z-50 fixed bottom-8 right-8', hidden && 'hidden')}
             >
-                <RiArrowUpLine className="size-8" />
+                <LuArrowUp className="size-8" />
             </Button>
         </Tooltip>
     );

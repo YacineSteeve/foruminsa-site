@@ -17,7 +17,7 @@ export const withMiddlewares = <C extends RequestHandlerContextBase = never>(
     return async (request, context) => {
         let chain = handler;
 
-        if (serverEnv.DISABLE_RATE_LIMIT !== 'true' && options?.rateLimit) {
+        if (!serverEnv.DISABLE_RATE_LIMIT && options?.rateLimit) {
             chain = withRateLimit(
                 handler,
                 typeof options.rateLimit === 'boolean' ? {} : options.rateLimit,

@@ -1,7 +1,21 @@
 export const APP_URL =
     process.env.NODE_ENV === 'production'
         ? ('https://foruminsa-site.vercel.app' as const)
-        : ('http://10.28.5.9:3000' as const);
+        : ('http://192.168.102.97:3000' as const);
+
+export const JOBTEASER_EVENT_URL = 'https://insa-toulouse.jobteaser.com/fr/events/229266' as const;
+
+export const EVENT_DAY = {
+    year: 2025,
+    month: 10,
+    day: 21,
+} as const;
+
+export const STUDY_LEVELS = ['1A', '2A', '3A', '4A', '5A'] as const;
+
+export const SPECIALITIES = ['AE', 'GB', 'GC', 'GM', 'GP', 'GP3E', 'IR', 'MA'] as const;
+
+export const CONTACT_SUBJECTS = ['general', 'solidarityFund', 'companies'] as const;
 
 export const SUPPORTED_LANGUAGES = ['fr', 'en'] as const;
 
@@ -50,11 +64,9 @@ export const MENU_ITEMS = [
     },
 ] as const;
 
-export const CONTACT_SUBJECTS = ['general', 'solidarityFund', 'companies'] as const;
+export const COMPANIES_LIST_PAGE_SIZE = 18 as const;
 
-export const STUDY_LEVELS = ['1A', '2A', '3A', '4A', '5A'] as const;
-
-export const SPECIALITIES = ['AE', 'GB', 'GC', 'GM', 'GP', 'GP3E', 'IR', 'MA'] as const;
+export const COMPANIES_RANKING_PAGE_SIZE = 10 as const;
 
 export const SOCIAL_LINK_TYPES = [
     'facebook',
@@ -65,6 +77,10 @@ export const SOCIAL_LINK_TYPES = [
     'tiktok',
     'other',
 ] as const;
+
+export const PASSWORD_HASHING_ROUNDS = 10 as const;
+
+export const DEFAULT_ERROR_MESSAGE = 'SOMETHING_WENT_WRONG' as const;
 
 export const URL_PARAMS = {
     email: 'email',
@@ -80,11 +96,3 @@ export const URL_PARAMS = {
     greenLabel: 'greenLabel',
     sortByCarbonFootprint: 'sortByCarbonFootprint',
 } as const;
-
-export const DEFAULT_ERROR_MESSAGE = 'SOMETHING_WENT_WRONG' as const;
-
-export const PASSWORD_HASHING_ROUNDS = 10 as const;
-
-export const COMPANIES_LIST_PAGE_SIZE = 18 as const;
-
-export const COMPANIES_RANKING_PAGE_SIZE = 10 as const;

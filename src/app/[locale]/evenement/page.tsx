@@ -1,6 +1,15 @@
+import { EventPlanningCategory } from '@components/event/EventPlanningCategory';
+import { planning } from '@data/planning';
 import { BrochureSection } from '@components/global/BrochureSection';
+import { Button } from '@heroui/button';
+import { JOBTEASER_EVENT_URL } from '@lib/constants/core';
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
+import Image from 'next/image';
+import Link from 'next/link';
+import type { FunctionComponent } from 'react';
+import type { IconType } from 'react-icons';
+import { LuCalendarDays, LuClock4, LuExternalLink, LuMapPin, LuUsers } from 'react-icons/lu';
 
 export async function generateMetadata(): Promise<Metadata> {
     const t = await getTranslations('AppMetadata');
@@ -10,10 +19,107 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default function EventPage() {
+export default async function EventPage() {
+    const t = await getTranslations('EventPage');
+    const locale = await getLocale();
+
     return (
-        <div>
+        <div className="w-full">
+            <section className="w-full"></section>
+            <section className="relative flex-center w-full min-h-max px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 py-8 md:py-16">
+                <Image
+                    src="/chairs.jpg"
+                    alt={t('imageAlt')}
+                    fill
+                    quality={100}
+                    sizes="100%,100%"
+                    className="object-cover object-center brightness-50"
+                />
+                <div className="z-10 flex max-lg:flex-col items-center gap-8 lg:gap-16 2xl:gap-32">
+                    <div className="flex flex-col max-lg:items-center gap-8 flex-1">
+                        <div className="space-y-4 max-lg:text-center text-white">
+                            <h1>{t('title')}</h1>
+                            <p className="text-xl">{t('description')}</p>
+                        </div>
+                        <Link
+                            href={JOBTEASER_EVENT_URL}
+                            target="_blank"
+                        >
+                            <Button
+                                size="lg"
+                                color="primary"
+                                className="lg:text-xl lg:p-8"
+                                startContent={<LuExternalLink />}
+                            >
+                                {t('registration')}
+                            </Button>
+                        </Link>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-8 size-fit min-w-max">
+                        <EventInfosItem
+                            icon={LuCalendarDays}
+                            title={t('dateTitle')}
+                            subtitle={t('dateSubtitle')}
+                        />
+                        <EventInfosItem
+                            icon={LuClock4}
+                            title={t('timeTitle')}
+                            subtitle={t('timeSubtitle')}
+                        />
+                        <EventInfosItem
+                            icon={LuMapPin}
+                            title={t('placeTitle')}
+                            subtitle={t('placeSubtitle')}
+                            description={t('placeDescription')}
+                        />
+                        <EventInfosItem
+                            icon={LuUsers}
+                            title={t('participantsTitle')}
+                            subtitle={t('participantsSubtitle')}
+                        />
+                    </div>
+                </div>
+            </section>
+            <section className="w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 3xl:px-80 py-8 md:py-16 space-y-4 md:space-y-8">
+                <h2 className="text-primary text-center">{t('daySchedule')}</h2>
+                <div className="space-y-8">
+                    {planning.map((category, index) => (
+                        <EventPlanningCategory
+                            key={index}
+                            category={category}
+                            locale={locale}
+                        />
+                    ))}
+                </div>
+            </section>
             <BrochureSection />
         </div>
     );
 }
+
+interface EventInfosItemProps {
+    title: string;
+    subtitle?: string;
+    description?: string;
+    icon: IconType;
+}
+
+const EventInfosItem: FunctionComponent<EventInfosItemProps> = ({
+    title,
+    subtitle,
+    description,
+    icon: Icon,
+}) => {
+    return (
+        <div className="w-80 lg:max-xl:w-68 h-56 flex-center flex-col gap-4 p-4 text-center glassy">
+            <div className="flex-center size-16 rounded-full bg-purple-500/20">
+                <Icon className="size-8 text-danger" />
+            </div>
+            <div className="space-y-2">
+                <p className="text-2xl text-white font-semibold">{title}</p>
+                {subtitle && <p className="text-lg text-white">{subtitle}</p>}
+                {description && <p className="text-sm text-gray-300">{description}</p>}
+            </div>
+        </div>
+    );
+};

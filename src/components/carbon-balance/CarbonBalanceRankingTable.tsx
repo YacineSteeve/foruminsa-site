@@ -17,13 +17,13 @@ import {
 import { CompanyService } from '@lib/api-services';
 import { COMPANIES_RANKING_PAGE_SIZE, URL_PARAMS } from '@lib/constants/core';
 import { COUNTRIES } from '@lib/constants/countries';
+import { FORUM_LABEL_ICON } from '@lib/constants/ui';
 import { useRequest, useSearchParamsChange } from '@lib/hooks';
 import { useRouter } from '@lib/i18n/navigation';
 import { cn, hasGreenLabel } from '@lib/utils';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { type FunctionComponent, useCallback, useMemo } from 'react';
-import { FaAward } from 'react-icons/fa6';
 
 export const CarbonBalanceRankingTable: FunctionComponent = () => {
     const t = useTranslations('CarbonBalanceRankingTable');
@@ -95,11 +95,9 @@ export const CarbonBalanceRankingTable: FunctionComponent = () => {
             aria-label={t('tableDescription')}
             onRowAction={handleRowClick}
             topContent={
-                paginatedCompanies ? (
-                    <div className="sticky right-0 top-0 flex justify-end w-full">
-                        <CompaniesSearchInput />
-                    </div>
-                ) : null
+                <div className="sticky left-0 top-0 flex justify-end w-full">
+                    <CompaniesSearchInput isDisabled={isLoading || !paginatedCompanies} />
+                </div>
             }
             bottomContent={
                 paginatedCompanies && paginatedCompanies.totalElements > 0 ? (
@@ -206,7 +204,7 @@ export const CarbonBalanceRankingTable: FunctionComponent = () => {
                                 </TableCell>
                                 <TableCell>
                                     {hasGreenLabel(company) ? (
-                                        <FaAward className="size-6 text-success" />
+                                        <FORUM_LABEL_ICON className="size-6 text-success" />
                                     ) : (
                                         <p>-</p>
                                     )}

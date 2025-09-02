@@ -1,9 +1,9 @@
 import { CarbonBalanceRankingTable } from '@components/carbon-balance/CarbonBalanceRankingTable';
 import { Card } from '@heroui/card';
+import { FORUM_LABEL_ICON } from '@lib/constants/ui';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
-import { FaAward } from 'react-icons/fa6';
 import { LuHandshake, LuLeaf } from 'react-icons/lu';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -67,7 +67,7 @@ export default async function CarbonBalancePage() {
                     className="space-y-4 p-8"
                 >
                     <div className="flex items-center gap-4 text-success">
-                        <FaAward className="size-8" />
+                        <FORUM_LABEL_ICON className="size-8" />
                         <h3 className="!normal-case">{t('theForumGreenLabel')}</h3>
                     </div>
                     <p className="text-lg">{t('theForumGreenLabelDescription')}</p>

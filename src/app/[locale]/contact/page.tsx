@@ -31,7 +31,7 @@ export default async function ContactPage() {
                 <div className="max-lg:w-full lg:flex-1 space-y-16">
                     <div className="space-y-4 max-md:text-center">
                         <h1>{t('title')}</h1>
-                        <p>{t('description')}</p>
+                        <p className="text-lg">{t('description')}</p>
                     </div>
                     <ContactForm locale={locale} />
                 </div>

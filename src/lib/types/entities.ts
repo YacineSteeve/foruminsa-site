@@ -2,6 +2,13 @@ import { SOCIAL_LINK_TYPES, SPECIALITIES, STUDY_LEVELS } from '@lib/constants/co
 import { COUNTRY_CODES } from '@lib/constants/countries';
 import { z } from 'zod/v4';
 
+export const localizedStringEntitySchema = z.object({
+    fr: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
+    en: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
+});
+
+export type LocalizedStringEntity = z.infer<typeof localizedStringEntitySchema>;
+
 export const companiesStatsEntitySchema = z.object({
     companiesCount: z.int().nonnegative(),
     sectorsCount: z.int().nonnegative(),
@@ -107,3 +114,77 @@ export const companyLogoListEntitySchema = z.array(
 );
 
 export type CompanyLogoListEntity = z.infer<typeof companyLogoListEntitySchema>;
+
+export const hourSchema = z
+    .number({ error: 'mustBeANumber' })
+    .int({ error: 'mustBeAnInteger' })
+    .min(0, { error: 'mustBeAtLeast0' })
+    .max(23, { error: 'mustBeAtMost23' });
+
+export type Hour = z.infer<typeof hourSchema>;
+
+export const minuteSchema = z
+    .number({ error: 'mustBeANumber' })
+    .int({ error: 'mustBeAnInteger' })
+    .min(0, { error: 'mustBeAtLeast0' })
+    .max(59, { error: 'mustBeAtMost59' });
+
+export type Minute = z.infer<typeof minuteSchema>;
+
+export const timeSchema = z.object({
+    hours: hourSchema,
+    minutes: minuteSchema,
+});
+
+export type Time = z.infer<typeof timeSchema>;
+
+export const planningEntryEntitySchema = z.intersection(
+    z.object({
+        title: localizedStringEntitySchema,
+        description: localizedStringEntitySchema,
+        location: z
+            .string({ error: 'mustBeAString' })
+            .min(1, { error: 'mustHaveAtLeastOneCharacter' })
+            .nullable(),
+    }),
+    z.discriminatedUnion('isFullDay', [
+        z.object({
+            isFullDay: z.literal(true),
+            startTime: z.null(),
+            endTime: z.null(),
+        }),
+        z
+            .object({
+                isFullDay: z.literal(false),
+                startTime: timeSchema,
+                endTime: timeSchema,
+            })
+            .refine(
+                (data) => {
+                    if (data.startTime.hours < data.endTime.hours) return true;
+
+                    if (data.startTime.hours === data.endTime.hours) {
+                        return data.startTime.minutes < data.endTime.minutes;
+                    }
+
+                    return false;
+                },
+                { message: 'endTimeMustBeAfterStartTime', path: ['endTime'] },
+            ),
+    ]),
+);
+
+export type PlanningEntryEntity = z.infer<typeof planningEntryEntitySchema>;
+
+export const planningCategoryEntitySchema = z.object({
+    name: localizedStringEntitySchema,
+    entries: z.array(planningEntryEntitySchema, { error: 'mustBeAnArray' }),
+});
+
+export type PlanningCategoryEntity = z.infer<typeof planningCategoryEntitySchema>;
+
+export const planningEntitySchema = z.array(planningCategoryEntitySchema, {
+    error: 'mustBeAnArray',
+});
+
+export type PlanningEntity = z.infer<typeof planningEntitySchema>;

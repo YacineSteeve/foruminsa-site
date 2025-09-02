@@ -1,4 +1,5 @@
 import { Button } from '@heroui/button';
+import { JOBTEASER_EVENT_URL } from '@lib/constants/core';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
@@ -19,7 +20,7 @@ export const JobteaserSection: FunctionComponent = async () => {
             />
             <div className="flex-center flex-col gap-4 glassy w-5/6 sm:w-2/3 md:w-1/2 lg:w-2/5 xl:w-1/3 3xl:w-1/4 aspect-video">
                 <Link
-                    href="https://insa-toulouse.jobteaser.com/fr/events/229266"
+                    href={JOBTEASER_EVENT_URL}
                     target="_blank"
                 >
                     <Button

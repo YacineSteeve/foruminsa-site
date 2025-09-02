@@ -1,4 +1,5 @@
 import { Button } from '@heroui/button';
+import { JOBTEASER_EVENT_URL } from '@lib/constants/core';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -29,7 +30,7 @@ export const HeroSection: FunctionComponent = async () => {
                 </div>
                 <div className="flex flex-wrap max-md:justify-center items-center gap-x-16 gap-y-8 *:block">
                     <Link
-                        href="https://insa-toulouse.jobteaser.com/fr/events/229266"
+                        href={JOBTEASER_EVENT_URL}
                         target="_blank"
                     >
                         <Button

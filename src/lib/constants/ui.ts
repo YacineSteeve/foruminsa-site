@@ -1,5 +1,6 @@
 import { Lato } from 'next/font/google';
 import type { IconType } from 'react-icons';
+import { FaAward } from 'react-icons/fa6';
 import {
     RiFacebookBoxFill,
     RiInstagramFill,
@@ -15,7 +16,6 @@ export const APP_CONTAINER_ID = 'app-container' as const;
 
 export const APP_COLORS = {
     primary: '#bd2727',
-    primaryLight: '#d32f2f',
 } as const;
 
 export const APP_FONT = Lato({
@@ -77,3 +77,5 @@ export const FORUM_SOCIAL_LINKS = [
         color: SOCIAL_LINKS_TYPES_METADATA.linkedin.color,
     },
 ] as const;
+
+export const FORUM_LABEL_ICON: IconType = FaAward;

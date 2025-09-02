@@ -7,7 +7,13 @@ import { useTranslations } from 'next-intl';
 import { type FunctionComponent, useCallback, useState } from 'react';
 import { LuSearch } from 'react-icons/lu';
 
-export const CompaniesSearchInput: FunctionComponent = () => {
+interface CompaniesSearchInputProps {
+    isDisabled?: boolean;
+}
+
+export const CompaniesSearchInput: FunctionComponent<CompaniesSearchInputProps> = ({
+    isDisabled = false,
+}) => {
     const t = useTranslations('CompaniesSearchInput');
     const [value, setValue] = useState<string>();
     const { searchParams, changeSearchParam } = useSearchParamsChange();
@@ -37,6 +43,7 @@ export const CompaniesSearchInput: FunctionComponent = () => {
     return (
         <Input
             isClearable
+            isDisabled={isDisabled}
             fullWidth={false}
             type="search"
             name="company-search"

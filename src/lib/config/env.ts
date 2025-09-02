@@ -28,13 +28,13 @@ const serverEnvSchema = z.object({
     })*/,
     DATABASE_TOKEN: z.string({ error: 'DATABASE_TOKEN must be a string' }).optional().default(''),
     LOCAL_DB: z
-        .enum(['true', 'false'], { error: 'LOCAL_DB must be one of: true, false' })
+        .stringbool({ error: 'LOCAL_DB must be one of: true, false' })
         .optional()
-        .default('true'),
+        .default(true),
     DISABLE_RATE_LIMIT: z
-        .enum(['true', 'false'], { error: 'DISABLE_RATE_LIMIT must be one of: true, false' })
+        .stringbool({ error: 'DISABLE_RATE_LIMIT must be one of: true, false' })
         .optional()
-        .default('false'),
+        .default(false),
     /* Add any other server-side environment variables here */
 });
 
@@ -46,6 +46,13 @@ export type ServerEnvironmentVariables = z.infer<typeof serverEnvSchema>;
 
 export type ClientEnvironmentVariables = z.infer<typeof clientEnvSchema>;
 
-export const serverEnv: ServerEnvironmentVariables = serverEnvSchema.parse(process.env);
+let serverEnv: ServerEnvironmentVariables;
+let clientEnv: ClientEnvironmentVariables;
 
-export const clientEnv: ClientEnvironmentVariables = clientEnvSchema.parse(process.env);
+if (typeof window === 'undefined') {
+    serverEnv = serverEnvSchema.parse(process.env);
+} else {
+    clientEnv = clientEnvSchema.parse(process.env);
+}
+
+export { serverEnv, clientEnv };

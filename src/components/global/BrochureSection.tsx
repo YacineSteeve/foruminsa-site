@@ -3,13 +3,13 @@ import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import type { FunctionComponent } from 'react';
-import { RiDownload2Fill } from 'react-icons/ri';
+import { LuDownload } from 'react-icons/lu';
 
 export const BrochureSection: FunctionComponent = async () => {
     const t = await getTranslations('BrochureSection');
 
     return (
-        <section className="flex-center max-md:flex-col gap-x-16 gap-y-8 w-full py-24 bg-default/10">
+        <section className="flex-center max-md:flex-col gap-x-16 gap-y-8 w-full py-8 md:py-16 bg-default/20">
             <Image
                 src="/plaquette_couverture.svg"
                 alt={t('imageAlt')}
@@ -27,7 +27,7 @@ export const BrochureSection: FunctionComponent = async () => {
                     color="primary"
                     variant="ghost"
                     className="text-xl px-6 py-8"
-                    startContent={<RiDownload2Fill className="size-6" />}
+                    startContent={<LuDownload className="size-6" />}
                 >
                     {t('downloadBrochure')}
                 </Button>

@@ -7,11 +7,11 @@ import { CompanyGreenLabel } from '@components/companies/CompanyGreenLabel';
 import { Alert } from '@heroui/alert';
 import { CompanyService } from '@lib/api-services';
 import { COMPANIES_LIST_PAGE_SIZE } from '@lib/constants/core';
+import { FORUM_LABEL_ICON } from '@lib/constants/ui';
 import type { CompaniesFilters } from '@lib/types/dtos';
 import { hasGreenLabel } from '@lib/utils';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Fragment, type FunctionComponent } from 'react';
-import { FaAward } from 'react-icons/fa6';
 
 interface CompaniesListProps {
     filters: CompaniesFilters;
@@ -89,7 +89,7 @@ export const CompaniesList: FunctionComponent<CompaniesListProps> = async ({ fil
             </CompaniesListWrapper>
             <div className="flex max-md:w-full md:col-span-2 xl:col-span-3 px-4 lg:max-xl:px-20 3xl:px-40">
                 <div className="flex items-cente max-sm:justify-center gap-4 w-full sm:w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3 2xl:w-1/2 border border-default/75 p-4 rounded-lg">
-                    <FaAward className="size-8 text-success" />
+                    <FORUM_LABEL_ICON className="size-8 text-success" />
                     <p className="text-base flex-1 leading-relaxed">
                         {t('companyGreenLabelDescription')}
                     </p>

@@ -18,7 +18,7 @@ import {
     useEffect,
     useState,
 } from 'react';
-import { RiMenuFill } from 'react-icons/ri';
+import { LuMenu } from 'react-icons/lu';
 
 export const Header: FunctionComponent = () => {
     const appContainer = useAppContainer();
@@ -109,7 +109,7 @@ const Menu: FunctionComponent = () => {
                 aria-label={t('menu')}
                 onPress={handleDrawerToggle}
             >
-                <RiMenuFill className="size-6 text-primary" />
+                <LuMenu className="size-6 text-primary" />
             </Button>
             <Drawer
                 size="xs"

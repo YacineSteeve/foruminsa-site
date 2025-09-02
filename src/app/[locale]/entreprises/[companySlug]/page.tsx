@@ -6,7 +6,7 @@ import { Alert } from '@heroui/alert';
 import { Chip } from '@heroui/chip';
 import { CompanyService } from '@lib/api-services';
 import { COUNTRIES } from '@lib/constants/countries';
-import { SOCIAL_LINKS_TYPES_METADATA } from '@lib/constants/ui';
+import { FORUM_LABEL_ICON, SOCIAL_LINKS_TYPES_METADATA } from '@lib/constants/ui';
 import {
     buildGoogleMapsUrl,
     cn,
@@ -21,7 +21,6 @@ import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { FunctionComponent } from 'react';
-import { FaAward } from 'react-icons/fa6';
 import {
     LuBuilding2,
     LuBusFront,
@@ -258,7 +257,7 @@ const CompanyDetailsPageContent: FunctionComponent<CompanyDetailsPageContentProp
                             </div>
                         </div>
                         <div className="flex items-center gap-4">
-                            <FaAward
+                            <FORUM_LABEL_ICON
                                 className={cn(
                                     'size-12 text-success',
                                     !hasGreenLabel(company) && 'grayscale',
