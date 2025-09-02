@@ -239,9 +239,9 @@ const CompanyDetailsPageContent: FunctionComponent<CompanyDetailsPageContentProp
                         <div className="flex items-center gap-4">
                             <LuGift className="size-8 text-warning-500" />
                             <div className="flex-1">
-                                <p className="text-lg font-semibold">{t('hasNoGoodies')}</p>
+                                <p className="text-lg font-semibold">{t('hasGoodies')}</p>
                                 <p className="text-gray-500">
-                                    {t(company.providesGoodies ? 'no' : 'yes')}
+                                    {t(company.providesGoodies ? 'yes' : 'no')}
                                 </p>
                             </div>
                         </div>

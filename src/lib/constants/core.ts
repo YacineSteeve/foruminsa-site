@@ -15,7 +15,7 @@ export const EVENT_DAY = {
 
 export const EVENT_TIME = {
     start: { hours: 9, minutes: 0 },
-    end: { hours: 17, minutes: 0 },
+    end: { hours: 16, minutes: 0 },
 } as const satisfies { start: Time; end: Time };
 
 export const STUDY_LEVELS = ['1A', '2A', '3A', '4A', '5A'] as const;

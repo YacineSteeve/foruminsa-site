@@ -68,8 +68,8 @@ export const planning: PlanningEntity = [
                 },
                 location: 'Amphi Vinci',
                 isFullDay: false,
-                startTime: { hours: 11, minutes: 0 },
-                endTime: { hours: 12, minutes: 30 },
+                startTime: { hours: 10, minutes: 45 },
+                endTime: { hours: 12, minutes: 15 },
             },
             {
                 title: {
@@ -82,8 +82,8 @@ export const planning: PlanningEntity = [
                 },
                 location: 'Amphi Vinci',
                 isFullDay: false,
-                startTime: { hours: 15, minutes: 30 },
-                endTime: { hours: 17, minutes: 0 },
+                startTime: { hours: 14, minutes: 0 },
+                endTime: { hours: 16, minutes: 0 },
             },
         ],
     },

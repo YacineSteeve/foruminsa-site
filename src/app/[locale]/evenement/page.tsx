@@ -136,8 +136,8 @@ const EventInfosItem: FunctionComponent<EventInfosItemProps> = ({
 }) => {
     return (
         <div className="w-80 lg:max-xl:w-68 h-56 flex-center flex-col gap-4 p-4 text-center glassy">
-            <div className="flex-center size-16 rounded-full bg-purple-500/20">
-                <Icon className="size-8 text-danger" />
+            <div className="flex-center size-16 rounded-full bg-primary/50">
+                <Icon className="size-8 text-white" />
             </div>
             <div className="space-y-2">
                 <p className="text-2xl text-white font-semibold">{title}</p>

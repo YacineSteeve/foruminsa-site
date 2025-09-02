@@ -202,7 +202,7 @@
         "hasGreenLabelDescription": "Cette entreprise possède le label vert ! Elle répond à nos critères d'engagement environnemental.",
         "noGreenLabelDescription": "Cette entreprise ne répond pas à tous nos critères d'engagement environnemental, mais cela ne remet pas en question ses actions en faveur de l'environnement.",
         "hasGreenTransportation": "Utilise des modes de transport écologiques",
-        "hasNoGoodies": "N'offre pas de goodies",
+        "hasGoodies": "Offre des goodies",
         "yes": "Oui",
         "no": "Non"
     },

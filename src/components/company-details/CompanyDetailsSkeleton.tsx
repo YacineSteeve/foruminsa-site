@@ -99,7 +99,7 @@ export const CompanyDetailsSkeleton: FunctionComponent = async () => {
                         <div className="flex items-center gap-4">
                             <LuGift className="size-8 text-warning-500" />
                             <div className="flex-1 space-y-1">
-                                <p className="text-lg font-semibold">{t('hasNoGoodies')}</p>
+                                <p className="text-lg font-semibold">{t('hasGoodies')}</p>
                                 <Skeleton className="w-20 h-6 rounded-lg" />
                             </div>
                         </div>
