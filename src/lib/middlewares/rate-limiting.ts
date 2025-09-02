@@ -1,4 +1,4 @@
-import type { RequestHandler, RequestHandlerContextBase } from '@lib/middlewares/types';
+import type { RequestHandler, RequestHandlerContext, RequestHandlerContextBase } from '@lib/middlewares/types';
 import { prismaClient } from '@lib/prisma/client';
 import { ApiError } from '@lib/utils';
 import ipaddr from 'ipaddr.js';
@@ -67,7 +67,7 @@ const getRateLimiterHeaders = (
 
 export type RateLimitOptions = {};
 
-export const withRateLimit = <C extends RequestHandlerContextBase = never>(
+export const withRateLimit = <C extends RequestHandlerContext = RequestHandlerContextBase>(
     handler: RequestHandler<C>,
     _options?: RateLimitOptions,
 ): RequestHandler<C> => {

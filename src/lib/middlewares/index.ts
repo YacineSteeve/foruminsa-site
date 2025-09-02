@@ -1,7 +1,7 @@
 import { serverEnv } from '@lib/config/env';
 import { type CorsOptions, withCors } from '@lib/middlewares/cors';
 import { type RateLimitOptions, withRateLimit } from '@lib/middlewares/rate-limiting';
-import type { RequestHandler, RequestHandlerContextBase } from '@lib/middlewares/types';
+import type { RequestHandler, RequestHandlerContext, RequestHandlerContextBase } from '@lib/middlewares/types';
 
 export { withCors, withRateLimit };
 
@@ -10,7 +10,7 @@ export type AllMiddlewaresOptions = {
     rateLimit?: boolean | RateLimitOptions;
 };
 
-export const withMiddlewares = <C extends RequestHandlerContextBase = never>(
+export const withMiddlewares = <C extends RequestHandlerContext = RequestHandlerContextBase>(
     handler: RequestHandler<C>,
     options?: AllMiddlewaresOptions,
 ): RequestHandler<C> => {

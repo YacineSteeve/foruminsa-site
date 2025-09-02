@@ -29,7 +29,7 @@
         "express-handlebars": "7",
         "framer-motion": "^12.23.6",
         "ipaddr.js": "^2.2.0",
-        "next": "^15.4.5",
+        "next": "^15.4.7",
         "next-intl": "^4.3.4",
         "nextjs-toploader": "^3.8.16",
         "nodemailer": "^7.0.5",

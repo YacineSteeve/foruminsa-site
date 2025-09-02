@@ -1,12 +1,14 @@
 import type { NextRequest, NextResponse } from 'next/server';
 
-export type RequestHandlerContextBase =
-    | {
-          params: Promise<Record<string, string>>;
-      }
-    | never;
+export type RequestHandlerContext = {
+    params: Promise<Record<string, string>>;
+};
 
-export type RequestHandler<C extends RequestHandlerContextBase = never> = (
+export type RequestHandlerContextBase = {
+    params: Promise<{}>;
+};
+
+export type RequestHandler<C extends RequestHandlerContext = RequestHandlerContextBase> = (
     request: NextRequest,
     context: C,
 ) => NextResponse | Promise<NextResponse>;
