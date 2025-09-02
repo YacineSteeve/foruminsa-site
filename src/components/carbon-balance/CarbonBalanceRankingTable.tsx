@@ -87,6 +87,7 @@ export const CarbonBalanceRankingTable: FunctionComponent = () => {
             classNames={{
                 base: '!p-0',
                 wrapper: '!relative',
+                loadingWrapper: 'inset-x-0 inset-y-auto bottom-2 h-40',
                 tr: 'h-18 cursor-pointer',
                 th: 'text-lg',
                 td: 'text-base',

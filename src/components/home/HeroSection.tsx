@@ -1,6 +1,7 @@
 import { Button } from '@heroui/button';
-import { JOBTEASER_EVENT_URL } from '@lib/constants/core';
-import { getTranslations } from 'next-intl/server';
+import { EVENT_TIME, JOBTEASER_EVENT_URL } from '@lib/constants/core';
+import { formatEventTime, getFormattedEventDate } from '@lib/utils';
+import { getLocale, getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { FunctionComponent } from 'react';
@@ -8,6 +9,7 @@ import { LuCalendarDays } from 'react-icons/lu';
 
 export const HeroSection: FunctionComponent = async () => {
     const t = await getTranslations('HeroSection');
+    const locale = await getLocale();
 
     return (
         <section className="relative flex justify-between items-center 2xl:gap-16 w-full h-[calc(100vh-4.75rem)] min-h-max max-xl:py-16">
@@ -54,8 +56,13 @@ export const HeroSection: FunctionComponent = async () => {
                 <div className="flex items-center gap-4">
                     <LuCalendarDays className="size-8" />
                     <div className="*:text-xl *:uppercase">
-                        <p>{t('eventDate')}</p>
-                        <p>{t('eventTime')}</p>
+                        <p>{t('eventDate', { date: getFormattedEventDate(locale) })}</p>
+                        <p>
+                            {t('eventTime', {
+                                start: formatEventTime(EVENT_TIME.start, locale),
+                                end: formatEventTime(EVENT_TIME.end, locale),
+                            })}
+                        </p>
                     </div>
                 </div>
             </div>

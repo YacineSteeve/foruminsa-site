@@ -91,8 +91,8 @@
         "titlePartThree": "of INSA Toulouse",
         "register": "Register !",
         "discoverINSA": "Discover INSA Toulouse",
-        "eventDate": "On October 21, 2025",
-        "eventTime": "From 9 AM to 4 PM"
+        "eventDate": "On {date}",
+        "eventTime": "From {start} to {end}"
     },
     "EventSection": {
         "imageOneAlt": "Image of paper documents on a table during an interview",
@@ -120,20 +120,25 @@
         "companyLogoAlt": "Logo of the company {companyName}"
     },
     "EventPage": {
-        "imageAlt": "Image of a group of people at a professional event",
+        "imageOneAlt": "Image of a group of people at a professional event",
         "title": "Join a unique event",
-        "description": "Meet companies from various sectors, attend inspiring conferences, and find your future internship, apprenticeship, or even your first job!",
+        "description": "Looking for an internship, work-study program, or your first job? Or simply curious to discuss with professionals in your field? Register now for the Forum By INSA 2025!",
         "registration": "Student Registration",
         "dateTitle": "Date",
-        "dateSubtitle": "October 21, 2025",
         "timeTitle": "Time",
-        "timeSubtitle": "9 AM to 4 PM",
+        "timeSubtitle": "{start} to {end}",
         "placeTitle": "Location",
         "placeSubtitle": "INSA Campus",
         "placeDescription": "137 Avenue de Rangueil, 31400 Toulouse",
         "participantsTitle": "Participants",
         "participantsSubtitle": "+50 companies and ~1000 students",
-        "daySchedule": "Day Schedule"
+        "imageTwoAlt": "Image of people discussing around a table in an amphitheater",
+        "whyTitle": "Why come to the FBI (Forum by INSA not Federal Bureau of Investigation...)?",
+        "whyItemOne": "Land your 4th or 5th year internship within a company you like.",
+        "whyItemTwo": "Meet and discuss with HR professionals and engineers about your professional project.",
+        "whyItemThree": "Discover and learn about new topics during round tables, workshops and conferences.",
+        "daySchedule": "Day Schedule",
+        "allDay": "All day"
     },
     "CompaniesPage": {
         "title": "Companies",

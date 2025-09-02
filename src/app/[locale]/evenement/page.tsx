@@ -2,7 +2,8 @@ import { EventPlanningCategory } from '@components/event/EventPlanningCategory';
 import { planning } from '@data/planning';
 import { BrochureSection } from '@components/global/BrochureSection';
 import { Button } from '@heroui/button';
-import { JOBTEASER_EVENT_URL } from '@lib/constants/core';
+import { EVENT_TIME, JOBTEASER_EVENT_URL } from '@lib/constants/core';
+import { formatEventTime, getFormattedEventDate } from '@lib/utils';
 import type { Metadata } from 'next';
 import { getLocale, getTranslations } from 'next-intl/server';
 import Image from 'next/image';
@@ -25,11 +26,10 @@ export default async function EventPage() {
 
     return (
         <div className="w-full">
-            <section className="w-full"></section>
             <section className="relative flex-center w-full min-h-max px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 py-8 md:py-16">
                 <Image
                     src="/chairs.jpg"
-                    alt={t('imageAlt')}
+                    alt={t('imageOneAlt')}
                     fill
                     quality={100}
                     sizes="100%,100%"
@@ -59,12 +59,15 @@ export default async function EventPage() {
                         <EventInfosItem
                             icon={LuCalendarDays}
                             title={t('dateTitle')}
-                            subtitle={t('dateSubtitle')}
+                            subtitle={getFormattedEventDate(locale)}
                         />
                         <EventInfosItem
                             icon={LuClock4}
                             title={t('timeTitle')}
-                            subtitle={t('timeSubtitle')}
+                            subtitle={t('timeSubtitle', {
+                                start: formatEventTime(EVENT_TIME.start, locale),
+                                end: formatEventTime(EVENT_TIME.end, locale),
+                            })}
                         />
                         <EventInfosItem
                             icon={LuMapPin}
@@ -80,6 +83,26 @@ export default async function EventPage() {
                     </div>
                 </div>
             </section>
+            <section className="flex max-lg:flex-col items-center gap-x-16 gap-y-8 w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 3xl:px-80 py-8 md:py-16 bg-gradient-to-t from-primary/10 to-white shadow-md">
+                <Image
+                    src="/conf_zoom.jpg"
+                    alt={t('imageTwoAlt')}
+                    width={1296}
+                    height={864}
+                    quality={100}
+                    className="w-100 xl:w-120 h-auto rounded-xl"
+                />
+                <div className="max-lg:text-center space-y-4">
+                    <h2 className="text-primary !normal-case">{t('whyTitle')}</h2>
+                    <div className="text-lg">
+                        <ul className="list-disc list-inside">
+                            <li>{t('whyItemOne')}</li>
+                            <li>{t('whyItemTwo')}</li>
+                            <li>{t('whyItemThree')}</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
             <section className="w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 3xl:px-80 py-8 md:py-16 space-y-4 md:space-y-8">
                 <h2 className="text-primary text-center">{t('daySchedule')}</h2>
                 <div className="space-y-8">
@@ -88,6 +111,7 @@ export default async function EventPage() {
                             key={index}
                             category={category}
                             locale={locale}
+                            allDayLabel={t('allDay')}
                         />
                     ))}
                 </div>

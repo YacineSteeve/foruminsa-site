@@ -46,13 +46,6 @@ export type ServerEnvironmentVariables = z.infer<typeof serverEnvSchema>;
 
 export type ClientEnvironmentVariables = z.infer<typeof clientEnvSchema>;
 
-let serverEnv: ServerEnvironmentVariables;
-let clientEnv: ClientEnvironmentVariables;
+export const serverEnv: ServerEnvironmentVariables = serverEnvSchema.parse(process.env);
 
-if (typeof window === 'undefined') {
-    serverEnv = serverEnvSchema.parse(process.env);
-} else {
-    clientEnv = clientEnvSchema.parse(process.env);
-}
-
-export { serverEnv, clientEnv };
+export const clientEnv: ClientEnvironmentVariables = clientEnvSchema.parse(process.env);

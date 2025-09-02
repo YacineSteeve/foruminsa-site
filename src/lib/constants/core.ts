@@ -1,3 +1,5 @@
+import type { Time } from '@lib/types/entities';
+
 export const APP_URL =
     process.env.NODE_ENV === 'production'
         ? ('https://foruminsa-site.vercel.app' as const)
@@ -10,6 +12,11 @@ export const EVENT_DAY = {
     month: 10,
     day: 21,
 } as const;
+
+export const EVENT_TIME = {
+    start: { hours: 9, minutes: 0 },
+    end: { hours: 17, minutes: 0 },
+} as const satisfies { start: Time; end: Time };
 
 export const STUDY_LEVELS = ['1A', '2A', '3A', '4A', '5A'] as const;
 

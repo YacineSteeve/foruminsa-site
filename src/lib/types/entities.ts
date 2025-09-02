@@ -115,25 +115,17 @@ export const companyLogoListEntitySchema = z.array(
 
 export type CompanyLogoListEntity = z.infer<typeof companyLogoListEntitySchema>;
 
-export const hourSchema = z
-    .number({ error: 'mustBeANumber' })
-    .int({ error: 'mustBeAnInteger' })
-    .min(0, { error: 'mustBeAtLeast0' })
-    .max(23, { error: 'mustBeAtMost23' });
-
-export type Hour = z.infer<typeof hourSchema>;
-
-export const minuteSchema = z
-    .number({ error: 'mustBeANumber' })
-    .int({ error: 'mustBeAnInteger' })
-    .min(0, { error: 'mustBeAtLeast0' })
-    .max(59, { error: 'mustBeAtMost59' });
-
-export type Minute = z.infer<typeof minuteSchema>;
-
 export const timeSchema = z.object({
-    hours: hourSchema,
-    minutes: minuteSchema,
+    hours: z
+        .number({ error: 'mustBeANumber' })
+        .int({ error: 'mustBeAnInteger' })
+        .min(0, { error: 'mustBeAtLeast0' })
+        .max(23, { error: 'mustBeAtMost23' }),
+    minutes: z
+        .number({ error: 'mustBeANumber' })
+        .int({ error: 'mustBeAnInteger' })
+        .min(0, { error: 'mustBeAtLeast0' })
+        .max(59, { error: 'mustBeAtMost59' }),
 });
 
 export type Time = z.infer<typeof timeSchema>;

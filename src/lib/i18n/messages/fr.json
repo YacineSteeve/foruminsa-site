@@ -91,8 +91,8 @@
         "titlePartThree": "de l'INSA Toulouse",
         "register": "Inscrivez-vous !",
         "discoverINSA": "Découvrez l'INSA Toulouse",
-        "eventDate": "Le 21 Octobre 2025",
-        "eventTime": "De 9h à 16h"
+        "eventDate": "Le {date}",
+        "eventTime": "De {start} à {end}"
     },
     "EventSection": {
         "imageOneAlt": "Image de documents papiers sur une table pendant un entretien",
@@ -120,20 +120,25 @@
         "companyLogoAlt": "Logo de l'entreprise {companyName}"
     },
     "EventPage": {
-        "imageAlt": "Image de plusieurs chaises vides disposées dans une salle",
+        "imageOneAlt": "Image de plusieurs chaises vides disposées dans une salle",
         "title": "Participez à un événement unique",
-        "description": "Rencontrez des entreprises de divers secteurs, assistez à des conférences inspirantes et trouvez votre futur stage, alternance, ou même votre premier emploi !",
+        "description": "A la recherche d’un stage, d’une alternance ou encore d’un premier job? Ou simplement curieux de discuter avec des professionnels de ton secteur ? Inscris-toi dès maintenant au Forum By INSA 2025 !",
         "registration": "Inscription Étudiante",
         "dateTitle": "Date",
-        "dateSubtitle": "21 Octobre 2025",
         "timeTitle": "Horaires",
-        "timeSubtitle": "9h à 16h",
+        "timeSubtitle": "{start} à {end}",
         "placeTitle": "Lieu",
         "placeSubtitle": "Campus INSA",
         "placeDescription": "137 Avenue de Rangueil, 31400 Toulouse",
         "participantsTitle": "Participants",
         "participantsSubtitle": "+50 entreprises et ~1000 étudiants",
-        "daySchedule": "Programme de la journée"
+        "imageTwoAlt": "Image de personnes discutant autour d'une table dans un amphithéâtre",
+        "whyTitle": "Pourquoi venir au FBI (Forum by INSA pas Federal Bureau of Investigation...)?",
+        "whyItemOne": "Décrocher ton stage de 4ème ou 5ème année au sein d’une entreprise qui te plaît.",
+        "whyItemTwo": "Rencontrer et discuter avec des RH et des ingénieurs à propos de ton projet professionnel.",
+        "whyItemThree": "Découvrir et appréhender de nouvelles thématiques lors de tables rondes, ateliers et conférences.",
+        "daySchedule": "Programme de la journée",
+        "allDay": "Journée entière"
     },
     "CompaniesPage": {
         "title": "Entreprises",

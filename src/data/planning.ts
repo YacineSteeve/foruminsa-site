@@ -3,6 +3,42 @@ import type { PlanningEntity } from '@lib/types/entities';
 export const planning: PlanningEntity = [
     {
         name: {
+            fr: 'Rencontres entreprises',
+            en: 'Company meetings',
+        },
+        entries: [
+            {
+                title: {
+                    fr: 'Première partie',
+                    en: 'First part',
+                },
+                description: {
+                    fr: 'Rencontrez les entreprises sur leurs stands, échangez avec leurs représentants, et passez même des entretiens!',
+                    en: 'Meet the companies on their stands, exchange with their representatives, and even have interviews!',
+                },
+                location: 'STPI',
+                isFullDay: false,
+                startTime: { hours: 9, minutes: 0 },
+                endTime: { hours: 12, minutes: 0 },
+            },
+            {
+                title: {
+                    fr: 'Seconde partie',
+                    en: 'Second part',
+                },
+                description: {
+                    fr: 'Rencontrez les entreprises sur leurs stands, échangez avec leurs représentants, et passez même des entretiens!',
+                    en: 'Meet the companies on their stands, exchange with their representatives, and even have interviews!',
+                },
+                location: 'STPI',
+                isFullDay: false,
+                startTime: { hours: 13, minutes: 0 },
+                endTime: { hours: 16, minutes: 0 },
+            },
+        ],
+    },
+    {
+        name: {
             fr: 'Conférences',
             en: 'Conferences',
         },
@@ -32,8 +68,8 @@ export const planning: PlanningEntity = [
                 },
                 location: 'Amphi Vinci',
                 isFullDay: false,
-                startTime: { hours: 10, minutes: 45 },
-                endTime: { hours: 12, minutes: 15 },
+                startTime: { hours: 11, minutes: 0 },
+                endTime: { hours: 12, minutes: 30 },
             },
             {
                 title: {
@@ -46,8 +82,8 @@ export const planning: PlanningEntity = [
                 },
                 location: 'Amphi Vinci',
                 isFullDay: false,
-                startTime: { hours: 14, minutes: 0 },
-                endTime: { hours: 16, minutes: 0 },
+                startTime: { hours: 15, minutes: 30 },
+                endTime: { hours: 17, minutes: 0 },
             },
         ],
     },
@@ -134,6 +170,28 @@ export const planning: PlanningEntity = [
                 isFullDay: true,
                 startTime: null,
                 endTime: null,
+            },
+        ],
+    },
+    {
+        name: {
+            fr: 'Autres',
+            en: 'Others',
+        },
+        entries: [
+            {
+                title: {
+                    fr: 'Repas',
+                    en: 'Lunch',
+                },
+                description: {
+                    fr: "Bénéficie d'un repas gratuit sur place!",
+                    en: 'Enjoy a free meal on site!',
+                },
+                location: 'Instagram, @forumbyinsa',
+                isFullDay: false,
+                startTime: { hours: 12, minutes: 0 },
+                endTime: { hours: 13, minutes: 0 },
             },
         ],
     },
