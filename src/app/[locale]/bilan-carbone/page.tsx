@@ -1,7 +1,11 @@
 import { CarbonBalanceRankingTable } from '@components/carbon-balance/CarbonBalanceRankingTable';
 import { Card } from '@heroui/card';
+import { CompanyService } from '@lib/api-services';
+import { COMPANIES_RANKING_PAGE_SIZE, URL_PARAMS } from '@lib/constants/core';
 import { FORUM_LABEL_ICON } from '@lib/constants/ui';
+import type { CompaniesFiltersAsSearchParams } from '@lib/types/dtos';
 import type { Metadata } from 'next';
+import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { LuHandshake, LuLeaf } from 'react-icons/lu';
@@ -14,8 +18,37 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function CarbonBalancePage() {
-    const t = await getTranslations('CarbonBalancePage');
+interface CarbonBalancePageProps {
+    params: Promise<{
+        locale: Locale;
+    }>;
+    searchParams: Promise<CompaniesFiltersAsSearchParams>;
+}
+
+export default async function CarbonBalancePage({ params, searchParams }: CarbonBalancePageProps) {
+    const [{ locale }, filtersParams, t] = await Promise.all([
+        params,
+        searchParams,
+        getTranslations('CarbonBalancePage'),
+    ]);
+
+    const pageValue = filtersParams[URL_PARAMS.page];
+    const pageNumber = typeof pageValue === 'string' ? parseInt(pageValue, 10) : 1;
+    const page = isNaN(pageNumber) || pageNumber < 1 ? 1 : pageNumber;
+
+    const greenLabelValue = filtersParams[URL_PARAMS.greenLabel];
+    const greenLabel = typeof greenLabelValue === 'string' ? greenLabelValue === 'true' : undefined;
+
+    const searchValue = filtersParams[URL_PARAMS.search];
+    const search = typeof searchValue === 'string' ? searchValue : undefined;
+
+    const paginatedCompanies = CompanyService.getAllCompanies({
+        search,
+        page,
+        greenLabel,
+        pageSize: COMPANIES_RANKING_PAGE_SIZE,
+        sortByCarbonFootprint: true,
+    });
 
     return (
         <div className="w-full *:px-4 *:md:px-10 *:lg:px-20 *:xl:px-40 *:2xl:px-60 *:3xl:px-80">
@@ -57,7 +90,15 @@ export default async function CarbonBalancePage() {
                     <h2 className="text-primary">{t('companiesRanking')}</h2>
                     <p className="text-lg">{t('companiesRankingDescription')}</p>
                 </div>
-                <CarbonBalanceRankingTable />
+                <CarbonBalanceRankingTable
+                    filters={{
+                        search,
+                        page,
+                        greenLabel,
+                    }}
+                    paginatedCompanies={paginatedCompanies}
+                    locale={locale}
+                />
             </section>
             <section className="flex max-lg:flex-col justify-center gap-8 lg:gap-16 w-full py-8 md:py-16 *:flex-1">
                 <Card

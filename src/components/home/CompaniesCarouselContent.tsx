@@ -1,8 +1,8 @@
 'use client';
 
 import { Tooltip } from '@heroui/tooltip';
+import type { CompanyLogoList } from '@lib/api-services';
 import { Link } from '@lib/i18n/navigation';
-import type { CompanyLogoListEntity } from '@lib/types/entities';
 import { cn } from '@lib/utils';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -17,7 +17,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 interface CompaniesCarouselContentProps {
-    logos: CompanyLogoListEntity;
+    logos: CompanyLogoList;
 }
 
 export const CompaniesCarouselContent: FunctionComponent<CompaniesCarouselContentProps> = ({
@@ -41,7 +41,7 @@ export const CompaniesCarouselContent: FunctionComponent<CompaniesCarouselConten
                         >
                             <div className="relative size-20 md:size-24 lg:size-28 xl:size-32">
                                 <Image
-                                    src={logo.logoUrl}
+                                    src={logo.logoFile}
                                     alt={t('companyLogoAlt', { companyName: logo.name })}
                                     fill
                                     sizes="100%,100%"

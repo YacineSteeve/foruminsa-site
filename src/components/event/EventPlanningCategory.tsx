@@ -1,15 +1,17 @@
 'use client';
 
 import { Accordion, AccordionItem } from '@heroui/accordion';
-import type { PlanningCategoryEntity } from '@lib/types/entities';
+import type { PlanningData } from '@lib/types/data';
 import { formatPlanningTime } from '@lib/utils';
 import type { Locale } from 'next-intl';
 import Link from 'next/link';
 import { Fragment, type FunctionComponent } from 'react';
 import { LuExternalLink, LuMapPin } from 'react-icons/lu';
 
+export type PlanningDataCategory = PlanningData[number];
+
 interface EventPlanningCategoryProps {
-    category: PlanningCategoryEntity;
+    category: PlanningDataCategory;
     locale: Locale;
     allDayLabel: string;
 }
@@ -36,16 +38,22 @@ export const EventPlanningCategory: FunctionComponent<EventPlanningCategoryProps
                         subtitle={
                             entry.location ? (
                                 entry.locationUrl ? (
-                                    <Link href={entry.locationUrl} target="_blank" className="group">
+                                    <Link
+                                        href={entry.locationUrl}
+                                        target="_blank"
+                                        className="group"
+                                    >
                                         <div className="flex items-center gap-1">
-                                            <LuMapPin className="size-4"/>
-                                            <p className="text-base group-hover:underline underline-offset-3">{entry.location}</p>
+                                            <LuMapPin className="size-4" />
+                                            <p className="text-base group-hover:underline underline-offset-3">
+                                                {entry.location}
+                                            </p>
                                             <LuExternalLink className="not-group-hover:hidden" />
                                         </div>
                                     </Link>
                                 ) : (
                                     <div className="flex items-center gap-1">
-                                        <LuMapPin className="size-4"/>
+                                        <LuMapPin className="size-4" />
                                         <p className="text-base">{entry.location}</p>
                                     </div>
                                 )

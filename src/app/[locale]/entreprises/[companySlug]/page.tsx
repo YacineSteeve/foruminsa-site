@@ -1,26 +1,16 @@
 import { CompanyDetailsSection } from '@components/company-details/CompanyDetailsSection';
-import { CompanyDetailsSkeleton } from '@components/company-details/CompanyDetailsSkeleton';
 import { ReturnButton } from '@components/company-details/ReturnButton';
-import { SuspenseBoundary } from '@components/ui/SuspenseBoundary';
 import { Alert } from '@heroui/alert';
 import { Chip } from '@heroui/chip';
 import { CompanyService } from '@lib/api-services';
 import { COUNTRIES } from '@lib/constants/countries';
 import { FORUM_LABEL_ICON, SOCIAL_LINKS_TYPES_METADATA } from '@lib/constants/ui';
-import {
-    buildGoogleMapsUrl,
-    cn,
-    getSortedSocialLinks,
-    hasGreenLabel,
-    parseSpecialities,
-    parseStudyLevels,
-} from '@lib/utils';
+import { buildGoogleMapsUrl, cn, getSortedSocialLinks, hasGreenLabel } from '@lib/utils';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import Link from 'next/link';
-import type { FunctionComponent } from 'react';
 import {
     LuBuilding2,
     LuBusFront,
@@ -35,72 +25,52 @@ import {
 interface CompanyDetailsPageProps {
     params: Promise<{
         companySlug: string;
-        locale: string;
+        locale: Locale;
     }>;
 }
 
 export async function generateMetadata({ params }: CompanyDetailsPageProps): Promise<Metadata> {
     const { companySlug, locale } = await params;
-    const company = await CompanyService.getCompanyByKey(companySlug);
 
-    if (!company) {
+    try {
+        const company = CompanyService.getCompanyBySlug(companySlug);
+
         return {
-            title: 'Company Not Found',
-            description: 'The requested company could not be found.',
+            title: company.name,
+            description: company.description[locale],
+            openGraph: {
+                title: `${company.name} | Forum By INSA`,
+                description: company.description[locale],
+                images: [
+                    {
+                        url: company.logoFile,
+                        alt: company.name,
+                        width: 1200,
+                        height: 630,
+                    },
+                ],
+                locale: locale,
+                type: 'website',
+            },
+        };
+    } catch (error) {
+        return {
+            title: '404',
         };
     }
-
-    const localizedDescription = locale === 'en' ? company.descriptionEN : company.descriptionFR;
-
-    return {
-        title: company.name,
-        description: localizedDescription,
-        openGraph: {
-            title: `${company.name} | Forum By INSA`,
-            description: localizedDescription,
-            images: [
-                {
-                    url: company.logoUrl,
-                    alt: company.name,
-                    width: 1200,
-                    height: 630,
-                },
-            ],
-            locale: locale,
-            type: 'website',
-        },
-    };
 }
 
 export default async function CompanyDetailsPage({ params }: CompanyDetailsPageProps) {
-    const { companySlug, locale } = await params;
+    const [{ companySlug, locale }, t, tSpecialities, tStudyLevels, tSocialLinks] =
+        await Promise.all([
+            params,
+            getTranslations('CompanyDetailsPage'),
+            getTranslations('Specialities'),
+            getTranslations('StudyLevels'),
+            getTranslations('SocialLinks'),
+        ]);
 
-    return (
-        <SuspenseBoundary fallback={<CompanyDetailsSkeleton />}>
-            <CompanyDetailsPageContent
-                companySlug={companySlug}
-                locale={locale as Locale}
-            />
-        </SuspenseBoundary>
-    );
-}
-
-interface CompanyDetailsPageContentProps {
-    companySlug: string;
-    locale: Locale;
-}
-
-const CompanyDetailsPageContent: FunctionComponent<CompanyDetailsPageContentProps> = async ({
-    companySlug,
-    locale,
-}) => {
-    const company = await CompanyService.getCompanyByKey(companySlug);
-    const [t, tSpecialities, tStudyLevels, tSocialLinks] = await Promise.all([
-        getTranslations('CompanyDetailsPage'),
-        getTranslations('Specialities'),
-        getTranslations('StudyLevels'),
-        getTranslations('SocialLinks'),
-    ]);
+    const company = CompanyService.getCompanyBySlug(companySlug);
 
     if (!company) {
         return (
@@ -120,7 +90,7 @@ const CompanyDetailsPageContent: FunctionComponent<CompanyDetailsPageContentProp
                 <section className="flex flex-col items-center gap-4 md:gap-8">
                     <div className="relative size-40 md:size-60 shadow-lg rounded-2xl overflow-hidden bg-white">
                         <Image
-                            src={company.logoUrl}
+                            src={company.logoFile}
                             alt={t('companyLogoAlt', { companyName: company.name })}
                             fill
                             priority
@@ -145,9 +115,7 @@ const CompanyDetailsPageContent: FunctionComponent<CompanyDetailsPageContentProp
                     title={t('about')}
                     expand
                 >
-                    <p className="text-lg">
-                        {locale === 'en' ? company.descriptionEN : company.descriptionFR}
-                    </p>
+                    <p className="text-lg">{company.description[locale]}</p>
                 </CompanyDetailsSection>
                 <CompanyDetailsSection title={t('sectors')}>
                     <div className="flex gap-4">
@@ -162,7 +130,7 @@ const CompanyDetailsPageContent: FunctionComponent<CompanyDetailsPageContentProp
                                         base: 'h-10 px-3 bg-green-100 text-green-800',
                                     }}
                                 >
-                                    {locale === 'en' ? sector.nameEN : sector.nameFR}
+                                    {sector.name[locale]}
                                 </Chip>
                             ))}
                         </div>
@@ -190,7 +158,7 @@ const CompanyDetailsPageContent: FunctionComponent<CompanyDetailsPageContentProp
                 </CompanyDetailsSection>
                 <CompanyDetailsSection title={t('wantedSpecialities')}>
                     <div className="flex flex-wrap gap-4 w-full">
-                        {parseSpecialities(company.specialities).map((speciality) => (
+                        {company.specialities.map((speciality) => (
                             <Chip
                                 key={speciality}
                                 size="lg"
@@ -206,7 +174,7 @@ const CompanyDetailsPageContent: FunctionComponent<CompanyDetailsPageContentProp
                 </CompanyDetailsSection>
                 <CompanyDetailsSection title={t('wantedStudyLevels')}>
                     <div className="flex flex-wrap gap-4 w-full">
-                        {parseStudyLevels(company.studyLevels).map((studyLevel) => (
+                        {company.studyLevels.map((studyLevel) => (
                             <Chip
                                 key={studyLevel}
                                 size="lg"
@@ -337,7 +305,7 @@ const CompanyDetailsPageContent: FunctionComponent<CompanyDetailsPageContentProp
 
                                 return (
                                     <div
-                                        key={socialLink.id}
+                                        key={socialLink.type}
                                         className="flex items-center gap-4"
                                     >
                                         <Icon className="size-6 text-primary" />
@@ -367,4 +335,4 @@ const CompanyDetailsPageContent: FunctionComponent<CompanyDetailsPageContentProp
             </div>
         </div>
     );
-};
+}

@@ -1,39 +1,17 @@
 import { CompaniesCarouselContent } from '@components/home/CompaniesCarouselContent';
-import { Loader } from '@components/ui/Loader';
-import { SuspenseBoundary } from '@components/ui/SuspenseBoundary';
 import { CompanyService } from '@lib/api-services';
-import type { FunctionComponent, PropsWithChildren } from 'react';
+import type { FunctionComponent } from 'react';
 
 export const CompaniesCarouselSection: FunctionComponent = () => {
-    return (
-        <SuspenseBoundary
-            fallback={
-                <CompaniesCarouselWrapper>
-                    <div className="flex-center size-full">
-                        <Loader />
-                    </div>
-                </CompaniesCarouselWrapper>
-            }
-        >
-            <CompaniesCarousel />
-        </SuspenseBoundary>
-    );
-};
+    const logos = CompanyService.getAllCompanyLogos();
 
-const CompaniesCarousel: FunctionComponent = async () => {
-    const logos = await CompanyService.getAllCompanyLogos();
-
-    if (!logos || logos.length === 0) {
+    if (logos.length === 0) {
         return null;
     }
 
     return (
-        <CompaniesCarouselWrapper>
+        <section className="w-full h-60 md:h-80 bg-black">
             <CompaniesCarouselContent logos={logos} />
-        </CompaniesCarouselWrapper>
+        </section>
     );
-};
-
-const CompaniesCarouselWrapper: FunctionComponent<PropsWithChildren> = ({ children }) => {
-    return <section className="w-full h-60 md:h-80 bg-black">{children}</section>;
 };

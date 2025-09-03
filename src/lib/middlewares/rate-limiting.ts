@@ -1,17 +1,17 @@
-import type { RequestHandler, RequestHandlerContext, RequestHandlerContextBase } from '@lib/middlewares/types';
-import { prismaClient } from '@lib/prisma/client';
+import type {
+    RequestHandler,
+    RequestHandlerContext,
+    RequestHandlerContextBase,
+} from '@lib/middlewares/types';
 import { ApiError } from '@lib/utils';
 import ipaddr from 'ipaddr.js';
 import { NextRequest } from 'next/server';
-import { type IRateLimiterOptions, RateLimiterPrisma, RateLimiterRes } from 'rate-limiter-flexible';
+import { type IRateLimiterOptions, RateLimiterMemory, RateLimiterRes } from 'rate-limiter-flexible';
 
-const rateLimiterStore = new RateLimiterPrisma({
-    storeClient: prismaClient,
+const rateLimiterStore = new RateLimiterMemory({
     points: 30, // 30 requests
     duration: 60, // Per minute
     blockDuration: 60, // Block for 60 seconds if the rate limit is exceeded
-    tableCreated: true,
-    tableName: 'RateLimit',
 });
 
 const IP_HEADER_NAMES = [

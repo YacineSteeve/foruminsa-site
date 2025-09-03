@@ -1,7 +1,7 @@
 import { format, set } from 'date-fns';
 import { fr, enUS, type Locale as DateFnsLocale } from 'date-fns/locale';
 import { EVENT_DAY } from '@lib/constants/core';
-import type { Time } from '@lib/types/entities';
+import type { Time } from '@lib/types/primitives';
 import type { Locale } from 'next-intl';
 
 const localesMap: Readonly<Record<Locale, DateFnsLocale>> = {
@@ -15,7 +15,7 @@ export const getFormattedEventDate = (locale: Locale) => {
         month: EVENT_DAY.month - 1,
         date: EVENT_DAY.day,
     });
-    
+
     return format(date, 'd MMMM yyyy', { locale: localesMap[locale] });
 };
 
@@ -25,19 +25,17 @@ const formatTime = (time: Time, locale: Locale, hourFormat: 'numeric' | '2-digit
         month: EVENT_DAY.month - 1,
         date: EVENT_DAY.day,
         hours: time.hours,
-        minutes: time.minutes
+        minutes: time.minutes,
     });
-    
-    let formatted = format(
-        fullDate,
-        hourFormat === 'numeric' ? 'H\'h\'mm' : 'HH\'h\'mm',
-        { locale: localesMap[locale] }
-    );
-    
+
+    let formatted = format(fullDate, hourFormat === 'numeric' ? "H'h'mm" : "HH'h'mm", {
+        locale: localesMap[locale],
+    });
+
     if (formatted.endsWith('h00')) {
         formatted = formatted.slice(0, -2);
     }
-    
+
     return formatted;
 };
 

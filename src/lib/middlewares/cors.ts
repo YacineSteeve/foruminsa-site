@@ -1,5 +1,9 @@
 import { APP_URL } from '@lib/constants/core';
-import type { RequestHandler, RequestHandlerContext, RequestHandlerContextBase } from '@lib/middlewares/types';
+import type {
+    RequestHandler,
+    RequestHandlerContext,
+    RequestHandlerContextBase,
+} from '@lib/middlewares/types';
 import type { HTTP_METHOD } from 'next/dist/server/web/http';
 import { NextResponse } from 'next/server';
 import { append } from 'vary';

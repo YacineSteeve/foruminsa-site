@@ -1,30 +1,6 @@
-import { SPECIALITIES, STUDY_LEVELS } from '@lib/constants/core';
-import type { Speciality, StudyLevel } from '@lib/types/core';
-import type { CompanyEntity, SocialLinkEntity } from '@lib/types/entities';
+import type { CompanyEntity, SocialLink } from '@lib/types/entities';
 
-const isSpeciality = (value: string): value is Speciality => {
-    return SPECIALITIES.includes(value as Speciality);
-};
-
-export const parseSpecialities = (raw: string): Array<Speciality> => {
-    return raw
-        .split(',')
-        .map((part) => part.trim())
-        .filter(isSpeciality);
-};
-
-const isStudyLevel = (value: string): value is StudyLevel => {
-    return STUDY_LEVELS.includes(value as StudyLevel);
-};
-
-export const parseStudyLevels = (raw: string): Array<StudyLevel> => {
-    return raw
-        .split(',')
-        .map((part) => part.trim())
-        .filter(isStudyLevel);
-};
-
-export const getSortedSocialLinks = (links: Array<SocialLinkEntity>): Array<SocialLinkEntity> => {
+export const getSortedSocialLinks = (links: Array<SocialLink>): Array<SocialLink> => {
     return links.toSorted((a, b) => {
         if (a.type === 'other' && b.type !== 'other') {
             return 1;

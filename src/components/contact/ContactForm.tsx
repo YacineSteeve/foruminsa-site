@@ -91,6 +91,7 @@ export const ContactForm: FunctionComponent<ContactFormProps> = ({ locale = DEFA
     return (
         <Form
             className="w-full space-y-8"
+            aria-label={t('contactForm')}
             validationErrors={validationErrors}
             onSubmit={handleSubmit}
         >

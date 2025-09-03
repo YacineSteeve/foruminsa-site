@@ -1,11 +1,11 @@
+import { CONTACT_SUBJECTS, SUPPORTED_LANGUAGES } from '@lib/constants/core';
 import {
-    CONTACT_SUBJECTS,
-    SPECIALITIES,
-    STUDY_LEVELS,
-    SUPPORTED_LANGUAGES,
-} from '@lib/constants/core';
-import { COUNTRY_CODES } from '@lib/constants/countries';
-import type { CompanyEntity } from '@lib/types/entities';
+    countryCodeSchema,
+    sectorEntitySchema,
+    specialitySchema,
+    studyLevelSchema,
+} from '@lib/types/entities';
+import { nonEmptyStringSchema, stringSchema } from '@lib/types/primitives';
 import { z } from 'zod/v4';
 
 export const contactDataSchema = z
@@ -13,20 +13,14 @@ export const contactDataSchema = z
         lang: z.enum(SUPPORTED_LANGUAGES, { error: 'invalidLanguage' }),
         subject: z.enum(CONTACT_SUBJECTS, { error: 'invalidSubject' }),
         email: z.email({ error: 'invalidEmail' }),
-        companyName: z
-            .string({ error: 'mustBeAString' })
-            .min(1, { error: 'mustHaveAtLeastOneCharacter' })
-            .optional(),
-        name: z.string({ error: 'mustBeAString' }).min(1, { error: 'mustHaveAtLeastOneCharacter' }),
-        phone: z
-            .string({ error: 'mustBeAString' })
+        companyName: nonEmptyStringSchema.optional(),
+        name: nonEmptyStringSchema,
+        phone: stringSchema
             .regex(/^(?:(?:\\+33|0033)[1-9]\d{8}|0[1-9]\d{8})$/, {
                 error: 'invalidPhoneNumber',
             })
             .optional(),
-        message: z
-            .string({ error: 'mustBeAString' })
-            .min(1, { error: 'mustHaveAtLeastOneCharacter' }),
+        message: nonEmptyStringSchema,
     })
     .refine(
         (data) => {
@@ -61,18 +55,12 @@ export const contactDataSchema = z
 export type ContactData = z.infer<typeof contactDataSchema>;
 
 export const companiesFiltersSchema = z.object({
-    search: z
-        .string({ error: 'mustBeAString' })
-        .min(1, { error: 'mustHaveAtLeastOneCharacter' })
-        .nullish(),
-    city: z
-        .string({ error: 'mustBeAString' })
-        .min(1, { error: 'mustHaveAtLeastOneCharacter' })
-        .nullish(),
-    countryCode: z.enum(COUNTRY_CODES, { error: 'mustBeAValidCountryCode' }).nullish(),
-    sector: z.cuid2({ error: 'mustBeAValidId' }).nullish(),
-    speciality: z.enum(SPECIALITIES, { error: 'mustBeAValidSpeciality' }).nullish(),
-    studyLevel: z.enum(STUDY_LEVELS, { error: 'mustBeAValidStudyLevel' }).nullish(),
+    search: nonEmptyStringSchema.nullish(),
+    city: nonEmptyStringSchema.nullish(),
+    countryCode: countryCodeSchema.nullish(),
+    sector: sectorEntitySchema.shape.id.nullish(),
+    speciality: specialitySchema.nullish(),
+    studyLevel: studyLevelSchema.nullish(),
     page: z.coerce.number().int().positive().nullish(),
     pageSize: z.coerce.number().int().positive().nullish(),
     greenLabel: z.coerce.boolean({ error: 'mustBeABoolean' }).nullish(),
@@ -81,4 +69,6 @@ export const companiesFiltersSchema = z.object({
 
 export type CompaniesFilters = z.infer<typeof companiesFiltersSchema>;
 
-export type CompanyKey = CompanyEntity['id'] | CompanyEntity['slug'];
+export type CompaniesFiltersAsSearchParams = {
+    [K in keyof CompaniesFilters]: string | string[] | undefined;
+};

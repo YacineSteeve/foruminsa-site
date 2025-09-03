@@ -1,31 +1,189 @@
-import { BaseService } from '@lib/api-services/base';
-import type { CompaniesFilters, CompanyKey } from '@lib/types/dtos';
-import type {
-    CityListEntity,
-    CompanyEntity,
-    CompaniesStatsEntity,
-    PaginatedCompaniesEntity,
-    CompanyLogoListEntity,
-} from '@lib/types/entities';
+import { companiesData } from '@data/companies';
+import { forumRoomsData } from '@data/forum-rooms';
+import { sectorsData } from '@data/sectors';
+import type { CompaniesData } from '@lib/types/data';
+import type { CompaniesFilters } from '@lib/types/dtos';
+import type { CompanyEntity, SectorEntity } from '@lib/types/entities';
+import { fakerFR as faker } from '@faker-js/faker';
+import { hasGreenLabel } from '@lib/utils';
+import { ServiceError } from '@lib/utils/service-error';
 
 export class CompanyService {
-    public static async getAllCompanies(params: CompaniesFilters = {}) {
-        return BaseService.get<PaginatedCompaniesEntity>('companies', { params });
+    public static getAllCompanies(filters: CompaniesFilters = {}): PaginatedCompanyEntities {
+        const filteredCompanies = companiesData.filter((companyData) => {
+            return (
+                (this.isNullish(filters.search) ||
+                    companyData.name.toLowerCase().indexOf(filters.search.toLowerCase()) !== -1) &&
+                (this.isNullish(filters.city) || companyData.city === filters.city) &&
+                (this.isNullish(filters.countryCode) ||
+                    companyData.countryCode === filters.countryCode) &&
+                (this.isNullish(filters.sector) ||
+                    companyData.sectorIds.includes(filters.sector)) &&
+                (this.isNullish(filters.speciality) ||
+                    companyData.specialities.includes(filters.speciality)) &&
+                (this.isNullish(filters.studyLevel) ||
+                    companyData.studyLevels.includes(filters.studyLevel)) &&
+                (this.isNullish(filters.greenLabel) ||
+                    hasGreenLabel({
+                        hasGreenTransport: companyData.hasGreenTransport,
+                        providesGoodies: companyData.providesGoodies,
+                    }))
+            );
+        });
+
+        if (filters.sortByCarbonFootprint) {
+            filteredCompanies.sort(
+                (a, b) => (b.carbonFootprint ?? Infinity) - (a.carbonFootprint ?? Infinity),
+            );
+        }
+
+        const page = filters.page ?? 1;
+        const pageSize = filters.pageSize ?? 10;
+        const startIndex = (page - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+
+        return {
+            page,
+            pageSize,
+            totalElements: filteredCompanies.length,
+            totalPages: Math.ceil(filteredCompanies.length / pageSize),
+            data: filteredCompanies
+                .slice(startIndex, endIndex)
+                .map((companyData) => this.processCompany(companyData)),
+        };
     }
 
-    public static async getCompanyByKey(key: CompanyKey) {
-        return BaseService.get<CompanyEntity>(`companies/${key}`);
+    public static getCompanyBySlug(slug: CompanyEntity['slug']): CompanyEntity {
+        const companyData = companiesData.find(
+            (companyData) => this.slugifyCompanyName(companyData.name) === slug,
+        );
+
+        if (!companyData) {
+            throw new ServiceError('COMPANY_NOT_FOUND');
+        }
+
+        return this.processCompany(companyData);
     }
 
-    public static async getCompaniesStats() {
-        return BaseService.get<CompaniesStatsEntity>('companies/stats');
+    public static getCompaniesStats(): CompaniesStatsEntity {
+        return {
+            companiesCount: companiesData.length,
+            sectorsCount: new Set(companiesData.flatMap((companyData) => companyData.sectorIds))
+                .size,
+            specialitiesCount: new Set(
+                companiesData.flatMap((companyData) => companyData.specialities),
+            ).size,
+        };
     }
 
-    public static async getAllCompaniesCities() {
-        return BaseService.get<CityListEntity>('companies/cities');
+    public static getAllCompaniesCities(): CityList {
+        return Array.from(new Set(companiesData.map((companyData) => companyData.city)));
     }
 
-    public static async getAllCompanyLogos() {
-        return BaseService.get<CompanyLogoListEntity>('companies/logos');
+    public static getAllCompaniesCountries(): CountryList {
+        return Array.from(new Set(companiesData.map((companyData) => companyData.countryCode)));
+    }
+
+    public static getAllCompaniesSectors(): SectorEntityList {
+        const sectorIds = new Set(companiesData.flatMap((companyData) => companyData.sectorIds));
+
+        const sectors = sectorsData.filter((sector) => sectorIds.has(sector.id));
+
+        if (sectors.length !== sectorIds.size) {
+            throw new ServiceError('SECTOR_NOT_FOUND');
+        }
+
+        return sectors;
+    }
+
+    public static getAllCompanyLogos(): CompanyLogoList {
+        return companiesData.map((companyData) => ({
+            id: companyData.id,
+            name: companyData.name,
+            slug: this.slugifyCompanyName(companyData.name),
+            logoFile: companyData.logoFile,
+        }));
+    }
+
+    private static processCompany(companyData: CompaniesData[number]): CompanyEntity {
+        const room = forumRoomsData.find((forumRoom) => forumRoom.id === companyData.roomId);
+
+        if (!room) {
+            throw new ServiceError('FORUM_ROOM_NOT_FOUND');
+        }
+
+        const companySectors = new Set(companyData.sectorIds);
+
+        const sectors = sectorsData.filter((sector) => companySectors.has(sector.id));
+
+        const foundSectors = new Set(sectors.map((sector) => sector.id));
+
+        const missingSectors = [...companySectors].filter(
+            (sectorId) => !foundSectors.has(sectorId),
+        );
+
+        if (missingSectors.length > 0) {
+            throw new ServiceError('SECTOR_NOT_FOUND');
+        }
+
+        return {
+            id: companyData.id,
+            name: companyData.name,
+            logoFile: companyData.logoFile,
+            hasGreenTransport: companyData.hasGreenTransport,
+            providesGoodies: companyData.providesGoodies,
+            carbonFootprint: companyData.carbonFootprint,
+            address: companyData.address,
+            postalCode: companyData.postalCode,
+            city: companyData.city,
+            countryCode: companyData.countryCode,
+            websiteUrl: companyData.websiteUrl,
+            hiringPlatformUrl: companyData.hiringPlatformUrl,
+            roomId: companyData.roomId,
+            sectorIds: Array.from(companyData.sectorIds),
+            studyLevels: Array.from(companyData.studyLevels),
+            specialities: Array.from(companyData.specialities),
+            description: {
+                fr: companyData.description.fr,
+                en: companyData.description.en,
+            },
+            socialLinks: Array.from(companyData.socialLinks, (link) => ({
+                type: link.type,
+                url: link.url,
+            })),
+            slug: this.slugifyCompanyName(companyData.name),
+            room,
+            sectors,
+        };
+    }
+
+    private static slugifyCompanyName(name: string): string {
+        return faker.helpers.slugify(name.toLowerCase());
+    }
+
+    private static isNullish(value: unknown): value is null | undefined {
+        return value === undefined || value === null;
     }
 }
+
+export type PaginatedCompanyEntities = {
+    data: Array<CompanyEntity>;
+    page: number;
+    pageSize: number;
+    totalElements: number;
+    totalPages: number;
+};
+
+export type CompaniesStatsEntity = {
+    companiesCount: number;
+    sectorsCount: number;
+    specialitiesCount: number;
+};
+
+export type CityList = Array<CompanyEntity['city']>;
+
+export type CountryList = Array<CompanyEntity['countryCode']>;
+
+export type SectorEntityList = Array<SectorEntity>;
+
+export type CompanyLogoList = Array<Pick<CompanyEntity, 'id' | 'name' | 'slug' | 'logoFile'>>;

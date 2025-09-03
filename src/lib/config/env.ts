@@ -23,18 +23,6 @@ const serverEnvSchema = z.object({
     MAIL_TO: z
         .string({ error: 'MAIL_TO must be a string' })
         .min(1, { error: 'MAIL_TO must be at least 1 character long' }),
-    DATABASE_URL: z.string({ error: 'DATABASE_URL must be a string' }) /*.regex(/^file:.+\.db$/, {
-        error: 'DATABASE_URL must be a valid SQLite file URL ending with the ".db" extension (e.g., file:./sqlite.db)',
-    })*/,
-    DATABASE_TOKEN: z.string({ error: 'DATABASE_TOKEN must be a string' }).optional().default(''),
-    LOCAL_DB: z
-        .stringbool({ error: 'LOCAL_DB must be one of: true, false' })
-        .optional()
-        .default(true),
-    DISABLE_RATE_LIMIT: z
-        .stringbool({ error: 'DISABLE_RATE_LIMIT must be one of: true, false' })
-        .optional()
-        .default(false),
     /* Add any other server-side environment variables here */
 });
 

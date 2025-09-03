@@ -6,7 +6,7 @@ import { SuspenseBoundary } from '@components/ui/SuspenseBoundary';
 import { i18nRouting } from '@lib/i18n/routing';
 import { cn, getFullUrl, getLocalizedFullUrl } from '@lib/utils';
 import { HeroUIProvider } from '@heroui/react';
-import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { hasLocale, type Locale, NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import type { PropsWithChildren } from 'react';
 import type { Metadata, Viewport } from 'next';
@@ -18,7 +18,7 @@ import { SWRConfig } from 'swr';
 import { APP_COLORS, APP_CONTAINER_ID, APP_FONT } from '@/lib/constants/ui';
 
 interface AppLayoutProps extends PropsWithChildren {
-    params: Promise<{ locale: string }>;
+    params: Promise<{ locale: Locale }>;
 }
 
 export const viewport: Viewport = {
@@ -53,8 +53,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AppLayout({ children, params }: AppLayoutProps) {
-    const { locale } = await params;
-    const messages = await getMessages();
+    const [{ locale }, messages] = await Promise.all([params, getMessages()]);
 
     if (!hasLocale(i18nRouting.locales, locale)) {
         notFound();

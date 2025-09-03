@@ -42,7 +42,9 @@
         "TOO_MANY_REQUESTS": "Too many requests. Please try again later.",
         "MESSAGE_NOT_DELIVERED": "Sorry, the message could not be sent.",
         "INVALID_QUERY_PARAMETERS": "Invalid query parameters. Please check your parameters and try again.",
-        "COMPANY_NOT_FOUND": "Company not found."
+        "COMPANY_NOT_FOUND": "Company not found.",
+        "FORUM_ROOM_NOT_FOUND": "Forum room not found.",
+        "SECTOR_NOT_FOUND": "Sector not found."
     },
     "Logo": {
         "logoAlt": "INSA Forum Logo"
@@ -141,24 +143,17 @@
         "allDay": "All day"
     },
     "CompaniesPage": {
-        "title": "Companies",
-        "description": "Discover all the prestigious companies participating in the Forum. Meet recruiters, explore internship and job opportunities, and prepare to shine your profile !",
-        "altText": "Image of a group of people discussing around a table"
-    },
-    "CompaniesStats": {
         "companiesCount": "Registered Companies",
         "sectorsCount": "Sectors",
         "specialitiesCount": "Desired Specialties",
-        "cannotLoadStats": "Unable to load company statistics."
-    },
-    "CompaniesList": {
+        "title": "Companies",
+        "description": "Discover all the prestigious companies participating in the Forum. Meet recruiters, explore internship and job opportunities, and prepare to shine your profile !",
+        "altText": "Image of a group of people discussing around a table",
         "cannotLoadCompanies": "Unable to load the list of companies.",
         "noCompanies": "No registered company has been found.",
         "companyLogoAlt": "Logo of the company {companyName}",
-        "companyGreenLabelDescription": "Your heart in one glance! The companies with this label are those who are committed to environmental and durability by using eco-friendly transportation methods, and not providing goodies."
-    },
-    "CompanyGreenLabel": {
-        "description": "This company uses eco-friendly transportation methods and does not offer goodies."
+        "companyGreenLabelDescription": "Your heart in one glance! The companies with this label are those who are committed to environmental and durability by using eco-friendly transportation methods, and not providing goodies.",
+        "greenLabelTooltip": "This company uses eco-friendly transportation methods and does not offer goodies."
     },
     "CompaniesSearchInput": {
         "placeholder": "Search for a company"
@@ -178,7 +173,6 @@
         "studyLevelLabel": "Study Level",
         "studyLevelPlaceholder": "Select a study level",
         "noOptions": "No options.",
-        "loading": "Loading...",
         "clearAll": "Clear all",
         "apply": "Apply"
     },
@@ -246,6 +240,7 @@
         "imageAlt": "Image of a person with a laptop"
     },
     "ContactForm": {
+        "contactForm": "Contact Form",
         "general": "General",
         "solidarityFund": "Solidarity Fund",
         "companies": "Companies",

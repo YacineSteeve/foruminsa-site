@@ -1,11 +1,12 @@
 import { EventPlanningCategory } from '@components/event/EventPlanningCategory';
-import { planning } from '@data/planning';
+import { planningData } from '@data/planning';
 import { BrochureSection } from '@components/global/BrochureSection';
 import { Button } from '@heroui/button';
 import { EVENT_TIME, JOBTEASER_EVENT_URL } from '@lib/constants/core';
 import { formatEventTime, getFormattedEventDate } from '@lib/utils';
 import type { Metadata } from 'next';
-import { getLocale, getTranslations } from 'next-intl/server';
+import type { Locale } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { FunctionComponent } from 'react';
@@ -20,9 +21,14 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function EventPage() {
-    const t = await getTranslations('EventPage');
-    const locale = await getLocale();
+interface EventPageProps {
+    params: Promise<{
+        locale: Locale;
+    }>;
+}
+
+export default async function EventPage({ params }: EventPageProps) {
+    const [{ locale }, t] = await Promise.all([params, getTranslations('EventPage')]);
 
     return (
         <div className="w-full">
@@ -107,7 +113,7 @@ export default async function EventPage() {
             <section className="w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 3xl:px-80 py-8 md:py-16 space-y-4 md:space-y-8">
                 <h2 className="text-primary text-center">{t('daySchedule')}</h2>
                 <div className="space-y-8">
-                    {planning.map((category, index) => (
+                    {planningData.map((category, index) => (
                         <EventPlanningCategory
                             key={index}
                             category={category}

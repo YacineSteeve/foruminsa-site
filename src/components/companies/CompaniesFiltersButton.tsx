@@ -5,12 +5,12 @@ import { Button } from '@heroui/button';
 import { Popover, PopoverContent, PopoverTrigger, type PopoverProps } from '@heroui/popover';
 import { Select, SelectItem, type SelectProps } from '@heroui/select';
 import { Switch, type SwitchProps } from '@heroui/switch';
-import { CompanyService, SectorService } from '@lib/api-services';
+import { CompanyService } from '@lib/api-services';
 import { COUNTRIES } from '@lib/constants/countries';
 import { SPECIALITIES, STUDY_LEVELS, URL_PARAMS } from '@lib/constants/core';
-import { useRequest, useSearchParamsChange } from '@lib/hooks';
+import { useSearchParamsChange } from '@lib/hooks';
 import type { CompaniesFilters } from '@lib/types/dtos';
-import { type Locale, useLocale, useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import {
     type ChangeEventHandler,
@@ -20,11 +20,6 @@ import {
     useState,
 } from 'react';
 import { RiFilter2Fill } from 'react-icons/ri';
-
-type FilterOption<T> = {
-    label: string;
-    value: T;
-};
 
 type FiltersValues = {
     [K in keyof Required<
@@ -126,41 +121,32 @@ const FiltersContent: FunctionComponent<FiltersContentProps> = ({
     const [values, setValues] = useState<FiltersValues>(initialValues);
     const { changeSearchParamMulti } = useSearchParamsChange({ scroll: true });
 
-    const { data: cityOptions, isLoading: isLoadingCityOptions } = useRequest<
-        string,
-        Array<FilterOption<CompaniesFilters['city']>>
-    >('city-options', async (_) => {
-        const cities = await CompanyService.getAllCompaniesCities();
-
-        if (!cities) {
-            return [];
-        }
-
-        return cities
+    const cityOptions = useMemo(() => {
+        return CompanyService.getAllCompaniesCities()
             .map((city) => ({
                 label: city,
                 value: city,
             }))
             .toSorted((a, b) => a.label.localeCompare(b.label));
-    });
+    }, []);
 
-    const { data: sectorOptions, isLoading: isLoadingSectorOptions } = useRequest<
-        [string, Locale],
-        Array<FilterOption<CompaniesFilters['sector']>>
-    >(['sector-options', locale], async ([_, locale]) => {
-        const sectors = await SectorService.getAllSectors();
+    const countryOptions = useMemo(() => {
+        return CompanyService.getAllCompaniesCountries()
+            .map((countryCode) => ({
+                label: COUNTRIES[countryCode][locale],
+                value: countryCode,
+            }))
+            .toSorted((a, b) => a.label.localeCompare(b.label));
+    }, [locale]);
 
-        if (!sectors) {
-            return [];
-        }
-
-        return sectors
+    const sectorOptions = useMemo(() => {
+        return CompanyService.getAllCompaniesSectors()
             .map((sector) => ({
-                label: locale === 'en' ? sector.nameEN : sector.nameFR,
+                label: sector.name[locale],
                 value: sector.id,
             }))
             .toSorted((a, b) => a.label.localeCompare(b.label));
-    });
+    }, [locale]);
 
     const handleSwitchChange = useCallback<
         (
@@ -232,13 +218,6 @@ const FiltersContent: FunctionComponent<FiltersContentProps> = ({
         ]);
     }, [values, changeSearchParamMulti]);
 
-    const countryOptions = useMemo(() => {
-        return Object.entries(COUNTRIES).map(([code, name]) => ({
-            value: code,
-            label: locale === 'en' ? name.en : name.fr,
-        }));
-    }, [locale]);
-
     return (
         <PopoverContent>
             {(titleProps) => (
@@ -288,11 +267,8 @@ const FiltersContent: FunctionComponent<FiltersContentProps> = ({
                                 label={t('sectorLabel')}
                                 placeholder={t('sectorPlaceholder')}
                                 listboxProps={{
-                                    emptyContent: t(
-                                        isLoadingSectorOptions ? 'loading' : 'noOptions',
-                                    ),
+                                    emptyContent: t('noOptions'),
                                 }}
-                                isLoading={isLoadingSectorOptions}
                                 selectedKeys={values.sector}
                                 onChange={handleSelectChange(URL_PARAMS.sector)}
                                 onClear={handleSelectClear(URL_PARAMS.sector)}
@@ -307,9 +283,8 @@ const FiltersContent: FunctionComponent<FiltersContentProps> = ({
                                 label={t('cityLabel')}
                                 placeholder={t('cityPlaceholder')}
                                 listboxProps={{
-                                    emptyContent: t(isLoadingCityOptions ? 'loading' : 'noOptions'),
+                                    emptyContent: t('noOptions'),
                                 }}
-                                isLoading={isLoadingCityOptions}
                                 selectedKeys={values.city}
                                 onChange={handleSelectChange(URL_PARAMS.city)}
                                 onClear={handleSelectClear(URL_PARAMS.city)}

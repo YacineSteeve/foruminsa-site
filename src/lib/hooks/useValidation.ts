@@ -5,11 +5,11 @@ import { z, type ZodObject, type ZodRawShape } from 'zod/v4';
 
 type ValidationErrorMessage = keyof Messages['ValidationErrors'];
 
-export type Errors<S extends ZodRawShape> = Record<keyof S, Array<string>>;
+export type ValidationErrors<S extends ZodRawShape> = Record<keyof S, Array<string>>;
 
 export const useValidation = <T, S extends ZodRawShape>(schema: ZodObject<S>) => {
     const t = useTranslations('ValidationErrors');
-    const [errors, setErrors] = useState<Readonly<Errors<S>>>();
+    const [errors, setErrors] = useState<Readonly<ValidationErrors<S>>>();
 
     const validate = useCallback(
         (data: T) => {
@@ -31,7 +31,7 @@ export const useValidation = <T, S extends ZodRawShape>(schema: ZodObject<S>) =>
                     }
 
                     return acc;
-                }, {} as Errors<S>);
+                }, {} as ValidationErrors<S>);
 
                 setErrors(validationErrors);
 

@@ -1,4 +1,4 @@
-import type { Time } from '@lib/types/entities';
+import type { Time } from '@lib/types/primitives';
 
 export const APP_URL =
     process.env.NODE_ENV === 'production'
@@ -85,7 +85,7 @@ export const SOCIAL_LINK_TYPES = [
     'other',
 ] as const;
 
-export const PASSWORD_HASHING_ROUNDS = 10 as const;
+export const MOCK_DATA_SEED = 21364890 as const;
 
 export const DEFAULT_ERROR_MESSAGE = 'SOMETHING_WENT_WRONG' as const;
 

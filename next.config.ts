@@ -45,9 +45,6 @@ const nextConfig: NextConfig = {
         if (isServer) {
             config.externals.push(
                 Object.fromEntries([
-                    '@prisma/client',
-                    '.prisma/client',
-                    '@libsql/client',
                     'handlebars',
                     'express-handlebars'
                 ].map((pkg) => [pkg, `commonjs ${pkg}`])),

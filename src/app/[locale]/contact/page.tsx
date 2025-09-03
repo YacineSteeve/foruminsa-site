@@ -1,7 +1,8 @@
 import { ContactForm } from '@components/contact/ContactForm';
 import { BrochureSection } from '@components/global/BrochureSection';
 import type { Metadata } from 'next';
-import { getLocale, getTranslations } from 'next-intl/server';
+import type { Locale } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -12,9 +13,14 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function ContactPage() {
-    const t = await getTranslations('ContactPage');
-    const locale = await getLocale();
+interface ContactPageProps {
+    params: Promise<{
+        locale: Locale;
+    }>;
+}
+
+export default async function ContactPage({ params }: ContactPageProps) {
+    const [{ locale }, t] = await Promise.all([params, getTranslations('ContactPage')]);
 
     return (
         <div>
