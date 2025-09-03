@@ -25,6 +25,7 @@
         "@prisma/adapter-libsql": "^6.14.0",
         "@prisma/client": "^6.15.0",
         "bcrypt": "^6.0.0",
+        "date-fns": "^4.1.0",
         "drizzle-orm": "^0.44.4",
         "express-handlebars": "7",
         "framer-motion": "^12.23.6",

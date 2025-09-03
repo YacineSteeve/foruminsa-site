@@ -31,6 +31,7 @@ export default async function EventPage() {
                     src="/chairs.jpg"
                     alt={t('imageOneAlt')}
                     fill
+                    priority
                     quality={100}
                     sizes="100%,100%"
                     className="object-cover object-center brightness-50"
@@ -90,7 +91,7 @@ export default async function EventPage() {
                     width={1296}
                     height={864}
                     quality={100}
-                    className="w-100 xl:w-120 h-auto rounded-xl"
+                    className="w-100 xl:w-120 h-auto rounded-2xl hover:rounded-4xl transition-all duration-300"
                 />
                 <div className="max-lg:text-center space-y-4">
                     <h2 className="text-primary !normal-case">{t('whyTitle')}</h2>

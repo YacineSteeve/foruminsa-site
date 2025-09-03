@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
     poweredByHeader: false,
     allowedDevOrigins: ['192.168.1.227', '10.28.5.9', '192.168.102.97'],
     images: {
+        qualities: [75, 100],
         remotePatterns: [
             {
                 protocol: 'http',

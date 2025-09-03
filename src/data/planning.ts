@@ -189,6 +189,7 @@ export const planning: PlanningEntity = [
                     en: 'Enjoy a free meal on site!',
                 },
                 location: 'Instagram, @forumbyinsa',
+                locationUrl: 'https://instagram.com/forumbyinsa',
                 isFullDay: false,
                 startTime: { hours: 12, minutes: 0 },
                 endTime: { hours: 13, minutes: 0 },

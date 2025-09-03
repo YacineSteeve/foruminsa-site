@@ -131,14 +131,24 @@ export const timeSchema = z.object({
 export type Time = z.infer<typeof timeSchema>;
 
 export const planningEntryEntitySchema = z.intersection(
-    z.object({
-        title: localizedStringEntitySchema,
-        description: localizedStringEntitySchema,
-        location: z
-            .string({ error: 'mustBeAString' })
-            .min(1, { error: 'mustHaveAtLeastOneCharacter' })
-            .nullable(),
-    }),
+    z.intersection(
+        z.object({
+            title: localizedStringEntitySchema,
+            description: localizedStringEntitySchema,
+        }),
+        z.discriminatedUnion('location', [
+            z.object({
+                location: z.literal(null),
+                locationUrl: z.null().optional(),
+            }),
+            z.object({
+                location: z
+                    .string({ error: 'mustBeAString' })
+                    .min(1, { error: 'mustHaveAtLeastOneCharacter' }),
+                locationUrl: z.url({ error: 'mustBeAValidUrl' }).nullish(),
+            })
+        ]),
+    ),
     z.discriminatedUnion('isFullDay', [
         z.object({
             isFullDay: z.literal(true),

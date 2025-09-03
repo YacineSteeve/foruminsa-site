@@ -4,8 +4,9 @@ import { Accordion, AccordionItem } from '@heroui/accordion';
 import type { PlanningCategoryEntity } from '@lib/types/entities';
 import { formatPlanningTime } from '@lib/utils';
 import type { Locale } from 'next-intl';
+import Link from 'next/link';
 import { Fragment, type FunctionComponent } from 'react';
-import { LuMapPin } from 'react-icons/lu';
+import { LuExternalLink, LuMapPin } from 'react-icons/lu';
 
 interface EventPlanningCategoryProps {
     category: PlanningCategoryEntity;
@@ -34,10 +35,20 @@ export const EventPlanningCategory: FunctionComponent<EventPlanningCategoryProps
                         title={entry.title[locale]}
                         subtitle={
                             entry.location ? (
-                                <div className="flex items-center gap-1">
-                                    <LuMapPin className="size-4" />
-                                    <p className="text-base">{entry.location}</p>
-                                </div>
+                                entry.locationUrl ? (
+                                    <Link href={entry.locationUrl} target="_blank" className="group">
+                                        <div className="flex items-center gap-1">
+                                            <LuMapPin className="size-4"/>
+                                            <p className="text-base group-hover:underline underline-offset-3">{entry.location}</p>
+                                            <LuExternalLink className="not-group-hover:hidden" />
+                                        </div>
+                                    </Link>
+                                ) : (
+                                    <div className="flex items-center gap-1">
+                                        <LuMapPin className="size-4"/>
+                                        <p className="text-base">{entry.location}</p>
+                                    </div>
+                                )
                             ) : undefined
                         }
                         startContent={

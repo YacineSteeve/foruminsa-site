@@ -1,56 +1,50 @@
+import { format, set } from 'date-fns';
+import { fr, enUS, type Locale as DateFnsLocale } from 'date-fns/locale';
 import { EVENT_DAY } from '@lib/constants/core';
 import type { Time } from '@lib/types/entities';
 import type { Locale } from 'next-intl';
 
-export const getFormattedEventDate = (locale: Locale) => {
-    const date = new Date(EVENT_DAY.year, EVENT_DAY.month - 1, EVENT_DAY.day);
+const localesMap: Readonly<Record<Locale, DateFnsLocale>> = {
+    en: enUS,
+    fr: fr,
+} as const;
 
-    return date.toLocaleDateString(locale, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        timeZone: 'Europe/Paris',
+export const getFormattedEventDate = (locale: Locale) => {
+    const date = set(new Date(), {
+        year: EVENT_DAY.year,
+        month: EVENT_DAY.month - 1,
+        date: EVENT_DAY.day,
     });
+    
+    return format(date, 'd MMMM yyyy', { locale: localesMap[locale] });
 };
 
-const formatTime = (time: Time, locale: Locale, options?: Intl.DateTimeFormatOptions) => {
-    const fullDate = new Date(
-        EVENT_DAY.year,
-        EVENT_DAY.month - 1,
-        EVENT_DAY.day,
-        time.hours,
-        time.minutes,
-        0,
-        0,
+const formatTime = (time: Time, locale: Locale, hourFormat: 'numeric' | '2-digit') => {
+    const fullDate = set(new Date(), {
+        year: EVENT_DAY.year,
+        month: EVENT_DAY.month - 1,
+        date: EVENT_DAY.day,
+        hours: time.hours,
+        minutes: time.minutes
+    });
+    
+    let formatted = format(
+        fullDate,
+        hourFormat === 'numeric' ? 'H\'h\'mm' : 'HH\'h\'mm',
+        { locale: localesMap[locale] }
     );
-
-    const preFormatted = fullDate
-        .toLocaleTimeString(locale, {
-            timeZone: 'Europe/Paris',
-            ...(options ?? {}),
-        })
-        .replace(/ /g, '')
-        .replace(':', 'h');
-
-    if (preFormatted.endsWith('h00')) {
-        return preFormatted.slice(0, -2);
+    
+    if (formatted.endsWith('h00')) {
+        formatted = formatted.slice(0, -2);
     }
-
-    return preFormatted;
+    
+    return formatted;
 };
 
 export const formatEventTime = (time: Time, locale: Locale) => {
-    return formatTime(time, locale, {
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: false,
-    });
+    return formatTime(time, locale, 'numeric');
 };
 
 export const formatPlanningTime = (time: Time, locale: Locale) => {
-    return formatTime(time, locale, {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false,
-    });
+    return formatTime(time, locale, '2-digit');
 };
