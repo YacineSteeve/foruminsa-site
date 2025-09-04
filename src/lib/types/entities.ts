@@ -64,6 +64,7 @@ export const companyEntitySchema = z.object({
     websiteUrl: urlStringSchema.nullable(),
     hiringPlatformUrl: urlStringSchema.nullable(),
     carbonFootprint: nonNegativeFloat32Schema.nullable(),
+    carbonBalanceRank: positiveIntegerSchema,
     roomId: forumRoomEntitySchema.shape.id.nullable(),
     room: forumRoomEntitySchema.nullable(),
     sectorIds: z.array(sectorEntitySchema.shape.id, { error: 'mustBeAnArray' }),

@@ -22,33 +22,43 @@ export class CompanyService {
                     companyData.specialities.includes(filters.speciality)) &&
                 (this.isNullish(filters.studyLevel) ||
                     companyData.studyLevels.includes(filters.studyLevel)) &&
-                (this.isNullish(filters.greenLabel) ||
-                    hasGreenLabel({
-                        hasGreenTransport: companyData.hasGreenTransport,
-                        providesGoodies: companyData.providesGoodies,
-                    }))
+                (this.isNullish(filters.greenLabel) || hasGreenLabel(companyData))
             );
         });
-
-        if (filters.sortByCarbonFootprint) {
-            filteredCompanies.sort(
-                (a, b) => (b.carbonFootprint ?? Infinity) - (a.carbonFootprint ?? Infinity),
-            );
-        }
 
         const page = filters.page ?? 1;
         const pageSize = filters.pageSize ?? 10;
         const startIndex = (page - 1) * pageSize;
         const endIndex = startIndex + pageSize;
 
+        if (!filters.sortByCarbonFootprint) {
+            return {
+                page,
+                pageSize,
+                totalElements: filteredCompanies.length,
+                totalPages: Math.ceil(filteredCompanies.length / pageSize),
+                data: filteredCompanies
+                    .slice(startIndex, endIndex)
+                    .map((companyData) => this.generateFullCompanyEntity(companyData)),
+            };
+        }
+
+        const carbonBalanceRanks = this.getCarbonBalanceRanks();
+
+        const fullCompanies = filteredCompanies.map((companyData) =>
+            this.generateFullCompanyEntity(companyData, carbonBalanceRanks?.[companyData.id]),
+        );
+
+        fullCompanies.sort(
+            (companyA, companyB) => companyA.carbonBalanceRank - companyB.carbonBalanceRank,
+        );
+
         return {
             page,
             pageSize,
-            totalElements: filteredCompanies.length,
-            totalPages: Math.ceil(filteredCompanies.length / pageSize),
-            data: filteredCompanies
-                .slice(startIndex, endIndex)
-                .map((companyData) => this.processCompany(companyData)),
+            totalElements: fullCompanies.length,
+            totalPages: Math.ceil(fullCompanies.length / pageSize),
+            data: fullCompanies.slice(startIndex, endIndex),
         };
     }
 
@@ -61,7 +71,7 @@ export class CompanyService {
             throw new ServiceError('COMPANY_NOT_FOUND');
         }
 
-        return this.processCompany(companyData);
+        return this.generateFullCompanyEntity(companyData);
     }
 
     public static getCompaniesStats(): CompaniesStatsEntity {
@@ -104,7 +114,10 @@ export class CompanyService {
         }));
     }
 
-    private static processCompany(companyData: CompaniesData[number]): CompanyEntity {
+    private static generateFullCompanyEntity(
+        companyData: CompaniesData[number],
+        carbonBalanceRank: CompanyEntity['carbonBalanceRank'] = 1,
+    ): CompanyEntity {
         const room = forumRoomsData.find((forumRoom) => forumRoom.id === companyData.roomId);
 
         if (!room) {
@@ -139,6 +152,7 @@ export class CompanyService {
             websiteUrl: companyData.websiteUrl,
             hiringPlatformUrl: companyData.hiringPlatformUrl,
             roomId: companyData.roomId,
+            carbonBalanceRank: carbonBalanceRank,
             sectorIds: Array.from(companyData.sectorIds),
             studyLevels: Array.from(companyData.studyLevels),
             specialities: Array.from(companyData.specialities),
@@ -154,6 +168,28 @@ export class CompanyService {
             room,
             sectors,
         };
+    }
+
+    private static getCarbonBalanceRanks(): Record<CompanyEntity['id'], number> {
+        return Object.fromEntries(
+            companiesData
+                .map((companyData) => ({
+                    id: companyData.id,
+                    carbonFootprint: companyData.carbonFootprint,
+                    hasGreenLabel: hasGreenLabel(companyData),
+                }))
+                .toSorted((companyA, companyB) => {
+                    if (companyA.carbonFootprint === companyB.carbonFootprint) {
+                        return Number(companyA.hasGreenLabel) - Number(companyB.hasGreenLabel);
+                    }
+
+                    return (
+                        (companyA.carbonFootprint ?? Infinity) -
+                        (companyB.carbonFootprint ?? Infinity)
+                    );
+                })
+                .map((company, index) => [company.id, index + 1]),
+        );
     }
 
     private static slugifyCompanyName(name: string): string {

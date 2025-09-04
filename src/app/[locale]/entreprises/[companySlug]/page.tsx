@@ -18,6 +18,7 @@ import {
     LuFactory,
     LuGift,
     LuGlobe,
+    LuHandshake,
     LuLeaf,
     LuMapPin,
 } from 'react-icons/lu';
@@ -257,6 +258,23 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                                     >
                                         <p className="inline-block group-hover:underline underline-offset-2">
                                             {t('website')}
+                                        </p>
+                                        <LuExternalLink className="ml-2 size-4 inline-block not-group-hover:hidden" />
+                                    </Link>
+                                </div>
+                            </div>
+                        )}
+                        {company.hiringPlatformUrl && (
+                            <div className="flex items-center gap-4">
+                                <LuHandshake className="size-6 text-primary" />
+                                <div className="flex-1">
+                                    <Link
+                                        href={company.hiringPlatformUrl}
+                                        target="_blank"
+                                        className="group flex items-center"
+                                    >
+                                        <p className="inline-block group-hover:underline underline-offset-2">
+                                            {t('hiringPlatform')}
                                         </p>
                                         <LuExternalLink className="ml-2 size-4 inline-block not-group-hover:hidden" />
                                     </Link>

@@ -193,6 +193,7 @@
         "unknown": "Unknown",
         "carbonFootprint": "Carbon Footprint",
         "website": "Website",
+        "hiringPlatform": "Hiring platform",
         "hasGreenLabelDescription": "This company has the green label! It meets our environmental commitment criteria.",
         "noGreenLabelDescription": "This company does not meet all our environmental commitment criteria, but this does not call into question its actions in favor of the environment.",
         "hasGreenTransportation": "Uses eco-friendly transportation methods",

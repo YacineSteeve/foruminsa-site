@@ -100,82 +100,81 @@ export const CarbonBalanceRankingTable: FunctionComponent<CarbonBalanceRankingTa
                 <TableColumn key="green-label">{t('greenLabel')}</TableColumn>
             </TableHeader>
             <TableBody emptyContent={t('noCompanies')}>
-                {paginatedCompanies.data.map((company, index) => {
-                    const rank =
-                        paginatedCompanies.pageSize * (paginatedCompanies.page - 1) + index + 1;
-
-                    return (
-                        <TableRow key={company.slug}>
-                            <TableCell>
-                                <Chip
-                                    radius="full"
-                                    variant="flat"
-                                    className={cn(
-                                        'size-10 max-w-auto text-center',
-                                        rank === 1 && 'text-purple-800 bg-purple-500/40',
-                                        rank === 2 && 'text-blue-800 bg-blue-500/40',
-                                        rank === 3 && 'text-yellow-800 bg-yellow-500/40',
-                                        rank >= 4 && 'text-default-800 bg-default-500/40',
-                                    )}
-                                >
-                                    {rank}
-                                </Chip>
-                            </TableCell>
-                            <TableCell>
-                                <div className="flex items-center gap-2 min-w-80">
-                                    <div className="relative size-10">
-                                        <Image
-                                            src={company.logoFile}
-                                            alt={t('companyLogoAlt', {
-                                                companyName: company.name,
-                                            })}
-                                            fill
-                                            sizes="100%,100%"
-                                            className="object-contain object-center"
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>{company.name}</p>
-                                        <p className="text-sm text-gray-500">
-                                            {company.city}, {COUNTRIES[company.countryCode][locale]}
-                                        </p>
-                                    </div>
-                                </div>
-                            </TableCell>
-                            <TableCell>
-                                <p>
-                                    <span className="font-bold">{company.carbonFootprint}</span>{' '}
-                                    <span className="text-sm text-gray-500">
-                                        t C0<sub>2</sub>eq
-                                    </span>
-                                </p>
-                            </TableCell>
-                            <TableCell>
-                                <Chip
-                                    variant="flat"
-                                    color={company.hasGreenTransport ? 'success' : 'danger'}
-                                >
-                                    {company.hasGreenTransport ? t('yes') : t('no')}
-                                </Chip>
-                            </TableCell>
-                            <TableCell>
-                                <Chip
-                                    variant="flat"
-                                    color={company.providesGoodies ? 'danger' : 'success'}
-                                >
-                                    {company.providesGoodies ? t('no') : t('yes')}
-                                </Chip>
-                            </TableCell>
-                            <TableCell>
-                                {hasGreenLabel(company) ? (
-                                    <FORUM_LABEL_ICON className="size-6 text-success" />
-                                ) : (
-                                    <p>-</p>
+                {paginatedCompanies.data.map((company) => (
+                    <TableRow key={company.slug}>
+                        <TableCell>
+                            <Chip
+                                radius="full"
+                                variant="flat"
+                                className={cn(
+                                    'size-10 max-w-auto text-center',
+                                    company.carbonBalanceRank === 1 &&
+                                        'text-purple-800 bg-purple-500/40',
+                                    company.carbonBalanceRank === 2 &&
+                                        'text-blue-800 bg-blue-500/40',
+                                    company.carbonBalanceRank === 3 &&
+                                        'text-yellow-800 bg-yellow-500/40',
+                                    company.carbonBalanceRank >= 4 &&
+                                        'text-default-800 bg-default-500/40',
                                 )}
-                            </TableCell>
-                        </TableRow>
-                    );
-                })}
+                            >
+                                {company.carbonBalanceRank}
+                            </Chip>
+                        </TableCell>
+                        <TableCell>
+                            <div className="flex items-center gap-2 min-w-80">
+                                <div className="relative size-10">
+                                    <Image
+                                        src={company.logoFile}
+                                        alt={t('companyLogoAlt', {
+                                            companyName: company.name,
+                                        })}
+                                        fill
+                                        sizes="100%,100%"
+                                        className="object-contain object-center"
+                                    />
+                                </div>
+                                <div>
+                                    <p>{company.name}</p>
+                                    <p className="text-sm text-gray-500">
+                                        {company.city}, {COUNTRIES[company.countryCode][locale]}
+                                    </p>
+                                </div>
+                            </div>
+                        </TableCell>
+                        <TableCell>
+                            <p>
+                                <span className="font-bold">{company.carbonFootprint}</span>{' '}
+                                <span className="text-sm text-gray-500">
+                                    t C0<sub>2</sub>eq
+                                </span>
+                            </p>
+                        </TableCell>
+                        <TableCell>
+                            <Chip
+                                variant="flat"
+                                color={company.hasGreenTransport ? 'success' : 'danger'}
+                            >
+                                {company.hasGreenTransport ? t('yes') : t('no')}
+                            </Chip>
+                        </TableCell>
+                        <TableCell>
+                            <Chip
+                                variant="flat"
+                                color={company.providesGoodies ? 'danger' : 'success'}
+                            >
+                                {company.providesGoodies ? t('no') : t('yes')}
+                            </Chip>
+                        </TableCell>
+                        <TableCell>
+                            {hasGreenLabel(company) ? (
+                                <FORUM_LABEL_ICON className="size-6 text-success" />
+                            ) : (
+                                <p>-</p>
+                            )}
+                        </TableCell>
+                    </TableRow>
+                ))}
             </TableBody>
         </Table>
     );
