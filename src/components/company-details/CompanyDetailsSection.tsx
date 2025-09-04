@@ -14,7 +14,7 @@ export const CompanyDetailsSection: FunctionComponent<CompanyDetailsSectionProps
     return (
         <section
             className={cn(
-                'w-full p-4 md:p-6 space-y-4 bg-white rounded-2xl shadow-sm md:shadow-md',
+                'w-full max-w-full p-4 md:p-6 space-y-4 bg-white rounded-2xl shadow-sm md:shadow-md',
                 expand && 'lg:col-span-2',
             )}
         >

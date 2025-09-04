@@ -28,7 +28,7 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company, logo
                 className="group w-84 h-56 p-4 space-y-4"
             >
                 <div className="flex gap-4 w-full">
-                    <div className="relative size-24 rounded-lg border-2 border-default/50 overflow-hidden">
+                    <div className="relative size-24 min-w-24 rounded-lg border-2 border-default/50 overflow-hidden">
                         <Image
                             src={company.logoFile}
                             alt={logoAlt}
@@ -39,10 +39,10 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company, logo
                             className="object-contain object-center group-hover:scale-110 transition-transform duration-300 ease-in-out"
                         />
                     </div>
-                    <div className="flex-1 space-y-2">
+                    <div className="max-h-24 flex-1 space-y-2 overflow-hidden">
                         <h4 className="text-start !normal-case">{company.name}</h4>
                         {company.sectors.length > 0 && (
-                            <div className="flex flex-wrap gap-x-2 gap-y-1">
+                            <div className="flex flex-wrap gap-x-2 gap-y-1 w-full max-w-full">
                                 {company.sectors
                                     .slice(0, DISPLAYED_SECTORS)
                                     .map((sector, index) => (
@@ -51,7 +51,11 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company, logo
                                             size="sm"
                                             color="primary"
                                             variant="flat"
-                                            className="text-sm text-black p-1 rounded-full"
+                                            title={sector.name[locale]}
+                                            classNames={{
+                                                base: 'min-w-auto max-w-36 text-sm text-black p-1 rounded-full',
+                                                content: 'block w-full truncate',
+                                            }}
                                         >
                                             {sector.name[locale]}
                                         </Chip>

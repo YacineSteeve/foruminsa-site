@@ -75,7 +75,7 @@ export const ContactForm: FunctionComponent<ContactFormProps> = ({ locale }) => 
                 value.map((error) => tValidationErrors(error as ValidationErrorMessage)),
             ]),
         );
-    }, [validationErrors]);
+    }, [tValidationErrors, validationErrors]);
 
     return (
         <Form
