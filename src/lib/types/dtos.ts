@@ -61,8 +61,16 @@ export const companiesFiltersSchema = z.object({
     sector: sectorEntitySchema.shape.id.nullish(),
     speciality: specialitySchema.nullish(),
     studyLevel: studyLevelSchema.nullish(),
-    page: z.coerce.number().int().positive().nullish(),
-    pageSize: z.coerce.number().int().positive().nullish(),
+    page: z.coerce
+        .number({ error: 'mustBeAValidNumber' })
+        .int({ error: 'mustBeAnInteger' })
+        .positive({ error: 'mustBePositive' })
+        .nullish(),
+    pageSize: z.coerce
+        .number({ error: 'mustBeAValidNumber' })
+        .int({ error: 'mustBeAnInteger' })
+        .positive({ error: 'mustBePositive' })
+        .nullish(),
     greenLabel: z.coerce.boolean({ error: 'mustBeABoolean' }).nullish(),
     sortByCarbonFootprint: z.coerce.boolean({ error: 'mustBeABoolean' }).nullish(),
 });

@@ -63,8 +63,8 @@ export const planningEntrySchema = z.intersection(
         }),
         z.discriminatedUnion('location', [
             z.object({
-                location: z.literal(null),
-                locationUrl: z.null().optional(),
+                location: z.null({ error: 'mustBeNull' }),
+                locationUrl: z.null({ error: 'mustBeNull' }).optional(),
             }),
             z.object({
                 location: nonEmptyStringSchema,
@@ -74,13 +74,13 @@ export const planningEntrySchema = z.intersection(
     ),
     z.discriminatedUnion('isFullDay', [
         z.object({
-            isFullDay: z.literal(true),
-            startTime: z.null(),
-            endTime: z.null(),
+            isFullDay: z.literal(true, { error: 'mustBeTrue' }),
+            startTime: z.null({ error: 'mustBeNull' }),
+            endTime: z.null({ error: 'mustBeNull' }),
         }),
         z
             .object({
-                isFullDay: z.literal(false),
+                isFullDay: z.literal(false, { error: 'mustBeFalse' }),
                 startTime: timeSchema,
                 endTime: timeSchema,
             })

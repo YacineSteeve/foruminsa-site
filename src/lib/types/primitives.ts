@@ -8,7 +8,7 @@ export const nonNegativeIntegerSchema = integerSchema.nonnegative({ error: 'must
 
 export type NonNegativeInteger = z.infer<typeof nonNegativeIntegerSchema>;
 
-export const positiveIntegerSchema = integerSchema.positive();
+export const positiveIntegerSchema = integerSchema.positive({ error: 'mustBePositive' });
 
 export type PositiveInteger = z.infer<typeof positiveIntegerSchema>;
 
