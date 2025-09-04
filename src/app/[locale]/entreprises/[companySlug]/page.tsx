@@ -6,7 +6,13 @@ import { ScrollShadow } from '@heroui/scroll-shadow';
 import { CompanyService } from '@lib/services';
 import { COUNTRIES } from '@lib/constants/countries';
 import { FORUM_LABEL_ICON, SOCIAL_LINKS_TYPES_METADATA } from '@lib/constants/ui';
-import { buildGoogleMapsUrl, cn, getSortedSocialLinks, hasGreenLabel } from '@lib/utils';
+import {
+    buildGoogleMapsUrl,
+    cn,
+    getCompanyLogoUrl,
+    getSortedSocialLinks,
+    hasGreenLabel,
+} from '@lib/utils';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
@@ -45,7 +51,7 @@ export async function generateMetadata({ params }: CompanyDetailsPageProps): Pro
                 description: company.description[locale],
                 images: [
                     {
-                        url: company.logoFile,
+                        url: getCompanyLogoUrl(company.logoFile),
                         alt: company.name,
                         width: 1200,
                         height: 630,
@@ -87,18 +93,17 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
 
     return (
         <div className="grid lg:grid-cols-2 gap-4 md:gap-8 w-full max-w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 3xl:px-80 py-4 md:py-8 pb-16 bg-default/20">
-            <section className="relative flex flex-col items-center gap-4 md:gap-8 w-full px-4 py-12 bg-gradient-to-t from-primary/20 to-white rounded-2xl shadow-sm md:shadow-md">
-                <div className="relative size-40 shadow-lg rounded-2xl overflow-hidden bg-white">
-                    <Image
-                        src={company.logoFile}
-                        alt={t('companyLogoAlt', { companyName: company.name })}
-                        fill
-                        priority
-                        quality={100}
-                        sizes="100%,100%"
-                        className="object-center object-contain"
-                    />
-                </div>
+            <section className="relative flex-center flex-col gap-4 md:gap-8 w-full h-88 px-4 pt-20 pb-12 bg-gradient-to-t from-primary/20 to-white rounded-2xl shadow-sm md:shadow-md">
+                <Image
+                    src={getCompanyLogoUrl(company.logoFile)}
+                    alt={t('companyLogoAlt', { companyName: company.name })}
+                    height={160}
+                    width={160}
+                    priority
+                    quality={100}
+                    sizes="100%,100%"
+                    className="w-60 h-auto max-h-40"
+                />
                 <div className="flex flex-col items-center gap-2 w-full whitespace-break-spaces break-after-left">
                     <h1 className="text-center">{company.name}</h1>
                     <div className="flex items-center gap-2 text-gray-800">

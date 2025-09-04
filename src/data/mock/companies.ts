@@ -51,7 +51,17 @@ export const companiesData: CompaniesData = faker.helpers.multiple(
                     '. ' +
                     fakerEN.lorem.paragraph({ min: 5, max: 10 }),
             },
-            logoFile: faker.image.avatarGitHub(),
+            logoFile: faker.helpers.arrayElement([
+                'airbus.png',
+                'atos.png',
+                'bouygues-construction.png',
+                'capgemini.png',
+                'forum.png',
+                'sopra-steria.png',
+                'vinci.png',
+                'lgm.png',
+                'ekium.png',
+            ]),
             providesGoodies: faker.datatype.boolean(),
             hasGreenTransport: faker.datatype.boolean(),
             studyLevels: faker.helpers.arrayElements(STUDY_LEVELS, { min: 1, max: 3 }),

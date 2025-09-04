@@ -15,7 +15,6 @@ export const ReturnButton: FunctionComponent = () => {
     return (
         <Button
             isIconOnly
-            size="lg"
             color="primary"
             className="absolute top-4 left-4"
             onPress={handlePress}

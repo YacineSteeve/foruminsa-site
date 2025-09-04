@@ -3,6 +3,7 @@ import { Chip } from '@heroui/chip';
 import { Tooltip } from '@heroui/tooltip';
 import { Link } from '@lib/i18n/navigation';
 import type { CompanyEntity } from '@lib/types/entities';
+import { getCompanyLogoUrl } from '@lib/utils';
 import type { Locale } from 'next-intl';
 import Image from 'next/image';
 import type { FunctionComponent } from 'react';
@@ -28,15 +29,15 @@ export const CompanyCard: FunctionComponent<CompanyCardProps> = ({ company, logo
                 className="group w-84 h-56 p-4 space-y-4"
             >
                 <div className="flex gap-4 w-full">
-                    <div className="relative size-24 min-w-24 rounded-lg border-2 border-default/50 overflow-hidden">
+                    <div className="relative size-24 min-w-24 rounded-lg outline-2 outline-default/50 overflow-hidden">
                         <Image
-                            src={company.logoFile}
+                            src={getCompanyLogoUrl(company.logoFile)}
                             alt={logoAlt}
                             fill
                             priority
                             quality={100}
                             sizes="100%,100%"
-                            className="object-contain object-center group-hover:scale-110 transition-transform duration-300 ease-in-out"
+                            className="object-contain object-center scale-90 group-hover:scale-100 transition-transform duration-300 ease-in-out"
                         />
                     </div>
                     <div className="max-h-24 flex-1 space-y-2 overflow-hidden">

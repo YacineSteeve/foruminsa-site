@@ -1,6 +1,6 @@
 import type { PlanningData } from '@lib/types/data';
 
-export const planningData: PlanningData = [
+export const planningData = [
     {
         name: {
             fr: 'Rencontres entreprises',
@@ -196,4 +196,4 @@ export const planningData: PlanningData = [
             },
         ],
     },
-] as const;
+] as const satisfies PlanningData;

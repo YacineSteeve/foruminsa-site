@@ -20,7 +20,7 @@ import { FORUM_LABEL_ICON } from '@lib/constants/ui';
 import { useSearchParamsChange } from '@lib/hooks';
 import { useRouter } from '@lib/i18n/navigation';
 import type { CompaniesFilters } from '@lib/types/dtos';
-import { cn, hasGreenLabel } from '@lib/utils';
+import { cn, getCompanyLogoUrl, hasGreenLabel } from '@lib/utils';
 import { type Locale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { type FunctionComponent, useCallback } from 'react';
@@ -62,7 +62,7 @@ export const CarbonBalanceRankingTable: FunctionComponent<CarbonBalanceRankingTa
                 base: '!p-0',
                 wrapper: '!relative',
                 loadingWrapper: 'inset-x-0 inset-y-auto bottom-2 h-40',
-                tr: 'h-18 cursor-pointer',
+                tr: 'h-20 cursor-pointer',
                 th: 'text-lg',
                 td: 'text-base',
             }}
@@ -122,18 +122,17 @@ export const CarbonBalanceRankingTable: FunctionComponent<CarbonBalanceRankingTa
                             </Chip>
                         </TableCell>
                         <TableCell>
-                            <div className="flex items-center gap-2 min-w-80">
-                                <div className="relative size-10">
-                                    <Image
-                                        src={company.logoFile}
-                                        alt={t('companyLogoAlt', {
-                                            companyName: company.name,
-                                        })}
-                                        fill
-                                        sizes="100%,100%"
-                                        className="object-contain object-center"
-                                    />
-                                </div>
+                            <div className="flex items-center gap-4 min-w-80">
+                                <Image
+                                    src={getCompanyLogoUrl(company.logoFile)}
+                                    alt={t('companyLogoAlt', {
+                                        companyName: company.name,
+                                    })}
+                                    width={40}
+                                    height={40}
+                                    sizes="100%,100%"
+                                    className="w-20 h-auto"
+                                />
                                 <div>
                                     <p>{company.name}</p>
                                     <p className="text-sm text-gray-500">

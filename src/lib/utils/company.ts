@@ -1,4 +1,13 @@
 import type { CompanyEntity, SocialLink } from '@lib/types/entities';
+import { z } from 'zod/v4';
+
+export const getCompanyLogoUrl = (logo: CompanyEntity['logoFile']): string => {
+    if (z.url({ protocol: /^https?$/ }).safeParse(logo).success) {
+        return logo;
+    } else {
+        return `/companies-logos/${logo}`;
+    }
+};
 
 export const getSortedSocialLinks = (links: Array<SocialLink>): Array<SocialLink> => {
     return links.toSorted((a, b) => {

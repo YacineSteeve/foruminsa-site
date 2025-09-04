@@ -3,7 +3,7 @@
 import { Tooltip } from '@heroui/tooltip';
 import type { CompanyLogoList } from '@lib/services';
 import { Link } from '@lib/i18n/navigation';
-import { cn } from '@lib/utils';
+import { cn, getCompanyLogoUrl } from '@lib/utils';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import {
@@ -39,13 +39,14 @@ export const CompaniesCarouselContent: FunctionComponent<CompaniesCarouselConten
                             placement="top"
                             delay={300}
                         >
-                            <div className="relative size-20 md:size-24 lg:size-28 xl:size-32">
+                            <div className="size-fit p-2 md:p-4 bg-white rounded-xl md:rounded-2xl">
                                 <Image
-                                    src={logo.logoFile}
+                                    src={getCompanyLogoUrl(logo.logoFile)}
                                     alt={t('companyLogoAlt', { companyName: logo.name })}
-                                    fill
+                                    width={80}
+                                    height={80}
                                     sizes="100%,100%"
-                                    className="m-auto object-contain object-center"
+                                    className="w-20 md:w-24 lg:w-28 xl:w-32 2xl:w-36 3xl:w-40 h-auto m-auto"
                                 />
                             </div>
                         </Tooltip>
@@ -78,7 +79,7 @@ const CarouselVersionAdapter: FunctionComponent<PropsWithChildren> = ({ children
                 {children}
             </CarouselVersion>
             <CarouselVersion
-                slidesToShow={3}
+                slidesToShow={2}
                 className="hidden max-lg:block"
             >
                 {children}
