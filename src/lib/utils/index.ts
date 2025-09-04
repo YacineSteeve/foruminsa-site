@@ -4,3 +4,5 @@ export * from './api-error';
 export * from './url';
 export * from './company';
 export * from './date';
+export * from './service-error';
+export * from './validation';

@@ -5,7 +5,7 @@ import { Button } from '@heroui/button';
 import { Popover, PopoverContent, PopoverTrigger, type PopoverProps } from '@heroui/popover';
 import { Select, SelectItem, type SelectProps } from '@heroui/select';
 import { Switch, type SwitchProps } from '@heroui/switch';
-import { CompanyService } from '@lib/api-services';
+import { CompanyService } from '@lib/services';
 import { COUNTRIES } from '@lib/constants/countries';
 import { SPECIALITIES, STUDY_LEVELS, URL_PARAMS } from '@lib/constants/core';
 import { useSearchParamsChange } from '@lib/hooks';

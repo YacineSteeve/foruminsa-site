@@ -1,7 +1,7 @@
 'use client';
 
 import { Tooltip } from '@heroui/tooltip';
-import type { CompanyLogoList } from '@lib/api-services';
+import type { CompanyLogoList } from '@lib/services';
 import { Link } from '@lib/i18n/navigation';
 import { cn } from '@lib/utils';
 import { useTranslations } from 'next-intl';

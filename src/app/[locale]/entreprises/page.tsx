@@ -6,7 +6,7 @@ import { CompanyCard } from '@components/companies/CompanyCard';
 import { CompanyGreenLabel } from '@components/companies/CompanyGreenLabel';
 import { Alert } from '@heroui/alert';
 import { Divider } from '@heroui/divider';
-import { CompanyService } from '@lib/api-services';
+import { CompanyService } from '@lib/services';
 import { COMPANIES_LIST_PAGE_SIZE, SPECIALITIES, STUDY_LEVELS } from '@lib/constants/core';
 import { COUNTRY_CODES } from '@lib/constants/countries';
 import { FORUM_LABEL_ICON } from '@lib/constants/ui';
@@ -135,7 +135,9 @@ export default async function CompaniesPage({ params, searchParams }: CompaniesP
                                         logoAlt={t('companyLogoAlt', { companyName: company.name })}
                                         locale={locale}
                                     />
-                                    {hasGreenLabel(company) && <CompanyGreenLabel tooltip={t('greenLabelTooltip')} />}
+                                    {hasGreenLabel(company) && (
+                                        <CompanyGreenLabel tooltip={t('greenLabelTooltip')} />
+                                    )}
                                 </li>
                             ))
                         ) : (

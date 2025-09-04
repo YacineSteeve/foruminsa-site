@@ -1,6 +1,6 @@
 import { CarbonBalanceRankingTable } from '@components/carbon-balance/CarbonBalanceRankingTable';
 import { Card } from '@heroui/card';
-import { CompanyService } from '@lib/api-services';
+import { CompanyService } from '@lib/services';
 import { COMPANIES_RANKING_PAGE_SIZE, URL_PARAMS } from '@lib/constants/core';
 import { FORUM_LABEL_ICON } from '@lib/constants/ui';
 import type { CompaniesFiltersAsSearchParams } from '@lib/types/dtos';

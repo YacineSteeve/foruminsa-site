@@ -1,8 +1,8 @@
-import { BaseService } from '@lib/api-services/base';
+import { ApiService } from '@lib/services/api';
 import type { ContactData } from '@lib/types/dtos';
 
 export class ContactService {
     public static async sendContactEmail(data: ContactData) {
-        return BaseService.post('contact', { data });
+        return ApiService.post('contact', { data });
     }
 }

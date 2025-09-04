@@ -2,7 +2,7 @@ import { CompanyDetailsSection } from '@components/company-details/CompanyDetail
 import { ReturnButton } from '@components/company-details/ReturnButton';
 import { Alert } from '@heroui/alert';
 import { Chip } from '@heroui/chip';
-import { CompanyService } from '@lib/api-services';
+import { CompanyService } from '@lib/services';
 import { COUNTRIES } from '@lib/constants/countries';
 import { FORUM_LABEL_ICON, SOCIAL_LINKS_TYPES_METADATA } from '@lib/constants/ui';
 import { buildGoogleMapsUrl, cn, getSortedSocialLinks, hasGreenLabel } from '@lib/utils';

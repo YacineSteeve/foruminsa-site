@@ -13,7 +13,7 @@ import {
     TableRow,
     type TableProps,
 } from '@heroui/table';
-import type { PaginatedCompanyEntities } from '@lib/api-services';
+import type { PaginatedCompanyEntities } from '@lib/services';
 import { URL_PARAMS } from '@lib/constants/core';
 import { COUNTRIES } from '@lib/constants/countries';
 import { FORUM_LABEL_ICON } from '@lib/constants/ui';

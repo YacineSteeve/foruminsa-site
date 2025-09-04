@@ -1,5 +1,5 @@
 import { CompaniesCarouselContent } from '@components/home/CompaniesCarouselContent';
-import { CompanyService } from '@lib/api-services';
+import { CompanyService } from '@lib/services';
 import type { FunctionComponent } from 'react';
 
 export const CompaniesCarouselSection: FunctionComponent = () => {

@@ -5,8 +5,7 @@ import type { CompaniesData } from '@lib/types/data';
 import type { CompaniesFilters } from '@lib/types/dtos';
 import type { CompanyEntity, SectorEntity } from '@lib/types/entities';
 import { fakerFR as faker } from '@faker-js/faker';
-import { hasGreenLabel } from '@lib/utils';
-import { ServiceError } from '@lib/utils/service-error';
+import { hasGreenLabel, ServiceError } from '@lib/utils';
 
 export class CompanyService {
     public static getAllCompanies(filters: CompaniesFilters = {}): PaginatedCompanyEntities {

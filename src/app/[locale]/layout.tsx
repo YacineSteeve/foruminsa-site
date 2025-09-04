@@ -14,7 +14,6 @@ import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server
 import TopLoader from 'nextjs-toploader';
 import { Toaster } from 'sonner';
 import '@style/global.css';
-import { SWRConfig } from 'swr';
 import { APP_COLORS, APP_CONTAINER_ID, APP_FONT } from '@/lib/constants/ui';
 
 interface AppLayoutProps extends PropsWithChildren {
@@ -75,48 +74,46 @@ export default async function AppLayout({ children, params }: AppLayoutProps) {
                         locale={locale}
                         messages={messages}
                     >
-                        <SWRConfig value={{ shouldRetryOnError: false }}>
-                            {/* Top loader for page loading indication (on navigation) */}
-                            <TopLoader
-                                color={APP_COLORS.primary}
-                                shadow={`0 0 10px ${APP_COLORS.primary}, 0 0 5px ${APP_COLORS.primary}`}
-                                initialPosition={0.1}
-                                speed={300}
-                                crawlSpeed={100}
-                                showSpinner={false}
-                            />
-                            {/* Toast notifications for user feedback */}
-                            <Toaster
-                                expand
-                                richColors
-                                offset={20}
-                                position="top-center"
-                                toastOptions={{
-                                    classNames: {
-                                        title: 'text-sm',
-                                    },
-                                }}
-                            />
-                            <div
-                                id={APP_CONTAINER_ID}
-                                className="w-screen h-screen overflow-x-hidden"
-                            >
-                                <Header />
-                                <main className="w-full">
-                                    <SuspenseBoundary
-                                        fallback={
-                                            <div className="flex-center w-full h-[calc(100vh-4.75rem)]">
-                                                <Loader />
-                                            </div>
-                                        }
-                                    >
-                                        {children}
-                                    </SuspenseBoundary>
-                                    <JobteaserSection />
-                                </main>
-                                <Footer />
-                            </div>
-                        </SWRConfig>
+                        {/* Top loader for page loading indication (on navigation) */}
+                        <TopLoader
+                            color={APP_COLORS.primary}
+                            shadow={`0 0 10px ${APP_COLORS.primary}, 0 0 5px ${APP_COLORS.primary}`}
+                            initialPosition={0.1}
+                            speed={300}
+                            crawlSpeed={100}
+                            showSpinner={false}
+                        />
+                        {/* Toast notifications for user feedback */}
+                        <Toaster
+                            expand
+                            richColors
+                            offset={20}
+                            position="top-center"
+                            toastOptions={{
+                                classNames: {
+                                    title: 'text-sm',
+                                },
+                            }}
+                        />
+                        <div
+                            id={APP_CONTAINER_ID}
+                            className="w-screen h-screen overflow-x-hidden"
+                        >
+                            <Header />
+                            <main className="w-full">
+                                <SuspenseBoundary
+                                    fallback={
+                                        <div className="flex-center w-full h-[calc(100vh-4.75rem)]">
+                                            <Loader />
+                                        </div>
+                                    }
+                                >
+                                    {children}
+                                </SuspenseBoundary>
+                                <JobteaserSection />
+                            </main>
+                            <Footer />
+                        </div>
                     </NextIntlClientProvider>
                 </HeroUIProvider>
             </body>

@@ -15,7 +15,7 @@ export interface RequestConfig<P extends RequestConfigParams, D extends RequestC
     revalidateLayouts?: Array<string>;
 }
 
-export class BaseService {
+export class ApiService {
     private static async request<
         R,
         P extends RequestConfigParams = {},
