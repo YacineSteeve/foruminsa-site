@@ -29,18 +29,19 @@ export async function generateMetadata(): Promise<Metadata> {
 
 interface CompaniesPageProps {
     params: Promise<{
-        locale: Locale;
+        locale: string;
     }>;
     searchParams: Promise<CompaniesFiltersAsSearchParams>;
 }
 
 export default async function CompaniesPage({ params, searchParams }: CompaniesPageProps) {
-    const [{ locale }, filtersParams, t] = await Promise.all([
+    const [awaitedParams, filtersParams, t] = await Promise.all([
         params,
         searchParams,
         getTranslations('CompaniesPage'),
     ]);
 
+    const locale = awaitedParams.locale as Locale;
     const companiesStats = CompanyService.getCompaniesStats();
 
     const filters: CompaniesFilters = {

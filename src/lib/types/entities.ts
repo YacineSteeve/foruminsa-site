@@ -2,6 +2,7 @@ import { SOCIAL_LINK_TYPES, SPECIALITIES, STUDY_LEVELS } from '@lib/constants/co
 import { COUNTRY_CODES } from '@lib/constants/countries';
 import {
     booleanSchema,
+    imageFilenameSchema,
     integerSchema,
     localizedStringSchema,
     nonEmptyStringSchema,
@@ -51,7 +52,7 @@ export const companyEntitySchema = z.object({
     name: nonEmptyStringSchema,
     slug: nonEmptyStringSchema.lowercase({ error: 'mustBeALowercaseString' }),
     description: localizedStringSchema,
-    logoFile: urlStringSchema,
+    logoFile: z.union([urlStringSchema, imageFilenameSchema]),
     providesGoodies: booleanSchema,
     hasGreenTransport: booleanSchema,
     socialLinks: z.array(socialLinkSchema, { error: 'mustBeAnArray' }),

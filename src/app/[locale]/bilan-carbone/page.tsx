@@ -20,18 +20,19 @@ export async function generateMetadata(): Promise<Metadata> {
 
 interface CarbonBalancePageProps {
     params: Promise<{
-        locale: Locale;
+        locale: string;
     }>;
     searchParams: Promise<CompaniesFiltersAsSearchParams>;
 }
 
 export default async function CarbonBalancePage({ params, searchParams }: CarbonBalancePageProps) {
-    const [{ locale }, filtersParams, t] = await Promise.all([
+    const [awaitedParams, filtersParams, t] = await Promise.all([
         params,
         searchParams,
         getTranslations('CarbonBalancePage'),
     ]);
 
+    const locale = awaitedParams.locale as Locale;
     const pageValue = filtersParams[URL_PARAMS.page];
     const pageNumber = typeof pageValue === 'string' ? parseInt(pageValue, 10) : 1;
     const page = isNaN(pageNumber) || pageNumber < 1 ? 1 : pageNumber;

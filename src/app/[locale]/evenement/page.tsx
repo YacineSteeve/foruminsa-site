@@ -23,12 +23,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
 interface EventPageProps {
     params: Promise<{
-        locale: Locale;
+        locale: string;
     }>;
 }
 
 export default async function EventPage({ params }: EventPageProps) {
-    const [{ locale }, t] = await Promise.all([params, getTranslations('EventPage')]);
+    const [awaitedParams, t] = await Promise.all([params, getTranslations('EventPage')]);
+
+    const locale = awaitedParams.locale as Locale;
 
     return (
         <div className="w-full">

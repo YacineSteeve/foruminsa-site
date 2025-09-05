@@ -33,15 +33,16 @@ import {
 interface CompanyDetailsPageProps {
     params: Promise<{
         companySlug: string;
-        locale: Locale;
+        locale: string;
     }>;
 }
 
 export async function generateMetadata({ params }: CompanyDetailsPageProps): Promise<Metadata> {
-    const { companySlug, locale } = await params;
+    const awaitedParams = await params;
+    const locale = awaitedParams.locale as Locale;
 
     try {
-        const company = CompanyService.getCompanyBySlug(companySlug);
+        const company = CompanyService.getCompanyBySlug(awaitedParams.companySlug);
 
         return {
             title: company.name,
@@ -69,16 +70,16 @@ export async function generateMetadata({ params }: CompanyDetailsPageProps): Pro
 }
 
 export default async function CompanyDetailsPage({ params }: CompanyDetailsPageProps) {
-    const [{ companySlug, locale }, t, tSpecialities, tStudyLevels, tSocialLinks] =
-        await Promise.all([
-            params,
-            getTranslations('CompanyDetailsPage'),
-            getTranslations('Specialities'),
-            getTranslations('StudyLevels'),
-            getTranslations('SocialLinks'),
-        ]);
+    const [awaitedParams, t, tSpecialities, tStudyLevels, tSocialLinks] = await Promise.all([
+        params,
+        getTranslations('CompanyDetailsPage'),
+        getTranslations('Specialities'),
+        getTranslations('StudyLevels'),
+        getTranslations('SocialLinks'),
+    ]);
 
-    const company = CompanyService.getCompanyBySlug(companySlug);
+    const locale = awaitedParams.locale as Locale;
+    const company = CompanyService.getCompanyBySlug(awaitedParams.companySlug);
 
     if (!company) {
         return (

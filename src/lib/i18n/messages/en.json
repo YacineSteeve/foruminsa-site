@@ -49,6 +49,7 @@
         "mustBeTrue": "This field must have the value 'true'.",
         "mustBeFalse": "This field must have the value 'false'.",
         "mustBeAValidNumber": "This field must be a valid number.",
+        "mustBeAValidImageFileName": "This field must be a valid image file name.",
         "endTimeMustBeAfterStartTime": "End time must be after start time."
     },
     "ApiErrors": {

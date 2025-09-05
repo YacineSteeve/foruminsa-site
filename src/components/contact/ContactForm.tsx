@@ -55,8 +55,7 @@ export const ContactForm: FunctionComponent<ContactFormProps> = ({ locale }) => 
                 description: t('successDescription'),
             });
         } else if (error) {
-            console.error('Error submitting contact form');
-            console.error(error);
+            console.error('Error submitting contact form:\n', error);
 
             if (error instanceof Error) {
                 toast.error(tApiErrors(error.message as ApiErrorMessage));

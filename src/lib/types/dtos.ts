@@ -78,5 +78,5 @@ export const companiesFiltersSchema = z.object({
 export type CompaniesFilters = z.infer<typeof companiesFiltersSchema>;
 
 export type CompaniesFiltersAsSearchParams = {
-    [K in keyof CompaniesFilters]: string | string[] | undefined;
+    [K in keyof CompaniesFilters]: string | Array<string> | undefined;
 };

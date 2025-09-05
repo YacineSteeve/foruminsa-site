@@ -15,12 +15,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
 interface ContactPageProps {
     params: Promise<{
-        locale: Locale;
+        locale: string;
     }>;
 }
 
 export default async function ContactPage({ params }: ContactPageProps) {
-    const [{ locale }, t] = await Promise.all([params, getTranslations('ContactPage')]);
+    const [awaitedParams, t] = await Promise.all([params, getTranslations('ContactPage')]);
+
+    const locale = awaitedParams.locale as Locale;
 
     return (
         <div>

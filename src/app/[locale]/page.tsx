@@ -8,7 +8,7 @@ import type { Locale } from 'next-intl';
 
 interface HomePageProps {
     params: Promise<{
-        locale: Locale;
+        locale: string;
     }>;
 }
 
@@ -18,7 +18,7 @@ export default async function HomePage({ params }: HomePageProps) {
     return (
         <div className="w-full min-h-screen">
             <SuspenseBoundary>
-                <HeroSection locale={locale} />
+                <HeroSection locale={locale as Locale} />
             </SuspenseBoundary>
             <EventSection />
             <CarbonBalanceSection />

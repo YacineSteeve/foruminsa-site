@@ -4,20 +4,21 @@
     "private": true,
     "type": "module",
     "engines": {
-        "node": ">=20"
+        "node": ">=22"
     },
     "scripts": {
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "format": "prettier --ignore-unknown --write src"
+        "format": "prettier --ignore-unknown --write src",
+        "check-data": "tsx src/lib/utils/data-check.ts"
     },
     "dependencies": {
         "@heroui/react": "^2.8.3",
         "date-fns": "^4.1.0",
         "drizzle-orm": "^0.44.5",
-        "express-handlebars": "7",
+        "express-handlebars": "^8.0.3",
         "framer-motion": "^12.23.6",
         "ipaddr.js": "^2.2.0",
         "next": "^15.4.7",
@@ -39,6 +40,8 @@
         "@eslint/eslintrc": "^3.3.1",
         "@faker-js/faker": "^9.9.0",
         "@tailwindcss/postcss": "^4.1.11",
+        "@types/lodash-es": "^4.17.12",
+        "@types/mime-types": "^3.0.1",
         "@types/node": "^24.0.14",
         "@types/nodemailer": "^6.4.17",
         "@types/nodemailer-express-handlebars": "^4.0.5",
@@ -50,11 +53,14 @@
         "eslint": "^9.31.0",
         "eslint-config-next": "^15.4.1",
         "eslint-config-prettier": "^10.1.5",
+        "lodash-es": "^4.17.21",
+        "mime-types": "^3.0.1",
         "postcss": "^8.5.6",
         "prettier": "^3.6.2",
         "tailwind-merge": "^3.3.1",
         "tailwindcss": "^4.1.11",
         "tsx": "^4.20.3",
-        "typescript": "^5.8.3"
+        "typescript": "^5.8.3",
+        "zod-validation-error": "^4.0.1"
     }
 }

@@ -1,6 +1,7 @@
 import {
     localizedStringSchema,
     nonEmptyStringSchema,
+    nullSchema,
     timeSchema,
     urlStringSchema,
 } from '@lib/types/primitives';
@@ -61,10 +62,10 @@ export const planningEntrySchema = z.intersection(
             title: localizedStringSchema,
             description: localizedStringSchema,
         }),
-        z.discriminatedUnion('location', [
+        z.union([
             z.object({
-                location: z.null({ error: 'mustBeNull' }),
-                locationUrl: z.null({ error: 'mustBeNull' }).optional(),
+                location: nullSchema,
+                locationUrl: nullSchema.optional(),
             }),
             z.object({
                 location: nonEmptyStringSchema,
@@ -72,11 +73,11 @@ export const planningEntrySchema = z.intersection(
             }),
         ]),
     ),
-    z.discriminatedUnion('isFullDay', [
+    z.union([
         z.object({
             isFullDay: z.literal(true, { error: 'mustBeTrue' }),
-            startTime: z.null({ error: 'mustBeNull' }),
-            endTime: z.null({ error: 'mustBeNull' }),
+            startTime: nullSchema,
+            endTime: nullSchema,
         }),
         z
             .object({

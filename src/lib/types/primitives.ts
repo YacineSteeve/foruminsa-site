@@ -24,6 +24,10 @@ export const booleanSchema = z.boolean({ error: 'mustBeABoolean' });
 
 export type Boolean = z.infer<typeof booleanSchema>;
 
+export const nullSchema = z.null({ error: 'mustBeNull' });
+
+export type Null = z.infer<typeof nullSchema>;
+
 export const stringSchema = z.string({ error: 'mustBeAString' });
 
 export type String = z.infer<typeof stringSchema>;
@@ -42,6 +46,14 @@ export const localizedStringSchema = z.object({
 });
 
 export type LocalizedString = z.infer<typeof localizedStringSchema>;
+
+export const imageFilenameSchema = z
+    .string()
+    .regex(/^[a-zA-Z0-9._-]+\.(jpe?g|png|gif|bmp|webp|svg)$/i, {
+        error: 'mustBeAValidImageFileName',
+    });
+
+export type ImageFilename = z.infer<typeof imageFilenameSchema>;
 
 export const timeSchema = z.object({
     hours: integerSchema.min(0, { error: 'mustBeAtLeast0' }).max(23, { error: 'mustBeAtMost23' }),

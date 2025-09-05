@@ -49,6 +49,7 @@
         "mustBeTrue": "Ce champ doit avoir la valeur 'true'.",
         "mustBeFalse": "Ce champ doit avoir la valeur 'false'.",
         "mustBeAValidNumber": "Ce champ doit être un nombre valide.",
+        "mustBeAValidImageFileName": "Ce champ doit être un nom de fichier image valide",
         "endTimeMustBeAfterStartTime": "L'heure de fin doit être après l'heure de début."
     },
     "ApiErrors": {

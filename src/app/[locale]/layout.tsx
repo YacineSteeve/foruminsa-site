@@ -17,7 +17,7 @@ import '@style/global.css';
 import { APP_COLORS, APP_CONTAINER_ID, APP_FONT } from '@/lib/constants/ui';
 
 interface AppLayoutProps extends PropsWithChildren {
-    params: Promise<{ locale: Locale }>;
+    params: Promise<{ locale: string }>;
 }
 
 export const viewport: Viewport = {
@@ -52,7 +52,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AppLayout({ children, params }: AppLayoutProps) {
-    const [{ locale }, messages] = await Promise.all([params, getMessages()]);
+    const [awaitedParams, messages] = await Promise.all([params, getMessages()]);
+
+    const locale = awaitedParams.locale as Locale;
 
     if (!hasLocale(i18nRouting.locales, locale)) {
         notFound();
