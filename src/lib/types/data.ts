@@ -2,6 +2,7 @@ import {
     localizedStringSchema,
     nonEmptyStringSchema,
     nullSchema,
+    stringSchema,
     timeSchema,
     urlStringSchema,
 } from '@lib/types/primitives';
@@ -61,6 +62,12 @@ export const planningEntrySchema = z.intersection(
         z.object({
             title: localizedStringSchema,
             description: localizedStringSchema,
+            speaker: z
+                .object({
+                    name: stringSchema,
+                    companyId: companyEntitySchema.shape.id,
+                })
+                .nullish(),
         }),
         z.union([
             z.object({

@@ -1,4 +1,4 @@
-import { EventPlanningCategory } from '@components/event/EventPlanningCategory';
+import { EventPlanningGroup } from '@components/event/EventPlanningGroup';
 import { planningData } from '@data/planning';
 import { BrochureSection } from '@components/global/BrochureSection';
 import { Button } from '@heroui/button';
@@ -115,12 +115,10 @@ export default async function EventPage({ params }: EventPageProps) {
             <section className="w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 3xl:px-80 py-8 md:py-16 space-y-4 md:space-y-8">
                 <h2 className="text-primary text-center">{t('daySchedule')}</h2>
                 <div className="space-y-8">
-                    {planningData.map((category, index) => (
-                        <EventPlanningCategory
+                    {planningData.map((group, index) => (
+                        <EventPlanningGroup
                             key={index}
-                            category={category}
-                            locale={locale}
-                            allDayLabel={t('allDay')}
+                            group={group}
                         />
                     ))}
                 </div>

@@ -62,9 +62,10 @@ export class CompanyService {
         };
     }
 
-    public static getCompanyBySlug(slug: CompanyEntity['slug']): CompanyEntity {
+    public static getCompanyByKey(key: CompanyEntity['id'] | CompanyEntity['slug']): CompanyEntity {
         const companyData = companiesData.find(
-            (companyData) => this.slugifyCompanyName(companyData.name) === slug,
+            (companyData) =>
+                companyData.id === key || this.slugifyCompanyName(companyData.name) === key,
         );
 
         if (!companyData) {

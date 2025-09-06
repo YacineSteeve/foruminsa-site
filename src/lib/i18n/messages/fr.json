@@ -156,8 +156,12 @@
         "whyItemOne": "Décrocher ton stage de 4ème ou 5ème année au sein d’une entreprise qui te plaît.",
         "whyItemTwo": "Rencontrer et discuter avec des RH et des ingénieurs à propos de ton projet professionnel.",
         "whyItemThree": "Découvrir et appréhender de nouvelles thématiques lors de tables rondes, ateliers et conférences.",
-        "daySchedule": "Programme de la journée",
-        "allDay": "Journée entière"
+        "daySchedule": "Programme de la journée"
+    },
+    "EventPlanningGroup": {
+        "allDay": "Journée entière",
+        "bySpeaker": "Par {name}",
+        "fromCompany": "de {companyName}"
     },
     "CompaniesPage": {
         "companiesCount": "Entreprises inscrites",

@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: CompanyDetailsPageProps): Pro
     const locale = awaitedParams.locale as Locale;
 
     try {
-        const company = CompanyService.getCompanyBySlug(awaitedParams.companySlug);
+        const company = CompanyService.getCompanyByKey(awaitedParams.companySlug);
 
         return {
             title: company.name,
@@ -79,7 +79,7 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
     ]);
 
     const locale = awaitedParams.locale as Locale;
-    const company = CompanyService.getCompanyBySlug(awaitedParams.companySlug);
+    const company = CompanyService.getCompanyByKey(awaitedParams.companySlug);
 
     if (!company) {
         return (

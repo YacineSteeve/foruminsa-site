@@ -156,8 +156,12 @@
         "whyItemOne": "Land your 4th or 5th year internship within a company you like.",
         "whyItemTwo": "Meet and discuss with HR professionals and engineers about your professional project.",
         "whyItemThree": "Discover and learn about new topics during round tables, workshops and conferences.",
-        "daySchedule": "Day Schedule",
-        "allDay": "All day"
+        "daySchedule": "Day Schedule"
+    },
+    "EventPlanningGroup": {
+        "allDay": "All day",
+        "bySpeaker": "By {name}",
+        "fromCompany": "from {companyName}"
     },
     "CompaniesPage": {
         "companiesCount": "Registered Companies",
