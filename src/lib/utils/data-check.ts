@@ -169,6 +169,8 @@ const planningIntegrityProcessor = (data: PlanningData): ErrorMessageList => {
         return nameDuplicates;
     }
 
+    const companyIds = companiesData.map((item) => item.id);
+
     for (let i = 0; i < data.length; i++) {
         const item = data[i];
 
@@ -183,6 +185,20 @@ const planningIntegrityProcessor = (data: PlanningData): ErrorMessageList => {
 
         if (titleDuplicates.length > 0) {
             return titleDuplicates;
+        }
+
+        const missingCompanyIdsErrors = item.entries
+            .map((entry, index) => {
+                if (entry.speaker && !companyIds.includes(entry.speaker.companyId)) {
+                    return `Non existing id for entry n°${index + 1} of planning group n°${i + 1}: speaker's company with id ${entry.speaker.companyId} does not exist in the companies data`;
+                }
+
+                return false;
+            })
+            .filter((error) => error !== false);
+
+        if (missingCompanyIdsErrors.length > 0) {
+            return missingCompanyIdsErrors;
         }
     }
 

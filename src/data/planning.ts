@@ -53,6 +53,10 @@ export const planningData = [
                     en: 'Testimonials and practical advice will help you better understand the possible paths, the skills you want to learn and the keys to succeed in your professional experience abroad.',
                 },
                 location: 'Amphi Vinci',
+                speaker: {
+                    name: 'Jean-Yves Fourniols',
+                    companyId: 3,
+                },
                 isFullDay: false,
                 startTime: { hours: 9, minutes: 0 },
                 endTime: { hours: 10, minutes: 30 },
@@ -67,6 +71,10 @@ export const planningData = [
                     en: 'This conference will offer students a concrete look at the integration of artificial intelligence into the professional world. It will highlight its applications, its impacts on professions and the new skills expected in the companies of tomorrow.',
                 },
                 location: 'Amphi Vinci',
+                speaker: {
+                    name: 'Hélène Monferran',
+                    companyId: 23,
+                },
                 isFullDay: false,
                 startTime: { hours: 10, minutes: 45 },
                 endTime: { hours: 12, minutes: 15 },
@@ -81,6 +89,10 @@ export const planningData = [
                     en: 'This conference will help students identify their strengths and learn how to showcase them to stand out during recruitment. Practical advice and feedback will help you better understand how to make a difference against candidates with comparable profiles.',
                 },
                 location: 'Amphi Vinci',
+                speaker: {
+                    name: 'Eric Alata',
+                    companyId: 45,
+                },
                 isFullDay: false,
                 startTime: { hours: 14, minutes: 0 },
                 endTime: { hours: 16, minutes: 0 },
