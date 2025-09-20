@@ -34,7 +34,6 @@
         "mustBeAValidSpeciality": "This field must be a valid speciality.",
         "mustBeAValidStudyLevel": "This field must be a valid study level.",
         "mustBeAnInteger": "This field must be an integer.",
-        "mustBeAValidFloat": "This field must be a valid decimal number.",
         "mustNotBeNegative": "This field must not be negative.",
         "mustBeABoolean": "This field must be a boolean (true or false).",
         "mustBeAValidUrl": "This field must be a valid URL.",
@@ -97,10 +96,15 @@
     },
     "StudyLevels": {
         "1A": "1st Year",
-        "2A": "2nd Year",
-        "3A": "3rd Year",
         "4A": "4th Year",
-        "5A": "5th Year"
+        "5A": "5th Year",
+        "ALTERNANCE_CONTRAT_PRO": "Internship / Contract"
+    },
+    "StudyLevelsDetails": {
+        "1A": "4-week internship (non-compensated)",
+        "4A": "3 to 4 month internship",
+        "5A": "6-month internship",
+        "ALTERNANCE_CONTRAT_PRO": "2-year contract in 4th year or 1-year contract in 5th year"
     },
     "HeroSection": {
         "backgroundImageAlt": "Image of a group of people at a professional event",
@@ -230,7 +234,7 @@
         "methodology": "A rigorous calculation methodology",
         "methodologyDescription": "The carbon footprint was carried out following the official ADEME methodology, taking into account direct and indirect emissions related to the organization of the Forum. We collected precise data on travel, waste generated, and much more.",
         "companiesRanking": "Companies Ranking",
-        "companiesRankingDescription": "Discover the ranking of companies participating in the Forum By INSA 2025, based on their carbon footprint (in tons of CO2 equivalent) related to their participation in the Forum.",
+        "companiesRankingDescription": "Discover the ranking of companies participating in the Forum By INSA 2025, based on their carbon footprint related to their participation in the Forum.",
         "theForumGreenLabel": "The Forum Green Label",
         "theForumGreenLabelDescription": "The green label is awarded to companies that demonstrate a strong commitment to environmental sustainability. To obtain this label, companies must prioritize eco-friendly transportation methods for their travel, minimize their waste production by avoiding goodies, and adopt environmentally friendly practices in all their activities related to the Forum.",
         "ourPartner": "Our Partner",
@@ -248,7 +252,8 @@
         "greenTransportation": "Green Transportation",
         "withoutGoodies": "Without Goodies",
         "greenLabel": "Green Label",
-        "greenLabelOnly": "Labelled companies only"
+        "greenLabelOnly": "Labelled companies only",
+        "undefined": "Undefined"
     },
     "SolidarityFundPage": {
         "imageAlt": "Image of a person posing blocks on a surface resembling a website",

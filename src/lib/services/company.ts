@@ -181,12 +181,12 @@ export class CompanyService {
                 }))
                 .toSorted((companyA, companyB) => {
                     if (companyA.carbonFootprint === companyB.carbonFootprint) {
-                        return Number(companyA.hasGreenLabel) - Number(companyB.hasGreenLabel);
+                        return Number(companyB.hasGreenLabel) - Number(companyA.hasGreenLabel);
                     }
 
                     return (
-                        (companyA.carbonFootprint ?? Infinity) -
-                        (companyB.carbonFootprint ?? Infinity)
+                        (companyB.carbonFootprint ?? -Infinity) -
+                        (companyA.carbonFootprint ?? -Infinity)
                     );
                 })
                 .map((company, index) => [company.id, index + 1]),

@@ -34,7 +34,6 @@
         "mustBeAValidSpeciality": "Ce champ doit être une spécialité valide.",
         "mustBeAValidStudyLevel": "Ce champ doit être un niveau d'étude valide.",
         "mustBeAnInteger": "Ce champ doit être un nombre entier.",
-        "mustBeAValidFloat": "Ce champ doit être un nombre décimal valide.",
         "mustNotBeNegative": "Ce champ ne doit pas être négatif.",
         "mustBeABoolean": "Ce champ doit être un booléen (true ou false).",
         "mustBeAValidUrl": "Ce champ doit être une URL valide.",
@@ -97,10 +96,15 @@
     },
     "StudyLevels": {
         "1A": "1ère Année",
-        "2A": "2ème Année",
-        "3A": "3ème Année",
         "4A": "4ème Année",
-        "5A": "5ème Année"
+        "5A": "5ème Année",
+        "ALTERNANCE_CONTRAT_PRO": "Alternance / Contrat Pro"
+    },
+    "StudyLevelsDetails": {
+        "1A": "Stage de 4 semaines (rémunération non obligatoire)",
+        "4A": "Stage de 3 à 4 mois",
+        "5A": "Stage de 6 mois",
+        "ALTERNANCE_CONTRAT_PRO": "CDD de 2 ans en 4ème année ou d'1 an en 5ème année"
     },
     "HeroSection": {
         "backgroundImageAlt": "Image d'un groupe de personnes lors d'un événement professionnel",
@@ -230,7 +234,7 @@
         "methodology": "Une méthodologie de calcul rigoureuse",
         "methodologyDescription": "Le bilan carbone a été réalisé en suivant la méthodologie officielle de l'ADEME, prenant en compte les émissions directes et indirectes liées à l'organisation du Forum. Nous avons collecté des données précises sur les déplacements, les déchets générés, et bien plus encore.",
         "companiesRanking": "Classement des entreprises",
-        "companiesRankingDescription": "Découvrez le classement des entreprises participantes au Forum By INSA 2025, basé sur leur empreinte carbone (en tonnes de CO2 équivalent) liée à leur participation au Forum.",
+        "companiesRankingDescription": "Découvrez le classement des entreprises participantes au Forum By INSA 2025, basé sur leur empreinte carbone liée à leur participation au Forum.",
         "theForumGreenLabel": "Le label vert du Forum",
         "theForumGreenLabelDescription": "Le label vert est attribué aux entreprises qui démontrent un engagement fort envers la durabilité environnementale. Pour obtenir ce label, les entreprises doivent privilégier des modes de transport écologiques pour leurs déplacements, minimiser leur production de déchets en évitant les goodies, et adopter des pratiques respectueuses de l'environnement dans toutes leurs activités liées au Forum.",
         "ourPartner": "Notre partenaire",
@@ -248,7 +252,8 @@
         "greenTransportation": "Transport Écologique",
         "withoutGoodies": "Sans Goodies",
         "greenLabel": "Label Vert",
-        "greenLabelOnly": "Uniquement les entreprises labellisées"
+        "greenLabelOnly": "Uniquement les entreprises labellisées",
+        "undefined": "Indéterminée"
     },
     "SolidarityFundPage": {
         "imageAlt": "Image d'une personne posant des briques sur une surface ressemblant à un site web",

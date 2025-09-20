@@ -6,8 +6,8 @@ import {
     integerSchema,
     localizedStringSchema,
     nonEmptyStringSchema,
-    nonNegativeFloat32Schema,
     positiveIntegerSchema,
+    ratingSchema,
     urlStringSchema,
 } from '@lib/types/primitives';
 import { z } from 'zod/v4';
@@ -64,7 +64,7 @@ export const companyEntitySchema = z.object({
     postalCode: nonEmptyStringSchema.nullable(),
     websiteUrl: urlStringSchema.nullable(),
     hiringPlatformUrl: urlStringSchema.nullable(),
-    carbonFootprint: nonNegativeFloat32Schema.nullable(),
+    carbonFootprint: ratingSchema.nullable(),
     carbonBalanceRank: positiveIntegerSchema,
     roomId: forumRoomEntitySchema.shape.id.nullable(),
     room: forumRoomEntitySchema.nullable(),

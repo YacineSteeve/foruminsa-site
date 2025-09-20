@@ -72,11 +72,11 @@ export const companiesData: CompaniesData = faker.helpers.multiple(
             countryCode: faker.helpers.arrayElement(COUNTRY_CODES),
             websiteUrl: faker.helpers.maybe(faker.internet.url) ?? null,
             hiringPlatformUrl: faker.helpers.maybe(faker.internet.url) ?? null,
-            carbonFootprint: faker.number.float({
-                min: 0,
-                max: 100,
-                fractionDigits: 2,
-            }),
+            carbonFootprint:
+                faker.helpers.maybe(
+                    () => faker.helpers.arrayElement([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]),
+                    { probability: 0.95 },
+                ) ?? null,
             socialLinks: faker.helpers.multiple(
                 (_, index) => ({
                     type: socialLinksTypes[index]!,

@@ -1,0 +1,25 @@
+name: Continuous Integration Pipeline
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  check-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run linter
+        run: yarn lint
+
+      - name: Run data checks
+        run: yarn check-data
+
+      - name: Build app
+        run: yarn build

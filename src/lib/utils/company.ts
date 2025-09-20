@@ -43,3 +43,24 @@ export const hasGreenLabel = (
 ): boolean => {
     return company.hasGreenTransport && !company.providesGoodies;
 };
+
+export const getStarsSequenceFromCarbonFootprint = (
+    carbonFootprint: NonNullable<CompanyEntity['carbonFootprint']>,
+): Array<'full' | 'half' | 'empty'> => {
+    const integerPart = Math.floor(carbonFootprint);
+    const sequence = [] as Array<'full' | 'half' | 'empty'>;
+
+    for (let i = 0; i < integerPart; i++) {
+        sequence.push('full');
+    }
+
+    if (carbonFootprint - integerPart === 0.5) {
+        sequence.push('half');
+    }
+
+    for (let i = sequence.length; i < 5; i++) {
+        sequence.push('empty');
+    }
+
+    return sequence;
+};

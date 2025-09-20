@@ -26,7 +26,7 @@ export const HeroSection: FunctionComponent<HeroSectionProps> = async ({ locale 
                 priority
                 className="object-cover object-center brightness-25"
             />
-            <div className="z-10 flex flex-col max-md:items-center gap-20 flex-3/5 md:pl-10 lg:pl-20 xl:pl-40 2xl:pl-60 text-white">
+            <div className="z-10 flex flex-col max-md:items-center gap-20 flex-3/5 min-h-max md:pl-10 lg:pl-20 xl:pl-40 2xl:pl-60 text-white">
                 <div className="space-y-4 max-md:text-center">
                     <p className="text-2xl md:text-3xl xl:text-4xl">{t('titlePartOne')}</p>
                     <h1 className="!text-5xl md:!text-6xl 3xl:!text-7xl normal-case">

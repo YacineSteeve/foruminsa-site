@@ -20,10 +20,16 @@ import { FORUM_LABEL_ICON } from '@lib/constants/ui';
 import { useSearchParamsChange } from '@lib/hooks';
 import { useRouter } from '@lib/i18n/navigation';
 import type { CompaniesFilters } from '@lib/types/dtos';
-import { cn, getCompanyLogoUrl, hasGreenLabel } from '@lib/utils';
+import {
+    cn,
+    getCompanyLogoUrl,
+    getStarsSequenceFromCarbonFootprint,
+    hasGreenLabel,
+} from '@lib/utils';
 import { type Locale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { type FunctionComponent, useCallback } from 'react';
+import { RiStarFill, RiStarHalfFill, RiStarLine } from 'react-icons/ri';
 
 interface CarbonBalanceRankingTableProps {
     filters: Pick<CompaniesFilters, 'search' | 'page' | 'greenLabel'>;
@@ -38,13 +44,16 @@ export const CarbonBalanceRankingTable: FunctionComponent<CarbonBalanceRankingTa
 }) => {
     const t = useTranslations('CarbonBalanceRankingTable');
     const router = useRouter();
-    const { changeSearchParam } = useSearchParamsChange();
+    const { changeSearchParamMulti } = useSearchParamsChange();
 
     const handleSwitchChange = useCallback<NonNullable<SwitchProps['onValueChange']>>(
         (isSelected) => {
-            changeSearchParam(URL_PARAMS.greenLabel)(isSelected ? 'true' : '');
+            changeSearchParamMulti([URL_PARAMS.page, URL_PARAMS.greenLabel])([
+                '',
+                isSelected ? 'true' : '',
+            ]);
         },
-        [changeSearchParam],
+        [changeSearchParamMulti],
     );
 
     const handleRowClick = useCallback<NonNullable<TableProps['onRowAction']>>(
@@ -142,12 +151,33 @@ export const CarbonBalanceRankingTable: FunctionComponent<CarbonBalanceRankingTa
                             </div>
                         </TableCell>
                         <TableCell>
-                            <p>
-                                <span className="font-bold">{company.carbonFootprint}</span>{' '}
-                                <span className="text-sm text-gray-500">
-                                    t C0<sub>2</sub>eq
-                                </span>
-                            </p>
+                            <div className="flex items-center gap-0.5">
+                                {company.carbonFootprint ? (
+                                    getStarsSequenceFromCarbonFootprint(
+                                        company.carbonFootprint,
+                                    ).map((sequenceItem, index) => {
+                                        const Icon = {
+                                            full: RiStarFill,
+                                            half: RiStarHalfFill,
+                                            empty: RiStarLine,
+                                        }[sequenceItem];
+
+                                        return (
+                                            <Icon
+                                                key={index}
+                                                className={cn(
+                                                    'size-5',
+                                                    sequenceItem === 'empty'
+                                                        ? 'text-default'
+                                                        : 'text-yellow-500',
+                                                )}
+                                            />
+                                        );
+                                    })
+                                ) : (
+                                    <p className="text-gray-500 font-bold">{t('undefined')}</p>
+                                )}
+                            </div>
                         </TableCell>
                         <TableCell>
                             <Chip

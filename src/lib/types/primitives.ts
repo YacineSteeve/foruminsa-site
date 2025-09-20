@@ -12,14 +12,6 @@ export const positiveIntegerSchema = integerSchema.positive({ error: 'mustBePosi
 
 export type PositiveInteger = z.infer<typeof positiveIntegerSchema>;
 
-export const float32Schema = z.float32({ error: 'mustBeAValidFloat' });
-
-export type Float32 = z.infer<typeof float32Schema>;
-
-export const nonNegativeFloat32Schema = float32Schema.nonnegative({ error: 'mustNotBeNegative' });
-
-export type NonNegativeFloat32 = z.infer<typeof nonNegativeFloat32Schema>;
-
 export const booleanSchema = z.boolean({ error: 'mustBeABoolean' });
 
 export type Boolean = z.infer<typeof booleanSchema>;
@@ -61,3 +53,19 @@ export const timeSchema = z.object({
 });
 
 export type Time = z.infer<typeof timeSchema>;
+
+export const ratingSchema = z.union([
+    z.literal(0, { error: 'mustBe0' }),
+    z.literal(0.5, { error: 'mustBe0Point5' }),
+    z.literal(1, { error: 'mustBe1' }),
+    z.literal(1.5, { error: 'mustBe1Point5' }),
+    z.literal(2, { error: 'mustBe2' }),
+    z.literal(2.5, { error: 'mustBe2Point5' }),
+    z.literal(3, { error: 'mustBe3' }),
+    z.literal(3.5, { error: 'mustBe3Point5' }),
+    z.literal(4, { error: 'mustBe4' }),
+    z.literal(4.5, { error: 'mustBe4Point5' }),
+    z.literal(5, { error: 'mustBe5' }),
+]);
+
+export type Rating = z.infer<typeof ratingSchema>;

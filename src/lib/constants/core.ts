@@ -5,7 +5,8 @@ export const APP_URL =
         ? ('https://foruminsa-site.vercel.app' as const)
         : ('http://192.168.102.97:3000' as const);
 
-export const JOBTEASER_EVENT_URL = 'https://insa-toulouse.jobteaser.com/fr/events/229266' as const;
+export const JOBTEASER_EVENT_URL =
+    'https://insa-toulouse.jobteaser.com/fr/events/262571-forum-by-insa-2025' as const;
 
 export const EVENT_DAY = {
     year: 2025,
@@ -18,7 +19,7 @@ export const EVENT_TIME = {
     end: { hours: 16, minutes: 0 },
 } as const satisfies { start: Time; end: Time };
 
-export const STUDY_LEVELS = ['1A', '2A', '3A', '4A', '5A'] as const;
+export const STUDY_LEVELS = ['1A', '4A', '5A', 'ALTERNANCE_CONTRAT_PRO'] as const;
 
 export const SPECIALITIES = ['AE', 'GB', 'GC', 'GM', 'GP', 'GP3E', 'IR', 'MA'] as const;
 

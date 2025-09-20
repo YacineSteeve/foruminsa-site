@@ -5,6 +5,7 @@ import { Button } from '@heroui/button';
 import { Popover, PopoverContent, PopoverTrigger, type PopoverProps } from '@heroui/popover';
 import { Select, SelectItem, type SelectProps } from '@heroui/select';
 import { Switch, type SwitchProps } from '@heroui/switch';
+import { Tooltip } from '@heroui/tooltip';
 import { CompanyService } from '@lib/services';
 import { COUNTRIES } from '@lib/constants/countries';
 import { SPECIALITIES, STUDY_LEVELS, URL_PARAMS } from '@lib/constants/core';
@@ -19,6 +20,7 @@ import {
     useMemo,
     useState,
 } from 'react';
+import { LuCircleHelp } from 'react-icons/lu';
 import { RiFilter2Fill } from 'react-icons/ri';
 
 type FiltersValues = {
@@ -118,6 +120,7 @@ const FiltersContent: FunctionComponent<FiltersContentProps> = ({
     const t = useTranslations('CompaniesFiltersButton');
     const tSpecialities = useTranslations('Specialities');
     const tStudyLevels = useTranslations('StudyLevels');
+    const tStudyLevelsDetails = useTranslations('StudyLevelsDetails');
     const [values, setValues] = useState<FiltersValues>(initialValues);
     const { changeSearchParamMulti } = useSearchParamsChange({ scroll: true });
 
@@ -256,7 +259,17 @@ const FiltersContent: FunctionComponent<FiltersContentProps> = ({
                                 onClear={handleSelectClear(URL_PARAMS.studyLevel)}
                             >
                                 {STUDY_LEVELS.map((studyLevel) => (
-                                    <SelectItem key={studyLevel}>
+                                    <SelectItem
+                                        key={studyLevel}
+                                        endContent={
+                                            <Tooltip
+                                                placement="top-end"
+                                                content={tStudyLevelsDetails(studyLevel)}
+                                            >
+                                                <LuCircleHelp className="size-4 text-gray-500" />
+                                            </Tooltip>
+                                        }
+                                    >
                                         {tStudyLevels(studyLevel)}
                                     </SelectItem>
                                 ))}

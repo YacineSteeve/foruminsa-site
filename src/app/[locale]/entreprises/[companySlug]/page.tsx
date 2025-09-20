@@ -1,8 +1,10 @@
 import { CompanyDetailsSection } from '@components/company-details/CompanyDetailsSection';
 import { ReturnButton } from '@components/company-details/ReturnButton';
 import { Alert } from '@heroui/alert';
+import { Badge } from '@heroui/badge';
 import { Chip } from '@heroui/chip';
 import { ScrollShadow } from '@heroui/scroll-shadow';
+import { Tooltip } from '@heroui/tooltip';
 import { CompanyService } from '@lib/services';
 import { COUNTRIES } from '@lib/constants/countries';
 import { FORUM_LABEL_ICON, SOCIAL_LINKS_TYPES_METADATA } from '@lib/constants/ui';
@@ -11,6 +13,7 @@ import {
     cn,
     getCompanyLogoUrl,
     getSortedSocialLinks,
+    getStarsSequenceFromCarbonFootprint,
     hasGreenLabel,
 } from '@lib/utils';
 import type { Metadata } from 'next';
@@ -21,6 +24,7 @@ import Link from 'next/link';
 import {
     LuBuilding2,
     LuBusFront,
+    LuCircleHelp,
     LuExternalLink,
     LuFactory,
     LuGift,
@@ -29,6 +33,7 @@ import {
     LuLeaf,
     LuMapPin,
 } from 'react-icons/lu';
+import { RiStarFill, RiStarHalfFill, RiStarLine } from 'react-icons/ri';
 
 interface CompanyDetailsPageProps {
     params: Promise<{
@@ -70,13 +75,15 @@ export async function generateMetadata({ params }: CompanyDetailsPageProps): Pro
 }
 
 export default async function CompanyDetailsPage({ params }: CompanyDetailsPageProps) {
-    const [awaitedParams, t, tSpecialities, tStudyLevels, tSocialLinks] = await Promise.all([
-        params,
-        getTranslations('CompanyDetailsPage'),
-        getTranslations('Specialities'),
-        getTranslations('StudyLevels'),
-        getTranslations('SocialLinks'),
-    ]);
+    const [awaitedParams, t, tSpecialities, tStudyLevels, tStudyLevelsDetails, tSocialLinks] =
+        await Promise.all([
+            params,
+            getTranslations('CompanyDetailsPage'),
+            getTranslations('Specialities'),
+            getTranslations('StudyLevels'),
+            getTranslations('StudyLevelsDetails'),
+            getTranslations('SocialLinks'),
+        ]);
 
     const locale = awaitedParams.locale as Locale;
     const company = CompanyService.getCompanyByKey(awaitedParams.companySlug);
@@ -164,7 +171,7 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
             </CompanyDetailsSection>
             <CompanyDetailsSection title={t('wantedSpecialities')}>
                 <div className="flex flex-wrap gap-4 w-full">
-                    {company.specialities.map((speciality) => (
+                    {company.specialities.toSorted().map((speciality) => (
                         <Chip
                             key={speciality}
                             size="lg"
@@ -181,18 +188,30 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
             </CompanyDetailsSection>
             <CompanyDetailsSection title={t('wantedStudyLevels')}>
                 <div className="flex flex-wrap gap-4 w-full">
-                    {company.studyLevels.map((studyLevel) => (
-                        <Chip
+                    {company.studyLevels.toSorted().map((studyLevel) => (
+                        <Badge
+                            isOneChar
                             key={studyLevel}
-                            size="lg"
-                            variant="flat"
-                            classNames={{
-                                base: 'min-w-auto max-w-full min-h-10 h-max px-3 py-1 bg-purple-100 text-purple-800',
-                                content: 'block w-full break-words whitespace-normal',
-                            }}
+                            content={
+                                <Tooltip
+                                    size="lg"
+                                    content={tStudyLevelsDetails(studyLevel)}
+                                >
+                                    <LuCircleHelp className="text-gray-500 size-5 cursor-pointer" />
+                                </Tooltip>
+                            }
                         >
-                            {tStudyLevels(studyLevel)}
-                        </Chip>
+                            <Chip
+                                size="lg"
+                                variant="flat"
+                                classNames={{
+                                    base: 'min-w-auto max-w-full min-h-10 h-max px-3 py-1 bg-purple-100 text-purple-800',
+                                    content: 'block w-full break-words whitespace-normal',
+                                }}
+                            >
+                                {tStudyLevels(studyLevel)}
+                            </Chip>
+                        </Badge>
                     ))}
                 </div>
             </CompanyDetailsSection>
@@ -223,11 +242,33 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                         <LuLeaf className="size-8 text-green-500" />
                         <div className="flex-1">
                             <p className="text-lg font-semibold">{t('carbonFootprint')}</p>
-                            <p className="text-gray-500">
-                                {company.carbonFootprint
-                                    ? `${company.carbonFootprint.toFixed(2)} tCO2e`
-                                    : t('unknown')}
-                            </p>
+                            {company.carbonFootprint ? (
+                                <div className="flex items-center gap-0.5">
+                                    {getStarsSequenceFromCarbonFootprint(
+                                        company.carbonFootprint,
+                                    ).map((sequenceItem, index) => {
+                                        const Icon = {
+                                            full: RiStarFill,
+                                            half: RiStarHalfFill,
+                                            empty: RiStarLine,
+                                        }[sequenceItem];
+
+                                        return (
+                                            <Icon
+                                                key={index}
+                                                className={cn(
+                                                    'size-5',
+                                                    sequenceItem === 'empty'
+                                                        ? 'text-default'
+                                                        : 'text-yellow-500',
+                                                )}
+                                            />
+                                        );
+                                    })}
+                                </div>
+                            ) : (
+                                <p className="text-gray-500">{t('unknown')}</p>
+                            )}
                         </div>
                     </div>
                     <div className="flex items-center gap-4">

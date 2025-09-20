@@ -1,8 +1,0 @@
-node_modules
-.next
-.env*
-.gitignore
-postcss.config.mjs
-.eslintrc.json
-.prettierignore
-.prettierrc.json
