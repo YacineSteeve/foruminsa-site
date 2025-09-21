@@ -6,7 +6,8 @@ on:
       - 'main'
 
 jobs:
-  check-and-build:
+  scan-code:
+    name: Scan code
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -26,6 +27,3 @@ jobs:
 
       - name: Run data checks
         run: yarn check-data
-
-      - name: Build app
-        run: yarn build
