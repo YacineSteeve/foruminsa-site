@@ -43,8 +43,10 @@ const withColor = (str: string, color: keyof typeof COLORS) => `${COLORS[color]}
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
 const sameLine = () => {
-    process.stdout.clearLine(0);
-    process.stdout.cursorTo(0);
+    if (process.stdout.isTTY) {
+        process.stdout.clearLine(0);
+        process.stdout.cursorTo(0);
+    }
 };
 
 const checkSchemaCompliance = ({
