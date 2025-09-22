@@ -1,3 +1,4 @@
+import { EventMapsSection } from '@components/event/EventMapsSection';
 import { EventPlanningGroup } from '@components/event/EventPlanningGroup';
 import { planningData } from '@data/planning';
 import { BrochureSection } from '@components/global/BrochureSection';
@@ -8,7 +9,7 @@ import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import type { FunctionComponent } from 'react';
 import type { IconType } from 'react-icons';
 import { LuCalendarDays, LuClock4, LuExternalLink, LuMapPin, LuUsers } from 'react-icons/lu';
@@ -50,7 +51,7 @@ export default async function EventPage({ params }: EventPageProps) {
                             <h1>{t('title')}</h1>
                             <p className="text-xl">{t('description')}</p>
                         </div>
-                        <Link
+                        <NextLink
                             href={JOBTEASER_EVENT_URL}
                             target="_blank"
                         >
@@ -62,7 +63,7 @@ export default async function EventPage({ params }: EventPageProps) {
                             >
                                 {t('registration')}
                             </Button>
-                        </Link>
+                        </NextLink>
                     </div>
                     <div className="grid md:grid-cols-2 gap-8 size-fit min-w-max">
                         <EventInfosItem
@@ -124,6 +125,7 @@ export default async function EventPage({ params }: EventPageProps) {
                 </div>
             </section>
             <BrochureSection />
+            <EventMapsSection />
         </div>
     );
 }

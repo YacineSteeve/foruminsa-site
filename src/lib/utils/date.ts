@@ -4,10 +4,10 @@ import { EVENT_DAY } from '@lib/constants/core';
 import type { Time } from '@lib/types/primitives';
 import type { Locale } from 'next-intl';
 
-const localesMap: Readonly<Record<Locale, DateFnsLocale>> = {
+const LOCALES_MAP = {
     en: enUS,
     fr: fr,
-} as const;
+} as const satisfies Readonly<Record<Locale, DateFnsLocale>>;
 
 export const getFormattedEventDate = (locale: Locale) => {
     const date = set(new Date(), {
@@ -16,7 +16,7 @@ export const getFormattedEventDate = (locale: Locale) => {
         date: EVENT_DAY.day,
     });
 
-    return format(date, 'd MMMM yyyy', { locale: localesMap[locale] });
+    return format(date, 'd MMMM yyyy', { locale: LOCALES_MAP[locale] });
 };
 
 const formatTime = (time: Time, locale: Locale, hourFormat: 'numeric' | '2-digit') => {
@@ -29,7 +29,7 @@ const formatTime = (time: Time, locale: Locale, hourFormat: 'numeric' | '2-digit
     });
 
     let formatted = format(fullDate, hourFormat === 'numeric' ? "H'h'mm" : "HH'h'mm", {
-        locale: localesMap[locale],
+        locale: LOCALES_MAP[locale],
     });
 
     if (formatted.endsWith('h00')) {

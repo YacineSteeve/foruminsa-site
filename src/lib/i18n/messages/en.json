@@ -167,6 +167,14 @@
         "bySpeaker": "By {name}",
         "fromCompany": "from {companyName}"
     },
+    "EventMapsSection": {
+        "companiesLocationMap": "Map of companies locations",
+        "planOneLabel": "STPI 1st Floor Left",
+        "planTwoLabel": "STPI 1st Floor Right",
+        "planThreeLabel": "STPI Ground Floor",
+        "planFourLabel": "GM 3rd Floor",
+        "noCompanyAtThisLocation": "No company is present at this location."
+    },
     "CompaniesPage": {
         "companiesCount": "Registered Companies",
         "sectorsCount": "Sectors",
@@ -212,9 +220,10 @@
         "contactInfo": "Contact Info",
         "connectWithUs": "Connect With Us",
         "environmentalCommitment": "Environmental Commitment",
+        "room": "Room {roomNumber}",
         "floor": "Floor {floorNumber}",
         "groundFloor": "Ground Floor",
-        "building": "Building {buildingName}",
+        "building": "Building {buildingNumber}",
         "unknown": "Unknown",
         "carbonFootprint": "Carbon Footprint",
         "website": "Website",

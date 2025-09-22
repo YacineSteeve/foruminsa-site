@@ -23,10 +23,7 @@ export const APP_FONT = Lato({
     weight: ['100', '300', '400', '700', '900'],
 });
 
-export const SOCIAL_LINKS_TYPES_METADATA: Record<
-    (typeof SOCIAL_LINK_TYPES)[number],
-    { icon: IconType; color: string }
-> = {
+export const SOCIAL_LINKS_TYPES_METADATA = {
     facebook: {
         icon: RiFacebookBoxFill,
         color: '#1877f2',
@@ -55,7 +52,7 @@ export const SOCIAL_LINKS_TYPES_METADATA: Record<
         icon: RiLinkM,
         color: '#808080',
     },
-} as const;
+} as const satisfies Record<(typeof SOCIAL_LINK_TYPES)[number], { icon: IconType; color: string }>;
 
 export const FORUM_SOCIAL_LINKS = [
     {

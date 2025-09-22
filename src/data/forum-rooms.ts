@@ -1,3 +1,147 @@
 import type { ForumRoomsData } from '@lib/types/data';
 
-export const forumRoomsData = [] as const satisfies ForumRoomsData;
+export const forumRoomsData = [
+    /* STPI  RDC */
+    {
+        id: 1,
+        name: 5,
+        floor: 0,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 2,
+        name: 6,
+        floor: 0,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 3,
+        name: 7,
+        floor: 0,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 4,
+        name: 9,
+        floor: 0,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    /* STPI  R+1 */
+    {
+        id: 5,
+        name: 101,
+        floor: 1,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 6,
+        name: 102,
+        floor: 1,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 7,
+        name: 103,
+        floor: 1,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 8,
+        name: 104,
+        floor: 1,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 9,
+        name: 105,
+        floor: 1,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 10,
+        name: 106,
+        floor: 1,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 11,
+        name: 107,
+        floor: 1,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 12,
+        name: 108,
+        floor: 1,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 13,
+        name: 109,
+        floor: 1,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 14,
+        name: 110,
+        floor: 1,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 15,
+        name: 111,
+        floor: 1,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 16,
+        name: 112,
+        floor: 1,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    {
+        id: 17,
+        name: 132,
+        floor: 1,
+        buildingNumber: 20,
+        buildingName: 'STPI',
+    },
+    /* GM R+3 */
+    {
+        id: 18,
+        name: 312,
+        floor: 3,
+        buildingNumber: 11,
+        buildingName: 'GM',
+    },
+    {
+        id: 19,
+        name: 314,
+        floor: 3,
+        buildingNumber: 11,
+        buildingName: 'GM',
+    },
+    {
+        id: 20,
+        name: 316,
+        floor: 3,
+        buildingNumber: 11,
+        buildingName: 'GM',
+    },
+] as const satisfies ForumRoomsData;

@@ -3,7 +3,7 @@ import { forumRoomsData } from '@data/forum-rooms';
 import { sectorsData } from '@data/sectors';
 import type { CompaniesData } from '@lib/types/data';
 import type { CompaniesFilters } from '@lib/types/dtos';
-import type { CompanyEntity, SectorEntity } from '@lib/types/entities';
+import type { CompanyEntity, ForumRoomEntity, SectorEntity } from '@lib/types/entities';
 import { fakerFR as faker } from '@faker-js/faker';
 import { hasGreenLabel, ServiceError } from '@lib/utils';
 
@@ -115,6 +115,52 @@ export class CompanyService {
         }));
     }
 
+    public static getCompaniesGroupedByRoom(filter: ForumRoomFilter): ForumRoomList {
+        const companiesByRoom = companiesData.reduce(
+            (acc, company) => {
+                if (company.roomId === null) {
+                    return acc;
+                }
+
+                if (!(company.roomId in acc)) {
+                    acc[company.roomId] = [];
+                }
+
+                acc[company.roomId]!.push({
+                    id: company.id,
+                    name: company.name,
+                    slug: this.slugifyCompanyName(company.name),
+                });
+
+                return acc;
+            },
+            {} as Record<ForumRoomEntity['id'], ForumRoomList[number]['companies']>,
+        );
+
+        return Object.entries(companiesByRoom)
+            .map(([roomId, companies]) => {
+                const room = forumRoomsData.find((room) => room.id === Number(roomId));
+
+                if (!room) {
+                    throw new ServiceError('FORUM_ROOM_NOT_FOUND');
+                }
+
+                return {
+                    room,
+                    companies: companies.sort((companyA, companyB) =>
+                        companyA.name.localeCompare(companyB.name),
+                    ),
+                };
+            })
+            .filter(
+                (group) =>
+                    group.room.floor === filter.floor &&
+                    group.room.buildingNumber === filter.buildingNumber &&
+                    (!filter.roomIds || filter.roomIds.includes(group.room.id)),
+            )
+            .toSorted((groupA, groupB) => groupA.room.name - groupB.room.name);
+    }
+
     private static generateFullCompanyEntity(
         companyData: CompaniesData[number],
         carbonBalanceRank: CompanyEntity['carbonBalanceRank'] = 1,
@@ -223,3 +269,12 @@ export type CountryList = Array<CompanyEntity['countryCode']>;
 export type SectorEntityList = Array<SectorEntity>;
 
 export type CompanyLogoList = Array<Pick<CompanyEntity, 'id' | 'name' | 'slug' | 'logoFile'>>;
+
+export type ForumRoomList = Array<{
+    room: ForumRoomEntity;
+    companies: Array<Pick<CompanyEntity, 'id' | 'name' | 'slug'>>;
+}>;
+
+export interface ForumRoomFilter
+    extends Pick<ForumRoomEntity, 'floor' | 'buildingNumber'>,
+        Partial<{ roomIds: Array<ForumRoomEntity['id']> }> {}

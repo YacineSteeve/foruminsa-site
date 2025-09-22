@@ -21,9 +21,10 @@ export type SectorEntity = z.infer<typeof sectorEntitySchema>;
 
 export const forumRoomEntitySchema = z.object({
     id: positiveIntegerSchema,
-    name: nonEmptyStringSchema,
+    name: positiveIntegerSchema,
     floor: integerSchema,
-    building: nonEmptyStringSchema,
+    buildingNumber: positiveIntegerSchema,
+    buildingName: nonEmptyStringSchema,
 });
 
 export type ForumRoomEntity = z.infer<typeof forumRoomEntitySchema>;

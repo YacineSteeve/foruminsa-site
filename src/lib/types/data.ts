@@ -24,7 +24,8 @@ export const forumRoomsDataSchema = z.array(
         id: true,
         name: true,
         floor: true,
-        building: true,
+        buildingNumber: true,
+        buildingName: true,
     }),
     { error: 'mustBeAnArray' },
 );

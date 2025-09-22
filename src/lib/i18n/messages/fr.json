@@ -49,7 +49,18 @@
         "mustBeFalse": "Ce champ doit avoir la valeur 'false'.",
         "mustBeAValidNumber": "Ce champ doit être un nombre valide.",
         "mustBeAValidImageFileName": "Ce champ doit être un nom de fichier image valide",
-        "endTimeMustBeAfterStartTime": "L'heure de fin doit être après l'heure de début."
+        "endTimeMustBeAfterStartTime": "L'heure de fin doit être après l'heure de début.",
+        "mustBe0": "",
+        "mustBe0Point5": "",
+        "mustBe1": "",
+        "mustBe1Point5": "",
+        "mustBe2": "",
+        "mustBe2Point5": "",
+        "mustBe3": "",
+        "mustBe3Point5": "",
+        "mustBe4": "",
+        "mustBe4Point5": "",
+        "mustBe5": ""
     },
     "ApiErrors": {
         "SOMETHING_WENT_WRONG": "Une erreur s'est produite. Veuillez réessayer plus tard.",
@@ -167,6 +178,14 @@
         "bySpeaker": "Par {name}",
         "fromCompany": "de {companyName}"
     },
+    "EventMapsSection": {
+        "companiesLocationMap": "Carte des emplacements des entreprises",
+        "planOneLabel": "STPI R+1 Gauche",
+        "planTwoLabel": "STPI R+1 Droit",
+        "planThreeLabel": "STPI RDC",
+        "planFourLabel": "GM R+3",
+        "noCompanyAtThisLocation": "Aucune entreprise présente à cet emplacement."
+    },
     "CompaniesPage": {
         "companiesCount": "Entreprises inscrites",
         "sectorsCount": "Secteurs d'activité",
@@ -212,9 +231,10 @@
         "contactInfo": "Informations de contact",
         "connectWithUs": "Suivez-nous",
         "environmentalCommitment": "Engagement environnemental",
+        "room": "Salle {roomNumber}",
         "floor": "Étage {floorNumber}",
         "groundFloor": "Rez-de-chaussée",
-        "building": "Bâtiment {buildingName}",
+        "building": "Bâtiment {buildingNumber}",
         "unknown": "Inconnu",
         "carbonFootprint": "Empreinte carbone",
         "website": "Site web",

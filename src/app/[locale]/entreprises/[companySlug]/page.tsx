@@ -156,12 +156,15 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                     <LuBuilding2 className="size-8 text-primary" />
                     {company.room ? (
                         <div className="flex-1 md:text-lg">
-                            <p className="text-lg md:text-xl font-semibold">{company.room.name}</p>
+                            <p className="text-lg md:text-xl font-semibold">
+                                {t('room', { roomNumber: company.room.name })}
+                            </p>
                             <p className="text-gray-500">
                                 {company.room.floor === 0
                                     ? t('groundFloor')
                                     : t('floor', { floorNumber: company.room.floor })}
-                                , {t('building', { buildingName: company.room.building })}
+                                , {t('building', { buildingNumber: company.room.buildingNumber })} (
+                                {company.room.buildingName})
                             </p>
                         </div>
                     ) : (

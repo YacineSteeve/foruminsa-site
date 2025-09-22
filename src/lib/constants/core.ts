@@ -29,10 +29,7 @@ export const SUPPORTED_LANGUAGES = ['fr', 'en'] as const;
 
 export const DEFAULT_LANGUAGE = 'fr' as const;
 
-export const LANGUAGE_METADATA: Record<
-    (typeof SUPPORTED_LANGUAGES)[number],
-    { label: string; countryName: string; countryCode: string }
-> = {
+export const LANGUAGE_METADATA = {
     fr: {
         label: 'Français',
         countryName: 'France',
@@ -43,7 +40,10 @@ export const LANGUAGE_METADATA: Record<
         countryName: 'United Kingdom',
         countryCode: 'gb',
     },
-} as const;
+} as const satisfies Record<
+    (typeof SUPPORTED_LANGUAGES)[number],
+    { label: string; countryName: string; countryCode: string }
+>;
 
 export const MENU_ITEMS = [
     {

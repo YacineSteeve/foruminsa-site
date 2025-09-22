@@ -4,13 +4,13 @@ import { JobteaserSection } from '@components/global/JobteaserSection';
 import { Loader } from '@components/ui/Loader';
 import { SuspenseBoundary } from '@components/ui/SuspenseBoundary';
 import { i18nRouting } from '@lib/i18n/routing';
-import { cn, getFullUrl, getLocalizedFullUrl } from '@lib/utils';
+import { cn, getLocalizedFullUrl } from '@lib/utils';
 import { HeroUIProvider } from '@heroui/react';
 import { hasLocale, type Locale, NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import type { PropsWithChildren } from 'react';
 import type { Metadata, Viewport } from 'next';
-import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
+import { getLocale, getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import TopLoader from 'nextjs-toploader';
 import { Toaster } from 'sonner';
 import '@style/global.css';
@@ -30,7 +30,7 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-    const t = await getTranslations('AppMetadata');
+    const [t, locale] = await Promise.all([getTranslations('AppMetadata'), getLocale()]);
 
     return {
         title: {
@@ -43,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
             .split(',')
             .map((keyword) => keyword.trim()),
         alternates: {
-            canonical: getFullUrl('/'),
+            canonical: getLocalizedFullUrl('/', locale),
             languages: Object.fromEntries(
                 i18nRouting.locales.map((locale) => [locale, getLocalizedFullUrl(`/`, locale)]),
             ),
