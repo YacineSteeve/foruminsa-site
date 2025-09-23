@@ -18,8 +18,8 @@ export interface RequestConfig<P extends RequestConfigParams, D extends RequestC
 export class ApiService {
     private static async request<
         R,
-        P extends RequestConfigParams = {},
-        D extends RequestConfigData = {},
+        P extends RequestConfigParams = RequestConfigParams,
+        D extends RequestConfigData = RequestConfigData,
     >(path: string, config: RequestConfig<P, D>): Promise<R | undefined> {
         const { method, headers, data, params, ...otherConfig } = config;
 
@@ -31,6 +31,7 @@ export class ApiService {
             response = await fetch(url, {
                 method: method ?? 'GET',
                 headers: {
+                    ...headers,
                     'Content-Type':
                         data instanceof FormData ? 'multipart/form-data' : 'application/json',
                 },
@@ -75,7 +76,7 @@ export class ApiService {
         return responseBody as R;
     }
 
-    public static async get<R, P extends RequestConfigParams = {}>(
+    public static async get<R, P extends RequestConfigParams = RequestConfigParams>(
         path: string,
         config?: RequestConfig<P, never>,
     ) {
@@ -84,29 +85,29 @@ export class ApiService {
 
     public static async post<
         R,
-        P extends RequestConfigParams = {},
-        D extends RequestConfigData = {},
+        P extends RequestConfigParams = RequestConfigParams,
+        D extends RequestConfigData = RequestConfigData,
     >(path: string, config?: RequestConfig<P, D>) {
         return this.request<R, P>(path, { ...config, method: 'POST' });
     }
 
     public static async put<
         R,
-        P extends RequestConfigParams = {},
-        D extends RequestConfigData = {},
+        P extends RequestConfigParams = RequestConfigParams,
+        D extends RequestConfigData = RequestConfigData,
     >(path: string, config?: RequestConfig<P, D>) {
         return this.request<R, P>(path, { ...config, method: 'PUT' });
     }
 
     public static async patch<
         R,
-        P extends RequestConfigParams = {},
-        D extends RequestConfigData = {},
+        P extends RequestConfigParams = RequestConfigParams,
+        D extends RequestConfigData = RequestConfigData,
     >(path: string, config?: RequestConfig<P, D>) {
         return this.request<R, P>(path, { ...config, method: 'PATCH' });
     }
 
-    public static async delete<R, P extends RequestConfigParams = {}>(
+    public static async delete<R, P extends RequestConfigParams = RequestConfigParams>(
         path: string,
         config?: RequestConfig<P, never>,
     ) {

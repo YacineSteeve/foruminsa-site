@@ -156,3 +156,5 @@ export const TABS = [
 }>;
 
 export const DEFAULT_TAB = TABS[0];
+
+export const SHOW_CARBON_BALANCE_TABLE = true as const;

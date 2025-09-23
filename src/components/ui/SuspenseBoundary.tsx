@@ -1,10 +1,14 @@
-import { type FunctionComponent, type PropsWithChildren, type ReactNode, Suspense } from 'react';
+import {
+    type ComponentProps,
+    type FunctionComponent,
+    type PropsWithChildren,
+    Suspense,
+} from 'react';
 import { Loader } from '@components/ui/Loader';
 
-interface SuspenseBoundaryProps
-    extends PropsWithChildren<{
-        fallback?: ReactNode | null;
-    }> {}
+interface SuspenseBoundaryProps extends PropsWithChildren {
+    fallback?: ComponentProps<typeof Suspense>['fallback'];
+}
 
 export const SuspenseBoundary: FunctionComponent<SuspenseBoundaryProps> = ({
     fallback,

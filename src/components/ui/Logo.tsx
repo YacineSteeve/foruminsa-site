@@ -4,9 +4,7 @@ import { useTranslations } from 'next-intl';
 import Image, { type ImageProps } from 'next/image';
 import type { FunctionComponent } from 'react';
 
-interface LogoProps extends Omit<ImageProps, 'src' | 'alt'> {}
-
-export const Logo: FunctionComponent<LogoProps> = (props) => {
+export const Logo: FunctionComponent<Omit<ImageProps, 'src' | 'alt'>> = (props) => {
     const t = useTranslations('Logo');
 
     return (

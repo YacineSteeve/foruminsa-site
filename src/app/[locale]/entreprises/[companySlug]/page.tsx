@@ -70,6 +70,8 @@ export async function generateMetadata({ params }: CompanyDetailsPageProps): Pro
             },
         };
     } catch (error) {
+        console.error('Error generating metadata:', error);
+
         return {
             title: '404',
         };
@@ -100,7 +102,7 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
             </div>
         );
     }
-    
+
     const companyRoom = company.room;
 
     return (
@@ -175,7 +177,9 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                                             tab.filter.buildingNumber ===
                                                 companyRoom.buildingNumber &&
                                             (!tab.filter.roomIds ||
-                                                (tab.filter.roomIds as Array<number>).includes(companyRoom.id))
+                                                (tab.filter.roomIds as Array<number>).includes(
+                                                    companyRoom.id,
+                                                ))
                                         );
                                     })?.key ?? DEFAULT_TAB.key,
                             }).toString()}#rooms-plan`}

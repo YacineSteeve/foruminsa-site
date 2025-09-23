@@ -1,8 +1,4 @@
-import type {
-    RequestHandler,
-    RequestHandlerContext,
-    RequestHandlerContextBase,
-} from '@lib/middlewares/types';
+import type { RequestHandler, RequestHandlerContext } from '@lib/middlewares/types';
 import { ApiError } from '@lib/utils';
 import ipaddr from 'ipaddr.js';
 import { NextRequest } from 'next/server';
@@ -65,9 +61,9 @@ const getRateLimiterHeaders = (
     };
 };
 
-export type RateLimitOptions = {};
+export type RateLimitOptions = object;
 
-export const withRateLimit = <C extends RequestHandlerContext = RequestHandlerContextBase>(
+export const withRateLimit = <C extends RequestHandlerContext = RequestHandlerContext>(
     handler: RequestHandler<C>,
     _options?: RateLimitOptions,
 ): RequestHandler<C> => {

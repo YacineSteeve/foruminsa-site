@@ -1,7 +1,11 @@
 import { CarbonBalanceRankingTable } from '@components/carbon-balance/CarbonBalanceRankingTable';
 import { Card } from '@heroui/card';
 import { CompanyService } from '@lib/services';
-import { COMPANIES_RANKING_PAGE_SIZE, URL_PARAMS } from '@lib/constants/core';
+import {
+    COMPANIES_RANKING_PAGE_SIZE,
+    SHOW_CARBON_BALANCE_TABLE,
+    URL_PARAMS,
+} from '@lib/constants/core';
 import { FORUM_LABEL_ICON } from '@lib/constants/ui';
 import type { CompaniesFiltersAsSearchParams } from '@lib/types/dtos';
 import type { Metadata } from 'next';
@@ -85,22 +89,24 @@ export default async function CarbonBalancePage({ params, searchParams }: Carbon
                     <p className="text-xl">{t('methodologyDescription')}</p>
                 </div>
             </section>
-            <section className="space-y-8 w-full px-2 *:sm:px-4 *:md:px-10 *:lg:px-20 *:xl:px-40 *:2xl:px-60 *:3xl:px-80 py-8 md:py-16 bg-default/20">
-                <div className="flex-center flex-col gap-4 text-center">
-                    <LuLeaf className="size-12 text-success" />
-                    <h2 className="text-primary">{t('companiesRanking')}</h2>
-                    <p className="text-lg">{t('companiesRankingDescription')}</p>
-                </div>
-                <CarbonBalanceRankingTable
-                    filters={{
-                        search,
-                        page,
-                        greenLabel,
-                    }}
-                    paginatedCompanies={paginatedCompanies}
-                    locale={locale}
-                />
-            </section>
+            {SHOW_CARBON_BALANCE_TABLE && (
+                <section className="space-y-8 w-full px-2 *:sm:px-4 *:md:px-10 *:lg:px-20 *:xl:px-40 *:2xl:px-60 *:3xl:px-80 py-8 md:py-16 bg-default/20">
+                    <div className="flex-center flex-col gap-4 text-center">
+                        <LuLeaf className="size-12 text-success" />
+                        <h2 className="text-primary">{t('companiesRanking')}</h2>
+                        <p className="text-lg">{t('companiesRankingDescription')}</p>
+                    </div>
+                    <CarbonBalanceRankingTable
+                        filters={{
+                            search,
+                            page,
+                            greenLabel,
+                        }}
+                        paginatedCompanies={paginatedCompanies}
+                        locale={locale}
+                    />
+                </section>
+            )}
             <section className="flex max-lg:flex-col justify-center gap-8 lg:gap-16 w-full py-8 md:py-16 *:flex-1">
                 <Card
                     disableAnimation

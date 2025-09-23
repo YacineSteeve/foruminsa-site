@@ -1,17 +1,13 @@
 import { type CorsOptions, withCors } from '@lib/middlewares/cors';
 import { type RateLimitOptions, withRateLimit } from '@lib/middlewares/rate-limiting';
-import type {
-    RequestHandler,
-    RequestHandlerContext,
-    RequestHandlerContextBase,
-} from '@lib/middlewares/types';
+import type { RequestHandler, RequestHandlerContext } from '@lib/middlewares/types';
 
 export type AllMiddlewaresOptions = {
     cors?: boolean | CorsOptions;
     rateLimit?: boolean | RateLimitOptions;
 };
 
-const withMiddlewares = <C extends RequestHandlerContext = RequestHandlerContextBase>(
+const withMiddlewares = <C extends RequestHandlerContext = RequestHandlerContext>(
     handler: RequestHandler<C>,
     options?: AllMiddlewaresOptions,
 ): RequestHandler<C> => {
