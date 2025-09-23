@@ -100,6 +100,8 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
             </div>
         );
     }
+    
+    const companyRoom = company.room;
 
     return (
         <div className="grid lg:grid-cols-2 gap-4 md:gap-8 w-full max-w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 3xl:px-80 py-4 md:py-8 pb-16 bg-default/20">
@@ -163,17 +165,17 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
             <CompanyDetailsSection title={t('forumLocation')}>
                 <div className="flex items-center gap-4">
                     <LuBuilding2 className="size-8 text-primary" />
-                    {company.room ? (
+                    {companyRoom ? (
                         <Link
                             href={`/evenement?${new URLSearchParams({
                                 [URL_PARAMS.plan]:
                                     TABS.find((tab) => {
                                         return (
-                                            tab.filter.floor === company.room.floor &&
+                                            tab.filter.floor === companyRoom.floor &&
                                             tab.filter.buildingNumber ===
-                                                company.room.buildingNumber &&
+                                                companyRoom.buildingNumber &&
                                             (!tab.filter.roomIds ||
-                                                tab.filter.roomIds.includes(company.room.id))
+                                                (tab.filter.roomIds as Array<number>).includes(companyRoom.id))
                                         );
                                     })?.key ?? DEFAULT_TAB.key,
                             }).toString()}#rooms-plan`}
@@ -181,15 +183,15 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                         >
                             <div className="flex-1 md:text-lg">
                                 <p className="text-lg md:text-xl font-semibold group-hover:underline underline-offset-2">
-                                    {t('room', { roomNumber: company.room.name })}
+                                    {t('room', { roomNumber: companyRoom.name })}
                                 </p>
                                 <p className="text-gray-500 group-hover:underline underline-offset-2">
-                                    {company.room.floor === 0
+                                    {companyRoom.floor === 0
                                         ? t('groundFloor')
-                                        : t('floor', { floorNumber: company.room.floor })}
+                                        : t('floor', { floorNumber: companyRoom.floor })}
                                     ,{' '}
-                                    {t('building', { buildingNumber: company.room.buildingNumber })}{' '}
-                                    ({company.room.buildingName})
+                                    {t('building', { buildingNumber: companyRoom.buildingNumber })}{' '}
+                                    ({companyRoom.buildingName})
                                 </p>
                             </div>
                         </Link>
