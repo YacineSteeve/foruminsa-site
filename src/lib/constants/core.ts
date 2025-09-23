@@ -3,7 +3,7 @@ import type { Time } from '@lib/types/primitives';
 
 export const APP_URL =
     process.env.NODE_ENV === 'production'
-        ? ('https://foruminsa-site.vercel.app' as const)
+        ? ('https://foruminsa-site.onrender.com' as const)
         : ('http://192.168.102.97:3000' as const);
 
 export const JOBTEASER_EVENT_URL =
