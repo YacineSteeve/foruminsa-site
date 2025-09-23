@@ -13,13 +13,12 @@ import {
     TableRow,
     type TableProps,
 } from '@heroui/table';
-import type { PaginatedCompanyEntities } from '@lib/services';
 import { URL_PARAMS } from '@lib/constants/core';
 import { COUNTRIES } from '@lib/constants/countries';
 import { FORUM_LABEL_ICON } from '@lib/constants/ui';
 import { useSearchParamsChange } from '@lib/hooks';
 import { useRouter } from '@lib/i18n/navigation';
-import type { CompaniesFilters } from '@lib/types/dtos';
+import type { CompaniesFilters, PaginatedCompanyEntities } from '@lib/types/dtos';
 import {
     cn,
     getCompanyLogoUrl,

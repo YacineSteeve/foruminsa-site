@@ -49,7 +49,18 @@
         "mustBeFalse": "This field must have the value 'false'.",
         "mustBeAValidNumber": "This field must be a valid number.",
         "mustBeAValidImageFileName": "This field must be a valid image file name.",
-        "endTimeMustBeAfterStartTime": "End time must be after start time."
+        "endTimeMustBeAfterStartTime": "End time must be after start time.",
+        "mustBe0": "This field must have the value 0.",
+        "mustBe0Point5": "This field must have the value 0.5.",
+        "mustBe1": "This field must have the value 1.",
+        "mustBe1Point5": "This field must have the value 1.5.",
+        "mustBe2": "This field must have the value 2.",
+        "mustBe2Point5": "This field must have the value 2.5.",
+        "mustBe3": "This field must have the value 3.",
+        "mustBe3Point5": "This field must have the value 3.5.",
+        "mustBe4": "This field must have the value 4.",
+        "mustBe4Point5": "This field must have the value 4.5.",
+        "mustBe5": "This field must have the value 5."
     },
     "ApiErrors": {
         "SOMETHING_WENT_WRONG": "An error occurred. Please try again later.",
@@ -167,12 +178,13 @@
         "bySpeaker": "By {name}",
         "fromCompany": "from {companyName}"
     },
-    "EventMapsSection": {
+    "EventRoomsPlanSection": {
         "companiesLocationMap": "Map of companies locations",
         "planOneLabel": "STPI 1st Floor Left",
         "planTwoLabel": "STPI 1st Floor Right",
         "planThreeLabel": "STPI Ground Floor",
         "planFourLabel": "GM 3rd Floor",
+        "planImageAlt": "Image of the forum rooms located at {planLabel}",
         "noCompanyAtThisLocation": "No company is present at this location."
     },
     "CompaniesPage": {
@@ -241,11 +253,11 @@
         "title": "Carbon Balance of the Forum By INSA 2025",
         "description": "We are committed to organizing a sustainable Forum, in an environmentally and socially responsible manner. Discover the environmental impact of our event through the carbon footprint of the companies during the Forum.",
         "methodology": "A rigorous calculation methodology",
-        "methodologyDescription": "The carbon footprint was carried out following the official ADEME methodology, taking into account direct and indirect emissions related to the organization of the Forum. We collected precise data on travel, waste generated, and much more.",
+        "methodologyDescription": "The carbon footprint was calculated following the official ADEME methodology, taking into account direct and indirect emissions related to the organization of the Forum. We collected precise data on travel, purchases made, energy consumed, and much more.",
         "companiesRanking": "Companies Ranking",
         "companiesRankingDescription": "Discover the ranking of companies participating in the Forum By INSA 2025, based on their carbon footprint related to their participation in the Forum.",
         "theForumGreenLabel": "The Forum Green Label",
-        "theForumGreenLabelDescription": "The green label is awarded to companies that demonstrate a strong commitment to environmental sustainability. To obtain this label, companies must prioritize eco-friendly transportation methods for their travel, minimize their waste production by avoiding goodies, and adopt environmentally friendly practices in all their activities related to the Forum.",
+        "theForumGreenLabelDescription": "The green label is awarded to companies that demonstrate a strong commitment to environmental sustainability. To obtain this label, companies must prioritize eco-friendly transportation methods for their travel, minimize their purchases and energy consumption by avoiding goodies, and adopt environmentally friendly practices in all their activities related to the Forum.",
         "ourPartner": "Our Partner",
         "ourPartnerDescription": "CarboScope supports us in the precise calculation of the carbon emissions of each participating company, using a certified methodology and up-to-date data. We are proud to collaborate with them to ensure the reliability of our carbon footprint."
     },

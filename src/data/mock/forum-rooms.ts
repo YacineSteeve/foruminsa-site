@@ -24,7 +24,7 @@ export const forumRoomsData: ForumRoomsData = [
         })),
     ...[12, 14, 16].map((nameSuffix) => ({
         floor: 3,
-        buildingNumber: 11,
+        buildingNumber: 17,
         buildingName: buildingNames[1]!,
         nameSuffix,
     })),

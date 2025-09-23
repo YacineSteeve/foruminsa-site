@@ -1,6 +1,9 @@
 import { CONTACT_SUBJECTS, SUPPORTED_LANGUAGES } from '@lib/constants/core';
 import {
+    type CompanyEntity,
     countryCodeSchema,
+    type ForumRoomEntity,
+    type SectorEntity,
     sectorEntitySchema,
     specialitySchema,
     studyLevelSchema,
@@ -79,4 +82,35 @@ export type CompaniesFilters = z.infer<typeof companiesFiltersSchema>;
 
 export type CompaniesFiltersAsSearchParams = {
     [K in keyof CompaniesFilters]: string | Array<string> | undefined;
+};
+
+export type PaginatedCompanyEntities = {
+    data: Array<CompanyEntity>;
+    page: number;
+    pageSize: number;
+    totalElements: number;
+    totalPages: number;
+};
+
+export type CompaniesStatsEntity = {
+    companiesCount: number;
+    sectorsCount: number;
+    specialitiesCount: number;
+};
+
+export type CityList = Array<CompanyEntity['city']>;
+
+export type CountryList = Array<CompanyEntity['countryCode']>;
+
+export type SectorEntityList = Array<SectorEntity>;
+
+export type CompanyLogoList = Array<Pick<CompanyEntity, 'id' | 'name' | 'slug' | 'logoFile'>>;
+
+export type ForumRoomList = Array<{
+    room: ForumRoomEntity;
+    companies: Array<Pick<CompanyEntity, 'id' | 'name' | 'slug'>>;
+}>;
+
+export type ForumRoomFilter = Pick<ForumRoomEntity, 'floor' | 'buildingNumber'> & {
+    roomIds: Array<ForumRoomEntity['id']> | null;
 };

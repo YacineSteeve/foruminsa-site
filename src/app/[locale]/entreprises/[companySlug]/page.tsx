@@ -5,6 +5,8 @@ import { Badge } from '@heroui/badge';
 import { Chip } from '@heroui/chip';
 import { ScrollShadow } from '@heroui/scroll-shadow';
 import { Tooltip } from '@heroui/tooltip';
+import { DEFAULT_TAB, TABS, URL_PARAMS } from '@lib/constants/core';
+import { Link } from '@lib/i18n/navigation';
 import { CompanyService } from '@lib/services';
 import { COUNTRIES } from '@lib/constants/countries';
 import { FORUM_LABEL_ICON, SOCIAL_LINKS_TYPES_METADATA } from '@lib/constants/ui';
@@ -20,7 +22,7 @@ import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import {
     LuBuilding2,
     LuBusFront,
@@ -145,7 +147,14 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                                     content: 'block w-full break-words whitespace-normal',
                                 }}
                             >
-                                {sector.name[locale]}
+                                <Link
+                                    href={`/entreprises?${new URLSearchParams({
+                                        [URL_PARAMS.sector]: sector.id.toString(),
+                                    }).toString()}#companies-list`}
+                                    className="hover:underline underline-offset-2"
+                                >
+                                    {sector.name[locale]}
+                                </Link>
                             </Chip>
                         ))}
                     </div>
@@ -155,18 +164,35 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                 <div className="flex items-center gap-4">
                     <LuBuilding2 className="size-8 text-primary" />
                     {company.room ? (
-                        <div className="flex-1 md:text-lg">
-                            <p className="text-lg md:text-xl font-semibold">
-                                {t('room', { roomNumber: company.room.name })}
-                            </p>
-                            <p className="text-gray-500">
-                                {company.room.floor === 0
-                                    ? t('groundFloor')
-                                    : t('floor', { floorNumber: company.room.floor })}
-                                , {t('building', { buildingNumber: company.room.buildingNumber })} (
-                                {company.room.buildingName})
-                            </p>
-                        </div>
+                        <Link
+                            href={`/evenement?${new URLSearchParams({
+                                [URL_PARAMS.plan]:
+                                    TABS.find((tab) => {
+                                        return (
+                                            tab.filter.floor === company.room.floor &&
+                                            tab.filter.buildingNumber ===
+                                                company.room.buildingNumber &&
+                                            (!tab.filter.roomIds ||
+                                                tab.filter.roomIds.includes(company.room.id))
+                                        );
+                                    })?.key ?? DEFAULT_TAB.key,
+                            }).toString()}#rooms-plan`}
+                            className="block group"
+                        >
+                            <div className="flex-1 md:text-lg">
+                                <p className="text-lg md:text-xl font-semibold group-hover:underline underline-offset-2">
+                                    {t('room', { roomNumber: company.room.name })}
+                                </p>
+                                <p className="text-gray-500 group-hover:underline underline-offset-2">
+                                    {company.room.floor === 0
+                                        ? t('groundFloor')
+                                        : t('floor', { floorNumber: company.room.floor })}
+                                    ,{' '}
+                                    {t('building', { buildingNumber: company.room.buildingNumber })}{' '}
+                                    ({company.room.buildingName})
+                                </p>
+                            </div>
+                        </Link>
                     ) : (
                         <p className="text-gray-500 text-lg wrap">{t('unknown')}</p>
                     )}
@@ -184,7 +210,14 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                                 content: 'block w-full break-words whitespace-normal',
                             }}
                         >
-                            {tSpecialities(speciality)}
+                            <Link
+                                href={`/entreprises?${new URLSearchParams({
+                                    [URL_PARAMS.speciality]: speciality,
+                                }).toString()}#companies-list`}
+                                className="hover:underline underline-offset-2"
+                            >
+                                {tSpecialities(speciality)}
+                            </Link>
                         </Chip>
                     ))}
                 </div>
@@ -212,7 +245,14 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                                     content: 'block w-full break-words whitespace-normal',
                                 }}
                             >
-                                {tStudyLevels(studyLevel)}
+                                <Link
+                                    href={`/entreprises?${new URLSearchParams({
+                                        [URL_PARAMS.studyLevel]: studyLevel,
+                                    }).toString()}#companies-list`}
+                                    className="hover:underline underline-offset-2"
+                                >
+                                    {tStudyLevels(studyLevel)}
+                                </Link>
                             </Chip>
                         </Badge>
                     ))}
@@ -300,7 +340,7 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                         <div className="flex items-center gap-4">
                             <LuGlobe className="size-6 text-primary" />
                             <div className="flex-1">
-                                <Link
+                                <NextLink
                                     href={company.websiteUrl}
                                     target="_blank"
                                     className="group flex items-center"
@@ -309,7 +349,7 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                                         {t('website')}
                                     </p>
                                     <LuExternalLink className="ml-2 size-4 inline-block not-group-hover:hidden" />
-                                </Link>
+                                </NextLink>
                             </div>
                         </div>
                     )}
@@ -317,7 +357,7 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                         <div className="flex items-center gap-4">
                             <LuHandshake className="size-6 text-primary" />
                             <div className="flex-1">
-                                <Link
+                                <NextLink
                                     href={company.hiringPlatformUrl}
                                     target="_blank"
                                     className="group flex items-center"
@@ -326,14 +366,14 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                                         {t('hiringPlatform')}
                                     </p>
                                     <LuExternalLink className="ml-2 size-4 inline-block not-group-hover:hidden" />
-                                </Link>
+                                </NextLink>
                             </div>
                         </div>
                     )}
                     <div className="flex gap-4">
                         <LuMapPin className="size-6 text-primary" />
                         <div className="flex-1">
-                            <Link
+                            <NextLink
                                 href={buildGoogleMapsUrl({
                                     address: company.address,
                                     postalCode: company.postalCode,
@@ -359,7 +399,7 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                                 <p className="text-gray-500">
                                     {COUNTRIES[company.countryCode][locale]}
                                 </p>
-                            </Link>
+                            </NextLink>
                         </div>
                     </div>
                 </div>
@@ -377,7 +417,7 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                                 >
                                     <Icon className="size-6 text-primary" />
                                     <div className="flex-1">
-                                        <Link
+                                        <NextLink
                                             href={socialLink.url}
                                             target="_blank"
                                             className="group flex items-center"
@@ -391,7 +431,7 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                                                     : tSocialLinks(socialLink.type)}
                                             </p>
                                             <LuExternalLink className="ml-2 size-4 inline-block not-group-hover:hidden" />
-                                        </Link>
+                                        </NextLink>
                                     </div>
                                 </div>
                             );

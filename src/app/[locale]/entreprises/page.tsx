@@ -112,7 +112,10 @@ export default async function CompaniesPage({ params, searchParams }: CompaniesP
                     />
                 </div>
             </div>
-            <div className="flex flex-col items-center gap-y-16 w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 pt-40 max-md:pt-60">
+            <div
+                id="companies-list"
+                className="flex flex-col items-center gap-y-16 w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 pt-40 max-md:pt-60"
+            >
                 <div className="flex flex-col items-center gap-y-4 text-center">
                     <h1>{t('title')}</h1>
                     <p className="text-xl w-full sm:w-5/6 md:w-4/5 lg:w-3/4 xl:w-2/3 2xl:w-1/2">

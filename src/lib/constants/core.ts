@@ -1,3 +1,4 @@
+import type { ForumRoomFilter } from '@lib/types/dtos';
 import type { Time } from '@lib/types/primitives';
 
 export const APP_URL =
@@ -103,4 +104,55 @@ export const URL_PARAMS = {
     pageSize: 'pageSize',
     greenLabel: 'greenLabel',
     sortByCarbonFootprint: 'sortByCarbonFootprint',
+    plan: 'plan',
 } as const;
+
+export const TABS = [
+    {
+        key: 'plan-1',
+        image: 'rooms_plan_1.png',
+        label: 'planOneLabel',
+        filter: {
+            floor: 1,
+            buildingNumber: 20,
+            roomIds: [5, 6, 7, 8],
+        },
+    },
+    {
+        key: 'plan-2',
+        image: 'rooms_plan_2.png',
+        label: 'planTwoLabel',
+        filter: {
+            floor: 1,
+            buildingNumber: 20,
+            roomIds: [9, 10, 11, 12, 13, 14, 15, 16, 17],
+        },
+    },
+    {
+        key: 'plan-3',
+        image: 'rooms_plan_3.png',
+        label: 'planThreeLabel',
+        filter: {
+            floor: 0,
+            buildingNumber: 20,
+            roomIds: null,
+        },
+    },
+    {
+        key: 'plan-4',
+        image: 'rooms_plan_4.png',
+        label: 'planFourLabel',
+        filter: {
+            floor: 3,
+            buildingNumber: 17,
+            roomIds: null,
+        },
+    },
+] as const satisfies ReadonlyArray<{
+    key: string;
+    image: string;
+    label: string;
+    filter: ForumRoomFilter;
+}>;
+
+export const DEFAULT_TAB = TABS[0];

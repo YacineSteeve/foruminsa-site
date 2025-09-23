@@ -2,8 +2,18 @@ import { companiesData } from '@data/companies';
 import { forumRoomsData } from '@data/forum-rooms';
 import { sectorsData } from '@data/sectors';
 import type { CompaniesData } from '@lib/types/data';
-import type { CompaniesFilters } from '@lib/types/dtos';
-import type { CompanyEntity, ForumRoomEntity, SectorEntity } from '@lib/types/entities';
+import type {
+    CityList,
+    CompaniesFilters,
+    CompaniesStatsEntity,
+    CompanyLogoList,
+    CountryList,
+    ForumRoomFilter,
+    ForumRoomList,
+    PaginatedCompanyEntities,
+    SectorEntityList,
+} from '@lib/types/dtos';
+import type { CompanyEntity, ForumRoomEntity } from '@lib/types/entities';
 import { fakerFR as faker } from '@faker-js/faker';
 import { hasGreenLabel, ServiceError } from '@lib/utils';
 
@@ -247,34 +257,3 @@ export class CompanyService {
         return value === undefined || value === null;
     }
 }
-
-export type PaginatedCompanyEntities = {
-    data: Array<CompanyEntity>;
-    page: number;
-    pageSize: number;
-    totalElements: number;
-    totalPages: number;
-};
-
-export type CompaniesStatsEntity = {
-    companiesCount: number;
-    sectorsCount: number;
-    specialitiesCount: number;
-};
-
-export type CityList = Array<CompanyEntity['city']>;
-
-export type CountryList = Array<CompanyEntity['countryCode']>;
-
-export type SectorEntityList = Array<SectorEntity>;
-
-export type CompanyLogoList = Array<Pick<CompanyEntity, 'id' | 'name' | 'slug' | 'logoFile'>>;
-
-export type ForumRoomList = Array<{
-    room: ForumRoomEntity;
-    companies: Array<Pick<CompanyEntity, 'id' | 'name' | 'slug'>>;
-}>;
-
-export interface ForumRoomFilter
-    extends Pick<ForumRoomEntity, 'floor' | 'buildingNumber'>,
-        Partial<{ roomIds: Array<ForumRoomEntity['id']> }> {}

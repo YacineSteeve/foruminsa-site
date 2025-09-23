@@ -1,9 +1,12 @@
-import { EventMapsSection } from '@components/event/EventMapsSection';
+import { EventRoomsPlanSection } from '@components/event/EventRoomsPlanSection';
 import { EventPlanningGroup } from '@components/event/EventPlanningGroup';
 import { planningData } from '@data/planning';
 import { BrochureSection } from '@components/global/BrochureSection';
 import { Button } from '@heroui/button';
-import { EVENT_TIME, JOBTEASER_EVENT_URL } from '@lib/constants/core';
+import { DEFAULT_TAB, EVENT_TIME, JOBTEASER_EVENT_URL, TABS } from '@lib/constants/core';
+import { Link } from '@lib/i18n/navigation';
+import { CompanyService } from '@lib/services';
+import type { ForumRoomList } from '@lib/types/dtos';
 import { formatEventTime, getFormattedEventDate } from '@lib/utils';
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
@@ -26,12 +29,23 @@ interface EventPageProps {
     params: Promise<{
         locale: string;
     }>;
+    searchParams: Promise<{
+        plan: string;
+    }>;
 }
 
-export default async function EventPage({ params }: EventPageProps) {
-    const [awaitedParams, t] = await Promise.all([params, getTranslations('EventPage')]);
+export default async function EventPage({ params, searchParams }: EventPageProps) {
+    const [awaitedParams, awaitedSearchParams, t] = await Promise.all([
+        params,
+        searchParams,
+        getTranslations('EventPage'),
+    ]);
 
     const locale = awaitedParams.locale as Locale;
+
+    const tab = TABS.find((tab) => tab.key === awaitedSearchParams.plan) ?? DEFAULT_TAB;
+
+    const companiesByRoom = CompanyService.getCompaniesGroupedByRoom(tab.filter);
 
     return (
         <div className="w-full">
@@ -125,7 +139,23 @@ export default async function EventPage({ params }: EventPageProps) {
                 </div>
             </section>
             <BrochureSection />
-            <EventMapsSection />
+            <section
+                id="rooms-plan"
+                className="w-full px-4 md:px-10 lg:px-20 xl:px-40 2xl:px-60 3xl:px-80 py-8 md:py-16 space-y-4 md:space-y-8"
+            >
+                <EventRoomsPlanSection selectedTab={tab.key}>
+                    {companiesByRoom.length > 0 && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-8">
+                            {companiesByRoom.map((group) => (
+                                <RoomGroupItem
+                                    key={group.room.id}
+                                    group={group}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </EventRoomsPlanSection>
+            </section>
         </div>
     );
 }
@@ -153,6 +183,30 @@ const EventInfosItem: FunctionComponent<EventInfosItemProps> = ({
                 {subtitle && <p className="text-lg text-white">{subtitle}</p>}
                 {description && <p className="text-sm text-gray-300">{description}</p>}
             </div>
+        </div>
+    );
+};
+
+interface RoomGroupItemProps {
+    group: ForumRoomList[number];
+}
+
+const RoomGroupItem: FunctionComponent<RoomGroupItemProps> = ({ group }) => {
+    return (
+        <div className="flex flex-wrap gap-4">
+            <p className="text-2xl text-primary font-semibold">{group.room.name}</p>
+            <ul className="list-disc list-inside space-y-1">
+                {group.companies.map((company) => (
+                    <li key={company.id}>
+                        <Link
+                            href={`/entreprises/${company.slug}`}
+                            className="inline-block hover:font-semibold hover:underline underline-offset-2"
+                        >
+                            <p className="text-lg">{company.name}</p>
+                        </Link>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
