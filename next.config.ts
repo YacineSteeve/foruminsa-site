@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
     skipTrailingSlashRedirect: true,
     reactStrictMode: true,
     poweredByHeader: false,
-    allowedDevOrigins: ['192.168.1.227', '10.28.5.9', '192.168.102.97'],
+    allowedDevOrigins: ['192.168.1.227'],
     images: {
         qualities: [75, 100],
         remotePatterns: [
@@ -46,7 +46,8 @@ const nextConfig: NextConfig = {
             config.externals.push(
                 Object.fromEntries([
                     'handlebars',
-                    'express-handlebars'
+                    'express-handlebars',
+                    'rate-limiter-flexible'
                 ].map((pkg) => [pkg, `commonjs ${pkg}`])),
             );
         }
