@@ -2,7 +2,7 @@ import { z } from 'zod/v4';
 
 const serverEnvSchema = z.object({
     NODE_ENV: z.enum(['development', 'production'], {
-        error: 'NODE_ENV must be one of: development, production, test',
+        error: 'NODE_ENV must be one of: development, production',
     }),
     MAIL_HOST: z
         .string({ error: 'MAIL_HOST must be a string' })

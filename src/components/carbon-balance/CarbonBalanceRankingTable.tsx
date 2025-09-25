@@ -13,6 +13,7 @@ import {
     TableRow,
     type TableProps,
 } from '@heroui/table';
+import { Tooltip } from '@heroui/tooltip';
 import { URL_PARAMS } from '@lib/constants/core';
 import { COUNTRIES } from '@lib/constants/countries';
 import { FORUM_LABEL_ICON } from '@lib/constants/ui';
@@ -150,33 +151,38 @@ export const CarbonBalanceRankingTable: FunctionComponent<CarbonBalanceRankingTa
                             </div>
                         </TableCell>
                         <TableCell>
-                            <div className="flex items-center gap-0.5">
-                                {company.carbonFootprint ? (
-                                    getStarsSequenceFromCarbonFootprint(
-                                        company.carbonFootprint,
-                                    ).map((sequenceItem, index) => {
-                                        const Icon = {
-                                            full: RiStarFill,
-                                            half: RiStarHalfFill,
-                                            empty: RiStarLine,
-                                        }[sequenceItem];
+                            {company.carbonFootprint ? (
+                                <Tooltip
+                                    placement="top-start"
+                                    content={`${company.carbonFootprint}/5`}
+                                >
+                                    <div className="flex items-center gap-0.5">
+                                        {getStarsSequenceFromCarbonFootprint(
+                                            company.carbonFootprint,
+                                        ).map((sequenceItem, index) => {
+                                            const Icon = {
+                                                full: RiStarFill,
+                                                half: RiStarHalfFill,
+                                                empty: RiStarLine,
+                                            }[sequenceItem];
 
-                                        return (
-                                            <Icon
-                                                key={index}
-                                                className={cn(
-                                                    'size-5',
-                                                    sequenceItem === 'empty'
-                                                        ? 'text-default'
-                                                        : 'text-yellow-500',
-                                                )}
-                                            />
-                                        );
-                                    })
-                                ) : (
-                                    <p className="text-gray-500 font-bold">{t('undefined')}</p>
-                                )}
-                            </div>
+                                            return (
+                                                <Icon
+                                                    key={index}
+                                                    className={cn(
+                                                        'size-5',
+                                                        sequenceItem === 'empty'
+                                                            ? 'text-default'
+                                                            : 'text-yellow-500',
+                                                    )}
+                                                />
+                                            );
+                                        })}
+                                    </div>
+                                </Tooltip>
+                            ) : (
+                                <p className="text-gray-500 font-bold">{t('undefined')}</p>
+                            )}
                         </TableCell>
                         <TableCell>
                             <Chip

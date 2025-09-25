@@ -292,29 +292,34 @@ export default async function CompanyDetailsPage({ params }: CompanyDetailsPageP
                         <div className="flex-1">
                             <p className="text-lg font-semibold">{t('carbonFootprint')}</p>
                             {company.carbonFootprint ? (
-                                <div className="flex items-center gap-0.5">
-                                    {getStarsSequenceFromCarbonFootprint(
-                                        company.carbonFootprint,
-                                    ).map((sequenceItem, index) => {
-                                        const Icon = {
-                                            full: RiStarFill,
-                                            half: RiStarHalfFill,
-                                            empty: RiStarLine,
-                                        }[sequenceItem];
+                                <Tooltip
+                                    placement="top-start"
+                                    content={`${company.carbonFootprint}/5`}
+                                >
+                                    <div className="flex items-center gap-0.5">
+                                        {getStarsSequenceFromCarbonFootprint(
+                                            company.carbonFootprint,
+                                        ).map((sequenceItem, index) => {
+                                            const Icon = {
+                                                full: RiStarFill,
+                                                half: RiStarHalfFill,
+                                                empty: RiStarLine,
+                                            }[sequenceItem];
 
-                                        return (
-                                            <Icon
-                                                key={index}
-                                                className={cn(
-                                                    'size-5',
-                                                    sequenceItem === 'empty'
-                                                        ? 'text-default'
-                                                        : 'text-yellow-500',
-                                                )}
-                                            />
-                                        );
-                                    })}
-                                </div>
+                                            return (
+                                                <Icon
+                                                    key={index}
+                                                    className={cn(
+                                                        'size-5',
+                                                        sequenceItem === 'empty'
+                                                            ? 'text-default'
+                                                            : 'text-yellow-500',
+                                                    )}
+                                                />
+                                            );
+                                        })}
+                                    </div>
+                                </Tooltip>
                             ) : (
                                 <p className="text-gray-500">{t('unknown')}</p>
                             )}

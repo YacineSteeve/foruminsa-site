@@ -3,7 +3,7 @@ import type { Time } from '@lib/types/primitives';
 
 export const APP_URL =
     process.env.NODE_ENV === 'production'
-        ? ('https://foruminsa-site.onrender.com' as const)
+        ? ('https://foruminsa-site.vercel.app' as const)
         : ('http://192.168.102.97:3000' as const);
 
 export const JOBTEASER_EVENT_URL =
@@ -157,4 +157,4 @@ export const TABS = [
 
 export const DEFAULT_TAB = TABS[0];
 
-export const SHOW_CARBON_BALANCE_TABLE = true as const;
+export const SHOW_CARBON_BALANCE_INFO = true as const;
