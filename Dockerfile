@@ -4,11 +4,14 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 RUN yarn next telemetry disable
 
 COPY . .
+
+ARG NODE_ENV
+ENV NODE_ENV=$NODE_ENV
 
 ARG MAIL_HOST
 ENV MAIL_HOST=$MAIL_HOST
@@ -37,6 +40,9 @@ WORKDIR /app
 COPY --from=builder /app/public/ ./public
 COPY --from=builder /app/.next/standalone/ ./
 COPY --from=builder /app/.next/static/ ./.next/static
+
+ENV HOSTNAME=0.0.0.0
+ENV PORT=3000
 
 EXPOSE 3000
 
